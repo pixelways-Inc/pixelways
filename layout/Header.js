@@ -83,10 +83,7 @@ const Header1 = ({ singleMenu }) => {
                     alt="Logo"
                     title="Logo"
                     style={{ maxWidth: '140px' }}
-                  />
-                </Link>
-                
-                  <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                  /> <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
                     Pixelways
                     <span
                       style={{
@@ -148,6 +145,9 @@ const Header1 = ({ singleMenu }) => {
                       </svg>
                     </span>
                   </span>
+                </Link>
+                
+                 
                 
               </div>
             </div>
