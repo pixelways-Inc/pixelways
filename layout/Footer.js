@@ -27,7 +27,7 @@ const Footer1 = () => {
           className="footer-top pt-70 pb-40 rpt-60 px-4 bgs-cover"
           style={{
             backgroundImage:
-              "url(assets/images/background/get-consultation-bg.jpg)",
+              "url('https://api.a0.dev/assets/image?text=Modern IT consultation scene, business team meeting in a bright office, digital screens, friendly atmosphere, 1200x400px, realistic, 8K.&aspect=3:1&seed=601')",
           }}
         >
           <div className="container">
