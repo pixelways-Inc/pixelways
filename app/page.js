@@ -23,7 +23,7 @@ const page = () => {
       {/* Hero Section Start */}
       <section
         className="hero-area pt-100 rpt-70 pb-130 rpb-100 rel z-1"
-        style={{ backgroundImage: "url(assets/images/hero/hero-bg.png)" }}
+        style={{ backgroundImage: "url('https://api.a0.dev/assets/image?text=Futuristic cityscape at sunrise, with electric rideshare vehicles and people commuting. Soft golden light, modern buildings, green parks, and digital billboards. Realistic, 8K, 1200x600px.&aspect=2:1&seed=201')" }}
       >
         <div className="container">
           <div className="row align-items-center">
@@ -53,7 +53,7 @@ const page = () => {
                 data-aos-duration={1500}
                 data-aos-offset={50}
               >
-                <img src="assets/images/hero/hero.png" alt="Hero" />
+                <img src="https://api.a0.dev/assets/image?text=A vibrant city intersection at golden hour, filled with modern electric rideshare vehicles in motion—sleek sedans, SUVs, and eco-friendly scooters. In the foreground, a diverse group of smiling young professionals and families are boarding and exiting vehicles, some using smartphones to hail rides. A friendly driver waves from an open window. The background features contemporary glass buildings, lush green trees, and digital billboards displaying the RideShare logo. The scene is lively, welcoming, and safe, with warm sunlight casting soft shadows. Realistic details, cinematic lighting, ultra-sharp textures, 8K resolution. Image size: 600x600px.&aspect=1:1&seed=123" alt="Hero" width={600} height={600} />
               </div>
             </div>
           </div>
@@ -101,9 +101,7 @@ const page = () => {
               <div className="feature-item hover-content">
                 <div className="image">
                   <img
-                    src="assets/images/features/feature1.jpg"
-                    alt="Feature"
-                  />
+                    src="https://api.a0.dev/assets/image?text=An IT professional in a modern office, collaborating with colleagues over laptops and digital screens showing analytics and cloud icons. The environment is bright, innovative, and welcoming, with glass walls and greenery. Realistic, 8K, 400x400px.&aspect=1:1&seed=124" alt="IT Solutions" width={400} height={400} />
                 </div>
                 <div className="content">
                   <h4 className="title">
@@ -131,9 +129,7 @@ const page = () => {
               <div className="feature-item hover-content">
                 <div className="image">
                   <img
-                    src="assets/images/features/feature2.jpg"
-                    alt="Feature"
-                  />
+                    src="https://api.a0.dev/assets/image?text=A cybersecurity expert monitoring multiple screens with threat maps and security alerts, in a high-tech control room. Blue tones, secure, focused, 8K, 400x400px.&aspect=1:1&seed=125" alt="Cyber Security" width={400} height={400} />
                 </div>
                 <div className="content">
                   <h4 className="title">
@@ -161,9 +157,7 @@ const page = () => {
               <div className="feature-item hover-content">
                 <div className="image">
                   <img
-                    src="assets/images/features/feature3.jpg"
-                    alt="Feature"
-                  />
+                    src="https://api.a0.dev/assets/image?text=Cloud servers floating above a city skyline, with data streams connecting businesses below. Futuristic, clean, and optimistic, 8K, 400x400px.&aspect=1:1&seed=126" alt="Cloud Services" width={400} height={400} />
                 </div>
                 <div className="content">
                   <h4 className="title">
@@ -254,13 +248,9 @@ const page = () => {
                   data-aos-offset={50}
                 >
                   <img
-                    src="assets/images/about/why-choose1.jpg"
-                    alt="Why Choose"
-                  />
+                    src="https://api.a0.dev/assets/image?text=Business team celebrating a successful digital transformation, with charts and laptops on a conference table. Bright, energetic, 8K, 300x300px.&aspect=1:1&seed=127" alt="Why Choose" width={300} height={300} />
                   <img
-                    src="assets/images/about/why-choose2.jpg"
-                    alt="Why Choose"
-                  />
+                    src="https://api.a0.dev/assets/image?text=IT consultant shaking hands with a client in a modern office, symbolizing partnership and trust. Professional, warm, 8K, 300x300px.&aspect=1:1&seed=128" alt="Why Choose" width={300} height={300} />
                 </div>
                 <div
                   className="right"
@@ -270,13 +260,9 @@ const page = () => {
                   data-aos-offset={50}
                 >
                   <img
-                    src="assets/images/about/why-choose3.jpg"
-                    alt="Why Choose"
-                  />
+                    src="https://api.a0.dev/assets/image?text=Happy clients using a new business app on tablets, with a consultant guiding them. Friendly, collaborative, 8K, 300x300px.&aspect=1:1&seed=129" alt="Why Choose" width={300} height={300} />
                   <img
-                    src="assets/images/about/why-choose4.jpg"
-                    alt="Why Choose"
-                  />
+                    src="https://api.a0.dev/assets/image?text=Team of IT experts brainstorming around a whiteboard filled with diagrams and ideas. Creative, dynamic, 8K, 300x300px.&aspect=1:1&seed=130" alt="Why Choose" width={300} height={300} />
                 </div>
               </div>
             </div>
@@ -313,9 +299,7 @@ const page = () => {
               <div className="service-item hover-content">
                 <div className="image">
                   <img
-                    src="assets/images/services/service1.jpg"
-                    alt="Feature"
-                  />
+                    src="https://api.a0.dev/assets/image?text=IT technician managing servers in a data center, surrounded by blinking lights and cables. Reliable, secure, 8K, 350x350px.&aspect=1:1&seed=131" alt="Managed IT Services" width={350} height={350} />
                 </div>
                 <div className="content">
                   <h4 className="title">
@@ -346,9 +330,7 @@ const page = () => {
               <div className="service-item hover-content">
                 <div className="image">
                   <img
-                    src="assets/images/services/service2.jpg"
-                    alt="Feature"
-                  />
+                    src="https://api.a0.dev/assets/image?text=Cybersecurity shield overlaying a network of computers, with digital locks and warning symbols. Blue, high-tech, 8K, 350x350px.&aspect=1:1&seed=132" alt="Cybersecurity Services" width={350} height={350} />
                 </div>
                 <div className="content">
                   <h4 className="title">
@@ -380,9 +362,7 @@ const page = () => {
               <div className="service-item hover-content">
                 <div className="image">
                   <img
-                    src="assets/images/services/service3.jpg"
-                    alt="Feature"
-                  />
+                    src="https://api.a0.dev/assets/image?text=Cloud infrastructure with multiple devices syncing data, set against a bright sky. Modern, scalable, 8K, 350x350px.&aspect=1:1&seed=133" alt="Cloud Solutions" width={350} height={350} />
                 </div>
                 <div className="content">
                   <h4 className="title">
@@ -413,9 +393,7 @@ const page = () => {
               <div className="service-item hover-content">
                 <div className="image">
                   <img
-                    src="assets/images/services/service4.jpg"
-                    alt="Feature"
-                  />
+                    src="https://api.a0.dev/assets/image?text=Data backup process visualized as files moving to a secure vault, with recovery icons and graphs. Trustworthy, clear, 8K, 350x350px.&aspect=1:1&seed=134" alt="Data Backup & Recovery" width={350} height={350} />
                 </div>
                 <div className="content">
                   <h4 className="title">
@@ -445,7 +423,7 @@ const page = () => {
       <section
         className="achievement-area bgc-blue bgs-cover pt-100 rpt-70 pb-130 rpb-130 rel z-1"
         style={{
-          backgroundImage: "url(assets/images/background/achievement-bg.jpg)",
+          backgroundImage: "url('https://api.a0.dev/assets/image?text=Digital blueprint overlay on a modern office, with a team celebrating achievements. Blue tones, innovation, 8K, 1200x600px.&aspect=2:1&seed=202')",
         }}
       >
         <div className="container">
@@ -608,9 +586,7 @@ const page = () => {
               <div className="feature-item style-two hover-content">
                 <div className="image">
                   <img
-                    src="assets/images/features/feature-two1.jpg"
-                    alt="Feature"
-                  />
+                    src="https://api.a0.dev/assets/image?text=IT strategist presenting a roadmap on a digital screen, with team members discussing. Smart, strategic, 8K, 350x350px.&aspect=1:1&seed=135" alt="Assessment and Strategy Development" width={350} height={350} />
                 </div>
                 <div className="content">
                   <div className="tags">
@@ -644,9 +620,7 @@ const page = () => {
               <div className="feature-item style-two hover-content">
                 <div className="image">
                   <img
-                    src="assets/images/features/feature-two2.jpg"
-                    alt="Feature"
-                  />
+                    src="https://api.a0.dev/assets/image?text=Cybersecurity protocol visualized as a digital fortress with firewalls and encrypted data streams. Secure, advanced, 8K, 350x350px.&aspect=1:1&seed=136" alt="Enhanced Cybersecurity Protocols" width={350} height={350} />
                 </div>
                 <div className="content">
                   <div className="tags">
@@ -680,9 +654,7 @@ const page = () => {
               <div className="feature-item style-two hover-content">
                 <div className="image">
                   <img
-                    src="assets/images/features/feature-two3.jpg"
-                    alt="Feature"
-                  />
+                    src="https://api.a0.dev/assets/image?text=Cloud migration shown as data moving from on-premise servers to cloud platforms, with optimization graphs. Efficient, futuristic, 8K, 350x350px.&aspect=1:1&seed=137" alt="Cloud Migration and Optimization" width={350} height={350} />
                 </div>
                 <div className="content">
                   <div className="tags">
@@ -744,7 +716,7 @@ const page = () => {
             >
               <div className="blog-item hover-content">
                 <div className="image">
-                  <img src="assets/images/blog/blog1.jpg" alt="Blog" />
+                  <img src="https://api.a0.dev/assets/image?text=Business leader writing a cybersecurity article in a modern workspace, with digital threat icons in the background. Professional, informative, 8K, 300x300px.&aspect=1:1&seed=138" alt="Blog" width={300} height={300} />
                 </div>
                 <div className="content">
                   <ul className="blog-meta">
@@ -782,7 +754,7 @@ const page = () => {
             >
               <div className="blog-item hover-content">
                 <div className="image">
-                  <img src="assets/images/blog/blog2.jpg" alt="Blog" />
+                  <img src="https://api.a0.dev/assets/image?text=IT consultant reviewing solution options on a tablet, with a cityscape visible through the window. Insightful, expert, 8K, 300x300px.&aspect=1:1&seed=139" alt="Blog" width={300} height={300} />
                 </div>
                 <div className="content">
                   <ul className="blog-meta">
@@ -820,7 +792,7 @@ const page = () => {
             >
               <div className="blog-item hover-content">
                 <div className="image">
-                  <img src="assets/images/blog/blog3.jpg" alt="Blog" />
+                  <img src="https://api.a0.dev/assets/image?text=Data backup specialist restoring files on a computer, with disaster recovery plans on the wall. Secure, practical, 8K, 300x300px.&aspect=1:1&seed=140" alt="Blog" width={300} height={300} />
                 </div>
                 <div className="content">
                   <ul className="blog-meta">
