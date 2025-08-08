@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+"use client";
 import Link from "next/link";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
-const ClientLogos = () => {
+const ClientLogo = ({ containerClass = "client-logo-area" }) => {
   const logos = [
     "client-logo1.png",
     "client-logo2.png",
@@ -19,54 +17,60 @@ const ClientLogos = () => {
     "client-logo6.png",
   ];
 
-  useEffect(() => {
-    AOS.init({
-      duration: 1500,
-      offset: 50,
-      once: true,
-      disable: false, // Ensure AOS animations still work on mobile
-    });
-  }, []);
-
   return (
-    <div className="relative w-full min-h-[80px] py-6 bg-white">
-      <div className="marquee absolute left-0 top-0 h-full w-full flex items-center overflow-hidden">
-        <div className="marquee-content flex items-center gap-8 animate-marquee">
-          {logos.map((logo, idx) => (
-            <div
-              key={logo + idx}
-              className="client-logo-item flex-shrink-0"
-              data-aos="flip-up"
-            >
-              <Link href="/contact">
-                <img
-                  src={`assets/images/client-logos/${logo}`}
-                  alt={`Client Logo ${idx + 1}`}
-                  className="max-h-[48px] sm:max-h-[64px] w-auto transition duration-300 hover:brightness-0 hover:saturate-100 hover:text-red-500"
-                />
-              </Link>
+    <div className={containerClass}>
+      <div className="container-fluid overflow-hidden">
+        <div className="relative w-full h-[140px] py-6">
+          <div className="marquee flex items-center absolute left-0 top-0 h-full w-full">
+            <div className="marquee-content flex items-center animate-marquee">
+              
+              {/* First set of logos */}
+              {logos.map((logo, idx) => (
+                <div
+                  key={logo + idx}
+                  className="client-logo-item flex items-center justify-center mx-8 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+                  data-aos="flip-up"
+                  data-aos-duration={1500}
+                  data-aos-offset={50}
+                >
+                  <Link href="contact">
+                    <img
+                      src={`assets/images/client-logos/${logo}`}
+                      alt={`Client Logo ${idx + 1}`}
+                      className="h-16 w-auto object-contain transition-all duration-300 hover:[filter:invert(21%)_sepia(93%)_saturate(5483%)_hue-rotate(354deg)_brightness(97%)_contrast(96%)]"
+                    />
+                  </Link>
+                </div>
+              ))}
+
+              {/* Duplicate for seamless loop */}
+              {logos.map((logo, idx) => (
+                <div
+                  key={logo + "-dup-" + idx}
+                  className="client-logo-item flex items-center justify-center mx-8 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+                  data-aos="flip-up"
+                  data-aos-duration={1500}
+                  data-aos-offset={50}
+                >
+                  <Link href="contact">
+                    <img
+                      src={`assets/images/client-logos/${logo}`}
+                      alt={`Client Logo ${idx + 1}`}
+                      className="h-16 w-auto object-contain transition-all duration-300 hover:[filter:invert(21%)_sepia(93%)_saturate(5483%)_hue-rotate(354deg)_brightness(97%)_contrast(96%)]"
+                    />
+                  </Link>
+                </div>
+              ))}
+
             </div>
-          ))}
-          {/* Duplicate for seamless scrolling */}
-          {logos.map((logo, idx) => (
-            <div
-              key={logo + "-dup-" + idx}
-              className="client-logo-item flex-shrink-0"
-              data-aos="flip-up"
-            >
-              <Link href="/contact">
-                <img
-                  src={`assets/images/client-logos/${logo}`}
-                  alt={`Client Logo ${idx + 1}`}
-                  className="max-h-[48px] sm:max-h-[64px] w-auto transition duration-300 hover:brightness-0 hover:saturate-100 hover:text-red-500"
-                />
-              </Link>
-            </div>
-          ))}
+          </div>
         </div>
       </div>
 
       <style jsx>{`
+        .marquee {
+          overflow: hidden;
+        }
         .marquee-content {
           min-width: 200%;
           display: flex;
@@ -87,4 +91,4 @@ const ClientLogos = () => {
   );
 };
 
-export default ClientLogos;
+export default ClientLogo;
