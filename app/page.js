@@ -1,3 +1,4 @@
+"use client";
 import ClientLogo from "@/components/ClientLogo";
 import Counter from "@/components/Counter";
 import Team from "@/components/Team";

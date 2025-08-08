@@ -1,5 +1,6 @@
 import ClientLogo from "@/components/ClientLogo";
 import Counter from "@/components/Counter";
+import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 import Team from "@/components/Team";
 import { Testimonials2 } from "@/components/testimonials/Testimonials2";
@@ -167,27 +168,23 @@ const page = () => {
       </section>
       {/* About Page Experience End */}
       {/* Team Area start */}
-      <section className="team-area bgc-gray py-130 rpy-100 rel z-1">
+      {/* CTA to Team Page */}
+      <section className="about-team-cta py-60 text-center">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-12">
-              <div
-                className="section-title text-center mb-50"
-                data-aos="fade-up"
-                data-aos-duration={1500}
-                data-aos-offset={50}
-              >
-                <span className="sub-title color-primary mb-10">
-                  Meet Our Team
-                </span>
-                <h2>Experience Technical Team</h2>
+            <div className="col-lg-8">
+              <div className="cta-content">
+                <h3 className="mb-4">Meet Our Expert Team</h3>
+                <p className="mb-4">Discover the professionals driving Pixelways Solution's success. Learn more about our team's expertise and commitment to your business growth.</p>
+                <Team />
+                <Link href="/team" className="theme-btn btn-large">
+                  View Team
+                </Link>
               </div>
             </div>
           </div>
-          <Team />
         </div>
       </section>
-      {/* Team Area end */}
       {/* Why Choose Us Area start */}
       <section className="why-choose-us-area py-130 rpt-100 rpb-75  rel z-1">
         <div className="container">

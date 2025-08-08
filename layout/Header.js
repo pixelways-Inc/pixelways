@@ -960,158 +960,34 @@ const Menu = ({ logo = "/logo.png", singleMenu }) => {
             ))
           ) : (
             <Fragment>
-              <li className="dropdown">
-                <a href="#">Home</a>
-                <ul>
-                  <li className="dropdown">
-                    <a href="#">MultiPage</a>
-                    <ul>
-                      <li>
-                        <Link href="/"> IT Solutions</Link>
-                      </li>
-                      <li>
-                        <Link href="/index2">Software Company</Link>
-                      </li>
-                      <li>
-                        <Link href="/index3">Cyber Security</Link>
-                      </li>
-                      <li>
-                        <Link href="/index4">AI Software</Link>
-                      </li>
-                      <li>
-                        <Link href="/index5">Web Development</Link>
-                      </li>
-                      <li>
-                        <Link href="/index6">IT Services</Link>
-                      </li>
-                    </ul>
-                    <div className="dropdown-btn">
-                      <span className="far fa-angle-down" />
-                    </div>
-                  </li>
-                  <li className="dropdown">
-                    <a href="#">OnePage</a>
-                    <ul>
-                      <li>
-                        <Link href="/index1-onepage">IT Solutions</Link>
-                      </li>
-                      <li>
-                        <Link href="/index2-onepage">Software Company</Link>
-                      </li>
-                      <li>
-                        <Link href="/index3-onepage">Cyber Security</Link>
-                      </li>
-                      <li>
-                        <Link href="/index4-onepage">AI Software</Link>
-                      </li>
-                      <li>
-                        <Link href="/index5-onepage">Web Development</Link>
-                      </li>
-                      <li>
-                        <Link href="/index6-onepage">IT Services</Link>
-                      </li>
-                    </ul>
-                    <div className="dropdown-btn">
-                      <span className="far fa-angle-down" />
-                    </div>
-                  </li>
-                </ul>
-                <div className="dropdown-btn">
-                  <span className="far fa-angle-down" />
-                </div>
+              <li>
+                <Link href="/">Home</Link>
               </li>
               <li>
-                <Link href="/about">About Us</Link>
+                <Link href="/about">About</Link>
               </li>
-              <li className="dropdown">
-                <a href="#">pages</a>
-                <ul>
-                  <li>
-                    <Link href="/faqs">faqs</Link>
-                  </li>
-                  <li className="dropdown">
-                    <a href="#">Services</a>
-                    <ul>
-                      <li>
-                        <Link href="/services">Our Services</Link>
-                      </li>
-                      <li>
-                        <Link href="/service-details">Service Details</Link>
-                      </li>
-                    </ul>
-                    <div className="dropdown-btn">
-                      <span className="far fa-angle-down" />
-                    </div>
-                  </li>
-                  <li className="dropdown">
-                    <a href="#">Shop</a>
-                    <ul>
-                      <li>
-                        <Link href="/shop">Our Products</Link>
-                      </li>
-                      <li>
-                        <Link href="/product-details">Products Details</Link>
-                      </li>
-                    </ul>
-                    <div className="dropdown-btn">
-                      <span className="far fa-angle-down" />
-                    </div>
-                  </li>
-                  <li>
-                    <Link href="/pricing">Pricing Plan</Link>
-                  </li>
-                  <li className="dropdown">
-                    <a href="#">Team</a>
-                    <ul>
-                      <li>
-                        <Link href="/team">Our Team</Link>
-                      </li>
-                      <li>
-                        <Link href="/team-details">Team Details</Link>
-                      </li>
-                    </ul>
-                    <div className="dropdown-btn">
-                      <span className="far fa-angle-down" />
-                    </div>
-                  </li>
-                  <li>
-                    <Link href="/404">404 Error</Link>
-                  </li>
-                </ul>
-                <div className="dropdown-btn">
-                  <span className="far fa-angle-down" />
-                </div>
+             
+              <li>
+                <Link href="/services">Services</Link>
               </li>
-              <li className="dropdown">
-                <a href="#">Cases</a>
-                <ul>
-                  <li>
-                    <Link href="/cases">Cases</Link>
-                  </li>
-                  <li>
-                    <Link href="/case-details">Case Details</Link>
-                  </li>
-                </ul>
-                <div className="dropdown-btn">
-                  <span className="far fa-angle-down" />
-                </div>
+              <li>
+                <Link href="/shop">Products</Link>
               </li>
-              <li className="dropdown">
-                <a href="#">blog</a>
-                <ul>
-                  <li>
-                    <Link href="/blog">blog</Link>
-                  </li>
-                  <li>
-                    <Link href="/blog-details">blog details</Link>
-                  </li>
-                </ul>
-                <div className="dropdown-btn">
-                  <span className="far fa-angle-down" />
-                </div>
+              <li>
+                <Link href="/pricing">Pricing</Link>
+              </li>
+             
+              <li>
+                <Link href="/cases">Cases</Link>
+              </li>
+              <li>
+                <Link href="/blog">Blog</Link>
               </li>
               <li>
                 <Link href="/contact">Contact</Link>
+              </li>
+               <li>
+                <Link href="/faqs">FAQs</Link>
               </li>
             </Fragment>
           )}
