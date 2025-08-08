@@ -98,4 +98,4 @@ _No license specified. Please update this section with your project's license._
 
 ---
 
-> _This README was created by Hans Ade . If you are a collaborator please  do well to ensure the understnading of the framework before contributing  to the project._
+> _This README was created by Hans Ade . If you are a collaborator please  do well to ensure the understanding of the framework before contributing  to the project._
