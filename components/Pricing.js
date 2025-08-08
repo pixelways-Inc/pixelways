@@ -57,312 +57,106 @@ const Pricing = ({
               <Tab.Content className="tab-content">
                 <Tab.Pane className="tab-pane fade" eventKey="monthly">
                   <div className="row no-gap justify-content-center">
-                    <div
-                      className="col-lg-4 col-md-6"
-                      data-aos="fade-up"
-                      data-aos-duration={1500}
-                      data-aos-offset={50}
-                    >
+                    <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration={1500} data-aos-offset={50}>
                       <div className={`pricing-item ${itemStyle}`}>
-                        <h4 className="title">Starter Package</h4>
-                        <div className="text">
-                          Small businesses and startups
-                        </div>
-                        <span className="price">
-                          $5,000<span className="after-text">/per month</span>
-                        </span>
+                        <h4 className="title">Starter Website</h4>
+                        <div className="text">Perfect for startups and small businesses</div>
+                        <span className="price">$500<span className="after-text">/one-time</span></span>
                         <h4 className="included">Included:</h4>
                         <ul className="list-style-one">
-                          <li>
-                            <i className="far fa-check" /> Custom software
-                            development
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Requirement analysis
-                            &amp; planning
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Support and
-                            maintenance
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Integration
-                            third-party services
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Data backups and
-                            advanced
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Analytics and
-                            reporting features
-                          </li>
+                          <li><i className="far fa-check" /> Up to 5 pages</li>
+                          <li><i className="far fa-check" /> Responsive design</li>
+                          <li><i className="far fa-check" /> Basic SEO setup</li>
+                          <li><i className="far fa-check" /> Contact form</li>
+                          <li><i className="far fa-check" /> 1 month free support</li>
                         </ul>
-                        <Link
-                          href="pricing"
-                          className="theme-btn"
-                          data-hover="Choose Package"
-                        >
-                          <span>Choose Package</span>
-                        </Link>
+                        <Link href="/contact" className="theme-btn" data-hover="Choose Package"><span>Choose Package</span></Link>
                       </div>
                     </div>
-                    <div
-                      className="col-lg-4 col-md-6"
-                      data-aos="fade-up"
-                      data-aos-delay={100}
-                      data-aos-duration={1500}
-                      data-aos-offset={50}
-                    >
+                    <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay={100} data-aos-duration={1500} data-aos-offset={50}>
                       <div className={`pricing-item ${itemStyle}`}>
                         <span className="badge">popular</span>
-                        <h4 className="title">Enterprise Package</h4>
-                        <div className="text">
-                          Large businesses and requirements
-                        </div>
-                        <span className="price">
-                          $10,000<span className="after-text">/per month</span>
-                        </span>
+                        <h4 className="title">Growth Website</h4>
+                        <div className="text">For growing businesses needing more features</div>
+                        <span className="price">$2,000<span className="after-text">/one-time</span></span>
                         <h4 className="included">Included:</h4>
                         <ul className="list-style-one">
-                          <li>
-                            <i className="far fa-check" /> Custom software
-                            development
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Dedicated project
-                            manager
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Pro Support and
-                            maintenance
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Advanced
-                            integrations,
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Comprehensive data
-                            security
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Advanced analytics
-                            and BI tools
-                          </li>
+                          <li><i className="far fa-check" /> Up to 15 pages</li>
+                          <li><i className="far fa-check" /> Premium design</li>
+                          <li><i className="far fa-check" /> Advanced SEO & analytics</li>
+                          <li><i className="far fa-check" /> Blog & integrations</li>
+                          <li><i className="far fa-check" /> 3 months free support</li>
                         </ul>
-                        <Link
-                          href="pricing"
-                          className="theme-btn"
-                          data-hover="Choose Package"
-                        >
-                          <span>Choose Package</span>
-                        </Link>
+                        <Link href="/contact" className="theme-btn" data-hover="Choose Package"><span>Choose Package</span></Link>
                       </div>
                     </div>
-                    <div
-                      className="col-lg-4 col-md-6"
-                      data-aos="fade-up"
-                      data-aos-delay={200}
-                      data-aos-duration={1500}
-                      data-aos-offset={50}
-                    >
+                    <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay={200} data-aos-duration={1500} data-aos-offset={50}>
                       <div className={`pricing-item ${itemStyle}`}>
-                        <h4 className="title">Custom Package</h4>
-                        <div className="text">
-                          Businesses with unique, large-scale
-                        </div>
-                        <span className="price">
-                          $23,000<span className="after-text">/per month</span>
-                        </span>
+                        <h4 className="title">Pro Website & App</h4>
+                        <div className="text">Web + Mobile app for ambitious brands</div>
+                        <span className="price">$4,000<span className="after-text">/one-time</span></span>
                         <h4 className="included">Included:</h4>
                         <ul className="list-style-one">
-                          <li>
-                            <i className="far fa-check" /> Fully software
-                            development
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Management and team
-                            allocation
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Priority support and
-                            maintenance
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Custom integrations
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> High-level data
-                            security
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Ongoing analytics and
-                            optimization
-                          </li>
+                          <li><i className="far fa-check" /> Website + iOS/Android app</li>
+                          <li><i className="far fa-check" /> Up to 25 pages/screens</li>
+                          <li><i className="far fa-check" /> Custom integrations</li>
+                          <li><i className="far fa-check" /> Cloud hosting setup</li>
+                          <li><i className="far fa-check" /> 6 months free support</li>
                         </ul>
-                        <Link
-                          href="pricing"
-                          className="theme-btn"
-                          data-hover="Choose Package"
-                        >
-                          <span>Choose Package</span>
-                        </Link>
+                        <Link href="/contact" className="theme-btn" data-hover="Choose Package"><span>Choose Package</span></Link>
                       </div>
                     </div>
                   </div>
                 </Tab.Pane>
                 <Tab.Pane className="tab-pane fade" eventKey="yearly">
                   <div className="row no-gap justify-content-center">
-                    <div
-                      className="col-lg-4 col-md-6"
-                      data-aos="fade-up"
-                      data-aos-duration={1500}
-                      data-aos-offset={50}
-                    >
+                    <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration={1500} data-aos-offset={50}>
                       <div className="pricing-item">
-                        <h4 className="title">Starter Package</h4>
-                        <div className="text">
-                          Small businesses and startups
-                        </div>
-                        <span className="price">
-                          $8,000<span className="after-text">/per month</span>
-                        </span>
+                        <h4 className="title">Starter Website</h4>
+                        <div className="text">Perfect for startups and small businesses</div>
+                        <span className="price">$1,200<span className="after-text">/year</span></span>
                         <h4 className="included">Included:</h4>
                         <ul className="list-style-one">
-                          <li>
-                            <i className="far fa-check" /> Custom software
-                            development
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Requirement analysis
-                            &amp; planning
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Support and
-                            maintenance
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Integration
-                            third-party services
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Data backups and
-                            advanced
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Analytics and
-                            reporting features
-                          </li>
+                          <li><i className="far fa-check" /> Up to 5 pages</li>
+                          <li><i className="far fa-check" /> Responsive design</li>
+                          <li><i className="far fa-check" /> Basic SEO setup</li>
+                          <li><i className="far fa-check" /> Contact form</li>
+                          <li><i className="far fa-check" /> 1 month free support</li>
                         </ul>
-                        <Link
-                          href="contact"
-                          className="theme-btn"
-                          data-hover="Choose Package"
-                        >
-                          <span>Choose Package</span>
-                        </Link>
+                        <Link href="/contact" className="theme-btn" data-hover="Choose Package"><span>Choose Package</span></Link>
                       </div>
                     </div>
-                    <div
-                      className="col-lg-4 col-md-6"
-                      data-aos="fade-up"
-                      data-aos-duration={1500}
-                      data-aos-offset={50}
-                      data-aos-delay={50}
-                    >
+                    <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration={1500} data-aos-offset={50} data-aos-delay={50}>
                       <div className="pricing-item">
                         <span className="badge">popular</span>
-                        <h4 className="title">Enterprise Package</h4>
-                        <div className="text">
-                          Large businesses and requirements
-                        </div>
-                        <span className="price">
-                          $30,000<span className="after-text">/per month</span>
-                        </span>
+                        <h4 className="title">Growth Website</h4>
+                        <div className="text">For growing businesses needing more features</div>
+                        <span className="price">$4,800<span className="after-text">/year</span></span>
                         <h4 className="included">Included:</h4>
                         <ul className="list-style-one">
-                          <li>
-                            <i className="far fa-check" /> Custom software
-                            development
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Dedicated project
-                            manager
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Pro Support and
-                            maintenance
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Advanced
-                            integrations,
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Comprehensive data
-                            security
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Advanced analytics
-                            and BI tools
-                          </li>
+                          <li><i className="far fa-check" /> Up to 15 pages</li>
+                          <li><i className="far fa-check" /> Premium design</li>
+                          <li><i className="far fa-check" /> Advanced SEO & analytics</li>
+                          <li><i className="far fa-check" /> Blog & integrations</li>
+                          <li><i className="far fa-check" /> 3 months free support</li>
                         </ul>
-                        <Link
-                          href="contact"
-                          className="theme-btn"
-                          data-hover="Choose Package"
-                        >
-                          <span>Choose Package</span>
-                        </Link>
+                        <Link href="/contact" className="theme-btn" data-hover="Choose Package"><span>Choose Package</span></Link>
                       </div>
                     </div>
-                    <div
-                      className="col-lg-4 col-md-6"
-                      data-aos="fade-up"
-                      data-aos-duration={1500}
-                      data-aos-offset={50}
-                      data-aos-delay={100}
-                    >
+                    <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration={1500} data-aos-offset={50} data-aos-delay={100}>
                       <div className="pricing-item">
-                        <h4 className="title">Custom Package</h4>
-                        <div className="text">
-                          Businesses with unique, large-scale
-                        </div>
-                        <span className="price">
-                          $75,000<span className="after-text">/per month</span>
-                        </span>
+                        <h4 className="title">Pro Website & App</h4>
+                        <div className="text">Web + Mobile app for ambitious brands</div>
+                        <span className="price">$8,000<span className="after-text">/year</span></span>
                         <h4 className="included">Included:</h4>
                         <ul className="list-style-one">
-                          <li>
-                            <i className="far fa-check" /> Fully software
-                            development
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Management and team
-                            allocation
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Priority support and
-                            maintenance
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Custom integrations
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> High-level data
-                            security
-                          </li>
-                          <li>
-                            <i className="far fa-check" /> Ongoing analytics and
-                            optimization
-                          </li>
+                          <li><i className="far fa-check" /> Website + iOS/Android app</li>
+                          <li><i className="far fa-check" /> Up to 25 pages/screens</li>
+                          <li><i className="far fa-check" /> Custom integrations</li>
+                          <li><i className="far fa-check" /> Cloud hosting setup</li>
+                          <li><i className="far fa-check" /> 6 months free support</li>
                         </ul>
-                        <Link
-                          href="contact"
-                          className="theme-btn"
-                          data-hover="Choose Package"
-                        >
-                          <span>Choose Package</span>
-                        </Link>
+                        <Link href="/contact" className="theme-btn" data-hover="Choose Package"><span>Choose Package</span></Link>
                       </div>
                     </div>
                   </div>
