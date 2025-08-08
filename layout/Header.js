@@ -959,37 +959,36 @@ const Menu = ({ logo = "/logo.png", singleMenu }) => {
               </li>
             ))
           ) : (
-            <Fragment>
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>
-                <Link href="/about">About</Link>
-              </li>
-             
-              <li>
-                <Link href="/services">Services</Link>
-              </li>
-              <li>
-                <Link href="/shop">Products</Link>
-              </li>
-              <li>
-                <Link href="/pricing">Pricing</Link>
-              </li>
-             
-              <li>
-                <Link href="/cases">Cases</Link>
-              </li>
-              <li>
-                <Link href="/blog">Blog</Link>
-              </li>
-              <li>
-                <Link href="/contact">Contact</Link>
-              </li>
-               <li>
-                <Link href="/faqs">FAQs</Link>
-              </li>
-            </Fragment>
+           <Fragment>
+  <li>
+    <Link href="/">Home</Link>
+  </li>
+  <li>
+    <Link href="/about">About</Link>
+  </li>
+  <li>
+    <Link href="/services">Services</Link>
+  </li>
+  <li>
+    <Link href="/cases">Cases</Link>
+  </li>
+  <li>
+    <Link href="/shop">Products</Link>
+  </li>
+  <li>
+    <Link href="/pricing">Pricing</Link>
+  </li>
+  <li>
+    <Link href="/blog">Blog</Link>
+  </li>
+  <li>
+    <Link href="/faqs">FAQs</Link>
+  </li>
+  <li>
+    <Link href="/contact">Contact</Link>
+  </li>
+</Fragment>
+
           )}
         </ul>
       </Accordion.Collapse>

@@ -3,10 +3,17 @@ import PageBanner from "@/components/PageBanner";
 import Pricing from "@/components/Pricing";
 import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
+import WebsiteCostCalculator from "@/components/WebsiteCostCalculator";
+import AppCostCalculator from "@/components/AppCostCalculator";
+
 const page = () => {
   return (
     <TekprofLayout>
       <PageBanner pageName="Pricing Plan" />
+      <div className="container py-10">
+        <WebsiteCostCalculator />
+        <AppCostCalculator />
+      </div>
       <Pricing
         containerClass="pricing-area pt-130 rpt-100 pb-100 rpb-70 rel z-1"
         pricingClass=""
