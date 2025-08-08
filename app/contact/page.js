@@ -156,7 +156,7 @@ const page = () => {
             data-aos-offset={50}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2880.47081274564!2d-79.28928562515048!3d43.783842671096224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d17f12535691%3A0xb77547ab772c91e7!2s4030%20Sheppard%20Ave%20E%2C%20Scarborough%2C%20ON%20M1S%201S6%2C%20Canada!5e0!3m2!1sen!2scm!4v1754648681722!5m2!1sen!2scm"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2880.4708127456406!2d-79.28928562515047!3d43.78384267109621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d10020856b71%3A0x350e52293cde34c2!2sPixelways%20Solutions%20INC!5e0!3m2!1sen!2scm!4v1754653355848!5m2!1sen!2scm"
               style={{ border: 0, width: "100%" }}
               allowFullScreen
               loading="lazy"
@@ -169,3 +169,4 @@ const page = () => {
   );
 };
 export default page;
+
