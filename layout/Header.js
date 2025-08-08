@@ -197,8 +197,8 @@ const Header2 = ({ singleMenu }) => {
                 <ul>
                   <li>
                     <i className="far fa-envelope" /> Support :{" "}
-                    <a href="mailto:uintechinfo@gmail.com">
-                      uintechinfo@gmail.com
+                    <a href="mailto:hello@pixelways.co">
+                      hello@pixelways.co
                     </a>
                   </li>
                   <li>

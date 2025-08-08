@@ -5,14 +5,24 @@ import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
 import WebsiteCostCalculator from "@/components/WebsiteCostCalculator";
 import AppCostCalculator from "@/components/AppCostCalculator";
+import DesktopCostCalculator from "@/components/DesktopCostCalculator";
 
 const page = () => {
   return (
     <TekprofLayout>
       <PageBanner pageName="Pricing Plan" />
       <div className="container py-10">
-        <WebsiteCostCalculator />
-        <AppCostCalculator />
+        <div className="row no-gap justify-content-center">
+          <div className="col-lg-4 col-md-6 mb-4">
+            <WebsiteCostCalculator />
+          </div>
+          <div className="col-lg-4 col-md-6 mb-4">
+            <AppCostCalculator />
+          </div>
+          <div className="col-lg-4 col-md-6 mb-4">
+            <DesktopCostCalculator />
+          </div>
+        </div>
       </div>
       <Pricing
         containerClass="pricing-area pt-130 rpt-100 pb-100 rpb-70 rel z-1"

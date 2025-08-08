@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useState } from "react";
 
 const AppCostCalculator = () => {
@@ -14,11 +14,17 @@ const AppCostCalculator = () => {
   ];
 
   const featureOptions = [
-    { label: "User Authentication", value: "auth", price: 500 },
-    { label: "Push Notifications", value: "push", price: 400 },
-    { label: "Payments", value: "payments", price: 1000 },
-    { label: "API Integration", value: "api", price: 1200 },
-    { label: "Chat/Messaging", value: "chat", price: 1500 },
+    { label: "User Authentication", value: "auth", price: 220 },
+    { label: "Push Notifications", value: "push", price: 180 },
+    { label: "Payments", value: "payments", price: 400 },
+    { label: "API Integration", value: "api", price: 320 },
+    { label: "Chat/Messaging", value: "chat", price: 350 },
+    { label: "Social Login", value: "social", price: 200 },
+    { label: "Maps Integration", value: "maps", price: 250 },
+    { label: "Camera Access", value: "camera", price: 170 },
+    { label: "File Upload", value: "upload", price: 160 },
+    { label: "Multi-language", value: "multilang", price: 300 },
+    { label: "Custom Animation", value: "animation", price: 190 },
   ];
 
   const calculateCost = () => {
@@ -32,39 +38,46 @@ const AppCostCalculator = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow p-6 mb-8">
-      <h3 className="text-xl font-bold mb-4">App Cost Calculator</h3>
-      <div className="mb-4">
-        <label className="block mb-2">Platform</label>
-        <select value={platform} onChange={e => setPlatform(e.target.value)} className="border rounded px-2 py-1">
-          {platformOptions.map(opt => (
-            <option key={opt.value} value={opt.value}>{opt.label}</option>
-          ))}
-        </select>
-      </div>
-      <div className="mb-4">
-        <label className="block mb-2">Number of Screens</label>
-        <input type="number" min={1} max={50} value={screens} onChange={e => setScreens(Number(e.target.value))} className="border rounded px-2 py-1 w-24" />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-2">Features</label>
-        {featureOptions.map(opt => (
-          <div key={opt.value}>
-            <label>
-              <input
-                type="checkbox"
-                checked={features.includes(opt.value)}
-                onChange={e => {
-                  if (e.target.checked) setFeatures([...features, opt.value]);
-                  else setFeatures(features.filter(f => f !== opt.value));
-                }}
-              /> {opt.label} (+${opt.price})
-            </label>
+    <div className={`pricing-item style-three`}>
+      <h4 className="title mb-3">App Cost Calculator</h4>
+      <div className="text mb-4">Estimate your mobile app project cost instantly</div>
+      <div className="included mb-2">Options:</div>
+      <ul className="list-style-one mb-4">
+        <li>
+          <label>Platform
+            <select value={platform} onChange={e => setPlatform(e.target.value)} className="form-control d-inline-block ms-2">
+              {platformOptions.map(opt => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+          </label>
+        </li>
+        <li>
+          <label>Number of Screens
+            <input type="number" min={1} max={50} value={screens} onChange={e => setScreens(Number(e.target.value))} className="form-control d-inline-block w-24 ms-2" />
+          </label>
+        </li>
+        <li>
+          <label>Features:</label>
+          <div className="d-flex flex-wrap gap-2 mt-2">
+            {featureOptions.map(opt => (
+              <label key={opt.value} className="me-3">
+                <input
+                  type="checkbox"
+                  checked={features.includes(opt.value)}
+                  onChange={e => {
+                    if (e.target.checked) setFeatures([...features, opt.value]);
+                    else setFeatures(features.filter(f => f !== opt.value));
+                  }}
+                /> {opt.label} (+${opt.price})
+              </label>
+            ))}
           </div>
-        ))}
-      </div>
+        </li>
+      </ul>
       <button className="theme-btn mt-2" onClick={calculateCost}>Calculate</button>
-      <div className="mt-4 text-lg font-semibold">Estimated Cost: ${cost}</div>
+  <div className="mt-4 price text-lg font-semibold"><span style={{display:'block',marginBottom:'6px'}}>Estimated </span><br />
+  Cost: ${cost}</div>
     </div>
   );
 };
