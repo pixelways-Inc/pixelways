@@ -23,7 +23,7 @@ export default class Testimonials extends Component {
             className="testimonials-inner pt-130 rpt-100 pb-100 rpb-70 bgs-cover"
             style={{
               backgroundImage:
-                "url(assets/images/background/testimonials-bg.jpg)",
+                "url('https://api.a0.dev/assets/image?text=Abstract digital success background, dark theme, subtle tech patterns, 8x753px, realistic, 8K.&aspect=8:753&seed=501')",
             }}
           >
             <div className="container">

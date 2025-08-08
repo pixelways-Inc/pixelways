@@ -90,9 +90,12 @@ const WorkingProcess = () => {
                   A focused approach to detecting, responding to, and recovering
                   from cyber incidents, minimizing impact
                 </p>
-              </div>
-              <div className="working-process-two">
-                <span className="step">Step 04</span>
+                <img
+                  src="https://api.a0.dev/assets/image?text=IT team collaborating on digital strategy, whiteboard, laptops, 410x250px, realistic, 8K.&aspect=1:1&seed=402"
+                  alt="Working Process"
+                  width={410}
+                  height={250}
+                />
                 <h5>Monitoring &amp; Detection</h5>
                 <p>
                   24/7 Threat Monitoring: Use advanced tools like SIEM (Security
@@ -110,8 +113,10 @@ const WorkingProcess = () => {
           >
             <div className="working-process-image-two ms-lg-auto mb-30 rmt-40">
               <img
-                src="assets/images/work-process/working-process2.png"
+                src="https://api.a0.dev/assets/image?text=IT team collaborating on digital strategy, whiteboard, laptops, 410x250px, realistic, 8K.&aspect=1:1&seed=402"
                 alt="Working Process"
+                width={410}
+                height={250}
               />
             </div>
           </div>
@@ -205,7 +210,7 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
                   <div className="col-lg-6">
                     <div className="image">
                       <img
-                        src="assets/images/work-process/working%20process.jpg"
+                        src="https://api.a0.dev/assets/image?text=IT team collaborating on digital strategy, whiteboard, laptops, 410x250px, realistic, 8K.&aspect=1:1&seed=402"
                         alt="Work Process"
                       />
                     </div>
@@ -261,7 +266,7 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
                   <div className="col-lg-6">
                     <div className="image">
                       <img
-                        src="assets/images/work-process/working%20process.jpg"
+                        src="https://api.a0.dev/assets/image?text=IT team collaborating on digital strategy, whiteboard, laptops, 410x250px, realistic, 8K.&aspect=1:1&seed=402"
                         alt="Work Process"
                       />
                     </div>
@@ -317,7 +322,7 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
                   <div className="col-lg-6">
                     <div className="image">
                       <img
-                        src="assets/images/work-process/working%20process.jpg"
+                        src="https://api.a0.dev/assets/image?text=IT team collaborating on digital strategy, whiteboard, laptops, 410x250px, realistic, 8K.&aspect=1:1&seed=402"
                         alt="Work Process"
                       />
                     </div>
@@ -375,7 +380,7 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
                   <div className="col-lg-6">
                     <div className="image">
                       <img
-                        src="assets/images/work-process/working%20process.jpg"
+                        src="https://api.a0.dev/assets/image?text=IT team collaborating on digital strategy, whiteboard, laptops, 410x250px, realistic, 8K.&aspect=1:1&seed=402"
                         alt="Work Process"
                       />
                     </div>
