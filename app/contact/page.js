@@ -30,7 +30,7 @@ const page = () => {
                     </div>
                     <div className="text">
                       <span className="title">Office Location</span>
-                      <p>4030 Sheppard Ave E, Scarborough, ON, Canada</p>
+                      <p>4030 Sheppard Ave E, Scarborough, ON. Canada</p>
                     </div>
                   </div>
                   <div className="contact-info-item">
@@ -39,9 +39,7 @@ const page = () => {
                     </div>
                     <div className="text">
                       <span className="title">Email Address</span>
-                      <a href="mailto:support@gmail.com">support@gmail.com</a>
-                      <br />
-                      <a href="mailto:uintechservice.com">uintechservice.com</a>
+                      <a href="mailto:hello@pixelways.co">hello@pixelways.co</a>
                     </div>
                   </div>
                   <div className="contact-info-item">
@@ -49,9 +47,8 @@ const page = () => {
                       <i className="far fa-phone-volume" />
                     </div>
                     <div className="text">
-                      <span className="title">Need Any Help</span>
-                      <a href="tel:+14164071923">+1 (416) 407-1923</a>,
-                      <a href="tel:+237679719353">+237 679 719 353</a>
+                      <span className="title">Phone</span>
+                      <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
                     </div>
                   </div>
                 </div>
@@ -159,7 +156,7 @@ const page = () => {
             data-aos-offset={50}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d96777.16150026117!2d-74.00840582560909!3d40.71171357405996!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1706508986625!5m2!1sen!2sbd"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2880.47081274564!2d-79.28928562515048!3d43.783842671096224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d17f12535691%3A0xb77547ab772c91e7!2s4030%20Sheppard%20Ave%20E%2C%20Scarborough%2C%20ON%20M1S%201S6%2C%20Canada!5e0!3m2!1sen!2scm!4v1754648681722!5m2!1sen!2scm"
               style={{ border: 0, width: "100%" }}
               allowFullScreen
               loading="lazy"

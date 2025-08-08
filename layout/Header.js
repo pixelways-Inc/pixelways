@@ -44,8 +44,8 @@ const Header1 = ({ singleMenu }) => {
                 <ul>
                   <li>
                     <i className="far fa-envelope" /> Support :{" "}
-                    <a href="mailto:uintechinfo@gmail.com">
-                      uintechinfo@gmail.com
+                    <a href="mailto:hello@pixelways.co">
+                      hello@pixelways.co
                     </a>
                   </li>
                   <li>
@@ -76,14 +76,79 @@ const Header1 = ({ singleMenu }) => {
         <div className="container clearfix">
           <div className="header-inner before-after-none rel d-flex align-items-center">
             <div className="logo-outer">
-              <div className="logo">
+              <div className="logo text-center">
                 <Link href="/">
                   <img
-                    src="assets/images/logos/logo.png"
+                    src="/logo.png"
                     alt="Logo"
                     title="Logo"
+                    style={{ maxWidth: '140px' }}
                   />
                 </Link>
+                
+                  <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                    Pixelways
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-0.35em',
+                        right: '-1.1em',
+                        width: '1.1em',
+                        height: '1.1em',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
+                        zIndex: 2,
+                      }}
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        style={{ display: 'block' }}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          {/* Sun rays */}
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * (Math.PI / 180);
+                            const x1 = 16 + Math.cos(angle) * 13;
+                            const y1 = 16 + Math.sin(angle) * 13;
+                            const x2 = 16 + Math.cos(angle) * 15.5;
+                            const y2 = 16 + Math.sin(angle) * 15.5;
+                            return (
+                              <line
+                                key={i}
+                                x1={x1}
+                                y1={y1}
+                                x2={x2}
+                                y2={y2}
+                                stroke="#2563eb"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            );
+                          })}
+                          {/* Badge circle */}
+                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
+                          {/* Tick */}
+                          <polyline
+                            points="12,17 15,20 21,13"
+                            fill="none"
+                            stroke="#fff"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
+                
               </div>
             </div>
             <div className="nav-outer ms-lg-auto clearfix">
@@ -164,14 +229,80 @@ const Header2 = ({ singleMenu }) => {
         <div className="container-fluid clearfix">
           <div className="header-inner before-after-none rel d-flex align-items-center for-border">
             <div className="logo-outer me-5 pe-xl-4">
-              <div className="logo">
+              <div className="logo text-center">
                 <Link href="/">
                   <img
-                    src="assets/images/logos/logo.png"
+                    src="/logo.png"
                     alt="Logo"
                     title="Logo"
+                    style={{ maxWidth: '140px' }}
                   />
+                  <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                    Pixelways
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-0.35em',
+                        right: '-1.1em',
+                        width: '1.1em',
+                        height: '1.1em',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
+                        zIndex: 2,
+                      }}
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        style={{ display: 'block' }}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          {/* Sun rays */}
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * (Math.PI / 180);
+                            const x1 = 16 + Math.cos(angle) * 13;
+                            const y1 = 16 + Math.sin(angle) * 13;
+                            const x2 = 16 + Math.cos(angle) * 15.5;
+                            const y2 = 16 + Math.sin(angle) * 15.5;
+                            return (
+                              <line
+                                key={i}
+                                x1={x1}
+                                y1={y1}
+                                x2={x2}
+                                y2={y2}
+                                stroke="#2563eb"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            );
+                          })}
+                          {/* Badge circle */}
+                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
+                          {/* Tick */}
+                          <polyline
+                            points="12,17 15,20 21,13"
+                            fill="none"
+                            stroke="#fff"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
                 </Link>
+                
+                 
+                
               </div>
             </div>
             <div className="nav-outer clearfix">
@@ -207,14 +338,78 @@ const Header3 = ({ singleMenu }) => {
         <div className="container container-1580 clearfix">
           <div className="header-inner before-after-none rel d-flex align-items-center">
             <div className="logo-outer">
-              <div className="logo">
+              <div className="logo text-center">
                 <Link href="/">
                   <img
-                    src="assets/images/logos/logo-white-blue.png"
+                    src="/logo.png"
                     alt="Logo"
                     title="Logo"
+                    style={{ maxWidth: '140px' }}
                   />
+                  <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                    Pixelways
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-0.35em',
+                        right: '-1.1em',
+                        width: '1.1em',
+                        height: '1.1em',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
+                        zIndex: 2,
+                      }}
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        style={{ display: 'block' }}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          {/* Sun rays */}
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * (Math.PI / 180);
+                            const x1 = 16 + Math.cos(angle) * 13;
+                            const y1 = 16 + Math.sin(angle) * 13;
+                            const x2 = 16 + Math.cos(angle) * 15.5;
+                            const y2 = 16 + Math.sin(angle) * 15.5;
+                            return (
+                              <line
+                                key={i}
+                                x1={x1}
+                                y1={y1}
+                                x2={x2}
+                                y2={y2}
+                                stroke="#2563eb"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            );
+                          })}
+                          {/* Badge circle */}
+                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
+                          {/* Tick */}
+                          <polyline
+                            points="12,17 15,20 21,13"
+                            fill="none"
+                            stroke="#fff"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
                 </Link>
+              
               </div>
             </div>
             <div className="nav-outer ms-lg-auto me-lg-auto clearfix">
@@ -222,7 +417,7 @@ const Header3 = ({ singleMenu }) => {
               <nav className="main-menu navbar-expand-lg">
                 <Menu
                   singleMenu={singleMenu}
-                  logo="assets/images/logos/logo-white-blue.png"
+                  logo="/logo.png"
                 />
               </nav>
               {/* Main Menu End*/}
@@ -318,14 +513,78 @@ const Header4 = ({ singleMenu }) => {
         <div className="container container-1660 clearfix">
           <div className="header-inner py-5 rel d-flex align-items-center">
             <div className="logo-outer">
-              <div className="logo">
+              <div className="logo text-center">
                 <Link href="/">
                   <img
-                    src="assets/images/logos/logo2.png"
+                    src="/logo.png"
                     alt="Logo"
                     title="Logo"
+                    style={{ maxWidth: '140px' }}
                   />
+                   <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                    Pixelways
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-0.35em',
+                        right: '-1.1em',
+                        width: '1.1em',
+                        height: '1.1em',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
+                        zIndex: 2,
+                      }}
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        style={{ display: 'block' }}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          {/* Sun rays */}
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * (Math.PI / 180);
+                            const x1 = 16 + Math.cos(angle) * 13;
+                            const y1 = 16 + Math.sin(angle) * 13;
+                            const x2 = 16 + Math.cos(angle) * 15.5;
+                            const y2 = 16 + Math.sin(angle) * 15.5;
+                            return (
+                              <line
+                                key={i}
+                                x1={x1}
+                                y1={y1}
+                                x2={x2}
+                                y2={y2}
+                                stroke="#2563eb"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            );
+                          })}
+                          {/* Badge circle */}
+                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
+                          {/* Tick */}
+                          <polyline
+                            points="12,17 15,20 21,13"
+                            fill="none"
+                            stroke="#fff"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
                 </Link>
+            
               </div>
             </div>
             <div className="nav-outer ms-lg-auto clearfix">
@@ -370,14 +629,77 @@ const Header5 = ({ singleMenu }) => {
         <div className="container-fluid clearfix">
           <div className="header-inner rel d-flex align-items-center">
             <div className="logo-outer">
-              <div className="logo">
+              <div className="logo text-center">
                 <Link href="/">
                   <img
-                    src="assets/images/logos/logo-white-blue.png"
+                    src="/logo.png"
                     alt="Logo"
                     title="Logo"
+                    style={{ maxWidth: '140px' }}
                   />
                 </Link>
+               <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                    Pixelways
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-0.35em',
+                        right: '-1.1em',
+                        width: '1.1em',
+                        height: '1.1em',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
+                        zIndex: 2,
+                      }}
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        style={{ display: 'block' }}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          {/* Sun rays */}
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * (Math.PI / 180);
+                            const x1 = 16 + Math.cos(angle) * 13;
+                            const y1 = 16 + Math.sin(angle) * 13;
+                            const x2 = 16 + Math.cos(angle) * 15.5;
+                            const y2 = 16 + Math.sin(angle) * 15.5;
+                            return (
+                              <line
+                                key={i}
+                                x1={x1}
+                                y1={y1}
+                                x2={x2}
+                                y2={y2}
+                                stroke="#2563eb"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            );
+                          })}
+                          {/* Badge circle */}
+                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
+                          {/* Tick */}
+                          <polyline
+                            points="12,17 15,20 21,13"
+                            fill="none"
+                            stroke="#fff"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
               </div>
             </div>
             <div className="nav-outer me-lg-auto ps-lg-5 ms-xxl-4 clearfix">
@@ -430,14 +752,78 @@ const Header6 = ({ singleMenu }) => {
         <div className="container clearfix">
           <div className="header-inner rel d-flex align-items-center">
             <div className="logo-outer">
-              <div className="logo">
+              <div className="logo text-center">
                 <Link href="/">
                   <img
-                    src="assets/images/logos/logo-two.png"
+                    src="/logo.png"
                     alt="Logo"
                     title="Logo"
+                    style={{ maxWidth: '140px' }}
                   />
+                   <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                    Pixelways
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-0.35em',
+                        right: '-1.1em',
+                        width: '1.1em',
+                        height: '1.1em',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
+                        zIndex: 2,
+                      }}
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        style={{ display: 'block' }}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          {/* Sun rays */}
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * (Math.PI / 180);
+                            const x1 = 16 + Math.cos(angle) * 13;
+                            const y1 = 16 + Math.sin(angle) * 13;
+                            const x2 = 16 + Math.cos(angle) * 15.5;
+                            const y2 = 16 + Math.sin(angle) * 15.5;
+                            return (
+                              <line
+                                key={i}
+                                x1={x1}
+                                y1={y1}
+                                x2={x2}
+                                y2={y2}
+                                stroke="#2563eb"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            );
+                          })}
+                          {/* Badge circle */}
+                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
+                          {/* Tick */}
+                          <polyline
+                            points="12,17 15,20 21,13"
+                            fill="none"
+                            stroke="#fff"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
                 </Link>
+              
               </div>
             </div>
             <div className="nav-outer ms-lg-auto clearfix">
@@ -445,7 +831,7 @@ const Header6 = ({ singleMenu }) => {
               <nav className="main-menu navbar-expand-lg">
                 <Menu
                   singleMenu={singleMenu}
-                  logo="assets/images/logos/logo-two.png"
+                  logo="/logo.png"
                 />
               </nav>
               {/* Main Menu End*/}
@@ -471,14 +857,84 @@ const Header6 = ({ singleMenu }) => {
   );
 };
 
-const Menu = ({ logo = "assets/images/logos/logo.png", singleMenu }) => {
+const Menu = ({ logo = "/logo.png", singleMenu }) => {
   return (
     <Accordion>
       <div className="navbar-header py-15">
         <div className="mobile-logo">
-          <Link href="/">
-            <img src={logo} alt="Logo" title="Logo" />
-          </Link>
+                <Link href="/">
+                  <img
+                    src="/logo.png"
+                    alt="Logo"
+                    title="Logo"
+                    style={{ maxWidth: '140px' }}
+                  /> <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                    Pixelways
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-0.35em',
+                        right: '-1.1em',
+                        width: '1.1em',
+                        height: '1.1em',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
+                        zIndex: 2,
+                      }}
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        style={{ display: 'block' }}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          {/* Sun rays */}
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * (Math.PI / 180);
+                            const x1 = 16 + Math.cos(angle) * 13;
+                            const y1 = 16 + Math.sin(angle) * 13;
+                            const x2 = 16 + Math.cos(angle) * 15.5;
+                            const y2 = 16 + Math.sin(angle) * 15.5;
+                            return (
+                              <line
+                                key={i}
+                                x1={x1}
+                                y1={y1}
+                                x2={x2}
+                                y2={y2}
+                                stroke="#2563eb"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            );
+                          })}
+                          {/* Badge circle */}
+                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
+                          {/* Tick */}
+                          <polyline
+                            points="12,17 15,20 21,13"
+                            fill="none"
+                            stroke="#fff"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
+                </Link>
+                
+                 
+                
+              
         </div>
         {/* Toggle Button */}
         <Accordion.Toggle

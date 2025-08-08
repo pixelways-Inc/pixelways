@@ -59,7 +59,7 @@ const Footer1 = () => {
                     </div>
                     <div className="content">
                       Email Address <br />
-                      <a href="mailto:techinfo@gmail.com">techinfo@gmail.com</a>
+                      <a href="mailto:hello@pixelways.co">hello@pixelways.co</a>
                     </div>
                   </div>
                 </div>
@@ -77,10 +77,81 @@ const Footer1 = () => {
               data-aos-duration={1500}
               data-aos-offset={50}
             >
-              <div className="footer-logo mb-30">
-                <Link href="/">
-                  <img src="assets/images/logos/logo-white.png" alt="Logo" />
+              <div className="footer-logo mb-30 text-start">
+               <div className="logo text-start">
+                <Link href="/" style={{ textDecoration: 'none', display: 'inline-block' }}>
+                  <img
+                    src="/logo.png"
+                    alt="Logo"
+                    title="Logo"
+                    style={{ maxWidth: '140px' }}
+                  />
+                   <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                    Pixelways
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-0.35em',
+                        right: '-1.1em',
+                        width: '1.1em',
+                        height: '1.1em',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
+                        zIndex: 2,
+                      }}
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        style={{ display: 'block' }}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          {/* Sun rays */}
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * (Math.PI / 180);
+                            const x1 = 16 + Math.cos(angle) * 13;
+                            const y1 = 16 + Math.sin(angle) * 13;
+                            const x2 = 16 + Math.cos(angle) * 15.5;
+                            const y2 = 16 + Math.sin(angle) * 15.5;
+                            return (
+                              <line
+                                key={i}
+                                x1={x1}
+                                y1={y1}
+                                x2={x2}
+                                y2={y2}
+                                stroke="#2563eb"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            );
+                          })}
+                          {/* Badge circle */}
+                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
+                          {/* Tick */}
+                          <polyline
+                            points="12,17 15,20 21,13"
+                            fill="none"
+                            stroke="#fff"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
                 </Link>
+               
+                
+              </div>
               </div>
               <div className="text mb-25">
                 <p>
@@ -93,8 +164,7 @@ const Footer1 = () => {
                   <i className="far fa-phone-rotary" />
                 </div>
                 <div className="content">
-                  Need Any Help? <br />
-                  Call : <a href="tel:+14164071923">+1 (416) 407-1923</a>
+                  Phone: <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
                 </div>
               </div>
             </div>
@@ -204,8 +274,7 @@ const Footer1 = () => {
             <div className="col-lg-6">
               <div className="copyright-text">
                 <p>
-                  Copyright © 2025 <Link href="/">Tekprof</Link>, All Rights
-                  Reserved.
+                  Copyright © 2025 <Link href="/">Pixelways Inc</Link>, All Rights Reserved.
                 </p>
               </div>
             </div>
@@ -286,10 +355,80 @@ const Footer2 = () => {
               data-aos-duration={1500}
               data-aos-offset={50}
             >
-              <div className="footer-logo mb-30">
+              <div className="footer-logo mb-30 text-start">
+                 <div className="logo text-start">
                 <Link href="/">
-                  <img src="assets/images/logos/logo-white.png" alt="Logo" />
+                  <img
+                    src="/logo.png"
+                    alt="Logo"
+                    title="Logo"
+                    style={{ maxWidth: '140px' }}
+                  /> <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                    Pixelways
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-0.35em',
+                        right: '-1.1em',
+                        width: '1.1em',
+                        height: '1.1em',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
+                        zIndex: 2,
+                      }}
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        style={{ display: 'block' }}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          {/* Sun rays */}
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * (Math.PI / 180);
+                            const x1 = 16 + Math.cos(angle) * 13;
+                            const y1 = 16 + Math.sin(angle) * 13;
+                            const x2 = 16 + Math.cos(angle) * 15.5;
+                            const y2 = 16 + Math.sin(angle) * 15.5;
+                            return (
+                              <line
+                                key={i}
+                                x1={x1}
+                                y1={y1}
+                                x2={x2}
+                                y2={y2}
+                                stroke="#2563eb"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            );
+                          })}
+                          {/* Badge circle */}
+                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
+                          {/* Tick */}
+                          <polyline
+                            points="12,17 15,20 21,13"
+                            fill="none"
+                            stroke="#fff"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
                 </Link>
+                
+                
+              </div>
               </div>
               <div className="text mb-25">
                 <p>
@@ -302,8 +441,7 @@ const Footer2 = () => {
                   <i className="far fa-phone-rotary" />
                 </div>
                 <div className="content">
-                  Need Any Help? <br />
-                  Call : <a href="tel:+14164071923">+1 (416) 407-1923</a>
+                  Phone: <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
                 </div>
               </div>
             </div>
@@ -413,8 +551,7 @@ const Footer2 = () => {
             <div className="col-lg-6">
               <div className="copyright-text">
                 <p>
-                  Copyright © 2025 <Link href="/">Tekprof</Link>, All Rights
-                  Reserved.
+                  Copyright © 2025 <Link href="/">Pixelways Inc</Link>, All Rights Reserved.
                 </p>
               </div>
             </div>
@@ -454,13 +591,81 @@ const Footer3 = () => {
               data-aos-duration={1500}
               data-aos-offset={50}
             >
-              <div className="footer-logo mb-30">
+              <div className="footer-logo mb-30 text-start">
+                 <div className="logo text-start">
                 <Link href="/">
                   <img
-                    src="assets/images/logos/logo-full-white.png"
+                    src="/logo.png"
                     alt="Logo"
-                  />
+                    title="Logo"
+                    style={{ maxWidth: '140px' }}
+                  /> <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                    Pixelways
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-0.35em',
+                        right: '-1.1em',
+                        width: '1.1em',
+                        height: '1.1em',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
+                        zIndex: 2,
+                      }}
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        style={{ display: 'block' }}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          {/* Sun rays */}
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * (Math.PI / 180);
+                            const x1 = 16 + Math.cos(angle) * 13;
+                            const y1 = 16 + Math.sin(angle) * 13;
+                            const x2 = 16 + Math.cos(angle) * 15.5;
+                            const y2 = 16 + Math.sin(angle) * 15.5;
+                            return (
+                              <line
+                                key={i}
+                                x1={x1}
+                                y1={y1}
+                                x2={x2}
+                                y2={y2}
+                                stroke="#2563eb"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            );
+                          })}
+                          {/* Badge circle */}
+                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
+                          {/* Tick */}
+                          <polyline
+                            points="12,17 15,20 21,13"
+                            fill="none"
+                            stroke="#fff"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
                 </Link>
+                
+                 
+                
+              </div>
               </div>
               <div className="text mb-25">
                 <p>
@@ -473,8 +678,7 @@ const Footer3 = () => {
                   <i className="far fa-phone-rotary" />
                 </div>
                 <div className="content">
-                  Need Any Help? <br />
-                  Call : <a href="tel:+14164071923">+1 (416) 407-1923</a>
+                  Phone: <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
                 </div>
               </div>
             </div>
@@ -584,8 +788,7 @@ const Footer3 = () => {
             <div className="col-lg-6">
               <div className="copyright-text">
                 <p>
-                  Copyright © 2025 <Link href="/">Tekprof</Link>, All Rights
-                  Reserved.
+                  Copyright © 2025 <Link href="/">Pixelways Inc</Link>, All Rights Reserved.
                 </p>
               </div>
             </div>
@@ -685,16 +888,13 @@ const Footer4 = () => {
               <h6 className="footer-title">Contact</h6>
               <ul>
                 <li>
-                  <i className="fal fa-map-marker-alt" /> 4030 Sheppard Ave E,
-                  Scarborough, ON, Canada
+                  <i className="fal fa-map-marker-alt" /> 4030 Sheppard Ave E, Scarborough, ON. Canada
                 </li>
                 <li>
-                  <i className="fal fa-envelope" />{" "}
-                  <a href="mailto:support@gmail.com">support@gmail.com</a>
+                  <i className="fal fa-envelope" /> <a href="mailto:hello@pixelways.co">hello@pixelways.co</a>
                 </li>
                 <li>
-                  <i className="fal fa-phone" />{" "}
-                  <a href="tel:+14164071923">+1 (416) 407-1923</a>
+                  <i className="fal fa-phone" /> <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
                 </li>
               </ul>
             </div>
@@ -789,8 +989,7 @@ const Footer4 = () => {
                 data-aos-offset={50}
               >
                 <p>
-                  Copyright @2025 <Link href="/">Tekprof </Link> All Rights
-                  Reserved
+                  Copyright © 2025 <Link href="/">Pixelways Inc</Link>, All Rights Reserved.
                 </p>
               </div>
             </div>
@@ -856,7 +1055,7 @@ const Footer5 = () => {
               <p>Get in touch with our team</p>
               <div className="section-title">
                 <h2>
-                  <a href="mailto:support@gmail.com">support@gmail.com</a>
+                  <a href="mailto:hello@pixelways.co">hello@pixelways.co</a>
                 </h2>
               </div>
               <div className="social-style-two mt-10">
@@ -884,15 +1083,75 @@ const Footer5 = () => {
         <div className="footer-bottom bordered-top pt-30 pb-10">
           <div className="row">
             <div className="col-md-3">
-              <div className="logo mb-15 text-center text-md-start">
-                <img src="assets/images/logos/logo-full-white.png" alt="Logo" />
+              <div className="logo mb-15 text-start">
+                <img src="/logo.png" alt="Logo" /> <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                    Pixelways
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-0.35em',
+                        right: '-1.1em',
+                        width: '1.1em',
+                        height: '1.1em',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
+                        zIndex: 2,
+                      }}
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        style={{ display: 'block' }}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          {/* Sun rays */}
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * (Math.PI / 180);
+                            const x1 = 16 + Math.cos(angle) * 13;
+                            const y1 = 16 + Math.sin(angle) * 13;
+                            const x2 = 16 + Math.cos(angle) * 15.5;
+                            const y2 = 16 + Math.sin(angle) * 15.5;
+                            return (
+                              <line
+                                key={i}
+                                x1={x1}
+                                y1={y1}
+                                x2={x2}
+                                y2={y2}
+                                stroke="#2563eb"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            );
+                          })}
+                          {/* Badge circle */}
+                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
+                          {/* Tick */}
+                          <polyline
+                            points="12,17 15,20 21,13"
+                            fill="none"
+                            stroke="#fff"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
               </div>
             </div>
             <div className="col-md-9 text-center text-lg-end">
               <div className="copyright-text text-center text-md-end">
                 <p>
-                  Copyright © <Link href="/">Tekprof</Link>, all rights
-                  reserved.
+                  Copyright © 2025 <Link href="/">Pixelways Inc</Link>, All Rights Reserved.
                 </p>
               </div>
             </div>
@@ -933,7 +1192,7 @@ const Footer6 = () => {
                 <div className="content">
                   <span>Hotline</span>
                   <br />
-                  <a href="tel:+14164071923">+1 (416) 407-1923</a>
+                  <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
                 </div>
               </div>
           </div>
@@ -943,12 +1202,73 @@ const Footer6 = () => {
         <div className="row medium-gap">
           <div className="col-xl-3 col-sm-6">
             <div className="footer-widget widget_about wow fadeInUp delay-0-2s">
-              <div className="footer-square-logo mb-30">
+              <div className="footer-square-logo mb-30 text-start">
                 <Link href="/">
                   <img
-                    src="assets/images/logos/logo-full-white.png"
+                    src="/logo.png"
                     alt="Logo"
-                  />
+                  /> <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+                    Pixelways
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '-0.35em',
+                        right: '-1.1em',
+                        width: '1.1em',
+                        height: '1.1em',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
+                        zIndex: 2,
+                      }}
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        style={{ display: 'block' }}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          {/* Sun rays */}
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * (Math.PI / 180);
+                            const x1 = 16 + Math.cos(angle) * 13;
+                            const y1 = 16 + Math.sin(angle) * 13;
+                            const x2 = 16 + Math.cos(angle) * 15.5;
+                            const y2 = 16 + Math.sin(angle) * 15.5;
+                            return (
+                              <line
+                                key={i}
+                                x1={x1}
+                                y1={y1}
+                                x2={x2}
+                                y2={y2}
+                                stroke="#2563eb"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            );
+                          })}
+                          {/* Badge circle */}
+                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
+                          {/* Tick */}
+                          <polyline
+                            points="12,17 15,20 21,13"
+                            fill="none"
+                            stroke="#fff"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
                 </Link>
               </div>
               <p>
@@ -973,7 +1293,7 @@ const Footer6 = () => {
                 <input
                   id="email"
                   type="email"
-                  placeholder="support@gmail.com"
+                  placeholder="hello@pixelways.co"
                   required
                 />
                 <button>Sign Up</button>
@@ -1110,7 +1430,7 @@ const Footer6 = () => {
             </div>
             <div className="col-lg-4">
               <div className="copyright-text text-lg-end wow fadeInLeft delay-0-2s">
-                <p>© 2025 Tekprof. All rights reserved.</p>
+                <p>© 2025 Pixelways Inc. All rights reserved.</p>
               </div>
             </div>
           </div>
