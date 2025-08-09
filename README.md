@@ -1,83 +1,38 @@
-# Pixelways Solution Infra Template
+# Pixelways Solution
 
-Welcome to the Pixelways Solution Infra Template repository! This project serves as a starting point and infrastructure template for solutions built by Pixelways.
+Pixelways Solution is a modern IT consultancy and software development company, specializing in delivering future-ready digital solutions for businesses of all sizes. This website is the official digital presence for Pixelways Solution, showcasing our expertise, services, and commitment to client success.
 
-## Table of Contents
+## About Pixelways Solution
 
-- [About](#about)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Technologies Used](#technologies-used)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
-- [Contact](#contact)
+Pixelways Solution empowers organizations to thrive in the digital age through innovative, scalable, and secure technology solutions. Our team of experienced professionals combines deep industry knowledge with a passion for excellence, helping clients transform their operations and achieve their business goals.
 
-## About
+## Services
+- **Custom Software Development**: Tailored web, mobile, and desktop applications to meet unique business needs.
+- **Cloud Solutions**: Migration, integration, and management of cloud infrastructure for agility and scalability.
+- **Cybersecurity**: Comprehensive security assessments, compliance, and protection against digital threats.
+- **Data Analytics**: Advanced analytics and business intelligence to unlock actionable insights.
+- **IT Consulting**: Strategic guidance, digital transformation, and technology roadmaps for growth.
+- **UI/UX Design**: User-centric design for engaging and intuitive digital experiences.
 
-Pixelways Solution Infra Template provides a robust foundation and recommended practices for building scalable solutions at Pixelways.
+## Website Features
+- Interactive cost calculators for Website, App, and Desktop solutions
+- Dynamic team and testimonial sections powered by real API-driven images
+- Blog, pricing, and service details
+- Modern, responsive design using Next.js and React
 
-- **Repository:** [pixelways-Inc/pixelways](https://github.com/pixelways-Inc/pixelways)
-- **Homepage:** [https://pixelways.co](https://pixelways.co)
 
-## Features
+## Contact Details
+**Company Name:** Pixelways Solution
+**Website:** https://pixelways.co
+**Email:** hello@pixelways.co
+**Phone:** +237 679 719 353 / +1 (416) 407-1923
+**Address:** 4030 Sheppard Ave E, Scarborough, ON. Canada
 
-- Standardized project structure for Pixelways solutions
-- Ready-to-use configurations for infrastructure
-- Built with Next.js and React for fast, modern web apps
-- Supports JavaScript projects
-- Includes sample components and layouts
+For business inquiries, partnership opportunities, or support, please reach out via email or our contact page.
 
-## Getting Started
+---
 
-> _Note: Please update these steps according to your actual setup instructions._
-
-1. **Clone the repository:**
-    ```sh
-    git clone https://github.com/pixelways-Inc/pixelways.git
-    cd pixelways
-    ```
-
-2. **Install dependencies:**
-    ```sh
-    npm install
-    ```
-
-3. **Configure your environment:**
-   - Edit configuration files as necessary.
-
-4. **Run the project:**
-    ```sh
-    npm run dev
-    ```
-
-5. **Build for production:**
-    ```sh
-    npm run build
-    npm start
-    ```
-
-## Technologies Used
-
-- **Next.js** – React Framework for production
-- **React** – UI library
-- **JavaScript** – Core programming language
-- **CSS** – Styling (including custom and third-party CSS libraries)
-- **Slick Carousel** – For sliders/carousels
-- **AOS (Animate On Scroll)** – Animation library
-- **Bootstrap** – Responsive design framework
-
-## Usage
-
-This template is intended for internal and external Pixelways projects as a starting point for infrastructure and solution development. You can modify and extend it to suit your own project requirements.
-
-## Contributing
-
-We welcome contributions! Please fork the repository and create a pull request with your proposed changes. For major changes, open an issue first to discuss what you would like to change.
-
-1. Fork the repo
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+© 2025 Pixelways Solution. All rights reserved.
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
