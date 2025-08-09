@@ -110,6 +110,7 @@ This document tracks all significant changes, progress, and decisions made durin
 **Summary of Changes:**
 - **`app/blog/page.js`:** Updated `src` attributes for all images in the "Recent Post" widget to use the image API.
 - **`app/blog-details/page.js`:** Updated `src` attributes for all images in the "Recent Post" widget to use the image API.
+- **`layout/Sidebar.js`:** Updated `src` attributes and titles for all images in the "Recent Post" widget to use the image API and correct titles.
 
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

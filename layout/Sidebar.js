@@ -40,12 +40,12 @@ const Sidebar = () => {
             <ul>
               <li>
                 <div className="image">
-                  <img src="assets/images/widgets/post1.jpg" alt="Post" />
+                  <img src="https://api.a0.dev/assets/image?text=business+strategy+IT+company&aspect=1:1&seed=sidebar1" alt="Post" />
                 </div>
                 <div className="content">
                   <h5>
                     <Link href="blog-details">
-                      Every Business Needs Strategy
+                      The Ultimate Guide to Choosing the Right IT Solutions Partner
                     </Link>
                   </h5>
                   <span className="date">15 October 2024</span>
@@ -53,22 +53,22 @@ const Sidebar = () => {
               </li>
               <li>
                 <div className="image">
-                  <img src="assets/images/widgets/post2.jpg" alt="Post" />
+                  <img src="https://api.a0.dev/assets/image?text=cloud+guide+IT+enterprise&aspect=1:1&seed=sidebar2" alt="Post" />
                 </div>
                 <div className="content">
                   <h5>
-                    <Link href="blog-details">Ultimate Guide Cloud Modern</Link>
+                    <Link href="blog-details">Cloud Migration: Best Practices for a Smooth Transition</Link>
                   </h5>
                   <span className="date">15 October 2024</span>
                 </div>
               </li>
               <li>
                 <div className="image">
-                  <img src="assets/images/widgets/post3.jpg" alt="Post" />
+                  <img src="https://api.a0.dev/assets/image?text=IT+consulting+cost+savings&aspect=1:1&seed=sidebar3" alt="Post" />
                 </div>
                 <div className="content">
                   <h5>
-                    <Link href="blog-details">IT Consulting Can Boost</Link>
+                    <Link href="blog-details">Modern IT Consulting Trends for Growing Businesses</Link>
                   </h5>
                   <span className="date">15 October 2024</span>
                 </div>
