@@ -170,39 +170,7 @@ const page = () => {
                 </div>
               </div>
              
-              <ul
-                className="pagination pt-5 flex-wrap"
-                data-aos="fade-up"
-                data-aos-duration={1500}
-                data-aos-offset={50}
-              >
-                <li className="page-item active">
-                  <span className="page-link">
-                    1<span className="sr-only">(current)</span>
-                  </span>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    2
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    3
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    4
-                  </a>
-                </li>
-                <li className="page-item next-item">
-                  <a className="page-link" href="#">
-                    Next <i className="far fa-chevron-right" />
-                  </a>
-                </li>
-              </ul>
-            </div>
+              </div>
             <div className="col-lg-4 col-md-8 col-sm-10 rmt-65">
               <div className="blog-sidebar ms-lg-auto">
                 <div

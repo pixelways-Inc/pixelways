@@ -23,7 +23,6 @@ const page = () => {
       {/* Hero Section Start */}
       <section
         className="hero-area pt-100 rpt-70 pb-130 rpb-100 rel z-1"
-        style={{ backgroundImage: "url('https://api.a0.dev/assets/image?text=Pixelways+Solution+IT+Consultancy+Digital+Solutions&aspect=16:9&seed=42')" }}
       >
         <div className="container">
           <div className="row align-items-center">
@@ -51,7 +50,7 @@ const page = () => {
                 data-aos-duration={1500}
                 data-aos-offset={50}
               >
-                <img src="https://api.a0.dev/assets/image?text=A vibrant city intersection at golden hour, filled with modern electric rideshare vehicles in motion—sleek sedans, SUVs, and eco-friendly scooters. In the foreground, a diverse group of smiling young professionals and families are boarding and exiting vehicles, some using smartphones to hail rides. A friendly driver waves from an open window. The background features contemporary glass buildings, lush green trees, and digital billboards displaying the RideShare logo. The scene is lively, welcoming, and safe, with warm sunlight casting soft shadows. Realistic details, cinematic lighting, ultra-sharp textures, 8K resolution. Image size: 600x600px.&aspect=1:1&seed=123" alt="Hero" width={600} height={600} />
+                <img src="https://api.a0.dev/assets/image?text=A bustling high-tech corporate campus at golden hour, with sleek glass office towers reflecting the warm sunlight. In the foreground, diverse teams of smiling young professionals collaborate outdoors—some gathered around laptops, others walking and discussing ideas while holding tablets and smartphones. Large interactive digital displays showcase the company’s cutting-edge software solutions, glowing with futuristic UI designs. The background features lush landscaped gardens, autonomous delivery robots, and transparent skybridges connecting the buildings. The atmosphere is innovative, welcoming, and inspiring, with cinematic lighting, ultra-sharp textures, and realistic details. 8K resolution, image size: 600x600px.&aspect=1:1&seed=123" alt="Hero" width={600} height={600} />
               </div>
             </div>
           </div>
