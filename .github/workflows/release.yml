@@ -33,10 +33,10 @@ jobs:
         run: pnpm build
 
       - name: Deploy to Vercel
-        run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel --prod --token B6lPmCaHcgvLrAxtSadKYcNu
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_TOKEN: B6lPmCaHcgvLrAxtSadKYcNu
 
 # ⚠️ IMPORTANT: 
-# Add your Vercel token as a GitHub secret named VERCEL_TOKEN.
-# Never commit tokens directly in workflow files.
+# This workflow uses a hardcoded Vercel token for temporary use.
+# Remove or rotate the token immediately after use.
