@@ -408,7 +408,7 @@ const page = () => {
       <section
         className="achievement-area bgc-blue bgs-cover pt-100 rpt-70 pb-130 rpb-130 rel z-1"
         style={{
-          backgroundImage: "url('https://api.a0.dev/assets/image?text=Digital blueprint overlay on a modern office, with a team celebrating achievements. Blue tones, innovation, 8K, 1200x600px.&aspect=2:1&seed=202')",
+          backgroundImage: "url('https://api.a0.dev/assets/image?text=Pixelways+Solution+Achievements+Innovation+Excellence&aspect=16:9&seed=42')",
         }}
       >
         <div className="container">
