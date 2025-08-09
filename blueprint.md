@@ -168,5 +168,13 @@ This document tracks all significant changes, progress, and decisions made durin
 - **`layout/TekprofLayout.js`:
   - Added `document.body.classList.add('dark-theme');` within the `useEffect` hook to apply the dark theme class globally to the `<body>` element.
 
+## Dark Theme Text Color Adjustment (August 9, 2025)
+
+**Objective:** Ensure better visibility of text against the dark theme background.
+
+**Summary of Changes:**
+- **`public/assets/css/style.css`:
+  - Modified the `--main-text-color` variable within the `body.dark-theme` block from `#F3F6F9` (light gray) to `white` for improved contrast and readability.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

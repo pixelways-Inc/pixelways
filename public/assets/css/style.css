@@ -82,7 +82,7 @@ body {
 /* Dark Theme Variables */
 body.dark-theme {
   --main-bg-color: #0B0C0C; /* Dark Gray/Black, similar to bgc-black */
-  --main-text-color: #F3F6F9; /* Light Gray, inverse of base-color */
+  --main-text-color: white; /* Changed to pure white for better visibility */
   --heading-color: white;
   --secondary-bg-color: #021433; /* Very Dark Blue, similar to bgc-blue */
   --global-border-color: rgba(255, 255, 255, 0.1); /* Lighter border for dark theme */

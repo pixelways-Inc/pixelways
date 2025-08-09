@@ -1,1 +1,1 @@
-git commit -m "FIX: Resolve syntax error in WebsiteCostCalculator.js and update blueprint"
+git commit -m "FEAT: Implement global dark theme and update blueprint"
