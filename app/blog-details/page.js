@@ -366,7 +366,7 @@ const page = () => {
                   <ul>
                     <li>
                       <div className="image">
-                        <img src="assets/images/widgets/post1.jpg" alt="Post" />
+                        <img src="https://api.a0.dev/assets/image?text=business+strategy+IT+company&aspect=1:1&seed=sidebar1" alt="Post" />
                       </div>
                       <div className="content">
                         <h5>
@@ -379,7 +379,7 @@ const page = () => {
                     </li>
                     <li>
                       <div className="image">
-                        <img src="assets/images/widgets/post2.jpg" alt="Post" />
+                        <img src="https://api.a0.dev/assets/image?text=cloud+guide+IT+enterprise&aspect=1:1&seed=sidebar2" alt="Post" />
                       </div>
                       <div className="content">
                         <h5>
@@ -392,7 +392,7 @@ const page = () => {
                     </li>
                     <li>
                       <div className="image">
-                        <img src="assets/images/widgets/post3.jpg" alt="Post" />
+                        <img src="https://api.a0.dev/assets/image?text=IT+consulting+cost+savings&aspect=1:1&seed=sidebar3" alt="Post" />
                       </div>
                       <div className="content">
                         <h5>
@@ -405,7 +405,7 @@ const page = () => {
                     </li>
                     <li>
                       <div className="image">
-                        <img src="assets/images/widgets/post4.jpg" alt="Post" />
+                        <img src="https://api.a0.dev/assets/image?text=IT+consulting+myths+debunked&aspect=1:1&seed=sidebar4" alt="Post" />
                       </div>
                       <div className="content">
                         <h5>

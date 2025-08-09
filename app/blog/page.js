@@ -258,7 +258,7 @@ const page = () => {
                   <ul>
                     <li>
                       <div className="image">
-                        <img src="https://api.a0.dev/assets/image?text=business+strategy+IT+company&aspect=1:1&seed=sidebar1" alt="Post" width={80} height={80} />
+                        <img src="https://api.a0.dev/assets/image?text=cloud+guide+IT+enterprise&aspect=1:1&seed=sidebar2" alt="Post" width={80} height={80} />
                       </div>
                       <div className="content">
                         <h5>
