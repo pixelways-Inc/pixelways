@@ -33,9 +33,9 @@ jobs:
         run: pnpm build
 
       - name: Deploy to Vercel
-        run: npx vercel --prod --token B6lPmCaHcgvLrAxtSadKYcNu
-        env:
-          VERCEL_TOKEN: B6lPmCaHcgvLrAxtSadKYcNu
+  run: npx vercel --prod --yes --token B6lPmCaHcgvLrAxtSadKYcNu
+  env:
+    VERCEL_TOKEN: B6lPmCaHcgvLrAxtSadKYcNu
 
 # ⚠️ IMPORTANT: 
 # This workflow uses a hardcoded Vercel token for temporary use.
