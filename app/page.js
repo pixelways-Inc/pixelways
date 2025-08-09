@@ -23,7 +23,7 @@ const page = () => {
       {/* Hero Section Start */}
       <section
         className="hero-area pt-100 rpt-70 pb-130 rpb-100 rel z-1"
-        style={{ backgroundImage: "url('https://api.a0.dev/assets/image?text=Futuristic cityscape at sunrise, with electric rideshare vehicles and people commuting. Soft golden light, modern buildings, green parks, and digital billboards. Realistic, 8K, 1200x600px.&aspect=2:1&seed=201')" }}
+        style={{ backgroundImage: "url('https://api.a0.dev/assets/image?text=Pixelways+Solution+IT+Consultancy+Digital+Solutions&aspect=16:9&seed=42')" }}
       >
         <div className="container">
           <div className="row align-items-center">

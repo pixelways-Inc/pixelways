@@ -119,5 +119,12 @@ This document tracks all significant changes, progress, and decisions made durin
 **Summary of Changes:**
 - **`components/Hero.js`:** Modified the `backgroundImage` style to fetch an image from `https://api.a0.dev/assets/image?text=Pixelways+Solution+IT+Consultancy+Digital+Solutions&aspect=16:9&seed=42`.
 
+## Homepage Hero Section Background Update (August 9, 2025)
+
+**Objective:** Update the homepage hero section background image to use the image API with specific text, aspect, and seed parameters for a more relevant visual.
+
+**Summary of Changes:**
+- **`app/page.js`:** Modified the `backgroundImage` style within the `<section className="hero-area ...">` to fetch an image from `https://api.a0.dev/assets/image?text=Pixelways+Solution+IT+Consultancy+Digital+Solutions&aspect=16:9&seed=42`.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
