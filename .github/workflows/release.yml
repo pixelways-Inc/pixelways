@@ -23,20 +23,19 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Build project
-        run: pnpm build
+        run: npm run build
 
       - name: Deploy to Vercel
-  run: npx vercel --prod --yes --token B6lPmCaHcgvLrAxtSadKYcNu
-  env:
-    VERCEL_TOKEN: B6lPmCaHcgvLrAxtSadKYcNu
+        run: npx vercel --prod --token --yes 6lPmCaHcgvLrAxtSadKYcNu
+
+        
+        env:
+          VERCEL_TOKEN: B6lPmCaHcgvLrAxtSadKYcNu
 
 # ⚠️ IMPORTANT: 
-# This workflow uses a hardcoded Vercel token for temporary use.
-# Remove or rotate the token immediately after use.
+# Add your Vercel token as a GitHub secret named VERCEL_TOKEN.
+# Never commit tokens directly in workflow files.
