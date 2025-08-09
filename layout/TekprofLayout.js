@@ -28,6 +28,7 @@ const TekprofLayout = ({
     Object.keys(rootElements).forEach((key) => {
       document.body.style.setProperty(key, rootElements[key]);
     });
+    document.body.classList.add('dark-theme'); // Apply dark theme globally
   }, []);
   return (
     <Fragment>

@@ -53,21 +53,40 @@
 
 body {
   font-weight: 400;
-  background: white;
   line-height: 30px;
-  color: var(--tekprof-base-color);
   font-size: 16px;
   font-family: var(--tekprof-base-font);
+
+  /* Default (Light) Theme Variables */
   --tekprof-base-font: 'Inter', serif;
   --tekprof-heading-font: 'Hanken Grotesk', serif;
   --tekprof-primary-color: #FC5546;
-  --tekprof-heading-color: #0B0C0C;
-  --tekprof-base-color: #5B5B5B;
-  --tekprof-lighter-color: #F3F6F9;
-  --tekprof-gray-color: #F3F6F9;
-  --tekprof-blue-color: #021433;
+  --tekprof-heading-color: #0B0C0C; /* Dark Gray/Black */
+  --tekprof-base-color: #5B5B5B;   /* Medium Gray */
+  --tekprof-lighter-color: #F3F6F9; /* Light Gray */
+  --tekprof-gray-color: #F3F6F9;    /* Light Gray */
+  --tekprof-blue-color: #021433;   /* Very Dark Blue (used by bgc-blue) */
   --tekprof-border-color: rgba(2, 20, 51, 0.1);
-  --tekprof-primary-rgb: 252, 85, 70; }
+  --tekprof-primary-rgb: 252, 85, 70;
+
+  --main-bg-color: white;
+  --main-text-color: var(--tekprof-base-color);
+  --heading-color: var(--tekprof-heading-color);
+  --secondary-bg-color: var(--tekprof-lighter-color);
+  --global-border-color: var(--tekprof-border-color);
+
+  background: var(--main-bg-color);
+  color: var(--main-text-color);
+}
+
+/* Dark Theme Variables */
+body.dark-theme {
+  --main-bg-color: #0B0C0C; /* Dark Gray/Black, similar to bgc-black */
+  --main-text-color: #F3F6F9; /* Light Gray, inverse of base-color */
+  --heading-color: white;
+  --secondary-bg-color: #021433; /* Very Dark Blue, similar to bgc-blue */
+  --global-border-color: rgba(255, 255, 255, 0.1); /* Lighter border for dark theme */
+}
 
 a {
   color: inherit;
@@ -513,7 +532,7 @@ a.theme-btn {
   display: flex;
   font-weight: 500;
   line-height: 1.4;
-  color: var(--tekprof-base-color);
+  color: var(--main-text-color);
   font-family: var(--tekprof-heading-font); }
   @media only screen and (min-width: 376px) {
     .list-style-two li {
@@ -785,11 +804,11 @@ a.theme-btn {
       box-shadow: none;
       font-weight: 600;
       line-height: 50px;
-      color: var(--tekprof-base-color);
+      color: var(--main-text-color);
       text-align: center;
       border-radius: 50%;
       font-family: var(--tekprof-heading-font);
-      border: 1px solid var(--tekprof-border-color); }
+      border: 1px solid var(--global-border-color); }
       @media only screen and (max-width: 575px) {
         .pagination li a,
         .pagination li .page-link {
@@ -1141,7 +1160,7 @@ h6,
 .product-info-tab.advanced-tab li a,
 .product-info-tab.advanced-tab li button {
   font-weight: 700;
-  color: var(--tekprof-heading-color);
+  color: var(--heading-color);
   font-family: var(--tekprof-heading-font); }
 
 h1, .h1 {

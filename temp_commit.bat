@@ -1,1 +1,1 @@
-git commit -m "FEAT: Implement real-time calculation in Website Cost Calculator and update blueprint"
+git commit -m "FIX: Resolve syntax error in WebsiteCostCalculator.js and update blueprint"

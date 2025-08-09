@@ -155,5 +155,18 @@ This document tracks all significant changes, progress, and decisions made durin
 
 **Resolution:** Corrected the missing closing curly brace and misplaced text within the `style` attribute to `style={{display:'block',marginBottom:'6px'}}`.
 
+## Global Dark Theme Implementation (August 9, 2025)
+
+**Objective:** Implement a site-wide dark theme, specifically using the dark theme characteristics observed in the footer.
+
+**Summary of Changes:**
+- **`public/assets/css/style.css`:
+  - Introduced new CSS variables (`--main-bg-color`, `--main-text-color`, `--heading-color`, `--secondary-bg-color`, `--global-border-color`) for better theme management.
+  - Defined default (light) theme values for these variables.
+  - Defined dark theme values for these variables within a `body.dark-theme` selector.
+  - Updated existing CSS rules (e.g., for `body`, `h1-h6`, `.list-style-two li`, `.pagination li a`) to use these new theme variables.
+- **`layout/TekprofLayout.js`:
+  - Added `document.body.classList.add('dark-theme');` within the `useEffect` hook to apply the dark theme class globally to the `<body>` element.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
