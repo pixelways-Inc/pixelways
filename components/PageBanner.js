@@ -8,7 +8,7 @@ const PageBanner = ({ title, pageName = "About Company" }) => {
           className="banner-wrap bgs-cover"
           style={{
             backgroundImage: "url(bg.jpg)",
-            height: "200px", // Reduced height
+            height: "250px",
             paddingTop: "40px", // Adjusted vertical padding for content
             paddingBottom: "40px",
             backgroundSize: "cover",
