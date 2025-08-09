@@ -1,3 +1,4 @@
+"use client";
 import PageBanner from "@/components/PageBanner";
 import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
@@ -156,6 +157,7 @@ const blogPosts = [
         <li><strong>Replatforming:</strong> Making minor optimizations during migration.</li>
         <li><strong>Refactoring:</strong> Redesigning applications to leverage cloud-native features.</li>
         <li><strong>Hybrid Approach:</strong> Keeping some systems on-premises while moving others to the cloud.</li>
+        <li><strong>Cloud-Native Development:</strong> Building applications specifically designed for cloud environments.</li>
       </ul>
       
       <h3>Security and Compliance</h3>
