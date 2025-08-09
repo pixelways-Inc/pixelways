@@ -21,7 +21,7 @@ const page = () => {
                   <span className="sub-title mb-10">Common Questions</span>
                   <h2>Frequently Asked Questions</h2>
                 </div>
-                <Link href="faqs" className="theme-btn">
+                <Link href="/contact" className="theme-btn">
                   Contact Us for Support
                 </Link>
               </div>
