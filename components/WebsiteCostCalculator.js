@@ -76,7 +76,7 @@ const WebsiteCostCalculator = () => {
           </div>
         </li>
       </ul>
-  <div className="mt-4 price text-lg font-semibold"><span style={{display:'block',marginBottom:'6px'>Estimated</span> <br />Cost: ${cost}</div>
+  <div className="mt-4 price text-lg font-semibold"><span style={{display:'block',marginBottom:'6px'}}>Estimated</span> <br />Cost: ${cost}</div>
     </div>
   );
 };

@@ -145,9 +145,15 @@ This document tracks all significant changes, progress, and decisions made durin
 **Objective:** Improve user experience by implementing real-time cost calculation in the Website Cost Calculator.
 
 **Summary of Changes:**
-- **`components/WebsiteCostCalculator.js`:**
+- **`components/WebsiteCostCalculator.js`:
   - Modified `onChange` handlers for "Number of Pages", "Design Type", and "Features" to trigger `calculateCost()` immediately.
   - Removed the explicit "Calculate" button as it is no longer needed.
+
+## Bug Fix: Website Cost Calculator Syntax Error (August 9, 2025)
+
+**Issue:** Build failed due to a syntax error in `components/WebsiteCostCalculator.js` related to the `style` attribute of a `<span>` tag.
+
+**Resolution:** Corrected the missing closing curly brace and misplaced text within the `style` attribute to `style={{display:'block',marginBottom:'6px'}}`.
 
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
