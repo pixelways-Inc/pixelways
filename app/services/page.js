@@ -28,9 +28,9 @@ const page = () => {
                   We specialize crafting adaptable scalable software solutions
                   evolve business needs team of experts is committed to using
                 </p>
-                <Link href="/services" className="theme-btn mt-35 rmt-20">
+                <a href="#agile-services" className="theme-btn mt-35 rmt-20">
                   Explore Services
-                </Link>
+                </a>
               </div>
             </div>
             <div className="col-xl-8">
@@ -125,7 +125,9 @@ const page = () => {
         </div>
       </section>
 
-      <Service style="style-two" />
+      <div id="agile-services">
+        <Service style="style-two" />
+      </div>
       <Testimonials2 bgClass="none" />
       <ClientLogo containerClass="client-logo-area style-two for-border-top" />
     </TekprofLayout>

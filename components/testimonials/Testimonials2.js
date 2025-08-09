@@ -49,41 +49,11 @@ export class Testimonials2 extends Component {
                     >
                       <h5>10m+ Trusted Clients</h5>
                       <div className="trusted-clients mt-15">
-                        <img
-                          data-aos="fade-right"
-                          data-aos-duration={1500}
-                          data-aos-delay={50}
-                          src="assets/images/testimonials/client1.jpg"
-                          alt="Client"
-                        />
-                        <img
-                          data-aos="fade-right"
-                          data-aos-duration={1500}
-                          data-aos-delay={100}
-                          src="assets/images/testimonials/client2.jpg"
-                          alt="Client"
-                        />
-                        <img
-                          data-aos="fade-right"
-                          data-aos-duration={1500}
-                          data-aos-delay={150}
-                          src="assets/images/testimonials/client3.jpg"
-                          alt="Client"
-                        />
-                        <img
-                          data-aos="fade-right"
-                          data-aos-duration={1500}
-                          data-aos-delay={200}
-                          src="assets/images/testimonials/client4.jpg"
-                          alt="Client"
-                        />
-                        <img
-                          data-aos="fade-right"
-                          data-aos-duration={1500}
-                          data-aos-delay={250}
-                          src="assets/images/testimonials/client5.jpg"
-                          alt="Client"
-                        />
+                        <img data-aos="fade-right" data-aos-duration={1500} data-aos-delay={50} src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" />
+                        <img data-aos="fade-right" data-aos-duration={1500} data-aos-delay={100} src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" />
+                        <img data-aos="fade-right" data-aos-duration={1500} data-aos-delay={150} src="https://randomuser.me/api/portraits/men/65.jpg" alt="Client" />
+                        <img data-aos="fade-right" data-aos-duration={1500} data-aos-delay={200} src="https://randomuser.me/api/portraits/women/12.jpg" alt="Client" />
+                        <img data-aos="fade-right" data-aos-duration={1500} data-aos-delay={250} src="https://randomuser.me/api/portraits/men/17.jpg" alt="Client" />
                       </div>
                     </div>
                   </div>
@@ -111,7 +81,7 @@ export class Testimonials2 extends Component {
                     </div>
                     <div className="testi-author">
                       <img
-                        src="assets/images/testimonials/testi-author3.jpg"
+                        src="https://randomuser.me/api/portraits/men/32.jpg"
                         alt="Author"
                       />
                       <span>
@@ -135,7 +105,7 @@ export class Testimonials2 extends Component {
                     </div>
                     <div className="testi-author">
                       <img
-                        src="assets/images/testimonials/testi-author2.jpg"
+                        src="https://randomuser.me/api/portraits/women/44.jpg"
                         alt="Author"
                       />
                       <span>
