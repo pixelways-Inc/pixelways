@@ -18,7 +18,7 @@ const Service = ({ style }) => {
                   data-aos-duration={1500}
                   data-aos-offset={50}
                 >
-                  <h2>Agile Development for Fast and Scalable Solutions</h2>
+                  <h2>Our Comprehensive Digital Solutions</h2>
                 </div>
               </div>
             </div>
@@ -427,11 +427,7 @@ const Service = ({ style }) => {
                 </Accordion.Collapse>
               </div>
             </Accordion>
-            <div className="service-accordion-btn text-center">
-              <Link href="services" className="theme-btn mt-70">
-                View More Services
-              </Link>
-            </div>
+            
           </div>
         </div>
       </div>

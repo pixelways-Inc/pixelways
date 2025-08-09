@@ -22,12 +22,10 @@ const page = () => {
                   data-aos-offset={50}
                 >
                   <span className="sub-title color-primary mb-10">
-                    About Company
+                    About Pixelways Solution
                   </span>
                   <h2>
-                    Building Future-Ready Solutions for Today’s Challenges
-                    Shaping the Future of Business Through Digital
-                    Transformation
+                    Innovating for a Digital Future: Building Solutions for Today’s Challenges and Tomorrow’s Opportunities
                   </h2>
                 </div>
                 <div className="row gap-70">
@@ -39,10 +37,8 @@ const page = () => {
                     data-aos-offset={50}
                   >
                     <p>
-                      We are dedicated to transforming businesses through
-                      innovative, tailored software solutions With a team
-                      skilled professionals commitment cutting-edge technology a
-                      specialize creating scalable, user-friendly software.
+                      At Pixelways Solution, we are dedicated to transforming businesses through
+                      innovative, tailored digital solutions. With a team of highly skilled professionals and a commitment to cutting-edge technology, we specialize in creating scalable, user-friendly software and robust IT infrastructures.
                     </p>
                   </div>
                   <div
@@ -53,9 +49,7 @@ const page = () => {
                     data-aos-offset={50}
                   >
                     <p>
-                      From custom development and cloud solutions to
-                      cybersecurity and data analytics, our services empower
-                      organizations to streamline.
+                      Our comprehensive services span custom software development, cloud solutions, cybersecurity, data analytics, and more. We empower organizations to streamline operations, enhance efficiency, and achieve their strategic goals in an ever-evolving digital landscape.
                     </p>
                   </div>
                 </div>
@@ -134,19 +128,18 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <div className="section-title mb-30">
-                  <h2>Experience Excellence with Our Uintech</h2>
+                  <h2>Experience Excellence with Pixelways Solution</h2>
                 </div>
                 <p>
-                  At Company Name, excellence is at the core of everything we
-                  do. Our team dedicated professionals combines deep industry
+                  At Pixelways Solution, excellence is at the core of everything we
+                  do. Our team of dedicated professionals combines deep industry
                   expertise with a passion for innovation to deliver
-                  high-quality, tailored software solutions that drive results.
-                  We pride ourselves meticulous attention to detail, our
-                  commitment to client satisfaction, and our ability to turn
+                  high-quality, tailored digital solutions that drive measurable results.
+                  We pride ourselves on meticulous attention to detail, unwavering commitment to client satisfaction, and our ability to turn
                   complex challenges into impactful outcomes. When you partner
                   with us, you’re not just getting a service provider—you’re
-                  gaining a trusted committed to helping your business succeed.
-                  Discover what true excellence means with Company Name by your
+                  gaining a trusted ally committed to helping your business succeed.
+                  Discover what true excellence means with Pixelways Solution by your
                   side.
                 </p>
               </div>
@@ -185,9 +178,9 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <span className="sub-title color-primary mb-10">
-                  Why Choose Us
+                  Why Choose Pixelways Solution?
                 </span>
-                <h2>Empowering Businesses With Advanced IT Solutions</h2>
+                <h2>Your Strategic Partner for Advanced Digital Solutions</h2>
               </div>
             </div>
           </div>
@@ -206,9 +199,7 @@ const page = () => {
                 <div className="content">
                   <h4>Customizable Solutions</h4>
                   <p>
-                    Providing highly customizable solutions tailored to each
-                    client’s unique needs can set you apart. Clients are
-                    looking.
+                    We deliver highly customizable solutions precisely tailored to your unique business needs, ensuring optimal fit and maximum impact.
                   </p>
                 </div>
               </div>
@@ -227,8 +218,7 @@ const page = () => {
                 <div className="content">
                   <h4>Scalability &amp; Flexibility</h4>
                   <p>
-                    Scalable solutions allow companies to grow without needing
-                    to overhaul their software infrastructure architecture .
+                    Our scalable and flexible solutions are designed to grow with your business, adapting seamlessly to evolving demands without costly overhauls.
                   </p>
                 </div>
               </div>
@@ -247,8 +237,7 @@ const page = () => {
                 <div className="content">
                   <h4>Security &amp; Compliance</h4>
                   <p>
-                    Prioritizing security ensures protection and compliance with
-                    industry standards and regulations, safeguarding against.
+                    We prioritize robust security and strict compliance with industry standards (e.g., GDPR, HIPAA), safeguarding your data and operations.
                   </p>
                 </div>
               </div>
@@ -267,9 +256,7 @@ const page = () => {
                 <div className="content">
                   <h4>Customizable Solutions</h4>
                   <p>
-                    Providing highly customizable solutions tailored to each
-                    client’s unique needs can set you apart. Clients are
-                    looking.
+                    We deliver highly customizable solutions precisely tailored to your unique business needs, ensuring optimal fit and maximum impact.
                   </p>
                 </div>
               </div>
@@ -288,8 +275,7 @@ const page = () => {
                 <div className="content">
                   <h4>Scalability &amp; Flexibility</h4>
                   <p>
-                    Scalable solutions allow companies to grow without needing
-                    to overhaul their software infrastructure architecture .
+                    Our scalable and flexible solutions are designed to grow with your business, adapting seamlessly to evolving demands without costly overhauls.
                   </p>
                 </div>
               </div>
@@ -308,8 +294,7 @@ const page = () => {
                 <div className="content">
                   <h4>Security &amp; Compliance</h4>
                   <p>
-                    Prioritizing security ensures protection and compliance with
-                    industry standards and regulations, safeguarding against.
+                    We prioritize robust security and strict compliance with industry standards (e.g., GDPR, HIPAA), safeguarding your data and operations.
                   </p>
                 </div>
               </div>
@@ -343,8 +328,8 @@ const page = () => {
                       <span className="after">k+</span>
                     </div>
                     <span className="counter-title">
-                      Project
-                      <br /> Complete
+                      Projects
+                      <br /> Completed
                     </span>
                   </div>
                 </div>
@@ -367,8 +352,8 @@ const page = () => {
                       <span className="after">k+</span>
                     </div>
                     <span className="counter-title">
-                      We’ve Global
-                      <br /> Trusted Clients
+                      Global
+                      <br /> Clients
                     </span>
                   </div>
                 </div>
@@ -392,7 +377,7 @@ const page = () => {
                     </div>
                     <span className="counter-title">
                       Awards
-                      <br /> Winning
+                      <br /> Won
                     </span>
                   </div>
                 </div>
@@ -415,8 +400,8 @@ const page = () => {
                       <span className="after">+</span>
                     </div>
                     <span className="counter-title">
-                      IT &amp; Tech
-                      <br /> Services
+                      Years of
+                      <br /> Experience
                     </span>
                   </div>
                 </div>

@@ -22,10 +22,9 @@ const Pricing = ({
                     data-aos-duration={1500}
                     data-aos-offset={50}
                   >
-                    <span className="sub-title mb-10">Pricing Package</span>
+                    <span className="sub-title mb-10">Flexible Pricing</span>
                     <h2>
-                      Find the Right Solution for Your Budget Custom Plans for
-                      Every Stage of Your Journey
+                      Find the Right Digital Solution for Your Budget
                     </h2>
                   </div>
                 </div>
@@ -190,8 +189,8 @@ export const Pricing2 = () => {
               data-aos-offset={50}
             >
               <div className="section-title mb-50">
-                <span className="subtitle mt-10 mb-15">Pricing Package</span>
-                <h2>Premium Web Design Services Without the Premium Price</h2>
+                <span className="subtitle mt-10 mb-15">Transparent Pricing</span>
+                <h2>Tailored Web Design Services for Every Business</h2>
               </div>
             </div>
             <div
@@ -228,7 +227,7 @@ export const Pricing2 = () => {
                   <div className="pricing-two-item">
                     <h6 className="title">Regular</h6>
                     <div className="text">
-                      Basic plan need service without added complexity expense
+                      Ideal for small businesses and startups seeking essential web presence without complexity.
                     </div>
                     <span className="price">
                       $15<span className="after-text">/monthly</span>
@@ -260,7 +259,7 @@ export const Pricing2 = () => {
                   <div className="pricing-two-item">
                     <h6 className="title">Standard</h6>
                     <div className="text">
-                      Standard plan to need services without complexity expense
+                      Comprehensive features for growing businesses, balancing functionality and cost-effectiveness.
                     </div>
                     <span className="price">
                       $29<span className="after-text">/monthly</span>
@@ -293,7 +292,7 @@ export const Pricing2 = () => {
                     <span className="badge">popular</span>
                     <h6 className="title">Premium</h6>
                     <div className="text">
-                      Premium plan to need services added complexity expense
+                      Advanced solutions for established businesses requiring robust features and enhanced performance.
                     </div>
                     <span className="price">
                       $93<span className="after-text">/monthly</span>
@@ -325,7 +324,7 @@ export const Pricing2 = () => {
                   <div className="pricing-two-item">
                     <h6 className="title">Diamond</h6>
                     <div className="text">
-                      Basic plan need service without added complexity expense
+                      Elite-tier services for enterprises demanding custom, high-performance, and fully integrated web solutions.
                     </div>
                     <span className="price">
                       $107<span className="after-text">/monthly</span>
@@ -360,7 +359,7 @@ export const Pricing2 = () => {
                   <div className="pricing-two-item">
                     <h6 className="title">Regular</h6>
                     <div className="text">
-                      Basic plan need service without added complexity expense
+                      Ideal for small businesses and startups seeking essential web presence without complexity.
                     </div>
                     <span className="price">
                       $15<span className="after-text">/yearly</span>
@@ -392,7 +391,7 @@ export const Pricing2 = () => {
                   <div className="pricing-two-item">
                     <h6 className="title">Standard</h6>
                     <div className="text">
-                      Standard plan to need services without complexity expense
+                      Comprehensive features for growing businesses, balancing functionality and cost-effectiveness.
                     </div>
                     <span className="price">
                       $29<span className="after-text">/yearly</span>
@@ -425,7 +424,7 @@ export const Pricing2 = () => {
                     <span className="badge">popular</span>
                     <h6 className="title">Premium</h6>
                     <div className="text">
-                      Premium plan to need services added complexity expense
+                      Advanced solutions for established businesses requiring robust features and enhanced performance.
                     </div>
                     <span className="price">
                       $93<span className="after-text">/yearly</span>
@@ -457,7 +456,7 @@ export const Pricing2 = () => {
                   <div className="pricing-two-item">
                     <h6 className="title">Diamond</h6>
                     <div className="text">
-                      Basic plan need service without added complexity expense
+                      Elite-tier services for enterprises demanding custom, high-performance, and fully integrated web solutions.
                     </div>
                     <span className="price">
                       $107<span className="after-text">/yearly</span>

@@ -15,13 +15,11 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <div className="section-title mb-40">
-                  <span className="sub-title mb-10">Get In Touch</span>
-                  <h2>Ready to Transform? Get in Touch</h2>
+                  <span className="sub-title mb-10">Contact Us</span>
+                  <h2>Ready to Transform Your Business? Let's Connect</h2>
                 </div>
                 <p>
-                  Each of these titles is designed to be approachable and
-                  encourage clients to take the first step in reaching
-                  adjustments
+                  We're eager to hear about your project and discuss how Pixelways Solution can help you achieve your digital goals. Reach out to us through the form or directly via our contact details.
                 </p>
                 <div className="contact-info-wrap mt-40">
                   <div className="contact-info-item">
@@ -68,8 +66,8 @@ const page = () => {
                   action="assets/php/form-process.php"
                   method="post"
                 >
-                  <h4>What can we help you with?</h4>
-                  <p>Your email address will not be published*</p>
+                  <h4>Send Us a Message</h4>
+                  <p>Please fill out the form below, and we'll get back to you as soon as possible.</p>
                   <div className="row mt-20">
                     <div className="col-sm-12">
                       <div className="form-group mb-15">

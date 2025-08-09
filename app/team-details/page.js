@@ -3,7 +3,7 @@ import TekprofLayout from "@/layout/TekprofLayout";
 const page = () => {
   return (
     <TekprofLayout>
-      <PageBanner pageName="Team Details" />
+      <PageBanner pageName="Team Member Profile" />
       <section className="team-detial-area pt-130 rpt-100 pb-110 rpb-80 rel z-1">
         <div className="container">
           <div className="row">
@@ -20,18 +20,18 @@ const page = () => {
                     alt="Team Details"
                   />
                 </div>
-                <h3>Hans Ade</h3>
-                <p>Business Consultant</p>
+                <h3>Our Expert Team</h3>
+                <p>Driving Digital Transformation</p>
                 <hr className="mt-35 mb-40" />
                 <div className="team-contact-info">
-                  <h5 className="title">Contact Me</h5>
+                  <h5 className="title">Connect With Us</h5>
                   <div className="team-info-item">
                     <span>Email Address</span>
-                    <a href="mailto:supportsaylo@gmail.com">supportsaylo@gmail.com</a>
+                    <a href="mailto:hello@pixelways.co">hello@pixelways.co</a>
                   </div>
                   <div className="team-info-item">
                     <span>Need a Call</span>
-                    <a href="tel:+14164071923">+1 (416) 407-1923</a>
+                    <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
                   </div>
                   <div className="team-info-item">
                     <span>Location</span>
@@ -66,18 +66,10 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <div className="section-title mb-20">
-                  <h2>Hello</h2>
+                  <h2>About Our Team's Expertise</h2>
                 </div>
                 <p>
-                  IT consultant provides expert guidance to help organizations
-                  navigate challenges, seize opportunities, and achieve their
-                  full potential. By analyzing th company’s current operations,
-                  identifying inefficiencies, and uncovering growth
-                  opportunities, a business consultant develops tailored
-                  strategies that drive success. Whether refining business
-                  processes, optimizing financial performance implementing
-                  innovative technologies, consultants work closely with clients
-                  to deliver actionable solutions.
+                  At Pixelways Solution, our team of dedicated IT and digital consultants provides expert guidance to help organizations navigate complex challenges, seize opportunities, and achieve their full potential. By analyzing current operations, identifying inefficiencies, and uncovering growth opportunities, we develop tailored strategies that drive success. We work closely with clients to deliver actionable solutions, from refining business processes and optimizing financial performance to implementing innovative technologies.
                 </p>
                 <div
                   className="qualification-wrap mt-50"
@@ -85,45 +77,37 @@ const page = () => {
                   data-aos-duration={1500}
                   data-aos-offset={50}
                 >
-                  <h3 className="mb-20">Professional Qualification</h3>
+                  <h3 className="mb-20">Our Collective Expertise & Qualifications</h3>
                   <p>
-                    Professional skills encompass a broad range of abilities and
-                    expertise that are essential for success in any career.
-                    These include both hard skills, such as technical
-                    proficiency, data analysis management, as well as soft
-                    skills like communication, leadership, problem-solving
-                    adaptability.
+                    Our team's professional qualifications encompass a broad range of abilities and
+                    expertise essential for success in the digital landscape.
+                    This includes robust technical proficiency, advanced data analysis, strategic management, and critical soft skills such as communication, leadership, problem-solving
+                    and adaptability.
                   </p>
                   <div className="qualification-item mt-40">
                     <div className="number">1</div>
                     <div className="content">
-                      <h5>Market Research &amp; Competitor Analysis</h5>
+                      <h5>Technology Landscape Analysis &amp; Strategic Planning</h5>
                       <p>
-                        Gain a deeper understanding of your industry landscape
-                        and target audience through in-depth market research. We
-                        analyze competitor strategies, identify market gaps.
+                        We provide in-depth analysis of the current technology landscape and competitor strategies to identify opportunities and develop robust IT roadmaps.
                       </p>
                     </div>
                   </div>
                   <div className="qualification-item">
                     <div className="number">2</div>
                     <div className="content">
-                      <h5>Brand Strategy Development</h5>
+                      <h5>Digital Solution Architecture &amp; Design</h5>
                       <p>
-                        We help you build or refine your brand identity to
-                        ensure consistency and relevance. From defining your
-                        brand’s mission and values to creating a compelling{" "}
+                        Our experts design scalable and secure digital architectures, ensuring your solutions are built on a strong foundation for future growth.
                       </p>
                     </div>
                   </div>
                   <div className="qualification-item">
                     <div className="number">3</div>
                     <div className="content">
-                      <h5>Digital Marketing Strategy</h5>
+                      <h5>Implementation &amp; Optimization of Digital Solutions</h5>
                       <p>
-                        Reach your customers where they are. Our digital
-                        marketing solutions cover SEO, social media marketing,
-                        email marketing, and PPC (pay-per-click) campaigns.
+                        We specialize in the seamless implementation of new technologies and continuous optimization to ensure maximum performance and ROI.
                       </p>
                     </div>
                   </div>
@@ -142,36 +126,30 @@ const page = () => {
                     <span className="skill-bar-percent" />
                   </div>
                   <div className="skillbar" data-percent={67}>
-                    <span className="skillbar-title">Software Solution</span>
+                    <span className="skillbar-title">Software Development</span>
                     <div className="skillbar-wrap">
                       <div className="skillbar-bar" />
                     </div>
                     <span className="skill-bar-percent" />
                   </div>
                   <div className="skillbar" data-percent={83}>
-                    <span className="skillbar-title">Product Design</span>
+                    <span className="skillbar-title">UI/UX Design</span>
                     <div className="skillbar-wrap">
                       <div className="skillbar-bar" />
                     </div>
                     <span className="skill-bar-percent" />
                   </div>
                   <div className="skillbar" data-percent={70}>
-                    <span className="skillbar-title">Cyber Security</span>
+                    <span className="skillbar-title">Cybersecurity</span>
                     <div className="skillbar-wrap">
                       <div className="skillbar-bar" />
                     </div>
                     <span className="skill-bar-percent" />
                   </div>
                 </div>
-                <h3 className="mb-15">Awards Winning</h3>
+                <h3 className="mb-15">Recognized for Excellence</h3>
                 <p>
-                  Our award-winning services reflect our commitment to
-                  excellence, innovation, and client success. Over the years,
-                  we’ve been recognized for our outstanding performance in
-                  various areas, from busing consulting and marketing strategy
-                  to customer service and leadership. These accolades serve as a
-                  testament to the quality of our work, the dedication of our
-                  team.
+                  Our commitment to excellence, innovation, and client success has earned us recognition in the industry. These accolades reflect the quality of our work and the dedication of our team in delivering cutting-edge digital solutions that drive tangible results for our clients.
                 </p>
               </div>
             </div>

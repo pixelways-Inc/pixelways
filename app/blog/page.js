@@ -41,7 +41,7 @@ const page = () => {
           flex: 1;
         }
       `}</style>
-      <PageBanner pageName="Blog Standard" />
+      <PageBanner pageName="Our Blog & Insights" />
       <section className="blog-standard-page py-130 rpy-100 rel z-1">
         <div className="container">
           <div className="row">
@@ -262,7 +262,7 @@ const page = () => {
                       </div>
                       <div className="content">
                         <h5>
-                          <Link href="/blog/ultimate-guide-choosing-right-it-solutions-partner">Every Business Needs Strategy Sustainable</Link>
+                          <Link href="/blog/ultimate-guide-choosing-right-it-solutions-partner">The Ultimate Guide to Choosing the Right IT Solutions Partner</Link>
                         </h5>
                         <span className="date">15 October 2024</span>
                       </div>
@@ -273,7 +273,7 @@ const page = () => {
                       </div>
                       <div className="content">
                         <h5>
-                          <Link href="/blog/cloud-migration-best-practices-smooth-transition">Ultimate Guide Cloud Modern Enterprises</Link>
+                          <Link href="/blog/cloud-migration-best-practices-smooth-transition">Cloud Migration: Best Practices for a Smooth Transition</Link>
                         </h5>
                         <span className="date">15 October 2024</span>
                       </div>
@@ -284,7 +284,7 @@ const page = () => {
                       </div>
                       <div className="content">
                         <h5>
-                          <Link href="/blog/modern-it-consulting-trends-growing-businesses">IT Consulting Can Boost and Cut Costs</Link>
+                          <Link href="/blog/modern-it-consulting-trends-growing-businesses">Modern IT Consulting Trends for Growing Businesses</Link>
                         </h5>
                         <span className="date">15 October 2024</span>
                       </div>
@@ -295,7 +295,9 @@ const page = () => {
                       </div>
                       <div className="content">
                         <h5>
-                          <Link href="/blog/essential-cybersecurity-practices-every-business-must-follow">Debunking Common Myths IT Consulting</Link>
+                          <h5>
+                          <Link href="/blog/essential-cybersecurity-practices-business">Essential Cybersecurity Practices Every Business Must Follow</Link>
+                        </h5>
                         </h5>
                         <span className="date">15 October 2024</span>
                       </div>
@@ -329,10 +331,10 @@ const page = () => {
                   data-aos-offset={50}
                 >
                   <h3>
-                    Need Professional and Experience IT Consulting Services{" "}
+                    Need Expert Digital Solutions?
                   </h3>
                   <Link href="contact" className="theme-btn btn-small">
-                    Get In Touch
+                    Contact Us Today
                   </Link>
                 </div>
               </div>

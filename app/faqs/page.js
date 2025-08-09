@@ -18,11 +18,11 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <div className="section-title mb-50">
-                  <span className="sub-title mb-10">FAQs</span>
+                  <span className="sub-title mb-10">Common Questions</span>
                   <h2>Frequently Asked Questions</h2>
                 </div>
                 <Link href="faqs" className="theme-btn">
-                  Get A Quote
+                  Contact Us for Support
                 </Link>
               </div>
             </div>

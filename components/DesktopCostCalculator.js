@@ -41,8 +41,8 @@ const DesktopCostCalculator = () => {
 
   return (
     <div className={`pricing-item style-three`}>
-      <h4 className="title mb-3">Desktop App Cost Calculator</h4>
-      <div className="text mb-4">Estimate your desktop app project cost instantly</div>
+      <h4 className="title mb-3">Desktop Application Project Cost Estimator</h4>
+      <div className="text mb-4">Get an instant estimate for your custom desktop application development project.</div>
       <div className="included mb-2">Options:</div>
       <ul className="list-style-one mb-4">
         <li>

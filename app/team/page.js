@@ -5,7 +5,7 @@ import Link from "next/link";
 const page = () => {
   return (
     <TekprofLayout>
-      <PageBanner pageName="Team" />
+      <PageBanner pageName="Meet Our Expert Team" />
       <section className="team-page-area pt-130 rpt-100 pb-100 rpb-70 rel z-1">
         <div className="container">
           <div className="row align-items-center">
@@ -18,12 +18,11 @@ const page = () => {
               >
                 <div className="section-title mb-30">
                   <h2>
-                    Solutions Beyond Technology – Success Beyond Boundaries
+                    Our Vision: Solutions Beyond Technology, Success Beyond Boundaries
                   </h2>
                 </div>
                 <p>
-                  Trust us to be your partner in digital transformation,
-                  providing the technology and support.
+                  At Pixelways Solution, we are dedicated to being your trusted partner in digital transformation. Our team provides the expertise, innovative technology, and unwavering support needed to help your business thrive.
                 </p>
                 <div className="row pt-35 rpt-25">
                   <div className="col-sm-6">
@@ -31,7 +30,7 @@ const page = () => {
                       <ProgressBar3 value={80} />
                       <h4>
                         Software
-                        <br /> Development
+                        <br /> Development Expertise
                       </h4>
                     </div>
                   </div>
@@ -40,7 +39,7 @@ const page = () => {
                       <ProgressBar3 value={90} />
                       <h4>
                         IT Consulting &amp;
-                        <br /> management
+                        <br /> Management
                       </h4>
                     </div>
                   </div>
@@ -71,9 +70,9 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <span className="sub-title color-primary mb-10">
-                  Meet Our Team
+                  Our Dedicated Professionals
                 </span>
-                <h2>Experience Technical Team</h2>
+                <h2>Meet Our Experienced Technical Team</h2>
               </div>
             </div>
           </div>
@@ -96,8 +95,8 @@ const page = () => {
                   <span className="designation">IT Consultant</span>
                   <div className="bottom-part">
                     <p>
-                      As an IT consultant, our mission is to bridge the
-                      technology.
+                      As a seasoned IT consultant, David specializes in bridging the
+                      gap between complex technology and practical business solutions, driving efficiency and innovation.
                     </p>
                     <Link className="details-btn" href="team-details">
                       <i className="far fa-arrow-right" />
@@ -138,8 +137,7 @@ const page = () => {
                   <span className="designation">IT Consultant</span>
                   <div className="bottom-part">
                     <p>
-                      Current IT identify opportunities for improvement, and
-                      develop.
+                      Robert focuses on identifying opportunities for technological improvement within organizations, developing and implementing strategies that enhance operational effectiveness.
                     </p>
                     <Link className="details-btn" href="team-details">
                       <i className="far fa-arrow-right" />
@@ -180,8 +178,7 @@ const page = () => {
                   <span className="designation">IT Consultant</span>
                   <div className="bottom-part">
                     <p>
-                      Current IT identify opportunities for improvement, and
-                      develop.
+                      Eugene excels at analyzing current IT infrastructures to pinpoint areas for optimization, ensuring robust and scalable solutions for our clients.
                     </p>
                     <Link className="details-btn" href="team-details">
                       <i className="far fa-arrow-right" />
@@ -222,8 +219,7 @@ const page = () => {
                   <span className="designation">IT Consultant</span>
                   <div className="bottom-part">
                     <p>
-                      Current IT identify opportunities for improvement, and
-                      develop.
+                      Paul is dedicated to developing and implementing cutting-edge IT strategies that align with business objectives, fostering growth and competitive advantage.
                     </p>
                     <Link className="details-btn" href="team-details">
                       <i className="far fa-arrow-right" />
@@ -264,8 +260,7 @@ const page = () => {
                   <span className="designation">IT Consultant</span>
                   <div className="bottom-part">
                     <p>
-                      Current IT identify opportunities for improvement, and
-                      develop.
+                      Danny's expertise lies in transforming IT challenges into strategic opportunities, providing comprehensive solutions that streamline processes and boost productivity.
                     </p>
                     <Link className="details-btn" href="team-details">
                       <i className="far fa-arrow-right" />
@@ -309,8 +304,7 @@ const page = () => {
                   <span className="designation">IT Consultant</span>
                   <div className="bottom-part">
                     <p>
-                      Current IT identify opportunities for improvement, and
-                      develop.
+                      Nathan is committed to helping clients leverage technology to its fullest potential, offering expert guidance on system optimization and digital transformation initiatives.
                     </p>
                     <Link className="details-btn" href="team-details">
                       <i className="far fa-arrow-right" />

@@ -127,48 +127,44 @@ export const FAQs2 = ({ limit = 100 }) => {
   const [toggle, setToggle] = useState(1);
   const faqs = [
     {
-      title: "Who Can Benefit from Services?",
-      body: "Cybersecurity is at the core of our solutions. We layered monitoring, and threat detection to protect. From custom development and cloud solutions to cybersecurity and data analytics.",
+      title: "What services does Pixelways Solution offer?",
+      body: "Pixelways Solution offers a comprehensive suite of digital solutions including custom software development, UI/UX design, cloud & infrastructure solutions, AI & data analytics, cybersecurity, consulting, e-commerce & CMS, maintenance & support, emerging technologies, and logistics tech solutions.",
     },
     {
-      title: "Approach Cybersecurity?",
-      body: "Cybersecurity is at the core of our solutions. We layered monitoring, and threat detection to protect. From custom development and cloud solutions to cybersecurity and data analytics.",
+      title: "How can Pixelways Solution help my business grow?",
+      body: "We empower businesses by delivering innovative, scalable, and secure technology solutions tailored to your unique needs. Our expertise helps optimize operations, enhance efficiency, and drive digital transformation, enabling you to achieve your strategic goals.",
     },
     {
-      title: "Provide Custom IT Solutions?",
-      body: "Cybersecurity is at the core of our solutions. We layered monitoring, and threat detection to protect. From custom development and cloud solutions to cybersecurity and data analytics.",
+      title: "What is your approach to software development?",
+      body: "We follow an agile and user-centered approach to software development, focusing on iterative progress, continuous feedback, and close collaboration with our clients to deliver high-quality, user-friendly, and scalable applications.",
     },
     {
-      title: "Process for Working?",
-      body: "Cybersecurity is at the core of our solutions. We layered monitoring, and threat detection to protect. From custom development and cloud solutions to cybersecurity and data analytics.",
+      title: "Do you provide ongoing support and maintenance?",
+      body: "Yes, we offer comprehensive post-launch maintenance and technical support services, including SLA-based software support, 24/7 monitoring, bug fixing, and legacy code modernization to ensure your systems run smoothly.",
     },
     {
-      title: "Help with Cloud Solutions?",
-      body: "Cybersecurity is at the core of our solutions. We layered monitoring, and threat detection to protect. From custom development and cloud solutions to cybersecurity and data analytics.",
+      title: "How do you ensure the security of your solutions?",
+      body: "Security is paramount in our solutions. We implement multi-layered cybersecurity measures, conduct regular security audits, and adhere to industry best practices and compliance standards (e.g., GDPR, HIPAA) to protect your data and infrastructure.",
     },
     {
-      title: "What industries do you specialize in?",
-      body: "Cybersecurity is at the core of our solutions. We layered monitoring, and threat detection to protect. From custom development and cloud solutions to cybersecurity and data analytics.",
+      title: "Can you help with cloud migration and optimization?",
+      body: "Absolutely. We provide strategic cloud adoption, migration, and optimization services across major platforms like AWS, Azure, and GCP, helping you leverage the cloud for scalability, efficiency, and cost-effectiveness.",
     },
     {
-      title: "What size companies do you work with?",
-      body: "Cybersecurity is at the core of our solutions. We layered monitoring, and threat detection to protect. From custom development and cloud solutions to cybersecurity and data analytics.",
+      title: "What industries do you serve?",
+      body: "Pixelways Solution serves a diverse range of industries, providing tailored digital solutions to startups, small and medium-sized businesses, and large enterprises across various sectors.",
     },
     {
-      title: "How does the consulting process work?",
-      body: "Cybersecurity is at the core of our solutions. We layered monitoring, and threat detection to protect. From custom development and cloud solutions to cybersecurity and data analytics.",
+      title: "How do I get started with Pixelways Solution?",
+      body: "Getting started is easy! Simply contact us through our website, email, or phone. We'll schedule an initial consultation to understand your needs and discuss how we can help you achieve your digital objectives.",
     },
     {
-      title: "How secure are your solutions?",
-      body: "Cybersecurity is at the core of our solutions. We layered monitoring, and threat detection to protect. From custom development and cloud solutions to cybersecurity and data analytics.",
+      title: "Do you offer custom IT consulting services?",
+      body: "Yes, we offer strategic consulting and technical advisory services, including CTO-as-a-Service, system architecture consulting, technology stack evaluation, and digital transformation strategy to guide your business decisions.",
     },
     {
-      title: "How much do your services cost?",
-      body: "Cybersecurity is at the core of our solutions. We layered monitoring, and threat detection to protect. From custom development and cloud solutions to cybersecurity and data analytics.",
-    },
-    {
-      title: "How do I get started?",
-      body: "Cybersecurity is at the core of our solutions. We layered monitoring, and threat detection to protect. From custom development and cloud solutions to cybersecurity and data analytics.",
+      title: "What makes Pixelways Solution different from other IT companies?",
+      body: "Our commitment to innovation, client-centric approach, deep industry expertise, and focus on delivering measurable results set us apart. We build lasting partnerships by providing solutions that are not just technologically advanced but also strategically aligned with your business success.",
     },
   ];
   const handleToggle = (eventKey) => {

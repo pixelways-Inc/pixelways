@@ -13,9 +13,9 @@ const Consultation = () => {
               >
                 <div className="section-title mb-105 rmb-40">
                   <span className="sub-title color-primary mb-10">
-                    Get Consultations
+                    Schedule a Consultation
                   </span>
-                  <h2>Ready To Get Free Consultations</h2>
+                  <h2>Ready to Transform Your Business?</h2>
                 </div>
                 <div className="row">
                   <div className="col-lg-6">
@@ -42,7 +42,7 @@ const Consultation = () => {
                 data-aos-duration={1500}
                 data-aos-offset={50}
               >
-                <h4>Get Free Consultation</h4>
+                <h4>Request a Free Consultation</h4>
                 <form
                   className="get-consultations-form mt-30 z-1 rel"
                   name="contactForm"
@@ -89,9 +89,20 @@ const Consultation = () => {
                     <div className="col-sm-6 mb-20">
                       <div className="form-group">
                         <select name="subject" id="subject">
-                          <option value="value1">Subject</option>
-                          <option value="value2">Getting Service</option>
-                          <option value="value3">Searching Job</option>
+                          <option value="">Select Subject</option>
+                          <option value="general-inquiry">General Inquiry</option>
+                          <option value="software-development">Software Development</option>
+                          <option value="ui-ux-design">UI/UX Design</option>
+                          <option value="cloud-solutions">Cloud Solutions</option>
+                          <option value="ai-data-analytics">AI & Data Analytics</option>
+                          <option value="cybersecurity">Cybersecurity</option>
+                          <option value="consulting-advisory">Consulting & Advisory</option>
+                          <option value="e-commerce-cms">E-commerce & CMS</option>
+                          <option value="maintenance-support">Maintenance & Support</option>
+                          <option value="emerging-technologies">Emerging Technologies</option>
+                          <option value="logistics-supply-chain">Logistics & Supply Chain</option>
+                          <option value="partnership-opportunity">Partnership Opportunity</option>
+                          <option value="career-inquiry">Career Inquiry</option>
                         </select>
                       </div>
                     </div>
@@ -113,9 +124,9 @@ const Consultation = () => {
                         <button
                           type="submit"
                           className="theme-btn hover-primary w-100"
-                          data-hover="Get Consultation"
+                          data-hover="Submit Request"
                         >
-                          <span>Get Consultation</span>
+                          <span>Submit Request</span>
                         </button>
                       </div>
                     </div>

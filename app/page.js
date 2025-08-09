@@ -34,15 +34,13 @@ const page = () => {
                 data-aos-duration={1500}
                 data-aos-offset={50}
               >
-                <span className="sub-title mb-15">Modern IT Solutions</span>
-                <h1>Empowering Businesses with IT Solutions</h1>
+                <span className="sub-title mb-15">Future-Ready Digital Solutions</span>
+                <h1>Empowering Your Business with Innovative Digital Solutions</h1>
                 <p>
-                  An IT solution agency is your trusted partner in navigating
-                  complexities landscape wide range of services such as
-                  software.
+                  Pixelways Solution is your trusted partner in navigating the complexities of the digital landscape. We deliver innovative, scalable, and secure technology solutions tailored to your unique business needs.
                 </p>
                 <Link href="services" className="theme-btn mt-15">
-                  Explore UinTech IT Services
+                  Explore Our Services
                 </Link>
               </div>
             </div>
@@ -72,18 +70,17 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <span className="sub-title color-primary mb-10">
-                  Modern IT Solutions
+                  Our Core Expertise
                 </span>
                 <h2>
-                  Transforming Challenges Into Opportunities with Smart IT
-                  Solutions
+                  Transforming Challenges into Opportunities with Pixelways Solutions
                 </h2>
                 <div className="row justify-content-center">
                   <div className="col-lg-10">
                     <p>
-                      IT solutions integrate cutting-edge technologies with
-                      strategic planning to optimize processes and deliver
-                      measurable results partnering with IT experts.
+                      At Pixelways Solution, we integrate cutting-edge technologies with
+                      strategic planning to optimize your processes, drive innovation, and deliver
+                      measurable results. Partner with our IT experts to unlock your business's full potential.
                     </p>
                   </div>
                 </div>
@@ -108,8 +105,7 @@ const page = () => {
                     <Link href="service-details">IT Solutions</Link>
                   </h4>
                   <p>
-                    IT solutions encompass a broad range of services and
-                    technologies.
+                    Comprehensive IT solutions tailored to your business, from custom software development to system integration and optimization.
                   </p>
                   <div className="inner-content">
                     <Link className="read-more" href="service-details">
@@ -136,8 +132,7 @@ const page = () => {
                     <Link href="service-details">Cyber Security</Link>
                   </h4>
                   <p>
-                    Cybersecurity is the practice of protecting systems
-                    networks.
+                    Robust cybersecurity services to protect your digital assets, ensuring data integrity, privacy, and compliance against evolving threats.
                   </p>
                   <div className="inner-content">
                     <Link className="read-more" href="service-details">
@@ -164,7 +159,7 @@ const page = () => {
                     <Link href="service-details">Cloud Services</Link>
                   </h4>
                   <p>
-                    Cloud services are on-demand computing resources delivered.
+                    Scalable cloud solutions (AWS, Azure, GCP) for seamless migration, optimized infrastructure, and enhanced operational efficiency.
                   </p>
                   <div className="inner-content">
                     <Link className="read-more" href="service-details">
@@ -190,17 +185,16 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <div className="section-title mb-25">
-                  <span className="sub-title mb-10">Why Choose Us</span>
+                  <span className="sub-title mb-10">Why Pixelways Solution?</span>
                   <h2>
-                    Solutions Beyond Technology – Success Beyond Boundaries
+                    Your Partner in Digital Transformation: Solutions Beyond Technology, Success Beyond Boundaries
                   </h2>
                 </div>
                 <p>
-                  Trust us to be your partner in digital transformation,
-                  providing the technology and support.
+                  Choose Pixelways Solution as your trusted partner for digital transformation. We provide not just technology, but comprehensive support and strategic guidance to help your business thrive in the digital age.
                 </p>
                 <Link href="about" className="theme-btn mt-20 mb-50">
-                  Learn More About Us
+                  Discover Our Story
                 </Link>
                 <div
                   className="row"
@@ -217,8 +211,7 @@ const page = () => {
                         <Link href="service-details">Dedicated Team</Link>
                       </h5>
                       <p>
-                        This allowing scale resources as needed while
-                        maintaining full control your project.
+                        Our dedicated team of experts ensures personalized attention and scalable resources, maintaining full control and transparency throughout your project.
                       </p>
                     </div>
                   </div>
@@ -231,8 +224,7 @@ const page = () => {
                         <Link href="service-details">Clients Satisfaction</Link>
                       </h5>
                       <p>
-                        From quality design and timely delivery post-project
-                        support focus is on building lasting
+                        We prioritize client satisfaction through quality design, timely delivery, and ongoing post-project support, building lasting partnerships.
                       </p>
                     </div>
                   </div>
@@ -282,9 +274,9 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <span className="sub-title color-primary mb-10">
-                  Modern IT Solutions
+                  Our Comprehensive Services
                 </span>
-                <h2>Empowering Businesses With Advanced IT Solutions</h2>
+                <h2>Empowering Your Business with Advanced Digital Solutions</h2>
               </div>
             </div>
           </div>
@@ -309,9 +301,8 @@ const page = () => {
                   </h4>
                   <div className="inner-content">
                     <p>
-                      Comprehensive support for all aspects of your IT
-                      infrastructure, including monitoring, maintenance, and
-                      technical support.
+                      Proactive monitoring, maintenance, and technical support for your IT
+                      infrastructure, ensuring optimal performance and reliability.
                     </p>
                     <Link className="read-more" href="service-details">
                       Read More <i className="far fa-arrow-right" />
@@ -341,9 +332,7 @@ const page = () => {
                   </h4>
                   <div className="inner-content">
                     <p>
-                      Comprehensive support for all aspects of your IT
-                      infrastructure, including monitoring, maintenance, and
-                      technical support.
+                      Advanced threat detection, prevention, and incident response to safeguard your critical data and systems from cyber threats.
                     </p>
                     <Link className="read-more" href="service-details">
                       Read More <i className="far fa-arrow-right" />
@@ -372,9 +361,7 @@ const page = () => {
                   </h4>
                   <div className="inner-content">
                     <p>
-                      Comprehensive support for all aspects of your IT
-                      infrastructure, including monitoring, maintenance, and
-                      technical support.
+                      Strategic cloud adoption, migration, and optimization services across AWS, Azure, and GCP for scalable and efficient operations.
                     </p>
                     <Link className="read-more" href="service-details">
                       Read More <i className="far fa-arrow-right" />
@@ -404,9 +391,7 @@ const page = () => {
                   </h4>
                   <div className="inner-content">
                     <p>
-                      Comprehensive support for all aspects of your IT
-                      infrastructure, including monitoring, maintenance, and
-                      technical support.
+                      Robust data backup and disaster recovery plans to ensure business continuity and protect your valuable information.
                     </p>
                     <Link className="read-more" href="service-details">
                       Read More <i className="far fa-arrow-right" />
@@ -436,15 +421,14 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <div className="section-title mb-30">
-                  <span className="sub-title mb-10">Great Achievement</span>
-                  <h2>Modern Design Agency Blueprint Innovation</h2>
+                  <span className="sub-title mb-10">Our Achievements</span>
+                  <h2>Driving Innovation and Delivering Excellence</h2>
                 </div>
                 <p>
-                  We empower businesses to thrive in the digital system with
-                  best innovative IT solutions.
+                  At Pixelways Solution, we are committed to empowering businesses to thrive in the digital era through innovative IT solutions and a relentless pursuit of excellence.
                 </p>
                 <Link href="about" className="theme-btn mt-20">
-                  Get Consultation
+                  Request a Consultation
                 </Link>
               </div>
             </div>
@@ -559,9 +543,9 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <span className="sub-title color-primary mb-10">
-                  Meet Our Team
+                  Meet Our Experts
                 </span>
-                <h2>Experience Technical Team</h2>
+                <h2>Our Experienced and Passionate Team</h2>
               </div>
             </div>
           </div>
@@ -600,8 +584,7 @@ const page = () => {
                   </h3>
                   <div className="inner-content">
                     <p>
-                      We implemented multi-layered cybersecurity measures
-                      including firewall protection, real-time threat
+                      We provide in-depth assessment and strategic planning to align technology with your business goals, ensuring a clear roadmap for digital success.
                     </p>
                     <Link className="details-btn" href="service-details">
                       <i className="far fa-arrow-right" />
@@ -629,13 +612,12 @@ const page = () => {
                   </div>
                   <h3 className="title">
                     <Link href="service-details">
-                      Enhanced Cybersecurity Protocols solutions
+                      Enhanced Cybersecurity Protocols
                     </Link>
                   </h3>
                   <div className="inner-content">
                     <p>
-                      We implemented multi-layered cybersecurity measures
-                      including firewall protection, real-time threat
+                      Our multi-layered cybersecurity measures, including advanced firewall protection and real-time threat intelligence, secure your infrastructure.
                     </p>
                     <Link className="details-btn" href="service-details">
                       <i className="far fa-arrow-right" />
@@ -668,8 +650,7 @@ const page = () => {
                   </h3>
                   <div className="inner-content">
                     <p>
-                      We implemented multi-layered cybersecurity measures
-                      including firewall protection, real-time threat
+                      Seamlessly migrate your operations to the cloud and optimize your existing cloud infrastructure for performance, cost-efficiency, and scalability.
                     </p>
                     <Link className="details-btn" href="service-details">
                       <i className="far fa-arrow-right" />
@@ -700,9 +681,9 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <span className="sub-title color-primary mb-10">
-                  News &amp; Blog
+                  Insights &amp; Resources
                 </span>
-                <h2>Latest Insight &amp; Articles</h2>
+                <h2>Latest Insights &amp; Expert Articles</h2>
               </div>
             </div>
           </div>
@@ -735,8 +716,7 @@ const page = () => {
                   </h4>
                   <div className="inner-content">
                     <p>
-                      Highlights clear problem-solution-result narrative,
-                      demonstrating agency’s ability to provide.
+                      Stay ahead of evolving cyber threats with our essential guide to protecting your business through robust security practices and proactive measures.
                     </p>
                     <Link className="theme-btn btn-small" href="blog-details">
                       Read More
@@ -773,8 +753,7 @@ const page = () => {
                   </h4>
                   <div className="inner-content">
                     <p>
-                      Highlights clear problem-solution-result narrative,
-                      demonstrating agency’s ability to provide.
+                      Navigate the complexities of selecting an IT partner with our comprehensive guide, ensuring you make an informed decision for your business's future.
                     </p>
                     <Link className="theme-btn btn-small" href="blog-details">
                       Read More
@@ -805,13 +784,12 @@ const page = () => {
                   </ul>
                   <h4 className="title">
                     <Link href="blog-details">
-                      The Importance of Data Backup and Disaster Recovery Plans"
+                      The Importance of Data Backup and Disaster Recovery Plans
                     </Link>
                   </h4>
                   <div className="inner-content">
                     <p>
-                      Highlights clear problem-solution-result narrative,
-                      demonstrating agency’s ability to provide.
+                      Understand why robust data backup and disaster recovery plans are crucial for business continuity and protecting your valuable information from unforeseen events.
                     </p>
                     <Link className="theme-btn btn-small" href="blog-details">
                       Read More
