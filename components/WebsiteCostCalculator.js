@@ -45,12 +45,12 @@ const WebsiteCostCalculator = () => {
       <ul className="list-style-one mb-4">
         <li>
           <label>Number of Pages
-            <input type="number" min={1} max={50} value={pages} onChange={e => setPages(Number(e.target.value))} className="form-control d-inline-block w-24 ms-2" />
+            <input type="number" min={1} max={50} value={pages} onChange={e => { setPages(Number(e.target.value)); calculateCost(); }} className="form-control d-inline-block w-24 ms-2" />
           </label>
         </li>
         <li>
           <label>Design Type
-            <select value={design} onChange={e => setDesign(e.target.value)} className="form-control d-inline-block ms-2">
+            <select value={design} onChange={e => { setDesign(e.target.value); calculateCost(); }} className="form-control d-inline-block ms-2">
               {designOptions.map(opt => (
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
               ))}
@@ -68,6 +68,7 @@ const WebsiteCostCalculator = () => {
                   onChange={e => {
                     if (e.target.checked) setFeatures([...features, opt.value]);
                     else setFeatures(features.filter(f => f !== opt.value));
+                    calculateCost();
                   }}
                 /> {opt.label} (+${opt.price})
               </label>
@@ -75,8 +76,7 @@ const WebsiteCostCalculator = () => {
           </div>
         </li>
       </ul>
-      <button className="theme-btn mt-2" onClick={calculateCost}>Calculate</button>
-  <div className="mt-4 price text-lg font-semibold"><span style={{display:'block',marginBottom:'6px'}}>Estimated</span> <br />Cost: ${cost}</div>
+  <div className="mt-4 price text-lg font-semibold"><span style={{display:'block',marginBottom:'6px'>Estimated</span> <br />Cost: ${cost}</div>
     </div>
   );
 };

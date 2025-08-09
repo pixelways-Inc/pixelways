@@ -140,5 +140,14 @@ This document tracks all significant changes, progress, and decisions made durin
 **Summary of Changes:**
 - **`app/blog/page.js`:** Removed the static `<ul>` element with `className="pagination"` as it was not functional and there are not enough posts to paginate.
 
+## Website Cost Calculator Real-time Calculation (August 9, 2025)
+
+**Objective:** Improve user experience by implementing real-time cost calculation in the Website Cost Calculator.
+
+**Summary of Changes:**
+- **`components/WebsiteCostCalculator.js`:**
+  - Modified `onChange` handlers for "Number of Pages", "Design Type", and "Features" to trigger `calculateCost()` immediately.
+  - Removed the explicit "Calculate" button as it is no longer needed.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

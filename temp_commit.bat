@@ -1,1 +1,1 @@
-git commit -m "FEAT: Update homepage Achievement Area background image API parameters and update blueprint"
+git commit -m "FEAT: Remove blog page pagination and update blueprint"
