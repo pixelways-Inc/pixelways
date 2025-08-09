@@ -117,7 +117,7 @@ This document tracks all significant changes, progress, and decisions made durin
 **Objective:** Update the hero section background image to use the image API for a more dynamic and relevant visual.
 
 **Summary of Changes:**
-- **`components/Hero.js`:** Modified the `backgroundImage` style to fetch an image from `https://api.a0.dev/assets/image?width=1920&height=1080&theme=technology`.
+- **`components/Hero.js`:** Modified the `backgroundImage` style to fetch an image from `https://api.a0.dev/assets/image?text=Pixelways+Solution+IT+Consultancy+Digital+Solutions&aspect=16:9&seed=42`.
 
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

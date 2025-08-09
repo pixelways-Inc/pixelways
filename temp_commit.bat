@@ -1,0 +1,1 @@
+git commit -m "FEAT: Integrate image API for Hero section background and update blueprint"
