@@ -35,7 +35,7 @@ This document tracks all significant changes, progress, and decisions made durin
   - Removed redundant "View More Services" button.
   - (Note: Individual service accordion content was already correct based on README and did not require modification).
 
-- **`app/pricing/page.js` (Pricing Page):**
+- **`app/pricing/page.js` (Pricing Page):
   - Updated FAQs section (sub-title, headline, button text).
 
 - **`components/Pricing.js`:**
@@ -111,6 +111,13 @@ This document tracks all significant changes, progress, and decisions made durin
 - **`app/blog/page.js`:** Updated `src` attributes for all images in the "Recent Post" widget to use the image API.
 - **`app/blog-details/page.js`:** Updated `src` attributes for all images in the "Recent Post" widget to use the image API.
 - **`layout/Sidebar.js`:** Updated `src` attributes and titles for all images in the "Recent Post" widget to use the image API and correct titles.
+
+## Hero Section Image Update (August 9, 2025)
+
+**Objective:** Update the hero section background image to use the image API for a more dynamic and relevant visual.
+
+**Summary of Changes:**
+- **`components/Hero.js`:** Modified the `backgroundImage` style to fetch an image from `https://api.a0.dev/assets/image?width=1920&height=1080&theme=technology`.
 
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

@@ -9,7 +9,7 @@ const Hero = () => {
     <section
       id="home"
       className="slider-area bgs-cover pt-185 pb-160"
-      style={{ backgroundImage: "url(assets/images/slider/slider-bg.jpg)" }}
+      style={{ backgroundImage: "url(https://api.a0.dev/assets/image?width=1920&height=1080&theme=technology)" }}
     >
       <div className="container">
         <Slider
