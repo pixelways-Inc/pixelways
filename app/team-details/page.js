@@ -27,8 +27,7 @@ const page = () => {
                   <h5 className="title">Contact Me</h5>
                   <div className="team-info-item">
                     <span>Email Address</span>
-                    <a href="mailto:supportsaylo@gmail@gmail.com
-                    </a>
+                    <a href="mailto:supportsaylo@gmail.com">supportsaylo@gmail.com</a>
                   </div>
                   <div className="team-info-item">
                     <span>Need a Call</span>
