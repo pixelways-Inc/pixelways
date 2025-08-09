@@ -378,7 +378,7 @@ const page = () => {
                     </p>
                     <Link className="read-more" href="service-details">
                       Read More <i className="far fa-arrow-right" />
-                    </Link>
+                    </Link>                                                                               
                   </div>
                 </div>
               </div>
@@ -716,7 +716,7 @@ const page = () => {
             >
               <div className="blog-item hover-content">
                 <div className="image">
-                  <img src="https://api.a0.dev/assets/image?text=Business leader writing a cybersecurity article in a modern workspace, with digital threat icons in the background. Professional, informative, 8K, 300x300px.&aspect=1:1&seed=138" alt="Blog" width={300} height={300} />
+                  <img src="https://api.a0.dev/assets/image?text=Cybersecurity expert presenting at a business conference, audience engaged, digital threat icons on screen, 8K, 300x300px.&aspect=1:1&seed=138" alt="Blog" width={300} height={300} />
                 </div>
                 <div className="content">
                   <ul className="blog-meta">
@@ -754,7 +754,7 @@ const page = () => {
             >
               <div className="blog-item hover-content">
                 <div className="image">
-                  <img src="https://api.a0.dev/assets/image?text=IT consultant reviewing solution options on a tablet, with a cityscape visible through the window. Insightful, expert, 8K, 300x300px.&aspect=1:1&seed=139" alt="Blog" width={300} height={300} />
+                  <img src="https://api.a0.dev/assets/image?text=IT consultant in a modern office, comparing solution options on a large interactive display, city skyline visible, 8K, 300x300px.&aspect=1:1&seed=139" alt="Blog" width={300} height={300} />
                 </div>
                 <div className="content">
                   <ul className="blog-meta">
@@ -792,7 +792,7 @@ const page = () => {
             >
               <div className="blog-item hover-content">
                 <div className="image">
-                  <img src="https://api.a0.dev/assets/image?text=Data backup specialist restoring files on a computer, with disaster recovery plans on the wall. Secure, practical, 8K, 300x300px.&aspect=1:1&seed=140" alt="Blog" width={300} height={300} />
+                  <img src="https://api.a0.dev/assets/image?text=IT manager overseeing a secure data backup operation, multiple screens showing recovery progress, office setting, 8K, 300x300px.&aspect=1:1&seed=140" alt="Blog" width={300} height={300} />
                 </div>
                 <div className="content">
                   <ul className="blog-meta">

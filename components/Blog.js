@@ -46,7 +46,7 @@ const Blog = () => {
                 <div className="row gap-50 align-items-center">
                   <div className="col-lg-6">
                     <div className="image">
-                      <img src="assets/images/blog/blog7.jpg" alt="Blog" />
+                      <img src="https://api.a0.dev/assets/image?text=Business leader writing a cybersecurity article in a modern workspace, with digital threat icons in the background. Professional, informative, 8K, 300x200px.&aspect=3:2&seed=701" alt="Blog" width={300} height={200} />
                     </div>
                   </div>
                   <div className="col-lg-6">
@@ -80,7 +80,7 @@ const Blog = () => {
                 <div className="row gap-50 align-items-center">
                   <div className="col-lg-6">
                     <div className="image">
-                      <img src="assets/images/blog/blog8.jpg" alt="Blog" />
+                      <img src="https://api.a0.dev/assets/image?text=IT consultant reviewing solution options on a tablet, with a cityscape visible through the window. Insightful, expert, 8K, 300x200px.&aspect=3:2&seed=702" alt="Blog" width={300} height={200} />
                     </div>
                   </div>
                   <div className="col-lg-6">
@@ -114,7 +114,7 @@ const Blog = () => {
                 <div className="row gap-50 align-items-center">
                   <div className="col-lg-6">
                     <div className="image">
-                      <img src="assets/images/blog/blog9.jpg" alt="Blog" />
+                      <img src="https://api.a0.dev/assets/image?text=Data backup specialist restoring files on a computer, with disaster recovery plans on the wall. Secure, practical, 8K, 300x200px.&aspect=3:2&seed=703" alt="Blog" width={300} height={200} />
                     </div>
                   </div>
                   <div className="col-lg-6">
@@ -148,7 +148,7 @@ const Blog = () => {
                 <div className="row gap-50 align-items-center">
                   <div className="col-lg-6">
                     <div className="image">
-                      <img src="assets/images/blog/blog7.jpg" alt="Blog" />
+                      <img src="https://api.a0.dev/assets/image?text=Business leader writing a cybersecurity article in a modern workspace, with digital threat icons in the background. Professional, informative, 8K, 300x200px.&aspect=3:2&seed=704" alt="Blog" width={300} height={200} />
                     </div>
                   </div>
                   <div className="col-lg-6">
@@ -182,7 +182,7 @@ const Blog = () => {
                 <div className="row gap-50 align-items-center">
                   <div className="col-lg-6">
                     <div className="image">
-                      <img src="assets/images/blog/blog8.jpg" alt="Blog" />
+                      <img src="https://api.a0.dev/assets/image?text=IT consultant reviewing solution options on a tablet, with a cityscape visible through the window. Insightful, expert, 8K, 300x200px.&aspect=3:2&seed=705" alt="Blog" width={300} height={200} />
                     </div>
                   </div>
                   <div className="col-lg-6">
@@ -216,7 +216,7 @@ const Blog = () => {
                 <div className="row gap-50 align-items-center">
                   <div className="col-lg-6">
                     <div className="image">
-                      <img src="assets/images/blog/blog9.jpg" alt="Blog" />
+                      <img src="https://api.a0.dev/assets/image?text=Data backup specialist restoring files on a computer, with disaster recovery plans on the wall. Secure, practical, 8K, 300x200px.&aspect=3:2&seed=706" alt="Blog" width={300} height={200} />
                     </div>
                   </div>
                   <div className="col-lg-6">

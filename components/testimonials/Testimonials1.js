@@ -83,8 +83,10 @@ export default class Testimonials extends Component {
                   </div>
                   <div className="testi-author">
                     <img
-                      src="assets/images/testimonials/testi-author1.jpg"
+                      src={`https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*50)+1}.jpg`}
                       alt="Author"
+                      width={60}
+                      height={60}
                     />
                     <b>Robert S. Hummel </b> /CEO &amp; Founder
                   </div>
@@ -104,8 +106,10 @@ export default class Testimonials extends Component {
                   </div>
                   <div className="testi-author">
                     <img
-                      src="assets/images/testimonials/testi-author2.jpg"
+                      src={`https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*50)+1}.jpg`}
                       alt="Author"
+                      width={60}
+                      height={60}
                     />
                     <b>Leonard G. Trahan </b> /Web designer
                   </div>

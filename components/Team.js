@@ -14,7 +14,7 @@ const Team = () => {
         data-aos-offset={50}
       >
         <div className="image">
-          <img src="https://api.a0.dev/assets/image?text=Confident IT consultant in a modern office, smiling, business attire, 300x330px, realistic, 8K.&aspect=10:11&seed=301" alt="Team Member" width={300} height={330} />
+              <img src={`https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*50)+1}.jpg`} alt="Team Member" width={300} height={330} />
           <div className="icon">
             <i className="far fa-plus" />
             <div className="social-style-one">
@@ -45,7 +45,7 @@ const Team = () => {
         data-aos-offset={50}
       >
         <div className="image">
-          <img src="https://api.a0.dev/assets/image?text=Creative UI designer at a desk with sketches and a laptop, friendly, 300x330px, realistic, 8K.&aspect=10:11&seed=302" alt="Team Member" width={300} height={330} />
+              <img src={`https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*50)+1}.jpg`} alt="Team Member" width={300} height={330} />
           <div className="icon">
             <i className="far fa-plus" />
             <div className="social-style-one">
@@ -76,7 +76,7 @@ const Team = () => {
         data-aos-offset={50}
       >
         <div className="image">
-          <img src="https://api.a0.dev/assets/image?text=Professional IT support specialist helping a client, headset, modern workspace, 300x330px, realistic, 8K.&aspect=10:11&seed=303" alt="Team Member" width={300} height={330} />
+              <img src={`https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*50)+1}.jpg`} alt="Team Member" width={300} height={330} />
           <div className="icon">
             <i className="far fa-plus" />
             <div className="social-style-one">
@@ -107,7 +107,7 @@ const Team = () => {
         data-aos-offset={50}
       >
         <div className="image">
-          <img src="assets/images/team/member4.jpg" alt="Team Member" />
+          <img src="https://api.a0.dev/assets/image?text=Professional IT support specialist helping a client, headset, modern workspace, 300x330px, realistic, 8K.&aspect=1:1&seed=303" alt="Team Member" />
           <div className="icon">
             <i className="far fa-plus" />
             <div className="social-style-one">
@@ -138,7 +138,7 @@ const Team = () => {
         data-aos-offset={50}
       >
         <div className="image">
-          <img src="assets/images/team/member1.jpg" alt="Team Member" />
+          <img src="https://api.a0.dev/assets/image?text=Confident IT consultant in a modern office, smiling, business attire, 300x330px, realistic, 8K.&aspect=1:1&seed=304" alt="Team Member" width={300} height={330} />
           <div className="icon">
             <i className="far fa-plus" />
             <div className="social-style-one">
@@ -169,7 +169,7 @@ const Team = () => {
         data-aos-offset={50}
       >
         <div className="image">
-          <img src="assets/images/team/member2.jpg" alt="Team Member" />
+          <img src="https://api.a0.dev/assets/image?text=Creative UI designer at a desk with sketches and a laptop, friendly, 300x330px, realistic, 8K.&aspect=1:1&seed=305" alt="Team Member" width={300} height={330} />
           <div className="icon">
             <i className="far fa-plus" />
             <div className="social-style-one">
@@ -200,7 +200,7 @@ const Team = () => {
         data-aos-offset={50}
       >
         <div className="image">
-          <img src="assets/images/team/member3.jpg" alt="Team Member" />
+          <img src="https://api.a0.dev/assets/image?text=Professional HR support specialist assisting a colleague, modern workspace, 300x330px, realistic, 8K.&aspect=1:1&seed=306" alt="Team Member" width={300} height={330} />
           <div className="icon">
             <i className="far fa-plus" />
             <div className="social-style-one">
@@ -231,7 +231,7 @@ const Team = () => {
         data-aos-offset={50}
       >
         <div className="image">
-          <img src="assets/images/team/member4.jpg" alt="Team Member" />
+              <img src={`https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*50)+1}.jpg`} alt="Team Member" width={300} height={330} />
           <div className="icon">
             <i className="far fa-plus" />
             <div className="social-style-one">

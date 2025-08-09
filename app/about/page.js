@@ -70,26 +70,14 @@ const page = () => {
               >
                 <div className="trusted-clients-wrap pb-40 mb-30">
                   <h5>10m+ Trusted Partners</h5>
-                  <div className="trusted-clients">
-                    <img
-                      src="assets/images/testimonials/client1.jpg"
-                      alt="Client"
-                    />
-                    <img
-                      src="assets/images/testimonials/client2.jpg"
-                      alt="Client"
-                    />
-                    <img
-                      src="assets/images/testimonials/client3.jpg"
-                      alt="Client"
-                    />
-                    <img
-                      src="assets/images/testimonials/client4.jpg"
-                      alt="Client"
-                    />
-                  </div>
+                    <div className="trusted-clients">
+                      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" />
+                      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" />
+                      <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Client" />
+                      <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Client" />
+                    </div>
                 </div>
-                <img src="assets/images/logos/trustpilot.png" alt="Logo" />
+                <img src="https://logo.clearbit.com/trustpilot.com" alt="Logo" />
                 <p>8930+ reviews</p>
                 <div className="ratting">
                   <i className="fas fa-star" />
@@ -115,7 +103,7 @@ const page = () => {
               data-aos-offset={50}
             >
               <img
-                src="assets/images/about/about-page-image1.jpg"
+                src="https://api.a0.dev/assets/image?text=business+team+collaboration+Pixelways+Solution&aspect=1:1&seed=about1"
                 alt="About Image"
               />
             </div>
@@ -126,7 +114,7 @@ const page = () => {
               data-aos-offset={50}
             >
               <img
-                src="assets/images/about/about-page-image2.jpg"
+                src="https://api.a0.dev/assets/image?text=software+development+workspace+Pixelways+Solution&aspect=1:1&seed=about2"
                 alt="About Image"
               />
             </div>
