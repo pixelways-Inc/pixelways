@@ -499,3 +499,4 @@ This document tracks all significant changes, progress, and decisions made durin
 - `@/app/utility/sliderProps.js` - Added a config for services sliders
 - `README.md` - Added description for the first service (Software development services)
 - `.gitignore` - Added package-lock.json to the gitignore file
+- `@/app/global.css` - Added styling for services content
