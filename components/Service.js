@@ -30,20 +30,20 @@ const Service = ({ style }) => {
 
       if(service){
         const item = document.getElementById('accordion-'+service);
-        console.log("Hello service", item)
         if(item){
           item.click();
            const yOffset = -300; // height of your header
           const y = item.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: y, behavior: 'smooth' });
-        }else{
-          const item = document.getElementById('accordion-0');
-          if(item){
-            item.click();
-          }
+          return;
         }
-
       }
+
+      const item = document.getElementById('accordion-0');
+      if(item){
+        item.click();
+      }
+    
     }
     
   }, []); // Empty array means "run once on mount"
@@ -80,7 +80,7 @@ const Service = ({ style }) => {
               {
                 allServices.map((service, index)=>
                   <>
-                  <div className="accordion-item">
+                  <div className="accordion-item" key={service.id}>
                     <div className="accordion-header">
                       <Accordion.Toggle
                          id={`${'accordion-'+index}`}
@@ -107,15 +107,15 @@ const Service = ({ style }) => {
                           <div className="col-xl-8 col-lg-7">
                             <div className="">
                               <p className="fw-bolder">{service.description}</p>
-                              <ul className="list-group">
+                              <ul className="list-group" key={`services-${index}`}>
                                 {
-                                  service.services.map(item=>
-                                    <>
-                                      <li className="list-group-item">
+                                  service.services.map((item,i)=>
+                                  (
+                                      <li className="list-group-item" key={`service-services-${i}`}>
                                         <svg xmlns="http://www.w3.org/2000/svg" height={25} viewBox="0 0 640 640"><path d="M64 320C64 461.4 178.6 576 320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320zM305 441C295.6 450.4 280.4 450.4 271.1 441C261.8 431.6 261.7 416.4 271.1 407.1L358.1 320.1L271.1 233.1C261.7 223.7 261.7 208.5 271.1 199.2C280.5 189.9 295.7 189.8 305 199.2L409 303C418.4 312.4 418.4 327.6 409 336.9L305 441z" fill="var(--tekprof-primary-color)" /></svg> 
                                         <span className="ms-2">{item}</span>
                                         </li>
-                                    </>
+                                  )
                                   )
                                 }
                               </ul>
