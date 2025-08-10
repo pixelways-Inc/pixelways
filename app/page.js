@@ -1,10 +1,10 @@
 "use client";
 import ClientLogo from "@/components/ClientLogo";
-
+import Services from "@/components/services";
 import Counter from "@/components/Counter";
 import Team from "@/components/Team";
 import Testimonials from "@/components/testimonials/Testimonials1";
-import Services from "@/components/services";
+
 import { WorkingProcess2 } from "@/components/WorkingProcess";
 import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
@@ -59,14 +59,13 @@ const page = () => {
       </section>
       {/* Hero Section End */}
       {/* Features Area start */}
- {/* Features Area start */}
       <section className="features-area rel z-1">
-        <div className="container features-bg pt-130 rpt-100 pb-100 rpb-70">
+        <div className="container pt-130 rpt-100 pb-100 rpb-70">
           <div className="row justify-content-center">
             <div className="col-xl-8 col-lg-10">
               <div
-                className="section-title text-center mb-35"
-                data-aos="fade-up"
+                className="why-choose-content rmb-55"
+                data-aos="fade-right"
                 data-aos-duration={1500}
                 data-aos-offset={50}
               >
@@ -88,8 +87,9 @@ const page = () => {
               </div>
             </div>
           </div>
-                    <Services limit={10} mode="slide" />
 
+          <Services limit={10} mode="slide" />
+          
         </div>
       </section>
       {/* Features Area end */}

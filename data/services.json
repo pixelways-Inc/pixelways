@@ -10,7 +10,7 @@
       "MVP Development for Startups",
       "Code Auditing & Optimization"
     ],
-    "image": "https://api.a0.dev/assets/image?text=custom+software+development+Pixelways+Solution&aspect=1:1&seed=service1"
+    "image": "assets/images/services/software-dev.webp"
   },
   {
     "id": 1,
@@ -22,7 +22,7 @@
       "Frontend Framework Development (React, Vue, Next.js)",
       "Accessibility Compliance (WCAG)"
     ],
-    "image": "https://api.a0.dev/assets/image?text=UI+UX+design+Pixelways+Solution&aspect=1:1&seed=service2"
+    "image": "assets/images/services/ui-ux.webp"
   },
   {
     "id": 2,
@@ -35,7 +35,7 @@
       "DevOps & CI/CD Pipeline Automation",
       "Kubernetes & Dockerized Deployments"
     ],
-    "image": "https://api.a0.dev/assets/image?text=cloud+infrastructure+Pixelways+Solution&aspect=1:1&seed=service3"
+    "image": "assets/images/services/cloud-infra.webp"
   },
   {
     "id": 3,
@@ -48,7 +48,7 @@
       "Natural Language Processing (NLP)",
       "Data Visualization & Reporting"
     ],
-    "image": "https://api.a0.dev/assets/image?text=AI+data+analytics+Pixelways+Solution&aspect=1:1&seed=service4"
+    "image": "assets/images/services/ai-data.webp"
   },
   {
     "id": 4,
@@ -61,7 +61,7 @@
       "GDPR / HIPAA Compliance Implementation",
       "Secure DevOps Integration (DevSecOps)"
     ],
-    "image": "https://api.a0.dev/assets/image?text=security+compliance+Pixelways+Solution&aspect=1:1&seed=service5"
+    "image": "assets/images/services/security-compliance.webp"
   },
   {
     "id": 5,
@@ -74,7 +74,7 @@
       "Product Roadmap Planning",
       "Digital Transformation Strategy"
     ],
-    "image": "https://api.a0.dev/assets/image?text=consulting+advisory+Pixelways+Solution&aspect=1:1&seed=service6"
+    "image": "assets/images/services/consulting.webp"
   },
   {
     "id": 6,
@@ -87,7 +87,7 @@
       "CMS Development (WordPress, Webflow, Strapi)",
       "Performance & SEO Optimization"
     ],
-    "image": "https://api.a0.dev/assets/image?text=ecommerce+cms+Pixelways+Solution&aspect=1:1&seed=service7"
+    "image": "assets/images/services/e-commerce.webp"
   },
   {
     "id": 7,
@@ -100,7 +100,7 @@
       "24/7 Monitoring & Bug Fixing",
       "Documentation & Training Manuals"
     ],
-    "image": "https://api.a0.dev/assets/image?text=maintenance+support+Pixelways+Solution&aspect=1:1&seed=service8"
+    "image": "assets/images/services/maintenance.webp"
   },
   {
     "id": 8,
@@ -113,7 +113,7 @@
       "Web3 Integration",
       "Voice Interface Development (Alexa, Google Assistant)"
     ],
-    "image": "https://api.a0.dev/assets/image?text=emerging+tech+R&D+Pixelways+Solution&aspect=1:1&seed=service9"
+    "image": "assets/images/services/emerging-technologies.webp"
   },
   {
     "id": 9,
@@ -131,7 +131,7 @@
       "E-commerce Shipping Integration",
       "Cold Chain Monitoring (IoT)"
     ],
-    "image": "https://api.a0.dev/assets/image?text=logistics+supply+chain+Pixelways+Solution&aspect=1:1&seed=service10"
+    "image": "assets/images/services/logistics.webp"
   }
 
 ]
