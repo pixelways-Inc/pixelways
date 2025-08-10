@@ -404,3 +404,58 @@ This document tracks all significant changes, progress, and decisions made durin
 - Used `color: var(--heading-color)` for headings (h2, h4, .title)
 - Added hover state overrides to ensure consistent white text during interactions
 - Covered both `.container.features` and `.container.features-bg` class variations
+
+## Features Section Background Fix (August 10, 2025)
+
+**Objective:** Fix the white background issue in the features section cards that weren't respecting the dark theme.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added dark background styling for the entire `.features-area` section
+  - Added specific styling for `.feature-item` and `.feature-item.hover-content` cards within features sections
+  - Added dark background for feature card content areas (`.feature-item .content`)
+  - Added hover state background styling to maintain dark theme during interactions
+  - Ensured container backgrounds are transparent to not override section backgrounds
+
+**Technical Details:**
+- Applied `background-color: var(--main-bg-color)` to entire features area
+- Styled individual feature cards with dark backgrounds
+- Added hover state with `var(--secondary-bg-color)` for subtle interaction feedback
+- Ensured both `.container.features` and `.container.features-bg` variations are covered
+- Fixed CSS lint issues by adding standard `appearance` property alongside `-webkit-appearance`
+- Added specific styling for `.sub-title.color-primary` to maintain brand color while respecting dark theme
+
+## Working Process Section Dark Theme Implementation (August 10, 2025)
+
+**Objective:** Implement comprehensive dark theme styling for the Working Process section with heading "Guiding You Through Every Step of the IT Journey" including all accordion elements and interactive states.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added complete dark theme styling for `.working-process-area` section
+  - Styled section title, subtitle, and main heading with appropriate white text colors
+  - Added comprehensive styling for accordion components:
+    - `.accordion-item` cards with dark background and subtle borders
+    - `.accordion-button` with dark background and white text
+    - `.accordion-button .step` with styled step indicators
+    - `.accordion-button .title` with proper heading colors
+    - `.accordion-button .icon` with themed icon styling
+    - `.accordion-body` content with dark background and white text
+    - All nested content elements (paragraphs, lists, icons) with white text
+  - Added interactive hover effects:
+    - Hover state for accordion buttons with background transitions
+    - Hover effects for step indicators
+    - Icon animation on hover with inverted colors
+
+**Technical Details:**
+- Applied `background-color: var(--main-bg-color)` for section background
+- Used `background-color: var(--secondary-bg-color)` for accordion cards and content
+- Applied `color: var(--main-text-color)` for all text elements
+- Used `color: var(--heading-color)` for titles and headings
+- Added `border: 1px solid var(--global-border-color)` for subtle element separation
+- Implemented hover transitions for enhanced user experience
+- Covered all nested elements including lists, icons, and content areas
+- Maintained accessibility through proper contrast and visual hierarchy
+
+**Components Affected:**
+- `components/WorkingProcess.js` - WorkingProcess2 component used on homepage
+- Homepage section with steps: Discovery & Assessment, Strategy & Planning, Implementation & Integration, Ongoing Support & Optimization

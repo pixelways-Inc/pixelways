@@ -105,6 +105,7 @@
   height: 100%;
   background: none;
   -webkit-appearance: none;
+  appearance: none; /* Standard property for compatibility */
   z-index: 3;
   padding: 0;
   border: 0;
@@ -118,6 +119,7 @@
   background: var(--tekprof-primary-color);
   cursor: pointer;
   -webkit-appearance: none;
+  appearance: none; /* Standard property for compatibility */
   position: relative;
   z-index: 4;
 }
@@ -768,9 +770,14 @@ body.dark-theme .comment-form .form-control::placeholder {
 }
 
 /* Dark Theme Overrides for Features Section */
+body.dark-theme .features-area {
+  background-color: var(--main-bg-color); /* Dark background for entire features area */
+}
+
 body.dark-theme .container.features,
 body.dark-theme .container.features-bg {
   color: var(--main-text-color); /* White text for features section */
+  background-color: transparent; /* Ensure container doesn't override the section background */
 }
 
 body.dark-theme .container.features *,
@@ -794,6 +801,27 @@ body.dark-theme .container.features-bg .sub-title {
   color: var(--main-text-color); /* Ensure paragraphs and subtitles are white */
 }
 
+/* Ensure primary color subtitle also respects dark theme */
+body.dark-theme .container.features .sub-title.color-primary,
+body.dark-theme .container.features-bg .sub-title.color-primary {
+  color: var(--tekprof-primary-color) !important; /* Keep primary color for branding */
+}
+
+/* Ensure feature item cards have dark background in features section */
+body.dark-theme .container.features .feature-item,
+body.dark-theme .container.features-bg .feature-item,
+body.dark-theme .container.features .feature-item.hover-content,
+body.dark-theme .container.features-bg .feature-item.hover-content {
+  background-color: var(--main-bg-color); /* Dark background for feature cards */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .container.features .feature-item .content,
+body.dark-theme .container.features-bg .feature-item .content {
+  background-color: var(--main-bg-color); /* Dark background for feature card content */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
 /* Ensure feature item links and read-more buttons are also white in dark theme */
 body.dark-theme .container.features .feature-item .content .title a,
 body.dark-theme .container.features-bg .feature-item .content .title a,
@@ -808,4 +836,108 @@ body.dark-theme .container.features-bg .feature-item:hover .content .title a,
 body.dark-theme .container.features .feature-item:hover .content .read-more,
 body.dark-theme .container.features-bg .feature-item:hover .content .read-more {
   color: white; /* Ensure white text even on hover */
+}
+
+/* Ensure feature item hover states don't override dark theme backgrounds */
+body.dark-theme .container.features .feature-item:hover .content,
+body.dark-theme .container.features-bg .feature-item:hover .content {
+  background-color: var(--secondary-bg-color); /* Slightly lighter dark background on hover */
+}
+
+/* ===== Working Process Section Dark Theme ===== */
+body.dark-theme .working-process-area {
+  background-color: var(--main-bg-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .working-process-area .features-bg {
+  background-color: var(--main-bg-color) !important;
+}
+
+body.dark-theme .working-process-area .section-title {
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .working-process-area .section-title h2 {
+  color: var(--heading-color) !important;
+}
+
+body.dark-theme .working-process-area .section-title .sub-title {
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .working-process .accordion-item {
+  background-color: var(--secondary-bg-color) !important;
+  border: 1px solid var(--global-border-color) !important;
+  margin-bottom: 15px !important;
+  border-radius: 8px !important;
+}
+
+body.dark-theme .working-process .accordion-button {
+  background-color: var(--secondary-bg-color) !important;
+  color: var(--main-text-color) !important;
+  border: none !important;
+}
+
+body.dark-theme .working-process .accordion-button:not(.collapsed) {
+  background-color: var(--secondary-bg-color) !important;
+  color: var(--main-text-color) !important;
+  box-shadow: none !important;
+}
+
+body.dark-theme .working-process .accordion-button .step {
+  background-color: var(--main-bg-color) !important;
+  color: var(--main-text-color) !important;
+  border: 1px solid var(--global-border-color) !important;
+}
+
+body.dark-theme .working-process .accordion-button .title {
+  color: var(--heading-color) !important;
+}
+
+body.dark-theme .working-process .accordion-button .icon {
+  color: var(--main-text-color) !important;
+  border: 1px solid var(--global-border-color) !important;
+}
+
+body.dark-theme .working-process .accordion-body {
+  background-color: var(--secondary-bg-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .working-process .accordion-body p {
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .working-process .accordion-body .content {
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .working-process .accordion-body .list-style-one li {
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .working-process .accordion-body .list-style-one li i {
+  color: var(--main-text-color) !important;
+}
+
+/* Hover Effects for Working Process */
+body.dark-theme .working-process .accordion-button:hover {
+  background-color: var(--main-bg-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .working-process .accordion-button:hover .step {
+  background-color: var(--secondary-bg-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .working-process .accordion-button:hover .title {
+  color: var(--heading-color) !important;
+}
+
+body.dark-theme .working-process .accordion-button:hover .icon {
+  background-color: var(--main-text-color) !important;
+  color: var(--main-bg-color) !important;
+  border-color: var(--main-text-color) !important;
 }
