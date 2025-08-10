@@ -178,6 +178,9 @@
 /* Dark Theme Overrides for Header */
 body.dark-theme {
   --main-text-color: white; /* Define white text color for dark theme */
+  --main-bg-color: #1a1a1a; /* Dark background color */
+  --secondary-bg-color: #2a2a2a; /* Secondary dark background */
+  --global-border-color: #444444; /* Border color for dark theme */
 }
 
 body.dark-theme .main-header .header-top-wrap {
@@ -1014,8 +1017,15 @@ body.dark-theme .accordion-item-four .accordion-button .icon i {
 
 /* Dark Theme Overrides for Pricing Item (Cost Calculators) */
 body.dark-theme .pricing-item {
-  background-color: var(--main-bg-color); /* Dark background for pricing item */
-  border-color: var(--global-border-color); /* Adapt border color */
+  background-color: var(--main-bg-color) !important; /* Dark background for pricing item */
+  border-color: var(--global-border-color) !important; /* Adapt border color */
+  transition: all 0.3s ease; /* Smooth transitions */
+}
+
+body.dark-theme .pricing-item:hover {
+  background-color: var(--secondary-bg-color) !important; /* Slightly lighter on hover */
+  border-color: #666666 !important; /* Lighter border on hover */
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1) !important; /* Subtle white glow */
 }
 
 body.dark-theme .pricing-item .title,
@@ -1024,23 +1034,127 @@ body.dark-theme .pricing-item .included,
 body.dark-theme .pricing-item .list-style-one li,
 body.dark-theme .pricing-item .list-style-one li i,
 body.dark-theme .pricing-item .price {
-  color: var(--main-text-color); /* White text for pricing item content */
+  color: var(--main-text-color) !important; /* White text for pricing item content */
 }
 
 body.dark-theme .pricing-item .form-control {
-  background-color: var(--secondary-bg-color); /* Darker background for form inputs */
-  color: var(--main-text-color); /* White text for form inputs */
-  border-color: var(--global-border-color); /* Adapt border color for form inputs */
+  background-color: var(--secondary-bg-color) !important; /* Darker background for form inputs */
+  color: var(--main-text-color) !important; /* White text for form inputs */
+  border-color: var(--global-border-color) !important; /* Adapt border color for form inputs */
+  transition: all 0.3s ease; /* Smooth transitions */
+}
+
+body.dark-theme .pricing-item .form-control:focus {
+  background-color: #333333 !important; /* Even darker on focus */
+  border-color: #0066cc !important; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 102, 204, 0.3) !important; /* Blue glow on focus */
+}
+
+body.dark-theme .pricing-item .form-control:hover {
+  border-color: #666666 !important; /* Lighter border on hover */
+  background-color: #333333 !important; /* Slightly lighter background on hover */
 }
 
 body.dark-theme .pricing-item select {
-  background-color: var(--secondary-bg-color); /* Darker background for select */
-  color: var(--main-text-color); /* White text for select */
-  border-color: var(--global-border-color); /* Adapt border color for select */
+  background-color: var(--secondary-bg-color) !important; /* Darker background for select */
+  color: var(--main-text-color) !important; /* White text for select */
+  border-color: var(--global-border-color) !important; /* Adapt border color for select */
+  transition: all 0.3s ease; /* Smooth transitions */
+}
+
+body.dark-theme .pricing-item select:focus {
+  background-color: #333333 !important; /* Even darker on focus */
+  border-color: #0066cc !important; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 102, 204, 0.3) !important; /* Blue glow on focus */
+}
+
+body.dark-theme .pricing-item select:hover {
+  border-color: #666666 !important; /* Lighter border on hover */
+  background-color: #333333 !important; /* Slightly lighter background on hover */
 }
 
 body.dark-theme .pricing-item select option {
-  color: var(--main-text-color); /* White text for select options */
+  background-color: var(--secondary-bg-color) !important; /* Dark background for select options */
+  color: var(--main-text-color) !important; /* White text for select options */
+}
+
+/* Enhanced checkbox styling for dark theme */
+body.dark-theme .pricing-item input[type="checkbox"] {
+  accent-color: #0066cc; /* Blue accent for checkboxes */
+  background-color: var(--secondary-bg-color); /* Dark background for checkboxes */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .pricing-item input[type="checkbox"]:checked {
+  background-color: #0066cc; /* Blue background when checked */
+  border-color: #0066cc; /* Blue border when checked */
+}
+
+/* Enhanced label styling for checkboxes */
+body.dark-theme .pricing-item label {
+  color: var(--main-text-color) !important; /* White text for labels */
+  transition: color 0.3s ease; /* Smooth color transitions */
+  cursor: pointer; /* Pointer cursor for better UX */
+}
+
+body.dark-theme .pricing-item label:hover {
+  color: #cccccc !important; /* Slightly lighter on hover */
+}
+
+/* Input number field specific styling */
+body.dark-theme .pricing-item input[type="number"] {
+  background-color: var(--secondary-bg-color) !important; /* Dark background for number inputs */
+  color: var(--main-text-color) !important; /* White text for number inputs */
+  border-color: var(--global-border-color) !important; /* Adapt border color */
+}
+
+body.dark-theme .pricing-item input[type="number"]:focus {
+  background-color: #333333 !important; /* Even darker on focus */
+  border-color: #0066cc !important; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 102, 204, 0.3) !important; /* Blue glow on focus */
+}
+
+body.dark-theme .pricing-item input[type="number"]:hover {
+  border-color: #666666 !important; /* Lighter border on hover */
+}
+
+/* Enhanced price display styling */
+body.dark-theme .pricing-item .price {
+  background-color: var(--secondary-bg-color) !important; /* Dark background for price */
+  border: 2px solid var(--global-border-color) !important; /* Border for price */
+  border-radius: 8px !important; /* Rounded corners */
+  padding: 15px !important; /* Padding for price display */
+  margin-top: 20px !important; /* Margin for spacing */
+  text-align: center !important; /* Center align price */
+  font-weight: bold !important; /* Bold price text */
+  font-size: 1.2em !important; /* Larger font size */
+  transition: all 0.3s ease !important; /* Smooth transitions */
+}
+
+body.dark-theme .pricing-item .price:hover {
+  background-color: #333333 !important; /* Lighter background on hover */
+  border-color: #0066cc !important; /* Blue border on hover */
+  box-shadow: 0 0 10px rgba(0, 102, 204, 0.2) !important; /* Blue glow on hover */
+}
+
+/* Enhanced flex container styling for checkboxes */
+body.dark-theme .pricing-item .d-flex {
+  gap: 15px !important; /* Better spacing between checkbox items */
+}
+
+body.dark-theme .pricing-item .d-flex label {
+  background-color: var(--secondary-bg-color) !important; /* Background for checkbox labels */
+  padding: 8px 12px !important; /* Padding for checkbox labels */
+  border-radius: 5px !important; /* Rounded corners */
+  border: 1px solid var(--global-border-color) !important; /* Border for checkbox labels */
+  transition: all 0.3s ease !important; /* Smooth transitions */
+  margin: 0 !important; /* Remove default margin */
+}
+
+body.dark-theme .pricing-item .d-flex label:hover {
+  background-color: #333333 !important; /* Lighter background on hover */
+  border-color: #666666 !important; /* Lighter border on hover */
+  transform: translateY(-2px) !important; /* Slight lift effect on hover */
 }
 
 /* Dark Theme Overrides for bgc-black */

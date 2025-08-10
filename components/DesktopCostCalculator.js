@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const DesktopCostCalculator = () => {
   const [platforms, setPlatforms] = useState([]);
@@ -38,6 +38,11 @@ const DesktopCostCalculator = () => {
     }, 0);
     setCost(total);
   };
+
+  // Calculate cost on component mount
+  useEffect(() => {
+    calculateCost();
+  }, []);
 
   return (
     <div className={`pricing-item style-three`}>

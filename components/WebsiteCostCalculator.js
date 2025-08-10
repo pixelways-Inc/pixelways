@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const WebsiteCostCalculator = () => {
   const [pages, setPages] = useState(5);
@@ -36,6 +36,11 @@ const WebsiteCostCalculator = () => {
     }, 0);
     setCost(total);
   };
+
+  // Calculate cost on component mount
+  useEffect(() => {
+    calculateCost();
+  }, []);
 
   return (
     <div className={`pricing-item style-three`}>
