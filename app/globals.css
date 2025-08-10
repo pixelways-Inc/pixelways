@@ -669,6 +669,80 @@ body.dark-theme .blog-sidebar .widget-cta h3 {
   color: var(--main-text-color); /* White text for CTA widget title */
 }
 
+/* Dark Theme Overrides for Blog Details Page */
+body.dark-theme .blog-details-content h3,
+body.dark-theme .blog-details-content p,
+body.dark-theme .blog-details-content h4,
+body.dark-theme .blog-details-content h5 {
+  color: var(--main-text-color); /* White text for blog details content */
+}
+
+body.dark-theme blockquote {
+  background-color: var(--secondary-bg-color); /* Darker background for blockquote */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme blockquote .text,
+body.dark-theme blockquote .blockquote-footer {
+  color: var(--main-text-color); /* White text for blockquote content */
+}
+
+body.dark-theme hr {
+  border-color: var(--global-border-color); /* Adapt border color for hr */
+}
+
+body.dark-theme .tag-share .item h6 {
+  color: var(--heading-color); /* White text for tag share titles */
+}
+
+body.dark-theme .tag-share .tag-clouds a {
+  background-color: var(--secondary-bg-color); /* Darker background for tags */
+  color: var(--main-text-color); /* White text for tags */
+  border-color: var(--global-border-color); /* Adapt border color for tags */
+}
+
+body.dark-theme .tag-share .social-style-five a {
+  color: var(--main-text-color); /* White color for social icons */
+}
+
+body.dark-theme .admin-comment .comment-body {
+  background-color: var(--main-bg-color); /* Dark background for admin comment */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .admin-comment .comment-body .content h5,
+body.dark-theme .admin-comment .comment-body .content .author,
+body.dark-theme .admin-comment .comment-body .content p,
+body.dark-theme .admin-comment .comment-body .content .social-icons a {
+  color: var(--main-text-color); /* White text for admin comment content */
+}
+
+body.dark-theme .next-prev-blog .item .content h5 a,
+body.dark-theme .next-prev-blog .item .content .date {
+  color: var(--main-text-color); /* White text for next/prev blog titles and dates */
+}
+
+body.dark-theme .comment-form {
+  background-color: var(--main-bg-color); /* Dark background for comment form */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .comment-form h3,
+body.dark-theme .comment-form p,
+body.dark-theme .comment-form label {
+  color: var(--main-text-color); /* White text for comment form */
+}
+
+body.dark-theme .comment-form .form-control {
+  background-color: var(--secondary-bg-color); /* Darker background for form inputs */
+  color: var(--main-text-color); /* White text for form inputs */
+  border-color: var(--global-border-color); /* Adapt border color for form inputs */
+}
+
+body.dark-theme .comment-form .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
+}
+
 /* Dark Theme Overrides for Features Section */
 body.dark-theme .container.features {
   color: var(--main-text-color); /* White text for features section */

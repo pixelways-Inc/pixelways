@@ -8,7 +8,7 @@ const page = () => {
           <div
             className="banner-wrap bgs-cover py-80"
             style={{
-              backgroundImage: "url(assets/images/background/banner-bg.jpg)",
+              backgroundColor: "var(--main-bg-color)",
             }}
           >
             <div className="container">
@@ -437,8 +437,8 @@ const page = () => {
                 <div
                   className="widget widget-cta"
                   style={{
-                    backgroundImage:
-                      "url(assets/images/widgets/wedget-cta.jpg)",
+                    backgroundColor:
+                      "var(--main-bg-color)",
                   }}
                   data-aos="fade-up"
                   data-aos-duration={1500}

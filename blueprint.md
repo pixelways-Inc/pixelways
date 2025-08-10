@@ -350,5 +350,27 @@ This document tracks all significant changes, progress, and decisions made durin
 **Summary of Changes:**
 - **`app/globals.css`:** Added CSS rule to set `color: var(--main-text-color);` for `body.dark-theme .container.features`.
 
+## Blog Details Page Dark Theme Adaptation (August 10, 2025)
+
+**Objective:** Ensure various sections and components on the Blog Details page (`app/blog-details/page.js`) are dark theme compatible, including background and text colors.
+
+**Summary of Changes:**
+- **`app/blog-details/page.js`:**
+  - Modified `backgroundImage` to `backgroundColor: "var(--main-bg-color)"` for the `banner-wrap` to ensure the banner background adapts to the dark theme.
+  - Modified `backgroundImage` to `backgroundColor: "var(--main-bg-color)"` for the `widget widget-cta` to ensure the CTA widget background adapts to the dark theme.
+- **`app/globals.css`:**
+  - Added CSS rules to set `color: var(--main-text-color);` for `.blog-details-content h3`, `p`, `h4`, `h5` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--secondary-bg-color);` and `border-color: var(--global-border-color);` for `blockquote` within `body.dark-theme`, and `color: var(--main-text-color);` for its `.text` and `.blockquote-footer`.
+  - Added CSS rules to set `border-color: var(--global-border-color);` for `hr` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--heading-color);` for `.tag-share .item h6` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.tag-share .tag-clouds a` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.tag-share .social-style-five a` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.admin-comment .comment-body` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.admin-comment .comment-body .content h5`, `.author`, `p`, and `.social-icons a` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.next-prev-blog .item .content h5 a` and `.date` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.comment-form` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.comment-form h3`, `p`, `label` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.comment-form .form-control` within `body.dark-theme`, and `color: rgba(255, 255, 255, 0.7);` for its `::placeholder`.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

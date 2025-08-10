@@ -1,1 +1,1 @@
-git commit -m "FEAT: Dark theme adaptation for Blog page sections and components"
+git commit -m "FEAT: Implement dark theme for .container.features text color"
