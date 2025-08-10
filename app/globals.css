@@ -941,3 +941,84 @@ body.dark-theme .working-process .accordion-button:hover .icon {
   color: var(--main-bg-color) !important;
   border-color: var(--main-text-color) !important;
 }
+
+/* ===== Pricing Page FAQ Section Dark Theme ===== */
+body.dark-theme .faqs-area {
+  background-color: var(--main-bg-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .faqs-fluid-wrap {
+  background-color: var(--main-bg-color) !important;
+}
+
+body.dark-theme .faqs-left-content {
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .faqs-left-content .section-title {
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .faqs-left-content .section-title h2 {
+  color: var(--heading-color) !important;
+}
+
+body.dark-theme .faqs-left-content .section-title .sub-title {
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .faqs-accordion-wrap {
+  color: var(--main-text-color) !important;
+}
+
+/* FAQ accordion items styling for pricing page */
+body.dark-theme .accordion-item-four.style-two {
+  background-color: var(--secondary-bg-color) !important;
+  border: 1px solid var(--global-border-color) !important;
+  margin-bottom: 15px !important;
+  border-radius: 8px !important;
+}
+
+body.dark-theme .accordion-item-four.style-two .accordion-button {
+  background-color: var(--secondary-bg-color) !important;
+  color: var(--main-text-color) !important;
+  border: none !important;
+}
+
+body.dark-theme .accordion-item-four.style-two .accordion-button:not(.collapsed) {
+  background-color: var(--secondary-bg-color) !important;
+  color: var(--main-text-color) !important;
+  box-shadow: none !important;
+}
+
+body.dark-theme .accordion-item-four.style-two .accordion-button .title {
+  color: var(--heading-color) !important;
+}
+
+body.dark-theme .accordion-item-four.style-two .accordion-button .icon {
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .accordion-item-four.style-two .accordion-body {
+  background-color: var(--secondary-bg-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .accordion-item-four.style-two .accordion-body p {
+  color: var(--main-text-color) !important;
+}
+
+/* FAQ hover effects for pricing page */
+body.dark-theme .accordion-item-four.style-two .accordion-button:hover {
+  background-color: var(--main-bg-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .accordion-item-four.style-two .accordion-button:hover .title {
+  color: var(--heading-color) !important;
+}
+
+body.dark-theme .accordion-item-four.style-two .accordion-button:hover .icon {
+  color: var(--main-text-color) !important;
+}
