@@ -199,3 +199,23 @@ body.dark-theme .main-header .header-upper .main-menu ul li.dropdown ul li a {
 body.dark-theme .main-header .header-upper .menu-btns .menu-sidebar button span {
   background: var(--main-text-color); /* White icon bars for toggler */
 }
+
+/* Dark Theme Overrides for Testimonial Component */
+body.dark-theme .testimonial-item .testi-text {
+  color: var(--main-text-color); /* White text for quotes */
+}
+
+body.dark-theme .testimonial-item .testi-author b,
+body.dark-theme .testimonial-item .testi-author span {
+  color: var(--main-text-color); /* White text for author name and designation */
+}
+
+body.dark-theme .slick-arrow {
+  color: var(--main-text-color); /* White color for slick arrows */
+  border-color: var(--global-border-color); /* Lighter border for dark theme */
+}
+
+body.dark-theme .slick-arrow:focus,
+body.dark-theme .slick-arrow:hover {
+  color: var(--tekprof-primary-color); /* Keep primary color on hover */
+}

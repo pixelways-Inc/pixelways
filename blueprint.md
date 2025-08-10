@@ -191,5 +191,17 @@ This document tracks all significant changes, progress, and decisions made durin
     - `.main-header .header-upper .main-menu ul li.dropdown ul li a`: `color: var(--main-text-color);`
     - `.main-header .header-upper .menu-btns .menu-sidebar button span`: `background: var(--main-text-color);`
 
+## Testimonial Component Dark Theme Adaptation (August 9, 2025)
+
+**Objective:** Adapt the Testimonial component to the dark theme for consistent styling.
+
+**Summary of Changes:**
+- **`app/globals.css`:
+  - Added CSS rules to override testimonial component styles when `body.dark-theme` is active:
+    - `.testimonial-item .testi-text`: `color: var(--main-text-color);`
+    - `.testimonial-item .testi-author b`, `.testimonial-item .testi-author span`: `color: var(--main-text-color);`
+    - `.slick-arrow`: `color: var(--main-text-color); border-color: var(--global-border-color);`
+    - `.slick-arrow:focus`, `.slick-arrow:hover`: `color: var(--tekprof-primary-color);`
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
