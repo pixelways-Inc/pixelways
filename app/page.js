@@ -464,7 +464,10 @@ const page = () => {
             color: white !important;
           }
           .achievement-counter-dark .counter-item {
+            background-color: #0B0C0C !important;
+            background: #0B0C0C !important;
             color: white !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
           }
           .achievement-counter-dark .counter-text-wrap {
             color: white !important;

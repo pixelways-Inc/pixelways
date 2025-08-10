@@ -1049,7 +1049,10 @@ div.achievement-counter.achievement-counter-dark,
 
 div.achievement-counter.achievement-counter-dark .counter-item,
 .achievement-area .achievement-counter.achievement-counter-dark .counter-item {
+  background-color: #0B0C0C !important;
+  background: #0B0C0C !important;
   color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 div.achievement-counter.achievement-counter-dark .counter-text-wrap,
@@ -1073,6 +1076,19 @@ div.achievement-counter.achievement-counter-dark .counter-title,
 .achievement-area .achievement-counter.achievement-counter-dark .counter-title {
   color: #e0e0e0 !important;
   font-weight: 500 !important;
+}
+
+/* Additional overrides to ensure no white backgrounds show */
+.achievement-counter-dark * {
+  background: transparent !important;
+}
+
+.achievement-counter-dark {
+  background-color: #0B0C0C !important;
+}
+
+.achievement-counter-dark .counter-item {
+  background-color: transparent !important;
 }
 
 /* Dark theme specific styles */
