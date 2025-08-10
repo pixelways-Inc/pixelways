@@ -394,14 +394,83 @@ body.dark-theme .feature-item.style-two .content h3 a {
 
 /* Dark Theme Overrides for Blog Item */
 body.dark-theme .blog-item {
-  background-color: var(--main-bg-color); /* Dark background for blog item */
-  border-color: var(--global-border-color); /* Adapt border color */
+  background-color: var(--main-bg-color) !important;
+  border-color: var(--global-border-color) !important;
+}
+
+body.dark-theme .blog-item .content {
+  background-color: var(--main-bg-color) !important;
+  border-color: var(--global-border-color) !important;
 }
 
 body.dark-theme .blog-item .content .blog-meta li a,
 body.dark-theme .blog-item .content h4 a,
 body.dark-theme .blog-item .content p {
-  color: var(--main-text-color); /* White text for blog item content */
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .blog-item .content .title a {
+  color: var(--heading-color) !important;
+}
+
+body.dark-theme .blog-item .content .theme-btn {
+  background-color: var(--secondary-bg-color) !important;
+  color: var(--main-text-color) !important;
+  border-color: var(--global-border-color) !important;
+}
+
+body.dark-theme .blog-item .content .theme-btn:hover {
+  background-color: var(--tekprof-primary-color) !important;
+  color: white !important;
+  border-color: var(--tekprof-primary-color) !important;
+}
+
+/* Dark Theme Overrides for Blog Area */
+body.dark-theme .blog-area {
+  background-color: var(--main-bg-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .blog-area .section-title {
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .blog-area .section-title h2 {
+  color: var(--heading-color) !important;
+}
+
+body.dark-theme .blog-area .section-title .sub-title {
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .blog-area .section-title .sub-title.color-primary {
+  color: var(--tekprof-primary-color) !important;
+}
+
+/* Dark Theme Overrides for Blog Item Hover Content */
+body.dark-theme .blog-item.hover-content {
+  background-color: var(--main-bg-color) !important;
+  border-color: var(--global-border-color) !important;
+}
+
+body.dark-theme .blog-item.hover-content .content {
+  background-color: var(--main-bg-color) !important;
+  border-color: var(--global-border-color) !important;
+}
+
+body.dark-theme .blog-item.hover-content .content .inner-content {
+  background-color: var(--secondary-bg-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .blog-item.hover-content .content .inner-content p {
+  color: var(--main-text-color) !important;
+}
+
+body.dark-theme .blog-item.hover-content .content .inner-content .theme-btn {
+  background-color: var(--tekprof-primary-color) !important;
+  color: white !important;
+  border-color: var(--tekprof-primary-color) !important;
 }
 
 /* Dark Theme Overrides for Trusted Clients Wrap */
