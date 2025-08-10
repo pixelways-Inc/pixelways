@@ -475,14 +475,90 @@ body.dark-theme .blog-item.hover-content .content .inner-content .theme-btn {
 
 /* Dark Theme Overrides for Trusted Clients Wrap */
 body.dark-theme .trusted-clients-wrap {
-  background-color: var(--main-bg-color); /* Dark background for trusted clients wrap */
-  border-color: var(--global-border-color); /* Adapt border color */
+  background-color: var(--main-bg-color) !important; /* Dark background for trusted clients wrap */
+  border-color: var(--global-border-color) !important; /* Adapt border color */
 }
 
 body.dark-theme .trusted-clients-wrap h5,
+body.dark-theme .trusted-clients-wrap h6,
 body.dark-theme .trusted-clients-wrap p,
 body.dark-theme .trusted-clients-wrap .ratting i {
-  color: var(--main-text-color); /* White text for trusted clients wrap content */
+  color: var(--main-text-color) !important; /* White text for trusted clients wrap content */
+}
+
+/* Dark Theme Overrides for Trusted Client Part */
+body.dark-theme .trusted-client-part {
+  background-color: var(--secondary-bg-color) !important; /* Darker background for trusted client part */
+  color: var(--main-text-color) !important; /* White text */
+}
+
+body.dark-theme .trusted-client-part h4 {
+  color: var(--main-text-color) !important; /* White text for trusted client heading */
+}
+
+body.dark-theme .trusted-client-part hr {
+  border-color: var(--global-border-color) !important; /* Adapt border color for hr */
+}
+
+/* Dark Theme Overrides for Trusted Clients Images */
+body.dark-theme .trusted-clients img {
+  border: 2px solid var(--global-border-color) !important; /* Add border to client images in dark theme */
+}
+
+/* Dark Theme Overrides for Testimonials Image and Customers */
+body.dark-theme .testimonials-image-and-customers .trusted-client-part {
+  background-color: var(--secondary-bg-color) !important; /* Dark background for testimonials trusted client part */
+  color: var(--main-text-color) !important; /* White text */
+}
+
+/* Dark Theme Overrides for Rating Stars */
+body.dark-theme .ratting i,
+body.dark-theme .rating i {
+  color: #ffc107 !important; /* Gold color for rating stars */
+}
+
+/* Dark Theme Overrides for Testimonial Areas with Background */
+body.dark-theme .testimonials-inner {
+  background-color: var(--main-bg-color) !important; /* Dark background for testimonials inner */
+}
+
+body.dark-theme .testimonials-area {
+  background-color: var(--main-bg-color) !important; /* Dark background for testimonials area */
+}
+
+/* Dark Theme Overrides for Card Elements */
+body.dark-theme .card,
+body.dark-theme .client-card,
+body.dark-theme .testimonial-card,
+body.dark-theme .review-card {
+  background-color: var(--main-bg-color) !important; /* Dark background for cards */
+  border-color: var(--global-border-color) !important; /* Adapt border color */
+  color: var(--main-text-color) !important; /* White text */
+}
+
+/* Dark Theme Overrides for Any White Background Elements */
+body.dark-theme .bg-white,
+body.dark-theme .background-white,
+body.dark-theme .white-bg {
+  background-color: var(--main-bg-color) !important; /* Override white backgrounds */
+  color: var(--main-text-color) !important; /* White text */
+}
+
+/* Dark Theme Overrides for Trustpilot-style Elements */
+body.dark-theme .trustpilot-card,
+body.dark-theme .review-platform,
+body.dark-theme .rating-card {
+  background-color: var(--main-bg-color) !important; /* Dark background */
+  border-color: var(--global-border-color) !important; /* Adapt border */
+  color: var(--main-text-color) !important; /* White text */
+}
+
+/* Dark Theme Overrides for Client Review Elements */
+body.dark-theme .client-review,
+body.dark-theme .partner-section,
+body.dark-theme .trust-badge {
+  background-color: var(--main-bg-color) !important; /* Dark background */
+  color: var(--main-text-color) !important; /* White text */
 }
 
 /* Dark Theme Overrides for bgc-primary */
@@ -1191,4 +1267,63 @@ body.dark-theme .achievement-area .achievement-counter.achievement-counter-dark 
 body.dark-theme div.achievement-counter.achievement-counter-dark .counter-title,
 body.dark-theme .achievement-area .achievement-counter.achievement-counter-dark .counter-title {
   color: #f0f0f0 !important;
+}
+
+/* Dark Theme Overrides for Any Section with Light Background */
+body.dark-theme .bgc-lighter,
+body.dark-theme .bg-light,
+body.dark-theme .light-bg,
+body.dark-theme .lighter-bg {
+  background-color: var(--main-bg-color) !important; /* Dark background */
+  color: var(--main-text-color) !important; /* White text */
+}
+
+/* Dark Theme Overrides for Testimonial Specific Elements */
+body.dark-theme .testimonial-wrap {
+  background-color: var(--main-bg-color) !important; /* Dark background for testimonial wrap */
+}
+
+body.dark-theme .testimonial-content {
+  background-color: var(--main-bg-color) !important; /* Dark background for testimonial content */
+  color: var(--main-text-color) !important; /* White text */
+}
+
+/* Dark Theme Overrides for Client Logo Area */
+body.dark-theme .client-logo-area {
+  background-color: var(--main-bg-color) !important; /* Dark background for client logo area */
+  border-color: var(--global-border-color) !important; /* Adapt border color */
+}
+
+/* Dark Theme Overrides for Any Container or Wrapper */
+body.dark-theme .container-wrapper,
+body.dark-theme .section-wrapper,
+body.dark-theme .content-wrapper {
+  background-color: var(--main-bg-color) !important; /* Dark background */
+  color: var(--main-text-color) !important; /* White text */
+}
+
+/* Dark Theme Overrides for Testimonial Four Component */
+body.dark-theme .testimonial-item-four {
+  background-color: var(--main-bg-color) !important; /* Dark background for testimonial item four */
+  border-color: var(--global-border-color) !important; /* Adapt border color */
+}
+
+body.dark-theme .testimonial-item-four .content {
+  background-color: var(--main-bg-color) !important; /* Dark background */
+  color: var(--main-text-color) !important; /* White text */
+}
+
+body.dark-theme .testimonial-item-four .testi-header h4 {
+  color: var(--main-text-color) !important; /* White text for testimonial header */
+}
+
+body.dark-theme .testimonial-item-four .testi-text {
+  color: var(--main-text-color) !important; /* White text for testimonial text */
+}
+
+/* Dark Theme Overrides for Lighter Color Background */
+body.dark-theme .lighter-color,
+body.dark-theme .bgc-lighter-color {
+  background-color: var(--main-bg-color) !important; /* Dark background for lighter color elements */
+  color: var(--main-text-color) !important; /* White text */
 }
