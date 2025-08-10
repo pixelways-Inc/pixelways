@@ -483,13 +483,59 @@ body.dark-theme .about-trusted-partners-area {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important; /* Add shadow for depth */
 }
 
-body.dark-theme .about-trusted-partners-area h5,
+/* Trusted Partners Heading Styling */
+body.dark-theme .about-trusted-partners-area h5 {
+  color: var(--heading-color) !important; /* White text for "10m+ Trusted Partners" heading */
+  font-weight: 600 !important;
+  margin-bottom: 20px !important;
+}
+
+/* Reviews Text Styling */
 body.dark-theme .about-trusted-partners-area p {
-  color: var(--main-text-color) !important; /* White text for headings and paragraphs */
+  color: var(--main-text-color) !important; /* White text for "8930+ reviews" */
+  font-weight: 500 !important;
+  margin: 15px 0 !important;
+}
+
+/* Trusted Clients Wrap Container */
+body.dark-theme .about-trusted-partners-area .trusted-clients-wrap {
+  background-color: transparent !important; /* Keep transparent within card */
+  border-bottom: 1px solid var(--global-border-color) !important; /* Add subtle separator */
+  padding-bottom: 20px !important;
+  margin-bottom: 20px !important;
+}
+
+/* Client Avatar Images Styling */
+body.dark-theme .about-trusted-partners-area .trusted-clients {
+  display: flex !important;
+  gap: -8px !important; /* Overlap effect */
+  margin: 15px 0 !important;
+}
+
+body.dark-theme .about-trusted-partners-area .trusted-clients img {
+  border: 3px solid var(--main-bg-color) !important; /* Dark border around avatars */
+  border-radius: 50% !important;
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: cover !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important; /* Add shadow for depth */
 }
 
 body.dark-theme .about-trusted-partners-area img:not(.trusted-clients img) {
-  filter: brightness(0) invert(1) !important; /* Invert logo colors for dark theme */
+  filter: brightness(0) invert(1) !important; /* Invert platform logo (Trustpilot) for dark theme */
+}
+
+/* Specific targeting for Trustpilot/Company logos in trusted partners section */
+body.dark-theme .about-trusted-partners-area img[src*="clearbit.com"],
+body.dark-theme .about-trusted-partners-area img[src*="trustpilot"],
+body.dark-theme .about-trusted-partners-area img[alt="Logo"] {
+  filter: brightness(0) invert(1) contrast(1.2) !important; /* Make company logo white/bright for dark background */
+}
+
+/* Ensure client avatar images remain natural (not inverted) */
+body.dark-theme .about-trusted-partners-area .trusted-clients img {
+  filter: none !important; /* Keep client avatars natural */
+  border: 2px solid var(--global-border-color) !important; /* Add border for dark theme */
 }
 
 /* Dark Theme Overrides for Reviews and Logo Section */
