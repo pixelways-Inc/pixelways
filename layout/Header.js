@@ -463,8 +463,8 @@ const Header4 = ({ singleMenu }) => {
                       </div>
                     </li>
                     <li>
-                      <a href="mailto:support@gmail.com">
-                        support@gmail.com <i className="fal fa-arrow-right" />
+                      <a href="mailto:hello@pixelways.co">
+                        hello@pixelways.co <i className="fal fa-arrow-right" />
                       </a>
                     </li>
                   </ul>

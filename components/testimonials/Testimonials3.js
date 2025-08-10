@@ -63,7 +63,7 @@ export class Testimonials3 extends Component {
                     alt="Author"
                   />
                   <span>
-                    <b>Robert S. Hummel </b> /CEO &amp; Founder
+                    Robert S. Hummel /CEO &amp; Founder
                   </span>
                 </div>
               </div>
@@ -86,7 +86,7 @@ export class Testimonials3 extends Component {
                     alt="Author"
                   />
                   <span>
-                    <b>Leonard G. Trahan </b> /Web designer
+                    Leonard G. Trahan /Web designer
                   </span>
                 </div>
               </div>

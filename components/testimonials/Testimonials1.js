@@ -88,7 +88,7 @@ export default class Testimonials extends Component {
                       width={60}
                       height={60}
                     />
-                    <b>Robert S. Hummel </b> /CEO &amp; Founder
+                    Robert S. Hummel /CEO &amp; Founder
                   </div>
                 </div>
                 <div className="testimonial-item">
@@ -111,7 +111,7 @@ export default class Testimonials extends Component {
                       width={60}
                       height={60}
                     />
-                    <b>Leonard G. Trahan </b> /Web designer
+                    Leonard G. Trahan  /Web designer
                   </div>
                 </div>
                 <div className="testimonial-item">
@@ -132,7 +132,7 @@ export default class Testimonials extends Component {
                       src="assets/images/testimonials/testi-author1.jpg"
                       alt="Author"
                     />
-                    <b>Robert S. Hummel </b> /CEO &amp; Founder
+                    Robert S. Hummel  /CEO &amp; Founder
                   </div>
                 </div>
                 <div className="testimonial-item">
@@ -153,7 +153,7 @@ export default class Testimonials extends Component {
                       src="assets/images/testimonials/testi-author2.jpg"
                       alt="Author"
                     />
-                    <b>Leonard G. Trahan </b> /Web designer
+                   Leonard G. Trahan  /Web designer
                   </div>
                 </div>
               </Slider>

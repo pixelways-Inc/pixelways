@@ -1,1 +1,1 @@
-git commit -m "FEAT: Adjust homepage hero section text color for dark theme"
+git commit -m "FIX: Testimonial client name color in dark theme"
