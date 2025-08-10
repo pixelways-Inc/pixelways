@@ -1,1 +1,1 @@
-git commit -m "FEAT: Adjust menu and sidebar toggler colors for dark theme"
+git commit -m "FEAT: Dark theme adaptation for homepage sections and components"

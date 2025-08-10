@@ -395,3 +395,47 @@ body.dark-theme .blog-item .content h4 a,
 body.dark-theme .blog-item .content p {
   color: var(--main-text-color); /* White text for blog item content */
 }
+
+/* Dark Theme Overrides for Trusted Clients Wrap */
+body.dark-theme .trusted-clients-wrap {
+  background-color: var(--main-bg-color); /* Dark background for trusted clients wrap */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .trusted-clients-wrap h5,
+body.dark-theme .trusted-clients-wrap p,
+body.dark-theme .trusted-clients-wrap .ratting i {
+  color: var(--main-text-color); /* White text for trusted clients wrap content */
+}
+
+/* Dark Theme Overrides for bgc-primary */
+body.dark-theme .bgc-primary {
+  background-color: var(--main-bg-color); /* Ensure primary background is dark in dark theme */
+}
+
+/* Dark Theme Overrides for Section Title */
+body.dark-theme .section-title h2 {
+  color: var(--heading-color); /* White text for section titles */
+}
+
+body.dark-theme .section-title p {
+  color: var(--main-text-color); /* White text for section title paragraphs */
+}
+
+/* Dark Theme Overrides for Testimonial Item Two */
+body.dark-theme .testimonial-item-two {
+  background-color: var(--main-bg-color); /* Dark background for testimonial item two */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .testimonial-item-two .ratting i {
+  color: var(--main-text-color); /* White color for rating stars */
+}
+
+body.dark-theme .testimonial-item-two .testi-text {
+  color: var(--main-text-color); /* White text for testimonial text */
+}
+
+body.dark-theme .testimonial-item-two .testi-author span {
+  color: var(--main-text-color); /* White text for author name and designation */
+}

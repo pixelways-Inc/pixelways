@@ -266,5 +266,16 @@ This document tracks all significant changes, progress, and decisions made durin
   - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.feature-item-two` within `body.dark-theme`, and `color: var(--main-text-color);` for its icon, `h5 a`, `p`, `tags a`, and `h3 a`. Also set `background-color: var(--secondary-bg-color);` for `.feature-item.style-two .content .tags a`.
   - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.blog-item` within `body.dark-theme`, and `color: var(--main-text-color);` for its content (`blog-meta li a`, `h4 a`, `p`).
 
+## About Page Dark Theme Adaptation (August 10, 2025)
+
+**Objective:** Ensure various sections and components on the About page (`app/about/page.js`) are dark theme compatible, including background and text colors.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.trusted-clients-wrap` within `body.dark-theme`, and `color: var(--main-text-color);` for its content (`h5`, `p`, `ratting i`).
+  - Added CSS rules to set `background-color: var(--main-bg-color);` for `.bgc-primary` within `body.dark-theme` to ensure primary backgrounds adapt to the dark theme.
+  - Added CSS rules to set `color: var(--heading-color);` for `.section-title h2` and `color: var(--main-text-color);` for `.section-title p` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.testimonial-item-two` within `body.dark-theme`, and `color: var(--main-text-color);` for its rating stars (`ratting i`), testimonial text (`testi-text`), and author details (`testi-author span`).
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
