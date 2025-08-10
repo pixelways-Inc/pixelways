@@ -1,10 +1,54 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect  } from "react";
 import { Accordion } from "react-bootstrap";
 
+import allServices from '../data/services.json'
+import { color } from "framer-motion";
+
 const Service = ({ style }) => {
-  const [toggle, setToggle] = useState(1);
+
+
+
+  const [toggle, setToggle] = useState(0);
+
+  /**
+   * This would render when content is mounted and the first accordion would be activated
+   */
+  useEffect(() => {
+    
+    
+    return()=>{
+      // Get the full query string, e.g. "?service=abc&mode=dark"
+      const queryString = window.location.search;
+
+      // Create a URLSearchParams object to easily work with params
+      const params = new URLSearchParams(queryString);
+
+      // Get a specific parameter, e.g. "service"
+      const service = params.get("service");
+
+      if(service){
+        const item = document.getElementById('accordion-'+service);
+        console.log("Hello service", item)
+        if(item){
+          item.click();
+           const yOffset = -300; // height of your header
+          const y = item.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }else{
+          const item = document.getElementById('accordion-0');
+          if(item){
+            item.click();
+          }
+        }
+
+      }
+    }
+    
+  }, []); // Empty array means "run once on mount"
+
+
   return (
     <section className="service-area rel z-1">
       <div className="container-fluid">
@@ -33,7 +77,62 @@ const Service = ({ style }) => {
             >
               {/* Service Category Accordions - Auto-generated from README */}
               {/* 1. Software Development Services */}
-              <div className="accordion-item">
+              {
+                allServices.map((service, index)=>
+                  <>
+                  <div className="accordion-item">
+                    <div className="accordion-header">
+                      <Accordion.Toggle
+                         id={`${'accordion-'+index}`}
+                        as={"button"}
+                        eventKey={`serviceCollapse${index}`} 
+                        className={`accordion-button ${toggle == index + 1 ? "" : "collapsed"}`}
+                        onClick={() => setToggle(toggle == index + 1 ? 0 : index + 1)}
+                      >
+                        <span className="step">{index + 1}</span>
+                        <span className={`title ${toggle == index + 1? 'service-title-open': ''}`}>{service.title}</span>
+                        <span className="icon first"><i className="far fa-arrow-right" /></span>
+                        <span className="icon second"><i className="far fa-times-circle" /></span>
+                      </Accordion.Toggle>
+                    </div>
+                    <Accordion.Collapse eventKey={`serviceCollapse${index}`}  data-bs-parent="#service-accordion">
+                      <div className="accordion-body">
+                        <div className="row gap-50 align-items-center">
+                          {/* <div className="col-xl-4 col-lg-2" /> */}
+                          <div className="col-xl-4 col-lg-5">
+                            <div className="image">
+                              <img src={service.image} alt="Service" />
+                            </div>
+                          </div>
+                          <div className="col-xl-8 col-lg-7">
+                            <div className="">
+                              <p className="fw-bolder">{service.description}</p>
+                              <ul className="list-group">
+                                {
+                                  service.services.map(item=>
+                                    <>
+                                      <li className="list-group-item">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height={25} viewBox="0 0 640 640"><path d="M64 320C64 461.4 178.6 576 320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320zM305 441C295.6 450.4 280.4 450.4 271.1 441C261.8 431.6 261.7 416.4 271.1 407.1L358.1 320.1L271.1 233.1C261.7 223.7 261.7 208.5 271.1 199.2C280.5 189.9 295.7 189.8 305 199.2L409 303C418.4 312.4 418.4 327.6 409 336.9L305 441z" fill="var(--tekprof-primary-color)" /></svg> 
+                                        <span className="ms-2">{item}</span>
+                                        </li>
+                                    </>
+                                  )
+                                }
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Accordion.Collapse>
+                  </div>
+                  
+                  </>
+                )
+              }
+
+
+
+              {/* <div className="accordion-item">
                 <div className="accordion-header">
                   <Accordion.Toggle
                     as={"button"}
@@ -70,9 +169,9 @@ const Service = ({ style }) => {
                     </div>
                   </div>
                 </Accordion.Collapse>
-              </div>
+              </div> */}
               {/* 2. UI/UX Design & Frontend Development */}
-              <div className="accordion-item">
+              {/* <div className="accordion-item">
                 <div className="accordion-header">
                   <Accordion.Toggle
                     as={"button"}
@@ -108,9 +207,9 @@ const Service = ({ style }) => {
                     </div>
                   </div>
                 </Accordion.Collapse>
-              </div>
+              </div> */}
               {/* 3. Cloud & Infrastructure Solutions */}
-              <div className="accordion-item">
+              {/* <div className="accordion-item">
                 <div className="accordion-header">
                   <Accordion.Toggle
                     as={"button"}
@@ -147,9 +246,9 @@ const Service = ({ style }) => {
                     </div>
                   </div>
                 </Accordion.Collapse>
-              </div>
+              </div> */}
               {/* 4. AI, Data & Analytics */}
-              <div className="accordion-item">
+              {/* <div className="accordion-item">
                 <div className="accordion-header">
                   <Accordion.Toggle
                     as={"button"}
@@ -186,9 +285,9 @@ const Service = ({ style }) => {
                     </div>
                   </div>
                 </Accordion.Collapse>
-              </div>
+              </div> */}
               {/* 5. Security & Compliance */}
-              <div className="accordion-item">
+              {/* <div className="accordion-item">
                 <div className="accordion-header">
                   <Accordion.Toggle
                     as={"button"}
@@ -225,9 +324,9 @@ const Service = ({ style }) => {
                     </div>
                   </div>
                 </Accordion.Collapse>
-              </div>
+              </div> */}
               {/* 6. Consulting & Technical Advisory */}
-              <div className="accordion-item">
+              {/* <div className="accordion-item">
                 <div className="accordion-header">
                   <Accordion.Toggle
                     as={"button"}
@@ -264,9 +363,9 @@ const Service = ({ style }) => {
                     </div>
                   </div>
                 </Accordion.Collapse>
-              </div>
+              </div> */}
               {/* 7. E-commerce & CMS Solutions */}
-              <div className="accordion-item">
+              {/* <div className="accordion-item">
                 <div className="accordion-header">
                   <Accordion.Toggle
                     as={"button"}
@@ -303,9 +402,9 @@ const Service = ({ style }) => {
                     </div>
                   </div>
                 </Accordion.Collapse>
-              </div>
+              </div> */}
               {/* 8. Maintenance & Technical Support */}
-              <div className="accordion-item">
+              {/* <div className="accordion-item">
                 <div className="accordion-header">
                   <Accordion.Toggle
                     as={"button"}
@@ -342,9 +441,9 @@ const Service = ({ style }) => {
                     </div>
                   </div>
                 </Accordion.Collapse>
-              </div>
+              </div> */}
               {/* 9. Emerging Technologies & R&D */}
-              <div className="accordion-item">
+              {/* <div className="accordion-item">
                 <div className="accordion-header">
                   <Accordion.Toggle
                     as={"button"}
@@ -381,9 +480,9 @@ const Service = ({ style }) => {
                     </div>
                   </div>
                 </Accordion.Collapse>
-              </div>
+              </div> */}
               {/* 10. Logistics & Supply Chain Tech Solutions */}
-              <div className="accordion-item">
+              {/* <div className="accordion-item">
                 <div className="accordion-header">
                   <Accordion.Toggle
                     as={"button"}
@@ -425,13 +524,33 @@ const Service = ({ style }) => {
                     </div>
                   </div>
                 </Accordion.Collapse>
-              </div>
+              </div> */}
             </Accordion>
             
+
+
+             <style>{`
+                .service-title-open{
+                  color: var(--tekprof-primary-color) !important;
+                }
+              `}
+              </style>
+
           </div>
         </div>
       </div>
     </section>
   );
 };
+
+function PageStyle(){
+  return(
+    <style>{`
+      .theme-color{
+        color: var(--tekprof-primary-color);
+      }
+    `}
+    </style>
+  )
+}
 export default Service;

@@ -39,6 +39,39 @@ export const sliderProps = {
       },
     ],
   },
+  servicesSlider: {
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    infinite: true,
+    speed: 400,
+    arrows: false,
+    dots: true,
+    focusOnSelect: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  },
   clientLogo: {
     slidesToShow: 6,
     slidesToScroll: 1,

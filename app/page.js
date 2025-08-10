@@ -1,5 +1,6 @@
 "use client";
 import ClientLogo from "@/components/ClientLogo";
+import Services from "@/components/services";
 import Counter from "@/components/Counter";
 import Team from "@/components/Team";
 import Testimonials from "@/components/testimonials/Testimonials1";
@@ -86,89 +87,9 @@ const page = () => {
               </div>
             </div>
           </div>
-          <div className="row justify-content-center">
-            <div
-              className="col-xl-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay={100}
-              data-aos-duration={1500}
-              data-aos-offset={50}
-            >
-              <div className="feature-item hover-content">
-                <div className="image">
-                  <img
-                    src="https://api.a0.dev/assets/image?text=An IT professional in a modern office, collaborating with colleagues over laptops and digital screens showing analytics and cloud icons. The environment is bright, innovative, and welcoming, with glass walls and greenery. Realistic, 8K, 400x400px.&aspect=1:1&seed=124" alt="IT Solutions" width={400} height={400} />
-                </div>
-                <div className="content">
-                  <h4 className="title">
-                    <Link href="service-details">IT Solutions</Link>
-                  </h4>
-                  <p>
-                    Comprehensive IT solutions tailored to your business, from custom software development to system integration and optimization.
-                  </p>
-                  <div className="inner-content">
-                    <Link className="read-more" href="service-details">
-                      Read More <i className="far fa-arrow-right" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className="col-xl-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay={200}
-              data-aos-duration={1500}
-              data-aos-offset={50}
-            >
-              <div className="feature-item hover-content">
-                <div className="image">
-                  <img
-                    src="https://api.a0.dev/assets/image?text=A cybersecurity expert monitoring multiple screens with threat maps and security alerts, in a high-tech control room. Blue tones, secure, focused, 8K, 400x400px.&aspect=1:1&seed=125" alt="Cyber Security" width={400} height={400} />
-                </div>
-                <div className="content">
-                  <h4 className="title">
-                    <Link href="service-details">Cyber Security</Link>
-                  </h4>
-                  <p>
-                    Robust cybersecurity services to protect your digital assets, ensuring data integrity, privacy, and compliance against evolving threats.
-                  </p>
-                  <div className="inner-content">
-                    <Link className="read-more" href="service-details">
-                      Read More <i className="far fa-arrow-right" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className="col-xl-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay={300}
-              data-aos-duration={1500}
-              data-aos-offset={50}
-            >
-              <div className="feature-item hover-content">
-                <div className="image">
-                  <img
-                    src="https://api.a0.dev/assets/image?text=Cloud servers floating above a city skyline, with data streams connecting businesses below. Futuristic, clean, and optimistic, 8K, 400x400px.&aspect=1:1&seed=126" alt="Cloud Services" width={400} height={400} />
-                </div>
-                <div className="content">
-                  <h4 className="title">
-                    <Link href="service-details">Cloud Services</Link>
-                  </h4>
-                  <p>
-                    Scalable cloud solutions (AWS, Azure, GCP) for seamless migration, optimized infrastructure, and enhanced operational efficiency.
-                  </p>
-                  <div className="inner-content">
-                    <Link className="read-more" href="service-details">
-                      Read More <i className="far fa-arrow-right" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <Services limit={10} mode="slide" />
+          
         </div>
       </section>
       {/* Features Area end */}

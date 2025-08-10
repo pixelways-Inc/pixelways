@@ -1,0 +1,126 @@
+[
+  {
+    "title": "Software Development Services",
+    "description": "End-to-end software development solutions tailored to meet your business needs.",
+    "services": [
+      "Custom Software Development (Web, Mobile, Desktop)",
+      "API Development & System Integration",
+      "SaaS Product Development (Subscription-based platforms)",
+      "MVP Development for Startups",
+      "Code Auditing & Optimization"
+    ],
+    "image": "https://api.a0.dev/assets/image?text=custom+software+development+Pixelways+Solution&aspect=1:1&seed=service1"
+  },
+  {
+    "title": "UI/UX Design & Frontend Development",
+    "description": "Focusing on user-centered design, branding consistency, and responsive development.",
+    "services": [
+      "UI/UX Wireframing & Prototyping (Figma, Adobe XD)",
+      "Responsive Web Design",
+      "Frontend Framework Development (React, Vue, Next.js)",
+      "Accessibility Compliance (WCAG)"
+    ],
+    "image": "https://api.a0.dev/assets/image?text=UI+UX+design+Pixelways+Solution&aspect=1:1&seed=service2"
+  },
+  {
+    "title": "Cloud & Infrastructure Solutions",
+    "description": "Modern, scalable, and secure infrastructure planning and deployment.",
+    "services": [
+      "Cloud Setup (AWS, Azure, GCP)",
+      "Cloud Migration & Optimization",
+      "Serverless Architecture (Lambda, Cloud Functions)",
+      "DevOps & CI/CD Pipeline Automation",
+      "Kubernetes & Dockerized Deployments"
+    ],
+    "image": "https://api.a0.dev/assets/image?text=cloud+infrastructure+Pixelways+Solution&aspect=1:1&seed=service3"
+  },
+  {
+    "title": "AI, Data & Analytics",
+    "description": "Data-driven intelligence for better business decisions and customer experiences.",
+    "services": [
+      "Data Engineering (ETL Pipelines, Warehousing)",
+      "AI/ML Integration (Chatbots, Predictive Analytics)",
+      "Business Intelligence Dashboards (Tableau, Power BI)",
+      "Natural Language Processing (NLP)",
+      "Data Visualization & Reporting"
+    ],
+    "image": "https://api.a0.dev/assets/image?text=AI+data+analytics+Pixelways+Solution&aspect=1:1&seed=service4"
+  },
+  {
+    "title": "Security & Compliance",
+    "description": "Ensuring digital assets, software, and infrastructure meet the highest security standards.",
+    "services": [
+      "Application Penetration Testing",
+      "Data Encryption & Secure Storage",
+      "Security Audits (OWASP, ISO27001 readiness)",
+      "GDPR / HIPAA Compliance Implementation",
+      "Secure DevOps Integration (DevSecOps)"
+    ],
+    "image": "https://api.a0.dev/assets/image?text=security+compliance+Pixelways+Solution&aspect=1:1&seed=service5"
+  },
+  {
+    "title": "Consulting & Technical Advisory",
+    "description": "Strategic services for startups, enterprises, and investors needing technical direction.",
+    "services": [
+      "CTO-as-a-Service",
+      "System Architecture Consulting",
+      "Technology Stack Evaluation",
+      "Product Roadmap Planning",
+      "Digital Transformation Strategy"
+    ],
+    "image": "https://api.a0.dev/assets/image?text=consulting+advisory+Pixelways+Solution&aspect=1:1&seed=service6"
+  },
+  {
+    "title": "E-commerce & CMS Solutions",
+    "description": "Complete digital commerce and content experiences tailored for growth.",
+    "services": [
+      "Shopify / WooCommerce Store Development",
+      "Headless E-commerce (Commerce.js, Medusa)",
+      "Payment Gateway Integration (Stripe, PayPal, Square)",
+      "CMS Development (WordPress, Webflow, Strapi)",
+      "Performance & SEO Optimization"
+    ],
+    "image": "https://api.a0.dev/assets/image?text=ecommerce+cms+Pixelways+Solution&aspect=1:1&seed=service7"
+  },
+  {
+    "title": "Maintenance & Technical Support",
+    "description": "Post-launch maintenance services ensure uptime, security, and customer satisfaction.",
+    "services": [
+      "SLA-based Software Support",
+      "Ongoing System Maintenance",
+      "Legacy Code Modernization",
+      "24/7 Monitoring & Bug Fixing",
+      "Documentation & Training Manuals"
+    ],
+    "image": "https://api.a0.dev/assets/image?text=maintenance+support+Pixelways+Solution&aspect=1:1&seed=service8"
+  },
+  {
+    "title": "Emerging Technologies & R&D",
+    "description": "Cutting-edge solutions to future-proof your clients’ businesses.",
+    "services": [
+      "Blockchain & Smart Contract Development",
+      "IoT Applications & Dashboards",
+      "AR/VR Development (Unity, Unreal)",
+      "Web3 Integration",
+      "Voice Interface Development (Alexa, Google Assistant)"
+    ],
+    "image": "https://api.a0.dev/assets/image?text=emerging+tech+R&D+Pixelways+Solution&aspect=1:1&seed=service9"
+  },
+  {
+    "title": "Logistics & Supply Chain Tech Solutions",
+    "description": "Smart automation, transparency, and real-time tracking in logistics and delivery.",
+    "services": [
+      "Parcel Tracking System Development",
+      "Fleet & Vehicle Management Software",
+      "Warehouse Management Systems (WMS)",
+      "Order Fulfillment & Delivery Apps",
+      "Logistics Automation",
+      "Supply Chain Visibility Dashboards",
+      "Last-Mile Delivery Optimization",
+      "Custom Courier Service Platforms",
+      "E-commerce Shipping Integration",
+      "Cold Chain Monitoring (IoT)"
+    ],
+    "image": "https://api.a0.dev/assets/image?text=logistics+supply+chain+Pixelways+Solution&aspect=1:1&seed=service10"
+  }
+]

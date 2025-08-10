@@ -359,3 +359,143 @@ This document tracks all significant changes, progress, and decisions made durin
 
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
+- Continue with further content and visual enhancements as needed.
+
+## Features Section Dark Theme Enhancement (August 10, 2025)
+
+**Objective:** Enhance the features section dark theme implementation to ensure all text elements, including links and read-more buttons, properly respect the dark theme with white text color.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Enhanced CSS rules for `.container.features` and `.container.features-bg` within `body.dark-theme` to ensure comprehensive white text styling.
+  - Added specific rules for feature item links (`.feature-item .content .title a`) and read-more buttons (`.feature-item .content .read-more`) to ensure white text color.
+  - Added hover state rules to maintain white text color even during hover interactions.
+  - Ensured all nested elements inherit the white text color through universal selector rules.
+
+**Technical Details:**
+- Applied `color: var(--main-text-color)` for comprehensive text elements
+- Used `color: var(--heading-color)` for headings (h2, h4, .title)
+- Added hover state overrides to ensure consistent white text during interactions
+- Covered both `.container.features` and `.container.features-bg` class variations
+
+## Features Section Background Fix (August 10, 2025)
+
+**Objective:** Fix the white background issue in the features section cards that weren't respecting the dark theme.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added dark background styling for the entire `.features-area` section
+  - Added specific styling for `.feature-item` and `.feature-item.hover-content` cards within features sections
+  - Added dark background for feature card content areas (`.feature-item .content`)
+  - Added hover state background styling to maintain dark theme during interactions
+  - Ensured container backgrounds are transparent to not override section backgrounds
+
+**Technical Details:**
+- Applied `background-color: var(--main-bg-color)` to entire features area
+- Styled individual feature cards with dark backgrounds
+- Added hover state with `var(--secondary-bg-color)` for subtle interaction feedback
+- Ensured both `.container.features` and `.container.features-bg` variations are covered
+- Fixed CSS lint issues by adding standard `appearance` property alongside `-webkit-appearance`
+- Added specific styling for `.sub-title.color-primary` to maintain brand color while respecting dark theme
+
+## Working Process Section Dark Theme Implementation (August 10, 2025)
+
+**Objective:** Implement comprehensive dark theme styling for the Working Process section with heading "Guiding You Through Every Step of the IT Journey" including all accordion elements and interactive states.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added complete dark theme styling for `.working-process-area` section
+  - Styled section title, subtitle, and main heading with appropriate white text colors
+  - Added comprehensive styling for accordion components:
+    - `.accordion-item` cards with dark background and subtle borders
+    - `.accordion-button` with dark background and white text
+    - `.accordion-button .step` with styled step indicators
+    - `.accordion-button .title` with proper heading colors
+    - `.accordion-button .icon` with themed icon styling
+    - `.accordion-body` content with dark background and white text
+    - All nested content elements (paragraphs, lists, icons) with white text
+  - Added interactive hover effects:
+    - Hover state for accordion buttons with background transitions
+    - Hover effects for step indicators
+    - Icon animation on hover with inverted colors
+
+**Technical Details:**
+- Applied `background-color: var(--main-bg-color)` for section background
+- Used `background-color: var(--secondary-bg-color)` for accordion cards and content
+- Applied `color: var(--main-text-color)` for all text elements
+- Used `color: var(--heading-color)` for titles and headings
+- Added `border: 1px solid var(--global-border-color)` for subtle element separation
+- Implemented hover transitions for enhanced user experience
+- Covered all nested elements including lists, icons, and content areas
+- Maintained accessibility through proper contrast and visual hierarchy
+
+**Components Affected:**
+- `components/WorkingProcess.js` - WorkingProcess2 component used on homepage
+- Homepage section with steps: Discovery & Assessment, Strategy & Planning, Implementation & Integration, Ongoing Support & Optimization
+
+## Pricing Page FAQ Section Dark Theme Implementation (August 10, 2025)
+
+**Objective:** Implement comprehensive dark theme styling for the FAQ section on the pricing page with heading "Have Questions? Frequently Asked Questions" and "Contact Us for a Custom Quote" button.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added complete dark theme styling for `.faqs-area` section background
+  - Styled `.faqs-fluid-wrap` with dark background
+  - Added styling for `.faqs-left-content` section title, subtitle, and heading
+  - Implemented comprehensive styling for FAQ accordion components:
+    - `.accordion-item-four.style-two` cards with dark background and subtle borders
+    - `.accordion-button` with dark background and white text
+    - `.accordion-button .title` with proper heading colors
+    - `.accordion-button .icon` with themed icon styling
+    - `.accordion-body` content with dark background and white text
+    - All nested content elements (paragraphs) with white text
+  - Added interactive hover effects:
+    - Hover state for accordion buttons with background transitions
+    - Hover effects for titles and icons
+
+**Technical Details:**
+- Applied `background-color: var(--main-bg-color)` for section background
+- Used `background-color: var(--secondary-bg-color)` for accordion cards and content
+- Applied `color: var(--main-text-color)` for all text elements
+- Used `color: var(--heading-color)` for titles and headings
+- Added `border: 1px solid var(--global-border-color)` for subtle element separation
+- Implemented hover transitions for enhanced user experience
+- Covered all nested elements including accordion body content
+- Maintained accessibility through proper contrast and visual hierarchy
+
+**Components Affected:**
+- `components/FAQs.js` - FAQs2 component used on pricing page
+- `app/pricing/page.js` - Pricing page FAQ section with questions about Pixelways Solution services
+
+
+
+## Service on home page and the services page (August 10, 2025)
+
+**Objective:** Modified and unified services to to be read from a single file and can the be display / rendered in multiple place basically in slider mode and in list mode. I equally updated the services main page.
+
+**Summary of Changes:**
+- **`app/page.js`:**
+  - modified services and added links to the detail page
+  - Changed from static rendering to dynamic rendering
+  
+- **`app/components/services.js`:**
+  - Implemented a component for rendering services
+  - Implemented two rendering style `list` | `slide` which can be used by passing props the values through props
+  - Implemented support passing the `limit` (number of elements to be rendered). This can be passed as params when rendering the component. Leaving the default value would render all content and would not show the see more button.
+  - Rendered content based on data imported from `@/data/services.json`
+
+- **`app/component/service.js`:**
+  - Added auto scrolling once a service id is present on query string
+  - Changed from static rendering to dynamic rendering
+
+**Technical Details:**
+- Used `map` method to render content dynamically
+- Used `scrollTo` to scroll to a specific service when query string `service` is present and available in the list of rendered services
+
+**Components Affected:**
+- `@/app/components/service.js` - Services detail page
+- `@/app/components/services.js` - Services component page
+- `@/app/data/services.json` - Holds info about all available services
+- `@/app/utility/sliderProps.js` - Added a config for services sliders
+- `README.md` - Added description for the first service (Software development services)
+- `.gitignore` - Added package-lock.json to the gitignore file
