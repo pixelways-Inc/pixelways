@@ -28,7 +28,7 @@ const Services = ({
 
   return (
     <section className="features-area rel z-1">
-        <div className="container pt-130 rpt-100 pb-100 rpb-70">
+        <div className="container features-bg pt-130 rpt-100 pb-100 rpb-70">
 
           <div className={containerClass}>
             {
@@ -52,7 +52,7 @@ const Services = ({
                         <img
                           src={service.image} alt="IT Solutions" width={400} height={400} />
                       </div>
-                      <div className="services-content content">
+                      <div className="content">
                         <h4 className="title">
                           <Link href={`/services?service=${index}`}>{service.title}</Link>
                         </h4>
@@ -132,6 +132,5 @@ const Services = ({
         </section>
   );
 };
-
 
 export default Services;
