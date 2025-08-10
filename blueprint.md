@@ -288,5 +288,15 @@ This document tracks all significant changes, progress, and decisions made durin
   - Added CSS rules to set `color: var(--main-text-color);` for `.page-banner-area .page-title`, `.page-banner-area .breadcrumb`, `.page-banner-area .breadcrumb-item`, and `.page-banner-area .breadcrumb-item a` to ensure page banner title and breadcrumbs are white.
   - Added CSS rules to set `border-right-color: var(--global-border-color);`, `border-left-color: var(--global-border-color);`, and `border-bottom-color: var(--global-border-color);` for `.border-right`, `.border-left`, and `.for-border-bottom` respectively within `body.dark-theme` to ensure borders adapt to the dark theme.
 
+## Contact Page Dark Theme Adaptation (August 10, 2025)
+
+**Objective:** Ensure various sections and components on the Contact page (`app/contact/page.js`) are dark theme compatible, including background and text colors.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.contact-info-part` within `body.dark-theme`, and `color: var(--main-text-color);` for its content (`p`, `.contact-info-item .text p`, `.contact-info-item .text a`) and icons (`.contact-info-item .icon i`).
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.contact-page-form` within `body.dark-theme`, and `color: var(--main-text-color);` for its content (`h4`, `p`, `label`).
+  - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.contact-page-form .form-control` within `body.dark-theme`, and `color: rgba(255, 255, 255, 0.7);` for its `::placeholder`.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

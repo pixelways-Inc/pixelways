@@ -460,3 +460,40 @@ body.dark-theme .border-left {
 body.dark-theme .for-border-bottom {
   border-bottom-color: var(--global-border-color);
 }
+
+/* Dark Theme Overrides for Contact Page */
+body.dark-theme .contact-info-part {
+  background-color: var(--main-bg-color); /* Dark background for contact info part */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .contact-info-part p,
+body.dark-theme .contact-info-part .contact-info-item .text p,
+body.dark-theme .contact-info-part .contact-info-item .text a {
+  color: var(--main-text-color); /* White text for contact info part */
+}
+
+body.dark-theme .contact-info-part .contact-info-item .icon i {
+  color: var(--main-text-color); /* White icon for contact info item */
+}
+
+body.dark-theme .contact-page-form {
+  background-color: var(--main-bg-color); /* Dark background for contact page form */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .contact-page-form h4,
+body.dark-theme .contact-page-form p,
+body.dark-theme .contact-page-form label {
+  color: var(--main-text-color); /* White text for contact page form */
+}
+
+body.dark-theme .contact-page-form .form-control {
+  background-color: var(--secondary-bg-color); /* Darker background for form inputs */
+  color: var(--main-text-color); /* White text for form inputs */
+  border-color: var(--global-border-color); /* Adapt border color for form inputs */
+}
+
+body.dark-theme .contact-page-form .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
+}
