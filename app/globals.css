@@ -288,3 +288,8 @@ body.dark-theme .hidden-bar .inner-box * {
 body.dark-theme .hidden-bar .cross-icon .fa-times {
   color: var(--main-text-color); /* White color for the close icon */
 }
+
+/* Dark Theme Overrides for Homepage Hero Section Text */
+body.dark-theme .hero-content p {
+  color: var(--main-text-color); /* White text for hero section paragraph */
+}

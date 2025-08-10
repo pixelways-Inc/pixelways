@@ -212,5 +212,13 @@ This document tracks all significant changes, progress, and decisions made durin
   - Added CSS rules to apply dark background (`--main-bg-color`) and white text (`--main-text-color`) to the mobile menu/sidebar (`.hidden-bar`).
   - Added CSS rules to set the color of the close icon (`.hidden-bar .cross-icon .fa-times`) to white (`--main-text-color`).
 
+## Homepage Hero Section Text Color Adjustment (August 10, 2025)
+
+**Objective:** Change text color of homepage hero section paragraph to white in dark theme.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added CSS rule to set `color: var(--main-text-color);` for `.hero-content p` within `body.dark-theme`.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
