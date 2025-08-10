@@ -10,6 +10,7 @@ Pixelways Solution empowers organizations to thrive in the digital age through i
 ## Service Categories
 
 ### 1. Software Development Services
+End-to-end software development solutions tailored to meet your business needs.
 **Services:**
 - Custom Software Development (Web, Mobile, Desktop)
 - API Development & System Integration

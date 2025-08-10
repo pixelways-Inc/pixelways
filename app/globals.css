@@ -1028,3 +1028,9 @@ body.dark-theme .accordion-item-four.style-two .accordion-button:hover .title {
 body.dark-theme .accordion-item-four.style-two .accordion-button:hover .icon {
   color: var(--main-text-color) !important;
 }
+.services-content{
+  background-color: #000 !important;
+}
+.services-content:hover{
+  background-color: var(--tekprof-primary-color) !important 
+}
