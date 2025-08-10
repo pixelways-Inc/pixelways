@@ -245,5 +245,14 @@ This document tracks all significant changes, progress, and decisions made durin
   - Added CSS rules to set `background-color: var(--main-bg-color);` for `.team-item` within `body.dark-theme`.
   - Added CSS rules to set `color: var(--main-text-color);` for `.team-item .content .name a` and `.team-item .content .designations` within `body.dark-theme`.
 
+## Menu and Sidebar Toggler Color Adjustment (August 10, 2025)
+
+**Objective:** Change the color of the menu toggler in the header and the sidebar toggler to white in dark theme.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added CSS rules to set `background-color: var(--main-text-color);` for `.main-menu .navbar-header .navbar-toggle .icon-bar` within `body.dark-theme` to make the menu toggler bars white.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.menu-sidebar button` within `body.dark-theme` to make the sidebar toggler white.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

@@ -214,13 +214,27 @@ body.dark-theme .bgc-gray {
 }
 
 /* Dark Theme Overrides for Team Card */
-body.dark-theme .team-item {
-  background-color: var(--main-bg-color); /* Dark background for team card */
+body.dark-theme .team-item .content {
+  background-color: var(--main-bg-color); /* Dark background for team card content */
+}
+
+body.dark-theme .team-item .content {
+  background-color: var(--main-bg-color); /* Dark background for team card content */
 }
 
 body.dark-theme .team-item .content .name a,
 body.dark-theme .team-item .content .designations {
   color: var(--main-text-color); /* White text for team member name and designation */
+}
+
+body.dark-theme .team-item .content h5,
+body.dark-theme .team-item .content span {
+  color: var(--main-text-color); /* Ensure all text within content is white */
+}
+
+body.dark-theme .team-item .content h5,
+body.dark-theme .team-item .content span {
+  color: var(--main-text-color); /* Ensure all text within content is white */
 }
 
 body.dark-theme .slick-arrow {
@@ -306,4 +320,14 @@ body.dark-theme .hidden-bar .cross-icon .fa-times {
 /* Dark Theme Overrides for Homepage Hero Section Text */
 body.dark-theme .hero-content p {
   color: var(--main-text-color); /* White text for hero section paragraph */
+}
+
+/* Dark Theme Overrides for Menu Toggler */
+body.dark-theme .main-menu .navbar-header .navbar-toggle .icon-bar {
+  background-color: var(--main-text-color); /* White color for menu toggler bars */
+}
+
+/* Dark Theme Overrides for Sidebar Toggler */
+body.dark-theme .menu-sidebar button {
+  color: var(--main-text-color); /* White color for sidebar toggler */
 }
