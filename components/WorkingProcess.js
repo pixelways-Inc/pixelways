@@ -135,19 +135,17 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
   };
 
   return (
-    <section className="why-choose-us-area pb-100 rpb-70 rel z-1 text-white" id="work-process">
-      <div
-        className={`features-bg pt-130 rpt-100 pb-120 rpb-90 ${containerClass}`}
-      >
-        <div className="row justify-content-center">
-          <div className="col-xl-7 col-lg-9">
-            <div
-              className="section-title text-center mb-70"
-              data-aos="fade-up"
-              data-aos-duration={1500}
-              data-aos-offset={50}
-            >
-              <span className="sub-title text-[#00C4FF] mb-10">
+      <section className="why-choose-us-area pb-100 rpb-70 rel z-1">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-5">
+              <div
+                className="why-choose-content rmb-55"
+                data-aos="fade-right"
+                data-aos-duration={1500}
+                data-aos-offset={50}
+              >
+              <span className="sub-title text-black mb-10">
                 Working Process
               </span>
               <h2 className="text-white">Guiding You Through Every Step of the IT Journey</h2>
