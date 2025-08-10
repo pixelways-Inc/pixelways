@@ -219,3 +219,26 @@ body.dark-theme .slick-arrow:focus,
 body.dark-theme .slick-arrow:hover {
   color: var(--tekprof-primary-color); /* Keep primary color on hover */
 }
+
+/* Dark Theme Overrides for Services Page */
+body.dark-theme .why-choose-us-area .section-title h2,
+body.dark-theme .why-choose-us-area p {
+  color: var(--main-text-color); /* White text for titles and paragraphs */
+}
+
+body.dark-theme .why-choose-us-area .feature-item-three {
+  background-color: var(--main-bg-color); /* Dark background for feature items */
+  border-color: var(--global-border-color) !important; /* Adapt borders */
+}
+
+body.dark-theme .why-choose-us-area .feature-item-three .icon {
+  background-color: var(--secondary-bg-color); /* Darker background for icons */
+}
+
+body.dark-theme .why-choose-us-area .feature-item-three h4 {
+  color: var(--heading-color); /* White text for feature titles */
+}
+
+body.dark-theme .why-choose-us-area .feature-item-three p {
+  color: var(--main-text-color); /* White text for feature descriptions */
+}

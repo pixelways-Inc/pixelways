@@ -1,1 +1,1 @@
-git commit -m "FEAT: Adapt header to dark theme and update blueprint"
+git commit -m "FEAT: Adapt testimonial component to dark theme and update blueprint"
