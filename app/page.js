@@ -59,10 +59,16 @@ const page = () => {
       </section>
       {/* Hero Section End */}
       {/* Features Area start */}
+ fea/servicesAnsel
       <section className="features-area rel z-1">
         <div className="container pt-130 rpt-100 pb-100 rpb-70">
           <div className="row justify-content-center">
             <div className="col-xl-8 col-lg-10">
+
+         <section className="why-choose-us-area pb-100 rpb-70 rel z-1">
+        <div className="container pt-130 rpt-100 pb-100 rpb-70">
+          <div className="row align-items-center">
+            <div className="col-lg-5"> 
               <div
                 className="why-choose-content rmb-55"
                 data-aos="fade-right"
