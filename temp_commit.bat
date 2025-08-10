@@ -1,1 +1,1 @@
-git commit -m "FEAT: Dark theme adaptation for Blog Details page sections and components"
+git commit -m "FEAT: Dark theme adaptation for Team page sections and components"
