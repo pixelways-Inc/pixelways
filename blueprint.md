@@ -459,3 +459,37 @@ This document tracks all significant changes, progress, and decisions made durin
 **Components Affected:**
 - `components/WorkingProcess.js` - WorkingProcess2 component used on homepage
 - Homepage section with steps: Discovery & Assessment, Strategy & Planning, Implementation & Integration, Ongoing Support & Optimization
+
+## Pricing Page FAQ Section Dark Theme Implementation (August 10, 2025)
+
+**Objective:** Implement comprehensive dark theme styling for the FAQ section on the pricing page with heading "Have Questions? Frequently Asked Questions" and "Contact Us for a Custom Quote" button.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added complete dark theme styling for `.faqs-area` section background
+  - Styled `.faqs-fluid-wrap` with dark background
+  - Added styling for `.faqs-left-content` section title, subtitle, and heading
+  - Implemented comprehensive styling for FAQ accordion components:
+    - `.accordion-item-four.style-two` cards with dark background and subtle borders
+    - `.accordion-button` with dark background and white text
+    - `.accordion-button .title` with proper heading colors
+    - `.accordion-button .icon` with themed icon styling
+    - `.accordion-body` content with dark background and white text
+    - All nested content elements (paragraphs) with white text
+  - Added interactive hover effects:
+    - Hover state for accordion buttons with background transitions
+    - Hover effects for titles and icons
+
+**Technical Details:**
+- Applied `background-color: var(--main-bg-color)` for section background
+- Used `background-color: var(--secondary-bg-color)` for accordion cards and content
+- Applied `color: var(--main-text-color)` for all text elements
+- Used `color: var(--heading-color)` for titles and headings
+- Added `border: 1px solid var(--global-border-color)` for subtle element separation
+- Implemented hover transitions for enhanced user experience
+- Covered all nested elements including accordion body content
+- Maintained accessibility through proper contrast and visual hierarchy
+
+**Components Affected:**
+- `components/FAQs.js` - FAQs2 component used on pricing page
+- `app/pricing/page.js` - Pricing page FAQ section with questions about Pixelways Solution services
