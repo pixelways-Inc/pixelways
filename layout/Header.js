@@ -25,7 +25,7 @@ export default Header;
 
 const Header1 = ({ singleMenu }) => {
   return (
-    <header className="main-header">
+    <header className="main-header white-menu">
       <div className="header-top-wrap rel">
         <div className="container">
           <div className="row">

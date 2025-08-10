@@ -176,6 +176,10 @@
 }
 
 /* Dark Theme Overrides for Header */
+body.dark-theme {
+  --main-text-color: white; /* Define white text color for dark theme */
+}
+
 body.dark-theme .main-header .header-top-wrap {
   background-color: var(--secondary-bg-color); /* Use the dark blue from footer */
 }
@@ -220,6 +224,46 @@ body.dark-theme .main-header .menu-btns .menu-sidebar button img,
 body.dark-theme .header-top .menu-sidebar button img,
 body.dark-theme .top-left .menu-sidebar button img {
   filter: brightness(0) invert(1) !important; /* Make sidebar toggler images white */
+}
+
+/* Dark Theme: Override CSS-based hamburger menu (conic-gradient) to white */
+body.dark-theme .menu-sidebar > button {
+  --c: conic-gradient(from -90deg, var(--main-text-color) 90deg, #0000 0) !important;
+  background: var(--c), var(--c) !important;
+  background-size: 40% 40% !important;
+}
+
+/* Dark Theme: Override for different header styles */
+body.dark-theme .main-header .menu-sidebar > button,
+body.dark-theme .main-header.white-menu .menu-sidebar > button,
+body.dark-theme .main-header.style-three .menu-sidebar > button {
+  --c: conic-gradient(from -90deg, var(--main-text-color) 90deg, #0000 0) !important;
+}
+
+/* Dark Theme: Handle span-based toggle buttons */
+body.dark-theme .menu-sidebar button .toggle-btn,
+body.dark-theme .menu-sidebar button span.toggle-btn {
+  background-color: var(--main-text-color) !important;
+}
+
+/* Dark Theme: Ensure bg-transparent buttons show properly */
+body.dark-theme .menu-sidebar button.bg-transparent {
+  --c: conic-gradient(from -90deg, var(--main-text-color) 90deg, #0000 0) !important;
+  background: var(--c), var(--c) !important;
+  background-size: 40% 40% !important;
+}
+
+/* Dark Theme: Handle any pseudo-element based hamburger menus */
+body.dark-theme .menu-sidebar button::before,
+body.dark-theme .menu-sidebar button::after {
+  background-color: var(--main-text-color) !important;
+}
+
+/* Dark Theme: Fallback for any hamburger line elements */
+body.dark-theme .menu-sidebar button .line,
+body.dark-theme .menu-sidebar button .hamburger-line,
+body.dark-theme .menu-sidebar button .icon-bar {
+  background-color: var(--main-text-color) !important;
 }
 
 /* Dark Theme Overrides for Testimonial Component */
