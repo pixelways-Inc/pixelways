@@ -668,3 +668,8 @@ body.dark-theme .blog-sidebar .widget-cta {
 body.dark-theme .blog-sidebar .widget-cta h3 {
   color: var(--main-text-color); /* White text for CTA widget title */
 }
+
+/* Dark Theme Overrides for Features Section */
+body.dark-theme .container.features {
+  color: var(--main-text-color); /* White text for features section */
+}

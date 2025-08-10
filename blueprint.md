@@ -343,5 +343,12 @@ This document tracks all significant changes, progress, and decisions made durin
   - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.blog-sidebar .widget-cta` within `body.dark-theme`.
   - Added CSS rules to set `color: var(--main-text-color);` for `.blog-sidebar .widget-cta h3` within `body.dark-theme`.
 
+## Features Section Dark Theme Adaptation (August 10, 2025)
+
+**Objective:** Ensure the text within the `div` with class `container features` respects the dark theme and has white text color.
+
+**Summary of Changes:**
+- **`app/globals.css`:** Added CSS rule to set `color: var(--main-text-color);` for `body.dark-theme .container.features`.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
