@@ -312,5 +312,18 @@ This document tracks all significant changes, progress, and decisions made durin
   - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.get-consultations-form .form-control` within `body.dark-theme`, and `color: rgba(255, 255, 255, 0.7);` for its `::placeholder`.
   - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.get-consultations-form select` and its `option` elements within `body.dark-theme`.
 
+## Pricing Page Dark Theme Adaptation (August 10, 2025)
+
+**Objective:** Ensure various sections and components on the Pricing page (`app/pricing/page.js`) are dark theme compatible, including background and text colors.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added CSS rules to set `background-color: var(--main-bg-color);` for `.bgc-black` within `body.dark-theme` to ensure black backgrounds adapt to the dark theme.
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.pricing-item` within `body.dark-theme`, and `color: var(--main-text-color);` for its content (`title`, `text`, `included`, `list-style-one li`, `list-style-one li i`, `price`).
+  - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.pricing-item .form-control` within `body.dark-theme`, and `color: rgba(255, 255, 255, 0.7);` for its `::placeholder`.
+  - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.pricing-item select` and its `option` elements within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.pricing-tab li button` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--tekprof-primary-color);`, `color: white;`, and `border-color: var(--tekprof-primary-color);` for `.pricing-tab li button.active` within `body.dark-theme`.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

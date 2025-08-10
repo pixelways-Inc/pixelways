@@ -519,6 +519,55 @@ body.dark-theme .accordion-item-four .accordion-button .icon i {
   color: var(--main-text-color); /* White color for icons */
 }
 
+/* Dark Theme Overrides for Pricing Item (Cost Calculators) */
+body.dark-theme .pricing-item {
+  background-color: var(--main-bg-color); /* Dark background for pricing item */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .pricing-item .title,
+body.dark-theme .pricing-item .text,
+body.dark-theme .pricing-item .included,
+body.dark-theme .pricing-item .list-style-one li,
+body.dark-theme .pricing-item .list-style-one li i,
+body.dark-theme .pricing-item .price {
+  color: var(--main-text-color); /* White text for pricing item content */
+}
+
+body.dark-theme .pricing-item .form-control {
+  background-color: var(--secondary-bg-color); /* Darker background for form inputs */
+  color: var(--main-text-color); /* White text for form inputs */
+  border-color: var(--global-border-color); /* Adapt border color for form inputs */
+}
+
+body.dark-theme .pricing-item select {
+  background-color: var(--secondary-bg-color); /* Darker background for select */
+  color: var(--main-text-color); /* White text for select */
+  border-color: var(--global-border-color); /* Adapt border color for select */
+}
+
+body.dark-theme .pricing-item select option {
+  color: var(--main-text-color); /* White text for select options */
+}
+
+/* Dark Theme Overrides for bgc-black */
+body.dark-theme .bgc-black {
+  background-color: var(--main-bg-color); /* Ensure black background is dark in dark theme */
+}
+
+/* Dark Theme Overrides for Pricing Tab */
+body.dark-theme .pricing-tab li button {
+  background-color: var(--secondary-bg-color); /* Darker background for tab buttons */
+  color: var(--main-text-color); /* White text for tab buttons */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .pricing-tab li button.active {
+  background-color: var(--tekprof-primary-color); /* Primary color for active tab */
+  color: white; /* White text for active tab */
+  border-color: var(--tekprof-primary-color); /* Primary color for active tab border */
+}
+
 /* Dark Theme Overrides for Consultation Component */
 body.dark-theme .service-get-consultations-wrap {
   background-color: var(--main-bg-color); /* Dark background for consultation wrap */
