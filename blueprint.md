@@ -325,5 +325,23 @@ This document tracks all significant changes, progress, and decisions made durin
   - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.pricing-tab li button` within `body.dark-theme`.
   - Added CSS rules to set `background-color: var(--tekprof-primary-color);`, `color: white;`, and `border-color: var(--tekprof-primary-color);` for `.pricing-tab li button.active` within `body.dark-theme`.
 
+## Blog Page Dark Theme Adaptation (August 10, 2025)
+
+**Objective:** Ensure various sections and components on the Blog page (`app/blog/page.js`) are dark theme compatible, including background and text colors.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.blog-standard-item` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.blog-standard-item .blog-meta-two li`, `.blog-standard-item .blog-meta-two li a`, `.blog-standard-item h3 a`, and `.blog-standard-item p` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.blog-sidebar .widget` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--heading-color);` for `.blog-sidebar .widget .widget-title` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.blog-sidebar .widget-search form .form-control` within `body.dark-theme`, and `color: rgba(255, 255, 255, 0.7);` for its `::placeholder`.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.blog-sidebar .widget-search form .searchbutton` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.blog-sidebar .widget-category ul li a` and `.blog-sidebar .widget-category ul li span` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.blog-sidebar .widget-news ul li .content h5 a` and `.blog-sidebar .widget-news ul li .content .date` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.blog-sidebar .widget-tags .tag-clouds a` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.blog-sidebar .widget-cta` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.blog-sidebar .widget-cta h3` within `body.dark-theme`.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

@@ -563,9 +563,20 @@ body.dark-theme .pricing-tab li button {
 }
 
 body.dark-theme .pricing-tab li button.active {
-  background-color: var(--tekprof-primary-color); /* Primary color for active tab */
-  color: white; /* White text for active tab */
   border-color: var(--tekprof-primary-color); /* Primary color for active tab border */
+}
+
+/* Dark Theme Overrides for Blog Standard Item */
+body.dark-theme .blog-standard-item {
+  background-color: var(--main-bg-color); /* Dark background for blog standard item */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .blog-standard-item .blog-meta-two li,
+body.dark-theme .blog-standard-item .blog-meta-two li a,
+body.dark-theme .blog-standard-item h3 a,
+body.dark-theme .blog-standard-item p {
+  color: var(--main-text-color); /* White text for blog standard item content */
 }
 
 /* Dark Theme Overrides for Consultation Component */
@@ -606,6 +617,54 @@ body.dark-theme .get-consultations-form select {
 }
 
 body.dark-theme .get-consultations-form select option {
-  background-color: var(--secondary-bg-color); /* Darker background for select options */
   color: var(--main-text-color); /* White text for select options */
+}
+
+/* Dark Theme Overrides for Blog Sidebar Widgets */
+body.dark-theme .blog-sidebar .widget {
+  background-color: var(--main-bg-color); /* Dark background for widgets */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .blog-sidebar .widget .widget-title {
+  color: var(--heading-color); /* White text for widget titles */
+}
+
+body.dark-theme .blog-sidebar .widget-search form .form-control {
+  background-color: var(--secondary-bg-color); /* Darker background for search input */
+  color: var(--main-text-color); /* White text for search input */
+  border-color: var(--global-border-color); /* Adapt border color for search input */
+}
+
+body.dark-theme .blog-sidebar .widget-search form .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
+}
+
+body.dark-theme .blog-sidebar .widget-search form .searchbutton {
+  color: var(--main-text-color); /* White color for search button icon */
+}
+
+body.dark-theme .blog-sidebar .widget-category ul li a,
+body.dark-theme .blog-sidebar .widget-category ul li span {
+  color: var(--main-text-color); /* White text for category links and counts */
+}
+
+body.dark-theme .blog-sidebar .widget-news ul li .content h5 a,
+body.dark-theme .blog-sidebar .widget-news ul li .content .date {
+  color: var(--main-text-color); /* White text for recent post titles and dates */
+}
+
+body.dark-theme .blog-sidebar .widget-tags .tag-clouds a {
+  background-color: var(--secondary-bg-color); /* Darker background for tags */
+  color: var(--main-text-color); /* White text for tags */
+  border-color: var(--global-border-color); /* Adapt border color for tags */
+}
+
+body.dark-theme .blog-sidebar .widget-cta {
+  background-color: var(--main-bg-color); /* Dark background for CTA widget */
+  border-color: var(--global-border-color); /* Adapt border color for CTA widget */
+}
+
+body.dark-theme .blog-sidebar .widget-cta h3 {
+  color: var(--main-text-color); /* White text for CTA widget title */
 }
