@@ -6,7 +6,7 @@ import Slider from "react-slick";
 
 const WorkingProcess = () => {
   return (
-    <section className="working-process-area pt-100 pb-100 rpb-70 rel z-1 bg-[#111] text-white">
+    <section className="working-process-area pt-100 pb-100 rpb-70 rel z-1 text-white">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-6 col-lg-8">
@@ -135,9 +135,9 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
   };
 
   return (
-    <section className="why-choose-us-area pb-100 rpb-70 rel z-1 text-white bg-[#111]" id="work-process">
+    <section className="why-choose-us-area pb-100 rpb-70 rel z-1 text-white" id="work-process">
       <div
-        className={`features-bg pt-130 rpt-100 pb-120 rpb-90 bg-[#111] ${containerClass}`}
+        className={`features-bg pt-130 rpt-100 pb-120 rpb-90 ${containerClass}`}
       >
         <div className="row justify-content-center">
           <div className="col-xl-7 col-lg-9">
