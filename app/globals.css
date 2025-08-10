@@ -89,7 +89,6 @@
 .slide-content h1 {
   font-weight: 600;
 }
-
 .price-ranger {
   width: 100%;
 }
@@ -241,4 +240,51 @@ body.dark-theme .why-choose-us-area .feature-item-three h4 {
 
 body.dark-theme .why-choose-us-area .feature-item-three p {
   color: var(--main-text-color); /* White text for feature descriptions */
+}
+
+/* Dark Theme Overrides for Service Component */
+body.dark-theme .services-wrap.bgc-gray {
+  background-color: var(--main-bg-color); /* Dark background for service wrap */
+}
+
+body.dark-theme .service-area .section-title h2 {
+  color: var(--heading-color); /* White text for section title */
+}
+
+body.dark-theme .accordion.service-accordion .accordion-item {
+  background-color: var(--main-bg-color); /* Dark background for accordion items */
+  border-color: var(--global-border-color); /* Adapt borders */
+}
+
+body.dark-theme .accordion.service-accordion .accordion-header .accordion-button {
+  background-color: var(--main-bg-color); /* Dark background for accordion buttons */
+  color: var(--main-text-color); /* White text for accordion button text */
+  border-color: var(--global-border-color); /* Adapt borders */
+}
+
+body.dark-theme .accordion.service-accordion .accordion-header .accordion-button .step,
+body.dark-theme .accordion.service-accordion .accordion-header .accordion-button .title {
+  color: var(--main-text-color); /* White text for step and title */
+}
+
+body.dark-theme .accordion.service-accordion .accordion-header .accordion-button .icon i {
+  color: var(--main-text-color); /* White color for toggle icons */
+}
+
+body.dark-theme .accordion.service-accordion .accordion-body .content ul li {
+  color: var(--main-text-color); /* White text for service list items */
+}
+
+/* Dark Theme Overrides for Mobile Menu/Sidebar */
+body.dark-theme .hidden-bar {
+  background-color: var(--main-bg-color); /* Dark background for mobile menu */
+}
+
+body.dark-theme .hidden-bar .inner-box,
+body.dark-theme .hidden-bar .inner-box * {
+  color: var(--main-text-color); /* White text for all elements inside mobile menu */
+}
+
+body.dark-theme .hidden-bar .cross-icon .fa-times {
+  color: var(--main-text-color); /* White color for the close icon */
 }

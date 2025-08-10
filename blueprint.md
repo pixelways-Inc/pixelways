@@ -145,7 +145,7 @@ This document tracks all significant changes, progress, and decisions made durin
 **Objective:** Improve user experience by implementing real-time cost calculation in the Website Cost Calculator.
 
 **Summary of Changes:**
-- **`components/WebsiteCostCalculator.js`:
+- **`components/WebsiteCostCalculator.js`:**
   - Modified `onChange` handlers for "Number of Pages", "Design Type", and "Features" to trigger `calculateCost()` immediately.
   - Removed the explicit "Calculate" button as it is no longer needed.
 
@@ -160,12 +160,12 @@ This document tracks all significant changes, progress, and decisions made durin
 **Objective:** Implement a site-wide dark theme, specifically using the dark theme characteristics observed in the footer.
 
 **Summary of Changes:**
-- **`public/assets/css/style.css`:
+- **`public/assets/css/style.css`:**
   - Introduced new CSS variables (`--main-bg-color`, `--main-text-color`, `--heading-color`, `--secondary-bg-color`, `--global-border-color`) for better theme management.
   - Defined default (light) theme values for these variables.
   - Defined dark theme values for these variables within a `body.dark-theme` selector.
   - Updated existing CSS rules (e.g., for `body`, `h1-h6`, `.list-style-two li`, `.pagination li a`) to use these new theme variables.
-- **`layout/TekprofLayout.js`:
+- **`layout/TekprofLayout.js`:**
   - Added `document.body.classList.add('dark-theme');` within the `useEffect` hook to apply the dark theme class globally to the `<body>` element.
 
 ## Dark Theme Text Color Adjustment (August 9, 2025)
@@ -173,7 +173,7 @@ This document tracks all significant changes, progress, and decisions made durin
 **Objective:** Ensure better visibility of text against the dark theme background.
 
 **Summary of Changes:**
-- **`public/assets/css/style.css`:
+- **`public/assets/css/style.css`:**
   - Modified the `--main-text-color` variable within the `body.dark-theme` block from `#F3F6F9` (light gray) to `white` for improved contrast and readability.
 
 ## Header Dark Theme Adaptation (August 9, 2025)
@@ -181,7 +181,7 @@ This document tracks all significant changes, progress, and decisions made durin
 **Objective:** Adapt the main header to the dark theme, including text color, background, and menu icon.
 
 **Summary of Changes:**
-- **`app/globals.css`:
+- **`app/globals.css`:**
   - Added CSS rules to override header styles when `body.dark-theme` is active:
     - `.main-header .header-top-wrap`: `background-color: var(--secondary-bg-color);`
     - `.main-header .header-top-wrap ul li`, `ul li a`, `.social-style-one span`, `a`: `color: var(--main-text-color);`
@@ -196,12 +196,21 @@ This document tracks all significant changes, progress, and decisions made durin
 **Objective:** Adapt the Testimonial component to the dark theme for consistent styling.
 
 **Summary of Changes:**
-- **`app/globals.css`:
+- **`app/globals.css`:**
   - Added CSS rules to override testimonial component styles when `body.dark-theme` is active:
     - `.testimonial-item .testi-text`: `color: var(--main-text-color);`
     - `.testimonial-item .testi-author b`, `.testimonial-item .testi-author span`: `color: var(--main-text-color);`
     - `.slick-arrow`: `color: var(--main-text-color); border-color: var(--global-border-color);`
     - `.slick-arrow:focus`, `.slick-arrow:hover`: `color: var(--tekprof-primary-color);`
+
+## Mobile Menu and Header Icon Dark Theme Adaptation (August 10, 2025)
+
+**Objective:** Implement dark theme for mobile menu background, text, and header menu/sidebar toggler icons.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added CSS rules to apply dark background (`--main-bg-color`) and white text (`--main-text-color`) to the mobile menu/sidebar (`.hidden-bar`).
+  - Added CSS rules to set the color of the close icon (`.hidden-bar .cross-icon .fa-times`) to white (`--main-text-color`).
 
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
