@@ -1036,7 +1036,7 @@ body.dark-theme .accordion-item-four.style-two .accordion-button:hover .icon {
 }
 
 /* Counter Dark Theme Styles */
-.achievement-counter-dark {
+.achievement-counter.achievement-counter-dark {
   background-color: #0B0C0C !important; /* Dark background */
   color: white !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -1045,51 +1045,51 @@ body.dark-theme .accordion-item-four.style-two .accordion-button:hover .icon {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
 }
 
-.achievement-counter-dark .counter-item {
+.achievement-counter.achievement-counter-dark .counter-item {
   color: white !important;
 }
 
-.achievement-counter-dark .counter-text-wrap {
+.achievement-counter.achievement-counter-dark .counter-text-wrap {
   color: white !important;
 }
 
-.achievement-counter-dark .count-text {
+.achievement-counter.achievement-counter-dark .count-text {
   color: white !important;
   font-weight: 700 !important;
 }
 
-.achievement-counter-dark .after {
+.achievement-counter.achievement-counter-dark .after {
   color: var(--tekprof-primary-color) !important;
   font-weight: 700 !important;
 }
 
-.achievement-counter-dark .counter-title {
+.achievement-counter.achievement-counter-dark .counter-title {
   color: #e0e0e0 !important;
   font-weight: 500 !important;
 }
 
 /* Dark theme specific styles */
-body.dark-theme .achievement-counter-dark {
+body.dark-theme .achievement-counter.achievement-counter-dark {
   background-color: #021433 !important; /* Dark blue background in dark theme */
   border-color: rgba(255, 255, 255, 0.15) !important;
 }
 
-body.dark-theme .achievement-counter-dark .counter-item {
+body.dark-theme .achievement-counter.achievement-counter-dark .counter-item {
   color: white !important;
 }
 
-body.dark-theme .achievement-counter-dark .counter-text-wrap {
+body.dark-theme .achievement-counter.achievement-counter-dark .counter-text-wrap {
   color: white !important;
 }
 
-body.dark-theme .achievement-counter-dark .count-text {
+body.dark-theme .achievement-counter.achievement-counter-dark .count-text {
   color: white !important;
 }
 
-body.dark-theme .achievement-counter-dark .after {
+body.dark-theme .achievement-counter.achievement-counter-dark .after {
   color: var(--tekprof-primary-color) !important;
 }
 
-body.dark-theme .achievement-counter-dark .counter-title {
+body.dark-theme .achievement-counter.achievement-counter-dark .counter-title {
   color: #f0f0f0 !important;
 }
