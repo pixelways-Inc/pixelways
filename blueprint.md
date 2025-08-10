@@ -57,7 +57,7 @@ This document tracks all significant changes, progress, and decisions made durin
 - **`components/FAQs.js`:**
   - Updated the `faqs` array within the `FAQs2` component with relevant questions and detailed answers based on Pixelways Solution's services.
 
-- **`components/Consultation.js`:**
+- **`components/Consultation.2js`:**
   - Updated main title and sub-title.
   - Updated contact form title and button text.
   - Updated subject dropdown options with more specific service categories.
@@ -227,6 +227,14 @@ This document tracks all significant changes, progress, and decisions made durin
 **Summary of Changes:**
 - **`app/globals.css`:**
   - Modified CSS rule to apply `color: var(--main-text-color);` directly to `.testimonial-item .testi-author` within `body.dark-theme`.
+
+## Testimonial Card Background on About Page (August 10, 2025)
+
+**Objective:** Ensure testimonial card on about page is dark-themed.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added CSS rule to override `bgc-gray` to use `var(--main-bg-color)` when `body.dark-theme` is active.
 
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

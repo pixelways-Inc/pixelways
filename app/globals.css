@@ -208,6 +208,11 @@ body.dark-theme .testimonial-item .testi-author {
   color: var(--main-text-color); /* White text for author name and designation */
 }
 
+/* Dark Theme Overrides for bgc-gray */
+body.dark-theme .bgc-gray {
+  background-color: var(--main-bg-color); /* Ensure gray background is dark in dark theme */
+}
+
 body.dark-theme .slick-arrow {
   color: var(--main-text-color); /* White color for slick arrows */
   border-color: var(--global-border-color); /* Lighter border for dark theme */
