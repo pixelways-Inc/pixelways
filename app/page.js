@@ -355,6 +355,14 @@ const page = () => {
             <div className="col-lg-6">
               <div
                 className="achievement-counter achievement-counter-dark"
+                style={{
+                  backgroundColor: '#0B0C0C !important',
+                  color: 'white !important',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: '12px',
+                  padding: '30px',
+                  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
+                }}
                 data-aos="fade-right"
                 data-aos-duration={1500}
                 data-aos-offset={50}
@@ -449,6 +457,28 @@ const page = () => {
             </div>
           </div>
         </div>
+        <style jsx>{`
+          .achievement-counter-dark {
+            background-color: #0B0C0C !important;
+            background: #0B0C0C !important;
+            color: white !important;
+          }
+          .achievement-counter-dark .counter-item {
+            color: white !important;
+          }
+          .achievement-counter-dark .counter-text-wrap {
+            color: white !important;
+          }
+          .achievement-counter-dark .count-text {
+            color: white !important;
+          }
+          .achievement-counter-dark .after {
+            color: #FC5546 !important;
+          }
+          .achievement-counter-dark .counter-title {
+            color: #e0e0e0 !important;
+          }
+        `}</style>
       </section>
       {/* Achievement Area end */}
       {/* Team Area start */}
