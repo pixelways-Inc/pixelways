@@ -220,5 +220,13 @@ This document tracks all significant changes, progress, and decisions made durin
 - **`app/globals.css`:**
   - Added CSS rule to set `color: var(--main-text-color);` for `.hero-content p` within `body.dark-theme`.
 
+## Testimonial Component Client Name Color Adjustment (August 10, 2025)
+
+**Objective:** Ensure client name and profession in testimonial component are white in dark theme.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Modified CSS rule to apply `color: var(--main-text-color);` directly to `.testimonial-item .testi-author` within `body.dark-theme`.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

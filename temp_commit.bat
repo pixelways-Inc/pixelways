@@ -1,1 +1,1 @@
-git commit -m "FEAT: Implement dark theme for mobile menu and header icons"
+git commit -m "FEAT: Adjust homepage hero section text color for dark theme"

@@ -204,8 +204,7 @@ body.dark-theme .testimonial-item .testi-text {
   color: var(--main-text-color); /* White text for quotes */
 }
 
-body.dark-theme .testimonial-item .testi-author b,
-body.dark-theme .testimonial-item .testi-author span {
+body.dark-theme .testimonial-item .testi-author {
   color: var(--main-text-color); /* White text for author name and designation */
 }
 
