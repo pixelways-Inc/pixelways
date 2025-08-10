@@ -384,6 +384,101 @@ body.dark-theme .hidden-bar .cross-icon .fa-times {
   color: var(--main-text-color); /* White color for the close icon */
 }
 
+/* Dark Theme Overrides for Mobile Menu Dropdown Container */
+body.dark-theme .main-menu .navbar-collapse {
+  background-color: var(--main-bg-color) !important; /* Dark background for mobile dropdown container */
+  border-color: var(--global-border-color) !important; /* Adapt border color */
+}
+
+body.dark-theme .main-menu .navbar-collapse > ul {
+  background-color: var(--main-bg-color) !important; /* Dark background for main menu list */
+}
+
+body.dark-theme .main-menu .navbar-collapse .mobile-menu {
+  background-color: var(--main-bg-color) !important; /* Dark background for mobile menu */
+}
+
+body.dark-theme .main-menu .navbar-collapse .mobile-menu li ul {
+  background-color: var(--main-bg-color) !important; /* Dark background for mobile menu dropdowns */
+  border-color: var(--global-border-color) !important; /* Adapt border color */
+}
+
+body.dark-theme .main-menu .navbar-collapse li ul {
+  background-color: var(--main-bg-color) !important; /* Dark background for all dropdown lists */
+  border-color: var(--global-border-color) !important; /* Adapt border color */
+}
+
+body.dark-theme .main-menu .navbar-collapse li a {
+  color: var(--main-text-color) !important; /* White text for mobile menu links */
+}
+
+body.dark-theme .main-menu .navbar-collapse li ul li a {
+  color: var(--main-text-color) !important; /* White text for dropdown menu links */
+  background-color: transparent !important; /* Transparent background for individual links */
+}
+
+body.dark-theme .main-menu .navbar-collapse li ul li a:hover {
+  background-color: var(--secondary-bg-color) !important; /* Darker background on hover */
+  color: var(--main-text-color) !important; /* Keep white text on hover */
+}
+
+/* Dark Theme Overrides for Mobile Menu Dropdown Buttons */
+body.dark-theme .main-menu .navbar-collapse li.dropdown .dropdown-btn {
+  color: var(--main-text-color) !important; /* White color for dropdown toggle buttons */
+  background-color: transparent !important; /* Transparent background */
+  border-color: var(--global-border-color) !important; /* Adapt border color */
+}
+
+body.dark-theme .main-menu .navbar-collapse li.dropdown .dropdown-btn:hover {
+  background-color: var(--secondary-bg-color) !important; /* Darker background on hover */
+  color: var(--main-text-color) !important; /* Keep white text on hover */
+}
+
+body.dark-theme .main-menu .navbar-collapse li.dropdown .dropdown-btn::before,
+body.dark-theme .main-menu .navbar-collapse li.dropdown .dropdown-btn::after {
+  background-color: var(--main-text-color) !important; /* White color for dropdown arrow pseudo-elements */
+}
+
+/* Dark Theme Overrides for Mobile Menu Current/Active Items */
+body.dark-theme .main-menu .navbar-collapse li.current > a,
+body.dark-theme .main-menu .navbar-collapse li.current-menu-item > a {
+  color: var(--tekprof-primary-color) !important; /* Primary color for active menu items */
+  background-color: var(--secondary-bg-color) !important; /* Darker background for active items */
+}
+
+/* Dark Theme Overrides for Navbar Toggler (Mobile Menu Button) */
+body.dark-theme .navbar-toggler {
+  border-color: var(--global-border-color) !important; /* Adapt border color */
+}
+
+body.dark-theme .navbar-toggler .navbar-toggler-icon {
+  background-color: var(--main-text-color) !important; /* White color for toggler icon */
+}
+
+body.dark-theme .navbar-toggler-icon {
+  background-image: none !important; /* Remove default background image */
+  background-color: var(--main-text-color) !important; /* White background for toggler lines */
+}
+
+body.dark-theme .navbar-toggler-icon::before,
+body.dark-theme .navbar-toggler-icon::after {
+  background-color: var(--main-text-color) !important; /* White color for pseudo-element lines */
+}
+
+/* Dark Theme Overrides for Bootstrap Mobile Menu */
+body.dark-theme .navbar-nav {
+  background-color: var(--main-bg-color) !important; /* Dark background for navbar nav */
+}
+
+body.dark-theme .navbar-nav .nav-link {
+  color: var(--main-text-color) !important; /* White text for nav links */
+}
+
+body.dark-theme .navbar-nav .nav-link:hover {
+  color: var(--tekprof-primary-color) !important; /* Primary color on hover */
+  background-color: var(--secondary-bg-color) !important; /* Darker background on hover */
+}
+
 /* Dark Theme Overrides for Homepage Hero Section Text */
 body.dark-theme .hero-content p {
   color: var(--main-text-color); /* White text for hero section paragraph */
