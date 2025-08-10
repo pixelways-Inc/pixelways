@@ -1,1 +1,1 @@
-git commit -m "FIX: Testimonial client name color in dark theme"
+git commit -m "FIX: Testimonial card background on about page in dark theme"

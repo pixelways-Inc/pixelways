@@ -213,6 +213,16 @@ body.dark-theme .bgc-gray {
   background-color: var(--main-bg-color); /* Ensure gray background is dark in dark theme */
 }
 
+/* Dark Theme Overrides for Team Card */
+body.dark-theme .team-item {
+  background-color: var(--main-bg-color); /* Dark background for team card */
+}
+
+body.dark-theme .team-item .content .name a,
+body.dark-theme .team-item .content .designations {
+  color: var(--main-text-color); /* White text for team member name and designation */
+}
+
 body.dark-theme .slick-arrow {
   color: var(--main-text-color); /* White color for slick arrows */
   border-color: var(--global-border-color); /* Lighter border for dark theme */

@@ -236,5 +236,14 @@ This document tracks all significant changes, progress, and decisions made durin
 - **`app/globals.css`:**
   - Added CSS rule to override `bgc-gray` to use `var(--main-bg-color)` when `body.dark-theme` is active.
 
+## Team Card Dark Theme Adaptation (August 10, 2025)
+
+**Objective:** Ensure team card and its text color respect dark theme.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added CSS rules to set `background-color: var(--main-bg-color);` for `.team-item` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.team-item .content .name a` and `.team-item .content .designations` within `body.dark-theme`.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
