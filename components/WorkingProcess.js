@@ -135,9 +135,9 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
   };
 
   return (
-    <section className="why-choose-us-area pb-100 rpb-70 rel z-1 text-white" id="work-process">
+    <section className="why-choose-us-area pb-100 rpb-70 rel z-1 text-white bg-[#111]" id="work-process">
       <div
-        className={`features-bg pt-130 rpt-100 pb-120 rpb-90 ${containerClass}`}
+        className={`features-bg pt-130 rpt-100 pb-120 rpb-90 bg-[#111] ${containerClass}`}
       >
         <div className="row justify-content-center">
           <div className="col-xl-7 col-lg-9">
@@ -156,19 +156,19 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
         </div>
         <Accordion
           defaultActiveKey="collapseOne"
-          className="accordion working-process text-white"
+          className="accordion working-process text-white bg-[#111]"
           id="working-process"
           data-aos="fade-up"
           data-aos-delay={50}
           data-aos-duration={1500}
           data-aos-offset={50}
         >
-          <div className="accordion-item">
+          <div className="accordion-item bg-[#111] border-gray-700">
             <div className="accordion-header">
               <Accordion.Toggle
                 as={"button"}
                 eventKey="collapseOne"
-                className={`accordion-button text-white ${
+                className={`accordion-button text-white bg-[#111] border-0 ${
                   toggle === 1 ? "" : "collapsed"
                 }`}
                 onClick={() => handleToggle(1)}
@@ -181,7 +181,7 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
               </Accordion.Toggle>
             </div>
             <Accordion.Collapse eventKey="collapseOne">
-              <div className="accordion-body">
+              <div className="accordion-body bg-[#111]">
                 <div className="row gap-120">
                   <div className="col-lg-6">
                     <div className="content rmb-30">
@@ -219,12 +219,12 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
               </div>
             </Accordion.Collapse>
           </div>
-          <div className="accordion-item">
+          <div className="accordion-item bg-[#111] border-gray-700">
             <div className="accordion-header">
               <Accordion.Toggle
                 as={"button"}
                 eventKey="collapseTwo"
-                className={`accordion-button text-white ${
+                className={`accordion-button text-white bg-[#111] border-0 ${
                   toggle === 2 ? "" : "collapsed"
                 }`}
                 onClick={() => handleToggle(2)}
@@ -237,7 +237,7 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
               </Accordion.Toggle>
             </div>
             <Accordion.Collapse eventKey="collapseTwo">
-              <div className="accordion-body">
+              <div className="accordion-body bg-[#111]">
                 <div className="row gap-120">
                   <div className="col-lg-6">
                     <div className="content rmb-30">
@@ -275,12 +275,12 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
               </div>
             </Accordion.Collapse>
           </div>
-          <div className="accordion-item">
+          <div className="accordion-item bg-[#111] border-gray-700">
             <div className="accordion-header">
               <Accordion.Toggle
                 as={"button"}
                 eventKey="collapseThree"
-                className={`accordion-button text-white ${
+                className={`accordion-button text-white bg-[#111] border-0 ${
                   toggle === 3 ? "" : "collapsed"
                 }`}
                 onClick={() => handleToggle(3)}
@@ -293,7 +293,7 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
               </Accordion.Toggle>
             </div>
             <Accordion.Collapse eventKey="collapseThree">
-              <div className="accordion-body">
+              <div className="accordion-body bg-[#111]">
                 <div className="row gap-120">
                   <div className="col-lg-6">
                     <div className="content rmb-30">
@@ -331,12 +331,12 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
               </div>
             </Accordion.Collapse>
           </div>
-          <div className="accordion-item">
+          <div className="accordion-item bg-[#111] border-gray-700">
             <div className="accordion-header">
               <Accordion.Toggle
                 as={"button"}
                 eventKey="collapseFour"
-                className={`accordion-button text-white ${
+                className={`accordion-button text-white bg-[#111] border-0 ${
                   toggle === 4 ? "" : "collapsed"
                 }`}
                 onClick={() => handleToggle(4)}
@@ -351,7 +351,7 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
               </Accordion.Toggle>
             </div>
             <Accordion.Collapse eventKey="collapseFour">
-              <div className="accordion-body">
+              <div className="accordion-body bg-[#111]">
                 <div className="row gap-120">
                   <div className="col-lg-6">
                     <div className="content rmb-30">
