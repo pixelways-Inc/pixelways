@@ -473,6 +473,111 @@ body.dark-theme .blog-item.hover-content .content .inner-content .theme-btn {
   border-color: var(--tekprof-primary-color) !important;
 }
 
+/* Dark Theme Overrides for About Trusted Partners Area */
+body.dark-theme .about-trusted-partners-area {
+  background-color: var(--main-bg-color) !important; /* Dark background for about trusted partners area */
+  color: var(--main-text-color) !important; /* White text */
+  border: 1px solid var(--global-border-color) !important; /* Add border */
+  border-radius: 12px !important; /* Rounded corners */
+  padding: 30px !important; /* Add padding for card-like appearance */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important; /* Add shadow for depth */
+}
+
+body.dark-theme .about-trusted-partners-area h5,
+body.dark-theme .about-trusted-partners-area p {
+  color: var(--main-text-color) !important; /* White text for headings and paragraphs */
+}
+
+body.dark-theme .about-trusted-partners-area img:not(.trusted-clients img) {
+  filter: brightness(0) invert(1) !important; /* Invert logo colors for dark theme */
+}
+
+/* Dark Theme Overrides for Reviews and Logo Section */
+body.dark-theme .about-trusted-partners-area .ratting {
+  color: #ffc107 !important; /* Gold color for rating stars */
+}
+
+body.dark-theme .about-trusted-partners-area .ratting i {
+  color: #ffc107 !important; /* Gold color for individual star icons */
+}
+
+/* Dark Theme Overrides for Client Review Components */
+body.dark-theme .review-section,
+body.dark-theme .client-testimonial-card,
+body.dark-theme .trust-indicator {
+  background-color: var(--main-bg-color) !important; /* Dark background */
+  color: var(--main-text-color) !important; /* White text */
+  border: 1px solid var(--global-border-color) !important; /* Add border */
+}
+
+/* Dark Theme Overrides for Review Text and Numbers */
+body.dark-theme .review-count,
+body.dark-theme .reviews-text,
+body.dark-theme .rating-text {
+  color: var(--main-text-color) !important; /* White text for review counts and text */
+}
+
+/* Dark Theme Overrides for Logo Container */
+body.dark-theme .logo-container,
+body.dark-theme .brand-logo,
+body.dark-theme .platform-logo {
+  background-color: transparent !important; /* Transparent background for logo containers */
+}
+
+/* Dark Theme Overrides for Any Generic Card Containers */
+body.dark-theme .card-container,
+body.dark-theme .info-card,
+body.dark-theme .stats-card {
+  background-color: var(--main-bg-color) !important; /* Dark background for card containers */
+  color: var(--main-text-color) !important; /* White text */
+  border-color: var(--global-border-color) !important; /* Adapt border color */
+}
+
+/* Dark Theme Overrides for All Trust/Review Related Elements */
+body.dark-theme .trust-section,
+body.dark-theme .client-trust-area,
+body.dark-theme .partner-trust-section,
+body.dark-theme .testimonial-trust-wrap {
+  background-color: var(--main-bg-color) !important; /* Dark background */
+  color: var(--main-text-color) !important; /* White text */
+  border: 1px solid var(--global-border-color) !important; /* Add border */
+  border-radius: 12px !important; /* Rounded corners */
+  padding: 20px !important; /* Add padding */
+}
+
+/* Dark Theme Overrides for White Cards and Containers */
+body.dark-theme .white-card,
+body.dark-theme .light-card,
+body.dark-theme .bg-light-card {
+  background-color: var(--main-bg-color) !important; /* Dark background for white cards */
+  color: var(--main-text-color) !important; /* White text */
+  border-color: var(--global-border-color) !important; /* Adapt border color */
+}
+
+/* Dark Theme Overrides for Any Container with White/Light Background */
+body.dark-theme [class*="white"],
+body.dark-theme [class*="light"] {
+  background-color: var(--main-bg-color) !important; /* Dark background for white/light classes */
+  color: var(--main-text-color) !important; /* White text */
+}
+
+/* Exception for text elements to prevent interference */
+body.dark-theme [class*="white"] span,
+body.dark-theme [class*="light"] span,
+body.dark-theme [class*="white"] p,
+body.dark-theme [class*="light"] p {
+  color: var(--main-text-color) !important; /* Ensure text remains white */
+}
+
+/* Dark Theme Overrides for Trustpilot-like Platform Indicators */
+body.dark-theme .platform-indicator,
+body.dark-theme .review-platform-card,
+body.dark-theme .trust-platform {
+  background-color: var(--main-bg-color) !important; /* Dark background */
+  color: var(--main-text-color) !important; /* White text */
+  border: 1px solid var(--global-border-color) !important; /* Add border */
+}
+
 /* Dark Theme Overrides for Trusted Clients Wrap */
 body.dark-theme .trusted-clients-wrap {
   background-color: var(--main-bg-color) !important; /* Dark background for trusted clients wrap */
