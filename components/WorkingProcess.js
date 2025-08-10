@@ -135,7 +135,7 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
   };
 
   return (
-    <section className="working-process-area rel z-1 bg-[#111] text-white" id="work-process">
+    <section className="why-choose-us-area pb-100 rpb-70 rel z-1 text-white" id="work-process">
       <div
         className={`features-bg pt-130 rpt-100 pb-120 rpb-90 ${containerClass}`}
       >
@@ -156,7 +156,7 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
         </div>
         <Accordion
           defaultActiveKey="collapseOne"
-          className="accordion working-process"
+          className="accordion working-process text-white"
           id="working-process"
           data-aos="fade-up"
           data-aos-delay={50}
@@ -168,14 +168,14 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
               <Accordion.Toggle
                 as={"button"}
                 eventKey="collapseOne"
-                className={`accordion-button ${
+                className={`accordion-button text-white ${
                   toggle === 1 ? "" : "collapsed"
                 }`}
                 onClick={() => handleToggle(1)}
               >
-                <span className="step">Step 01</span>
-                <span className="title">Discovery &amp; Assessment</span>
-                <span className="icon">
+                <span className="step text-[#00C4FF]">Step 01</span>
+                <span className="title text-white">Discovery &amp; Assessment</span>
+                <span className="icon text-white">
                   <i className="far fa-arrow-right" />
                 </span>
               </Accordion.Toggle>
@@ -224,14 +224,14 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
               <Accordion.Toggle
                 as={"button"}
                 eventKey="collapseTwo"
-                className={`accordion-button ${
+                className={`accordion-button text-white ${
                   toggle === 2 ? "" : "collapsed"
                 }`}
                 onClick={() => handleToggle(2)}
               >
-                <span className="step">Step 02</span>
-                <span className="title">Strategy &amp; Planning</span>
-                <span className="icon">
+                <span className="step text-[#00C4FF]">Step 02</span>
+                <span className="title text-white">Strategy &amp; Planning</span>
+                <span className="icon text-white">
                   <i className="far fa-arrow-right" />
                 </span>
               </Accordion.Toggle>
@@ -280,14 +280,14 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
               <Accordion.Toggle
                 as={"button"}
                 eventKey="collapseThree"
-                className={`accordion-button ${
+                className={`accordion-button text-white ${
                   toggle === 3 ? "" : "collapsed"
                 }`}
                 onClick={() => handleToggle(3)}
               >
-                <span className="step">Step 03</span>
-                <span className="title">Implementation &amp; Integration</span>
-                <span className="icon">
+                <span className="step text-[#00C4FF]">Step 03</span>
+                <span className="title text-white">Implementation &amp; Integration</span>
+                <span className="icon text-white">
                   <i className="far fa-arrow-right" />
                 </span>
               </Accordion.Toggle>
@@ -336,16 +336,16 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
               <Accordion.Toggle
                 as={"button"}
                 eventKey="collapseFour"
-                className={`accordion-button ${
+                className={`accordion-button text-white ${
                   toggle === 4 ? "" : "collapsed"
                 }`}
                 onClick={() => handleToggle(4)}
               >
-                <span className="step">Step 04</span>
-                <span className="title">
+                <span className="step text-[#00C4FF]">Step 04</span>
+                <span className="title text-white">
                   Ongoing Support &amp; Optimization
                 </span>
-                <span className="icon">
+                <span className="icon text-white">
                   <i className="far fa-arrow-right" />
                 </span>
               </Accordion.Toggle>
