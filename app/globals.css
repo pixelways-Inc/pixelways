@@ -331,3 +331,67 @@ body.dark-theme .main-menu .navbar-header .navbar-toggle .icon-bar {
 body.dark-theme .menu-sidebar button {
   color: var(--main-text-color); /* White color for sidebar toggler */
 }
+
+/* Dark Theme Overrides for bgc-blue */
+body.dark-theme .bgc-blue {
+  background-color: var(--main-bg-color); /* Ensure blue background is dark in dark theme */
+}
+
+/* Dark Theme Overrides for Achievement Counter */
+body.dark-theme .achievement-counter.bg-white {
+  background-color: var(--main-bg-color); /* Dark background for achievement counter */
+  color: var(--main-text-color); /* White text for achievement counter */
+}
+
+body.dark-theme .achievement-counter.bg-white .counter-item .counter-title,
+body.dark-theme .achievement-counter.bg-white .counter-item .counter-text-wrap span {
+  color: var(--main-text-color); /* Ensure all text within counter is white */
+}
+
+/* Dark Theme Overrides for Feature Item */
+body.dark-theme .feature-item {
+  background-color: var(--main-bg-color); /* Dark background for feature item */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .feature-item .content h4 a,
+body.dark-theme .feature-item .content p,
+body.dark-theme .feature-item .content .read-more {
+  color: var(--main-text-color); /* White text for feature item content */
+}
+
+/* Dark Theme Overrides for Feature Item Two */
+body.dark-theme .feature-item-two {
+  background-color: var(--main-bg-color); /* Dark background for feature item two */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .feature-item-two .icon {
+  color: var(--main-text-color); /* White color for icon */
+}
+
+body.dark-theme .feature-item-two h5 a,
+body.dark-theme .feature-item-two p {
+  color: var(--main-text-color); /* White text for feature item two content */
+}
+
+body.dark-theme .feature-item.style-two .content .tags a {
+  color: var(--main-text-color); /* White text for tags in feature item style two */
+  background-color: var(--secondary-bg-color); /* Dark background for tags */
+}
+
+body.dark-theme .feature-item.style-two .content h3 a {
+  color: var(--main-text-color); /* White text for h3 in feature item style two */
+}
+
+/* Dark Theme Overrides for Blog Item */
+body.dark-theme .blog-item {
+  background-color: var(--main-bg-color); /* Dark background for blog item */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .blog-item .content .blog-meta li a,
+body.dark-theme .blog-item .content h4 a,
+body.dark-theme .blog-item .content p {
+  color: var(--main-text-color); /* White text for blog item content */
+}

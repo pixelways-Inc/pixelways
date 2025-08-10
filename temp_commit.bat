@@ -1,1 +1,1 @@
-git commit -m "FIX: Team card dark theme adaptation"
+git commit -m "FEAT: Adjust menu and sidebar toggler colors for dark theme"

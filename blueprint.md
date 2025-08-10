@@ -254,5 +254,17 @@ This document tracks all significant changes, progress, and decisions made durin
   - Added CSS rules to set `background-color: var(--main-text-color);` for `.main-menu .navbar-header .navbar-toggle .icon-bar` within `body.dark-theme` to make the menu toggler bars white.
   - Added CSS rules to set `color: var(--main-text-color);` for `.menu-sidebar button` within `body.dark-theme` to make the sidebar toggler white.
 
+## Homepage Sections Dark Theme Adaptation (August 10, 2025)
+
+**Objective:** Ensure various sections and components on the homepage (`app/page.js`) are dark theme compatible, including background and text colors.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added CSS rules to set `background-color: var(--main-bg-color);` for `.bgc-blue` within `body.dark-theme` to ensure blue backgrounds adapt to the dark theme.
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `color: var(--main-text-color);` for `.achievement-counter.bg-white` within `body.dark-theme` to adapt the achievement counter background and text.
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.feature-item` within `body.dark-theme`, and `color: var(--main-text-color);` for its content (`h4 a`, `p`, `read-more`).
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.feature-item-two` within `body.dark-theme`, and `color: var(--main-text-color);` for its icon, `h5 a`, `p`, `tags a`, and `h3 a`. Also set `background-color: var(--secondary-bg-color);` for `.feature-item.style-two .content .tags a`.
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.blog-item` within `body.dark-theme`, and `color: var(--main-text-color);` for its content (`blog-meta li a`, `h4 a`, `p`).
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
