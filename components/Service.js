@@ -17,33 +17,32 @@ const Service = ({ style }) => {
    */
   useEffect(() => {
     
+    // Get the full query string, e.g. "?service=abc&mode=dark"
+    const queryString = window.location.search;
+
+    // Create a URLSearchParams object to easily work with params
+    const params = new URLSearchParams(queryString);
+
+    // Get a specific parameter, e.g. "service"
+    const service = params.get("service");
     
-    return()=>{
-      // Get the full query string, e.g. "?service=abc&mode=dark"
-      const queryString = window.location.search;
-
-      // Create a URLSearchParams object to easily work with params
-      const params = new URLSearchParams(queryString);
-
-      // Get a specific parameter, e.g. "service"
-      const service = params.get("service");
-
-      if(service){
-        const item = document.getElementById('accordion-'+service);
-        if(item){
-          item.click();
-           const yOffset = -300; // height of your header
-          const y = item.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-          return;
-        }
-      }
-
-      const item = document.getElementById('accordion-0');
+    if(service){
+      const item = document.getElementById('accordion-'+service);
       if(item){
         item.click();
+         const yOffset = -300; // height of your header
+        const y = item.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        return;
       }
-    
+    }
+
+    const item = document.getElementById('accordion-0');
+    if(item){
+      item.click();
+    }
+  
+    return()=>{
     }
     
   }, []); // Empty array means "run once on mount"
