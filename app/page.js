@@ -59,7 +59,7 @@ const page = () => {
       {/* Hero Section End */}
       {/* Features Area start */}
          <section className="why-choose-us-area pb-100 rpb-70 rel z-1">
-        <div className="container">
+        <div className="container pt-130 rpt-100 pb-100 rpb-70">
           <div className="row align-items-center">
             <div className="col-lg-5">
               <div

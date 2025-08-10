@@ -99,6 +99,12 @@
   margin-top: 10px;
 }
 
+.services-content{
+  background-color: #000 !important;
+}
+.services-content:hover{
+  background-color: var(--tekprof-primary-color) !important 
+}
 .slider-container input[type="range"] {
   position: absolute;
   width: 100%;
