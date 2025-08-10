@@ -3795,7 +3795,7 @@ h6, .h6 {
     cursor: pointer;
     width: 25px;
     aspect-ratio: 1;
-    --c: conic-gradient(from -90deg, var(--tekprof-base-color) 90deg, #0000 0);
+    --c: conic-gradient(from -90deg, #000000 90deg, #0000 0);
     background: var(--c), var(--c);
     background-size: 40% 40%; }
     .menu-sidebar > button:hover {
@@ -3806,7 +3806,7 @@ h6, .h6 {
 .main-header.style-three {
   background-color: #18186C; }
   .main-header.style-three .menu-sidebar > button {
-    --c: conic-gradient(from -90deg, var(--main-text-color) 90deg, #0000 0); }
+    --c: conic-gradient(from -90deg, #ffffff 90deg, #0000 0); }
   @media only screen and (min-width: 992px) {
     .main-header.style-three .main-menu .navbar-collapse > ul > li > a {
       color: rgba(255, 255, 255, 0.7); }
