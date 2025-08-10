@@ -1,51 +1,6 @@
 import Link from "next/link";
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState } from "react";
 import { Accordion } from "react-bootstrap";
-
-// Theme Toggle Hook
-const useThemeToggle = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
-
-  useEffect(() => {
-    // Apply or remove dark theme based on state
-    if (isDarkTheme) {
-      document.body.classList.add('dark-theme');
-    } else {
-      document.body.classList.remove('dark-theme');
-    }
-  }, [isDarkTheme]);
-
-  const toggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
-  };
-
-  return { isDarkTheme, toggleTheme };
-};
-
-// Theme Toggle Button Component
-const ThemeToggleButton = ({ isDarkTheme, toggleTheme, className = "ms-3" }) => (
-  <button
-    onClick={toggleTheme}
-    className={`theme-toggle-btn ${className}`}
-    style={{
-      backgroundColor: 'transparent',
-      border: '1px solid ' + (isDarkTheme ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)'),
-      borderRadius: '50%',
-      width: '40px',
-      height: '40px',
-      cursor: 'pointer',
-      fontSize: '16px',
-      transition: 'all 0.3s ease',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: isDarkTheme ? '#ffffff' : '#020626'
-    }}
-    title={isDarkTheme ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
-  >
-    {isDarkTheme ? '☀️' : '🌙'}
-  </button>
-);
 
 const Header = ({ header, singleMenu }) => {
   switch (header) {
@@ -69,8 +24,6 @@ const Header = ({ header, singleMenu }) => {
 export default Header;
 
 const Header1 = ({ singleMenu }) => {
-  const { isDarkTheme, toggleTheme } = useThemeToggle();
-
   return (
     <header className="main-header">
       <div className="header-top-wrap rel">
@@ -210,8 +163,6 @@ const Header1 = ({ singleMenu }) => {
               <Link href="contact" className="theme-btn btn-small ms-lg-4">
                 Get In Touch
               </Link>
-              {/* Theme Toggle Button */}
-              <ThemeToggleButton isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
               {/* menu sidbar */}
               <div className="menu-sidebar ms-4">
                 <button className="bg-transparent" />
@@ -226,8 +177,6 @@ const Header1 = ({ singleMenu }) => {
 };
 
 const Header2 = ({ singleMenu }) => {
-  const { isDarkTheme, toggleTheme } = useThemeToggle();
-
   return (
     <header className="main-header">
       <div className="header-top-wrap rel for-border-none">
@@ -368,8 +317,6 @@ const Header2 = ({ singleMenu }) => {
               <Link href="contact" className="theme-btn btn-small ms-lg-4">
                 Get In Touch
               </Link>
-              {/* Theme Toggle Button */}
-              <ThemeToggleButton isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
               {/* menu sidbar */}
               <div className="menu-sidebar ms-4">
                 <button className="bg-transparent" />
@@ -384,8 +331,6 @@ const Header2 = ({ singleMenu }) => {
 };
 
 const Header3 = ({ singleMenu }) => {
-  const { isDarkTheme, toggleTheme } = useThemeToggle();
-
   return (
     <header className="main-header style-three">
       {/*Header-Upper*/}
@@ -482,8 +427,6 @@ const Header3 = ({ singleMenu }) => {
               <Link href="contact" className="theme-btn btn-small ms-lg-4">
                 Get In Touch
               </Link>
-              {/* Theme Toggle Button */}
-              <ThemeToggleButton isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
               {/* menu sidbar */}
               <div className="menu-sidebar ms-4">
                 <button className="bg-transparent" />
@@ -498,8 +441,6 @@ const Header3 = ({ singleMenu }) => {
 };
 
 const Header4 = ({ singleMenu }) => {
-  const { isDarkTheme, toggleTheme } = useThemeToggle();
-
   return (
     <header className="main-header menu-absolute no-border">
       {/*Header-Top*/}
@@ -665,8 +606,6 @@ const Header4 = ({ singleMenu }) => {
               <Link href="contact" className="theme-btn style-two">
                 Get Started <i className="far fa-arrow-right" />
               </Link>
-              {/* Theme Toggle Button */}
-              <ThemeToggleButton isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
             </div>
           </div>
         </div>
@@ -683,8 +622,6 @@ const Header4 = ({ singleMenu }) => {
 };
 
 const Header5 = ({ singleMenu }) => {
-  const { isDarkTheme, toggleTheme } = useThemeToggle();
-
   return (
     <header className="main-header header-one white-menu menu-absolute">
       {/*Header-Upper*/}

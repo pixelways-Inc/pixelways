@@ -204,7 +204,22 @@ body.dark-theme .main-header .header-upper .main-menu ul li.dropdown ul li a {
 }
 
 body.dark-theme .main-header .header-upper .menu-btns .menu-sidebar button span {
-  background: var(--main-text-color); /* White icon bars for toggler */
+  background: var(--main-text-color) !important; /* White icon bars for toggler */
+}
+
+/* Additional coverage for all menu-sidebar button elements */
+body.dark-theme .main-header .menu-btns .menu-sidebar button,
+body.dark-theme .header-top .menu-sidebar button,
+body.dark-theme .top-left .menu-sidebar button {
+  color: var(--main-text-color) !important; /* White color for all sidebar togglers */
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+body.dark-theme .main-header .menu-btns .menu-sidebar button img,
+body.dark-theme .header-top .menu-sidebar button img,
+body.dark-theme .top-left .menu-sidebar button img {
+  filter: brightness(0) invert(1) !important; /* Make sidebar toggler images white */
 }
 
 /* Dark Theme Overrides for Testimonial Component */
@@ -335,9 +350,44 @@ body.dark-theme .main-menu .navbar-header .navbar-toggle .icon-bar {
   background-color: var(--main-text-color); /* White color for menu toggler bars */
 }
 
-/* Dark Theme Overrides for Sidebar Toggler */
+/* Dark Theme Overrides for Sidebar Toggler - Comprehensive Coverage */
 body.dark-theme .menu-sidebar button {
-  color: var(--main-text-color); /* White color for sidebar toggler */
+  color: var(--main-text-color) !important; /* White color for sidebar toggler */
+  background-color: transparent !important; /* Ensure transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.2) !important; /* Add subtle border for visibility */
+}
+
+/* Sidebar Toggler Span Elements */
+body.dark-theme .menu-sidebar button span,
+body.dark-theme .menu-sidebar button .toggle-btn {
+  background-color: var(--main-text-color) !important; /* White color for toggle button spans */
+  color: var(--main-text-color) !important; /* White color */
+}
+
+/* Sidebar Toggler Images */
+body.dark-theme .menu-sidebar button img {
+  filter: brightness(0) invert(1) !important; /* Make toggler images white */
+}
+
+/* Sidebar Toggler Pseudo-elements and Icon Bars */
+body.dark-theme .menu-sidebar button::before,
+body.dark-theme .menu-sidebar button::after,
+body.dark-theme .menu-sidebar button span::before,
+body.dark-theme .menu-sidebar button span::after {
+  background-color: var(--main-text-color) !important; /* White color for pseudo-elements */
+}
+
+/* Specific targeting for different sidebar button styles */
+body.dark-theme .menu-sidebar button.bg-transparent {
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: var(--main-text-color) !important;
+}
+
+/* Toggle button hover effects */
+body.dark-theme .menu-sidebar button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 /* Dark Theme Overrides for bgc-blue */
