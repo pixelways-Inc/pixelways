@@ -497,3 +497,66 @@ body.dark-theme .contact-page-form .form-control {
 body.dark-theme .contact-page-form .form-control::placeholder {
   color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
 }
+
+/* Dark Theme Overrides for FAQs */
+body.dark-theme .accordion-item-four {
+  background-color: var(--main-bg-color); /* Dark background for accordion item */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .accordion-item-four .accordion-button {
+  background-color: var(--main-bg-color); /* Dark background for accordion button */
+  color: var(--main-text-color); /* White text for accordion button */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .accordion-item-four .accordion-button .title,
+body.dark-theme .accordion-item-four .accordion-body p {
+  color: var(--main-text-color); /* White text for title and body paragraph */
+}
+
+body.dark-theme .accordion-item-four .accordion-button .icon i {
+  color: var(--main-text-color); /* White color for icons */
+}
+
+/* Dark Theme Overrides for Consultation Component */
+body.dark-theme .service-get-consultations-wrap {
+  background-color: var(--main-bg-color); /* Dark background for consultation wrap */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .service-get-consultations-wrap .left-content h5,
+body.dark-theme .service-get-consultations-wrap .left-content p,
+body.dark-theme .service-get-consultations-wrap .left-content a {
+  color: var(--main-text-color); /* White text for left content */
+}
+
+body.dark-theme .get-consultations-form-area {
+  background-color: var(--main-bg-color); /* Dark background for form area */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .get-consultations-form-area h4 {
+  color: var(--main-text-color); /* White text for form title */
+}
+
+body.dark-theme .get-consultations-form .form-control {
+  background-color: var(--secondary-bg-color); /* Darker background for form inputs */
+  color: var(--main-text-color); /* White text for form inputs */
+  border-color: var(--global-border-color); /* Adapt border color for form inputs */
+}
+
+body.dark-theme .get-consultations-form .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
+}
+
+body.dark-theme .get-consultations-form select {
+  background-color: var(--secondary-bg-color); /* Darker background for select */
+  color: var(--main-text-color); /* White text for select */
+  border-color: var(--global-border-color); /* Adapt border color for select */
+}
+
+body.dark-theme .get-consultations-form select option {
+  background-color: var(--secondary-bg-color); /* Darker background for select options */
+  color: var(--main-text-color); /* White text for select options */
+}

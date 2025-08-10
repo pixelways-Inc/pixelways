@@ -298,5 +298,19 @@ This document tracks all significant changes, progress, and decisions made durin
   - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.contact-page-form` within `body.dark-theme`, and `color: var(--main-text-color);` for its content (`h4`, `p`, `label`).
   - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.contact-page-form .form-control` within `body.dark-theme`, and `color: rgba(255, 255, 255, 0.7);` for its `::placeholder`.
 
+## FAQs Page Dark Theme Adaptation (August 10, 2025)
+
+**Objective:** Ensure various sections and components on the FAQs page (`app/faqs/page.js`) are dark theme compatible, including background and text colors.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.accordion-item-four` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--main-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.accordion-item-four .accordion-button` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.accordion-item-four .accordion-button .title`, `.accordion-item-four .accordion-body p`, and `.accordion-item-four .accordion-button .icon i` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.service-get-consultations-wrap` within `body.dark-theme`, and `color: var(--main-text-color);` for its left content (`h5`, `p`, `a`).
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.get-consultations-form-area` within `body.dark-theme`, and `color: var(--main-text-color);` for its title (`h4`).
+  - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.get-consultations-form .form-control` within `body.dark-theme`, and `color: rgba(255, 255, 255, 0.7);` for its `::placeholder`.
+  - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.get-consultations-form select` and its `option` elements within `body.dark-theme`.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
