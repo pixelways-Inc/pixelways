@@ -768,6 +768,44 @@ body.dark-theme .comment-form .form-control::placeholder {
 }
 
 /* Dark Theme Overrides for Features Section */
-body.dark-theme .container.features {
+body.dark-theme .container.features,
+body.dark-theme .container.features-bg {
   color: var(--main-text-color); /* White text for features section */
+}
+
+body.dark-theme .container.features *,
+body.dark-theme .container.features-bg * {
+  color: inherit; /* Ensure all nested elements inherit white text color */
+}
+
+body.dark-theme .container.features h2,
+body.dark-theme .container.features-bg h2,
+body.dark-theme .container.features h4,
+body.dark-theme .container.features-bg h4,
+body.dark-theme .container.features .title,
+body.dark-theme .container.features-bg .title {
+  color: var(--heading-color); /* Ensure headings are white */
+}
+
+body.dark-theme .container.features p,
+body.dark-theme .container.features-bg p,
+body.dark-theme .container.features .sub-title,
+body.dark-theme .container.features-bg .sub-title {
+  color: var(--main-text-color); /* Ensure paragraphs and subtitles are white */
+}
+
+/* Ensure feature item links and read-more buttons are also white in dark theme */
+body.dark-theme .container.features .feature-item .content .title a,
+body.dark-theme .container.features-bg .feature-item .content .title a,
+body.dark-theme .container.features .feature-item .content .read-more,
+body.dark-theme .container.features-bg .feature-item .content .read-more {
+  color: var(--main-text-color); /* White text for feature item links and read-more */
+}
+
+/* Ensure hover states respect dark theme */
+body.dark-theme .container.features .feature-item:hover .content .title a,
+body.dark-theme .container.features-bg .feature-item:hover .content .title a,
+body.dark-theme .container.features .feature-item:hover .content .read-more,
+body.dark-theme .container.features-bg .feature-item:hover .content .read-more {
+  color: white; /* Ensure white text even on hover */
 }

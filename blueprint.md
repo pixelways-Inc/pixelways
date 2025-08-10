@@ -387,3 +387,20 @@ This document tracks all significant changes, progress, and decisions made durin
 
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
+
+## Features Section Dark Theme Enhancement (August 10, 2025)
+
+**Objective:** Enhance the features section dark theme implementation to ensure all text elements, including links and read-more buttons, properly respect the dark theme with white text color.
+
+**Summary of Changes:**
+- **`app/globals.css`:**
+  - Enhanced CSS rules for `.container.features` and `.container.features-bg` within `body.dark-theme` to ensure comprehensive white text styling.
+  - Added specific rules for feature item links (`.feature-item .content .title a`) and read-more buttons (`.feature-item .content .read-more`) to ensure white text color.
+  - Added hover state rules to maintain white text color even during hover interactions.
+  - Ensured all nested elements inherit the white text color through universal selector rules.
+
+**Technical Details:**
+- Applied `color: var(--main-text-color)` for comprehensive text elements
+- Used `color: var(--heading-color)` for headings (h2, h4, .title)
+- Added hover state overrides to ensure consistent white text during interactions
+- Covered both `.container.features` and `.container.features-bg` class variations
