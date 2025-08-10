@@ -354,7 +354,7 @@ const page = () => {
             </div>
             <div className="col-lg-6">
               <div
-                className="achievement-counter bg-white"
+                className="achievement-counter achievement-counter-dark"
                 data-aos="fade-right"
                 data-aos-duration={1500}
                 data-aos-offset={50}
