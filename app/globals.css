@@ -162,8 +162,40 @@
   transform: translate(-50%, -50%) !important;
 }
 
-.home-4 .theme-btn.style-two,
-.home-4 a.theme-btn.style-two {
+.home-4 .theme-btn,
+.home-4 a.theme-btn {
   color: white;
   background: var(--tekprof-navyblue-color);
+}
+
+/* Dark Theme Overrides for Header */
+body.dark-theme .main-header .header-top-wrap {
+  background-color: var(--secondary-bg-color); /* Use the dark blue from footer */
+}
+
+body.dark-theme .main-header .header-top-wrap ul li,
+body.dark-theme .main-header .header-top-wrap ul li a,
+body.dark-theme .main-header .header-top-wrap .social-style-one span,
+body.dark-theme .main-header .header-top-wrap .social-style-one a {
+  color: var(--main-text-color); /* White text */
+}
+
+body.dark-theme .main-header .header-upper {
+  background-color: var(--main-bg-color); /* Dark background for main header */
+}
+
+body.dark-theme .main-header .header-upper .main-menu ul li a {
+  color: var(--main-text-color); /* White text for menu links */
+}
+
+body.dark-theme .main-header .header-upper .main-menu ul li.dropdown ul {
+  background-color: var(--main-bg-color); /* Dark background for dropdowns */
+}
+
+body.dark-theme .main-header .header-upper .main-menu ul li.dropdown ul li a {
+  color: var(--main-text-color); /* White text for dropdown links */
+}
+
+body.dark-theme .main-header .header-upper .menu-btns .menu-sidebar button span {
+  background: var(--main-text-color); /* White icon bars for toggler */
 }

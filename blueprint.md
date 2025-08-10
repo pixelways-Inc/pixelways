@@ -176,5 +176,20 @@ This document tracks all significant changes, progress, and decisions made durin
 - **`public/assets/css/style.css`:
   - Modified the `--main-text-color` variable within the `body.dark-theme` block from `#F3F6F9` (light gray) to `white` for improved contrast and readability.
 
+## Header Dark Theme Adaptation (August 9, 2025)
+
+**Objective:** Adapt the main header to the dark theme, including text color, background, and menu icon.
+
+**Summary of Changes:**
+- **`app/globals.css`:
+  - Added CSS rules to override header styles when `body.dark-theme` is active:
+    - `.main-header .header-top-wrap`: `background-color: var(--secondary-bg-color);`
+    - `.main-header .header-top-wrap ul li`, `ul li a`, `.social-style-one span`, `a`: `color: var(--main-text-color);`
+    - `.main-header .header-upper`: `background-color: var(--main-bg-color);`
+    - `.main-header .header-upper .main-menu ul li a`: `color: var(--main-text-color);`
+    - `.main-header .header-upper .main-menu ul li.dropdown ul`: `background-color: var(--main-bg-color);`
+    - `.main-header .header-upper .main-menu ul li.dropdown ul li a`: `color: var(--main-text-color);`
+    - `.main-header .header-upper .menu-btns .menu-sidebar button span`: `background: var(--main-text-color);`
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

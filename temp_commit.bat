@@ -1,1 +1,1 @@
-git commit -m "FEAT: Implement global dark theme and update blueprint"
+git commit -m "FEAT: Adjust dark theme text color to white for better visibility and update blueprint"
