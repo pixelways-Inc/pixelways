@@ -55,33 +55,7 @@ const page = () => {
                 </div>
               </div>
             </div>
-            <div className="col-xl-3">
-              <div
-                className="about-trusted-partners-area"
-                data-aos="fade-up"
-                data-aos-duration={1500}
-                data-aos-offset={50}
-              >
-                <div className="trusted-clients-wrap pb-40 mb-30">
-                  <h5>10m+ Trusted Partners</h5>
-                    <div className="trusted-clients">
-                      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" />
-                      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" />
-                      <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Client" />
-                      <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Client" />
-                    </div>
-                </div>
-                <img src="https://logo.clearbit.com/trustpilot.com" alt="Logo" />
-                <p>8930+ reviews</p>
-                <div className="ratting">
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>
