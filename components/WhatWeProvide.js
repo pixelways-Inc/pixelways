@@ -5,11 +5,11 @@ import Slider from "react-slick";
 
 const WhatWeProvide = () => {
   return (
-    <section className="what-we-provide rel z-1">
+    <section className="what-we-provide rel z-1 bg-[#111] text-white py-20">
       <div className="container">
         <div className="section-title text-center mb-55 wow fadeInUp delay-0-2s">
-          <span className="sub-title mb-10">What We Provides</span>
-          <h2>Digital Core Services</h2>
+          <span className="sub-title text-[#00C4FF] mb-10">What We Provides</span>
+          <h2 className="text-white">Digital Core Services</h2>
         </div>
         <Slider
           {...sliderProps.serviceFourSlider}
@@ -30,19 +30,19 @@ const WhatWeProvide = () => {
             </div>
             <div className="content">
               <div className="top-part">
-                <span className="number">01</span>
+                <span className="number text-[#00C4FF]">01</span>
                 <div className="icon">
                   <i className="flaticon-data" />
                 </div>
                 <h4>
-                  <Link href="service-details">
+                  <Link href="service-details" className="text-white hover:text-[#00C4FF]">
                     Custom Software Development
                   </Link>
                 </h4>
               </div>
               <div className="bottom-part">
-                <p>Sed perspiciat unde omnis esteo natus sit voluptatem ways</p>
-                <Link href="service-details" className="read-more">
+                <p className="text-gray-300">Sed perspiciat unde omnis esteo natus sit voluptatem ways</p>
+                <Link href="service-details" className="read-more text-[#00C4FF] hover:text-white">
                   Read More <i className="far fa-arrow-right" />
                 </Link>
               </div>
@@ -63,19 +63,19 @@ const WhatWeProvide = () => {
             </div>
             <div className="content">
               <div className="top-part">
-                <span className="number">02</span>
+                <span className="number text-[#00C4FF]">02</span>
                 <div className="icon">
                   <i className="flaticon-layers" />
                 </div>
                 <h4>
-                  <Link href="service-details">
+                  <Link href="service-details" className="text-white hover:text-[#00C4FF]">
                     Web Design &amp; Development
                   </Link>
                 </h4>
               </div>
               <div className="bottom-part">
-                <p>Sed perspiciat unde omnis esteo natus sit voluptatem ways</p>
-                <Link href="service-details" className="read-more">
+                <p className="text-gray-300">Sed perspiciat unde omnis esteo natus sit voluptatem ways</p>
+                <Link href="service-details" className="read-more text-[#00C4FF] hover:text-white">
                   Read More <i className="far fa-arrow-right" />
                 </Link>
               </div>
@@ -96,19 +96,19 @@ const WhatWeProvide = () => {
             </div>
             <div className="content">
               <div className="top-part">
-                <span className="number">03</span>
+                <span className="number text-[#00C4FF]">03</span>
                 <div className="icon">
                   <i className="flaticon-cyber-security-1" />
                 </div>
                 <h4>
-                  <Link href="service-details">
+                  <Link href="service-details" className="text-white hover:text-[#00C4FF]">
                     Cyber Security and IT Management
                   </Link>
                 </h4>
               </div>
               <div className="bottom-part">
-                <p>Sed perspiciat unde omnis esteo natus sit voluptatem ways</p>
-                <Link href="service-details" className="read-more">
+                <p className="text-gray-300">Sed perspiciat unde omnis esteo natus sit voluptatem ways</p>
+                <Link href="service-details" className="read-more text-[#00C4FF] hover:text-white">
                   Read More <i className="far fa-arrow-right" />
                 </Link>
               </div>
@@ -129,19 +129,19 @@ const WhatWeProvide = () => {
             </div>
             <div className="content">
               <div className="top-part">
-                <span className="number">01</span>
+                <span className="number text-[#00C4FF]">01</span>
                 <div className="icon">
                   <i className="flaticon-data" />
                 </div>
                 <h4>
-                  <Link href="service-details">
+                  <Link href="service-details" className="text-white hover:text-[#00C4FF]">
                     Custom Software Development
                   </Link>
                 </h4>
               </div>
               <div className="bottom-part">
-                <p>Sed perspiciat unde omnis esteo natus sit voluptatem ways</p>
-                <Link href="service-details" className="read-more">
+                <p className="text-gray-300">Sed perspiciat unde omnis esteo natus sit voluptatem ways</p>
+                <Link href="service-details" className="read-more text-[#00C4FF] hover:text-white">
                   Read More <i className="far fa-arrow-right" />
                 </Link>
               </div>
@@ -162,19 +162,19 @@ const WhatWeProvide = () => {
             </div>
             <div className="content">
               <div className="top-part">
-                <span className="number">02</span>
+                <span className="number text-[#00C4FF]">02</span>
                 <div className="icon">
                   <i className="flaticon-layers" />
                 </div>
                 <h4>
-                  <Link href="service-details">
+                  <Link href="service-details" className="text-white hover:text-[#00C4FF]">
                     Web Design &amp; Development
                   </Link>
                 </h4>
               </div>
               <div className="bottom-part">
-                <p>Sed perspiciat unde omnis esteo natus sit voluptatem ways</p>
-                <Link href="service-details" className="read-more">
+                <p className="text-gray-300">Sed perspiciat unde omnis esteo natus sit voluptatem ways</p>
+                <Link href="service-details" className="read-more text-[#00C4FF] hover:text-white">
                   Read More <i className="far fa-arrow-right" />
                 </Link>
               </div>
@@ -195,19 +195,19 @@ const WhatWeProvide = () => {
             </div>
             <div className="content">
               <div className="top-part">
-                <span className="number">03</span>
+                <span className="number text-[#00C4FF]">03</span>
                 <div className="icon">
                   <i className="flaticon-cyber-security-1" />
                 </div>
                 <h4>
-                  <Link href="service-details">
+                  <Link href="service-details" className="text-white hover:text-[#00C4FF]">
                     Cyber Security and IT Management
                   </Link>
                 </h4>
               </div>
               <div className="bottom-part">
-                <p>Sed perspiciat unde omnis esteo natus sit voluptatem ways</p>
-                <Link href="service-details" className="read-more">
+                <p className="text-gray-300">Sed perspiciat unde omnis esteo natus sit voluptatem ways</p>
+                <Link href="service-details" className="read-more text-[#00C4FF] hover:text-white">
                   Read More <i className="far fa-arrow-right" />
                 </Link>
               </div>

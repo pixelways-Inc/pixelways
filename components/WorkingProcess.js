@@ -6,7 +6,7 @@ import Slider from "react-slick";
 
 const WorkingProcess = () => {
   return (
-    <section className="working-process-area pt-100 pb-100 rpb-70 rel z-1">
+    <section className="working-process-area pt-100 pb-100 rpb-70 rel z-1 bg-[#111] text-white">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-6 col-lg-8">
@@ -16,10 +16,10 @@ const WorkingProcess = () => {
               data-aos-duration={1500}
               data-aos-offset={50}
             >
-              <span className="sub-title color-primary mb-10">
+              <span className="sub-title text-[#00C4FF] mb-10">
                 Working Process
               </span>
-              <h2>Building Resilience Our Cybersecurity Methodology</h2>
+              <h2 className="text-white">Building Resilience Our Cybersecurity Methodology</h2>
             </div>
           </div>
         </div>
@@ -37,56 +37,56 @@ const WorkingProcess = () => {
             >
               <div className="working-process-two">
                 <span className="step">Step 01</span>
-                <h5>Risk Management Framework</h5>
-                <p>
+                <h5 className="text-white">Risk Management Framework</h5>
+                <p className="text-gray-300">
                   RMF is a structured approach to identify, assess, and mitigate
                   risks to information systems ensures
                 </p>
               </div>
               <div className="working-process-two">
                 <span className="step">Step 02</span>
-                <h5>Defense in Depth (Layered Security)</h5>
-                <p>
+                <h5 className="text-white">Defense in Depth (Layered Security)</h5>
+                <p className="text-gray-300">
                   A multi-layered approach that implements security controls at
                   multiple levels (network, application
                 </p>
               </div>
               <div className="working-process-two">
                 <span className="step">Step 03</span>
-                <h5>Incident Response Process</h5>
-                <p>
+                <h5 className="text-white">Incident Response Process</h5>
+                <p className="text-gray-300">
                   A focused approach to detecting, responding to, and recovering
                   from cyber incidents, minimizing impact
                 </p>
               </div>
               <div className="working-process-two">
                 <span className="step">Step 04</span>
-                <h5>Monitoring &amp; Detection</h5>
-                <p>
+                <h5 className="text-white">Monitoring &amp; Detection</h5>
+                <p className="text-gray-300">
                   24/7 Threat Monitoring: Use advanced tools like SIEM (Security
                   Information and Event Management)
                 </p>
               </div>
               <div className="working-process-two">
                 <span className="step">Step 01</span>
-                <h5>Risk Management Framework</h5>
-                <p>
+                <h5 className="text-white">Risk Management Framework</h5>
+                <p className="text-gray-300">
                   RMF is a structured approach to identify, assess, and mitigate
                   risks to information systems ensures
                 </p>
               </div>
               <div className="working-process-two">
                 <span className="step">Step 02</span>
-                <h5>Defense in Depth (Layered Security)</h5>
-                <p>
+                <h5 className="text-white">Defense in Depth (Layered Security)</h5>
+                <p className="text-gray-300">
                   A multi-layered approach that implements security controls at
                   multiple levels (network, application
                 </p>
               </div>
               <div className="working-process-two">
                 <span className="step">Step 03</span>
-                <h5>Incident Response Process</h5>
-                <p>
+                <h5 className="text-white">Incident Response Process</h5>
+                <p className="text-gray-300">
                   A focused approach to detecting, responding to, and recovering
                   from cyber incidents, minimizing impact
                 </p>
@@ -96,8 +96,8 @@ const WorkingProcess = () => {
                   width={410}
                   height={250}
                 />
-                <h5>Monitoring &amp; Detection</h5>
-                <p>
+                <h5 className="text-white">Monitoring &amp; Detection</h5>
+                <p className="text-gray-300">
                   24/7 Threat Monitoring: Use advanced tools like SIEM (Security
                   Information and Event Management)
                 </p>
@@ -135,7 +135,7 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
   };
 
   return (
-    <section className="working-process-area rel z-1" id="work-process">
+    <section className="working-process-area rel z-1 bg-[#111] text-white" id="work-process">
       <div
         className={`features-bg pt-130 rpt-100 pb-120 rpb-90 ${containerClass}`}
       >
@@ -147,10 +147,10 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
               data-aos-duration={1500}
               data-aos-offset={50}
             >
-              <span className="sub-title color-primary mb-10">
+              <span className="sub-title text-[#00C4FF] mb-10">
                 Working Process
               </span>
-              <h2>Guiding You Through Every Step of the IT Journey</h2>
+              <h2 className="text-white">Guiding You Through Every Step of the IT Journey</h2>
             </div>
           </div>
         </div>
@@ -185,23 +185,23 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
                 <div className="row gap-120">
                   <div className="col-lg-6">
                     <div className="content rmb-30">
-                      <p>
+                      <p className="text-gray-300">
                         Digital era with innovative IT solutions tailored to
                         their unique needs. With a focus on reliability,
                         scalability, and security, our team delivers
                         cutting-edge technology companies.
                       </p>
                       <ul className="list-style-one mt-25">
-                        <li>
-                          <i className="far fa-check" /> Software Development
+                        <li className="text-gray-300">
+                          <i className="far fa-check text-[#00C4FF]" /> Software Development
                           &amp; Integration
                         </li>
-                        <li>
-                          <i className="far fa-check" /> Help Desk &amp;
+                        <li className="text-gray-300">
+                          <i className="far fa-check text-[#00C4FF]" /> Help Desk &amp;
                           Technical Support
                         </li>
-                        <li>
-                          <i className="far fa-check" /> Business Continuity
+                        <li className="text-gray-300">
+                          <i className="far fa-check text-[#00C4FF]" /> Business Continuity
                           &amp; Compliance
                         </li>
                       </ul>
@@ -241,23 +241,23 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
                 <div className="row gap-120">
                   <div className="col-lg-6">
                     <div className="content rmb-30">
-                      <p>
+                      <p className="text-gray-300">
                         Digital era with innovative IT solutions tailored to
                         their unique needs. With a focus on reliability,
                         scalability, and security, our team delivers
                         cutting-edge technology companies.
                       </p>
                       <ul className="list-style-one mt-25">
-                        <li>
-                          <i className="far fa-check" /> Software Development
+                        <li className="text-gray-300">
+                          <i className="far fa-check text-[#00C4FF]" /> Software Development
                           &amp; Integration
                         </li>
-                        <li>
-                          <i className="far fa-check" /> Help Desk &amp;
+                        <li className="text-gray-300">
+                          <i className="far fa-check text-[#00C4FF]" /> Help Desk &amp;
                           Technical Support
                         </li>
-                        <li>
-                          <i className="far fa-check" /> Business Continuity
+                        <li className="text-gray-300">
+                          <i className="far fa-check text-[#00C4FF]" /> Business Continuity
                           &amp; Compliance
                         </li>
                       </ul>
@@ -297,23 +297,23 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
                 <div className="row gap-120">
                   <div className="col-lg-6">
                     <div className="content rmb-30">
-                      <p>
+                      <p className="text-gray-300">
                         Digital era with innovative IT solutions tailored to
                         their unique needs. With a focus on reliability,
                         scalability, and security, our team delivers
                         cutting-edge technology companies.
                       </p>
                       <ul className="list-style-one mt-25">
-                        <li>
-                          <i className="far fa-check" /> Software Development
+                        <li className="text-gray-300">
+                          <i className="far fa-check text-[#00C4FF]" /> Software Development
                           &amp; Integration
                         </li>
-                        <li>
-                          <i className="far fa-check" /> Help Desk &amp;
+                        <li className="text-gray-300">
+                          <i className="far fa-check text-[#00C4FF]" /> Help Desk &amp;
                           Technical Support
                         </li>
-                        <li>
-                          <i className="far fa-check" /> Business Continuity
+                        <li className="text-gray-300">
+                          <i className="far fa-check text-[#00C4FF]" /> Business Continuity
                           &amp; Compliance
                         </li>
                       </ul>
@@ -355,23 +355,23 @@ export const WorkingProcess2 = ({ containerClass = "container" }) => {
                 <div className="row gap-120">
                   <div className="col-lg-6">
                     <div className="content rmb-30">
-                      <p>
+                      <p className="text-gray-300">
                         Digital era with innovative IT solutions tailored to
                         their unique needs. With a focus on reliability,
                         scalability, and security, our team delivers
                         cutting-edge technology companies.
                       </p>
                       <ul className="list-style-one mt-25">
-                        <li>
-                          <i className="far fa-check" /> Software Development
+                        <li className="text-gray-300">
+                          <i className="far fa-check text-[#00C4FF]" /> Software Development
                           &amp; Integration
                         </li>
-                        <li>
-                          <i className="far fa-check" /> Help Desk &amp;
+                        <li className="text-gray-300">
+                          <i className="far fa-check text-[#00C4FF]" /> Help Desk &amp;
                           Technical Support
                         </li>
-                        <li>
-                          <i className="far fa-check" /> Business Continuity
+                        <li className="text-gray-300">
+                          <i className="far fa-check text-[#00C4FF]" /> Business Continuity
                           &amp; Compliance
                         </li>
                       </ul>
