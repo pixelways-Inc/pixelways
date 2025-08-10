@@ -277,5 +277,16 @@ This document tracks all significant changes, progress, and decisions made durin
   - Added CSS rules to set `color: var(--heading-color);` for `.section-title h2` and `color: var(--main-text-color);` for `.section-title p` within `body.dark-theme`.
   - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.testimonial-item-two` within `body.dark-theme`, and `color: var(--main-text-color);` for its rating stars (`ratting i`), testimonial text (`testi-text`), and author details (`testi-author span`).
 
+## Services Page Dark Theme Adaptation (August 10, 2025)
+
+**Objective:** Ensure various sections and components on the Services page (`app/services/page.js`) are dark theme compatible, including background and text colors.
+
+**Summary of Changes:**
+- **`components/PageBanner.js`:**
+  - Modified `backgroundImage` to `backgroundColor: "var(--main-bg-color)"` to ensure the banner background adapts to the dark theme.
+- **`app/globals.css`:**
+  - Added CSS rules to set `color: var(--main-text-color);` for `.page-banner-area .page-title`, `.page-banner-area .breadcrumb`, `.page-banner-area .breadcrumb-item`, and `.page-banner-area .breadcrumb-item a` to ensure page banner title and breadcrumbs are white.
+  - Added CSS rules to set `border-right-color: var(--global-border-color);`, `border-left-color: var(--global-border-color);`, and `border-bottom-color: var(--global-border-color);` for `.border-right`, `.border-left`, and `.for-border-bottom` respectively within `body.dark-theme` to ensure borders adapt to the dark theme.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.

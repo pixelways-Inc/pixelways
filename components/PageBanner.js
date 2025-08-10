@@ -7,7 +7,7 @@ const PageBanner = ({ title, pageName = "About Company" }) => {
         <div
           className="banner-wrap bgs-cover"
           style={{
-            backgroundImage: "url(bg.jpg)",
+            backgroundColor: "var(--main-bg-color)",
             height: "250px",
             paddingTop: "40px", // Adjusted vertical padding for content
             paddingBottom: "40px",
