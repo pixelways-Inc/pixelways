@@ -53,7 +53,7 @@ const page = () => {
                 data-aos-duration={1500}
                 data-aos-offset={50}
               >
-                <img src="assets/images/team/team-page-right.jpg" alt="Team" />
+                <img src="https://api.a0.dev/assets/image?text=Diverse+team+of+IT+professionals+collaborating+in+a+modern+office+setting+with+digital+screens+and+charts.+The+atmosphere+is+innovative+and+dynamic.+8K+resolution,+image+size:+740x510px.&aspect=16:9&seed=team_page_right" alt="Team" />
               </div>
             </div>
           </div>

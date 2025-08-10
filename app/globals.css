@@ -566,6 +566,30 @@ body.dark-theme .pricing-tab li button.active {
   border-color: var(--tekprof-primary-color); /* Primary color for active tab border */
 }
 
+/* Dark Theme Overrides for Team Page */
+body.dark-theme .team-page-left-content p {
+  color: var(--main-text-color); /* White text for team page left content paragraphs */
+}
+
+body.dark-theme .circle-progress-item-two h4 {
+  color: var(--heading-color); /* White text for progress bar titles */
+}
+
+body.dark-theme .team-item-two {
+  background-color: var(--main-bg-color); /* Dark background for team item two */
+  border-color: var(--global-border-color); /* Adapt border color */
+}
+
+body.dark-theme .team-item-two .content h3 a,
+body.dark-theme .team-item-two .content span,
+body.dark-theme .team-item-two .content p {
+  color: var(--main-text-color); /* White text for team item two content */
+}
+
+body.dark-theme .team-item-two .content .social-style-five a {
+  color: var(--main-text-color); /* White color for social icons */
+}
+
 /* Dark Theme Overrides for Blog Standard Item */
 body.dark-theme .blog-standard-item {
   background-color: var(--main-bg-color); /* Dark background for blog standard item */

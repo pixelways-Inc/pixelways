@@ -372,5 +372,18 @@ This document tracks all significant changes, progress, and decisions made durin
   - Added CSS rules to set `color: var(--main-text-color);` for `.comment-form h3`, `p`, `label` within `body.dark-theme`.
   - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.comment-form .form-control` within `body.dark-theme`, and `color: rgba(255, 255, 255, 0.7);` for its `::placeholder`.
 
+## Team Page Dark Theme Adaptation (August 10, 2025)
+
+**Objective:** Ensure various sections and components on the Team page (`app/team/page.js`) are dark theme compatible, including background and text colors.
+
+**Summary of Changes:**
+- **`app/team/page.js`:**
+  - Modified `src` of `team-page-right.jpg` to use an image API URL for better dark theme compatibility.
+- **`app/globals.css`:**
+  - Added CSS rules to set `color: var(--main-text-color);` for `.team-page-left-content p` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--heading-color);` for `.circle-progress-item-two h4` within `body.dark-theme`.
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.team-item-two` within `body.dark-theme`.
+  - Added CSS rules to set `color: var(--main-text-color);` for `.team-item-two .content h3 a`, `span`, `p`, and `.social-style-five a` within `body.dark-theme`.
+
 **Next Steps:**
 - Continue with further content and visual enhancements as needed.
