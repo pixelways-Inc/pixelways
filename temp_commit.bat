@@ -1,2 +1,1 @@
-git commit -m "<YOUR_COMMIT_MESSAGE_HERE>"
-git push
+git commit -m "FIX: Ensure temp_commit.bat includes both commit and push"

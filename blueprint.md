@@ -34,6 +34,16 @@
 
 **Summary of Changes:**
 
--   **`layout/Footer.js`:**
+-   **`layout/Footer.js`:
     -   Modified `Footer1`, `Footer2`, `Footer3`, `Footer4`, and `Footer5` to replace "Copyright © 2025 <Link href="/">Pixelways Inc</Link>, All Rights Reserved." with "Made with ❤️ by Hans Ade FT Pixelways Team".
     -   Modified `Footer6` to replace "© 2025 Pixelways Inc. All rights reserved." with "Made with ❤️ by Hans Ade FT Pixelways Team".
+
+## Add Copyright 2025 All Rights Reserved to Footer (August 11, 2025)
+
+**Objective:** Insert "Copyright © 2025 All Rights Reserved" between the "Made with ❤️ by Hans Ade FT Pixelways Team" and the privacy links in applicable footer components.
+
+**Summary of Changes:**
+
+-   **`layout/Footer.js`:**
+    -   Inserted "<p>Copyright © 2025 All Rights Reserved</p>" in `Footer1`, `Footer2`, and `Footer3` between the "Made with Love" text and the privacy policy links.
+    -   Inserted "<p>Copyright © 2025 All Rights Reserved</p>" in `Footer4` between the "Made with Love" text and the privacy policy links.

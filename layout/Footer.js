@@ -279,6 +279,7 @@ const Footer1 = () => {
               </div>
             </div>
             <div className="col-lg-6 text-lg-end">
+              <p>Copyright © 2025 All Rights Reserved</p>
               <ul className="footer-bottom-nav">
                 <li>
                   <Link href="about">Privacy Policy</Link>
@@ -554,6 +555,7 @@ const Footer2 = () => {
               </div>
             </div>
             <div className="col-lg-6 text-lg-end">
+              <p>Copyright © 2025 All Rights Reserved</p>
               <ul className="footer-bottom-nav">
                 <li>
                   <Link href="about">Privacy Policy</Link>
@@ -789,6 +791,7 @@ const Footer3 = () => {
               </div>
             </div>
             <div className="col-lg-6 text-lg-end">
+              <p>Copyright © 2025 All Rights Reserved</p>
               <ul className="footer-bottom-nav">
                 <li>
                   <Link href="about">Privacy Policy</Link>
@@ -989,6 +992,7 @@ const Footer4 = () => {
                 </p>
               </div>
             </div>
+            <p>Copyright © 2025 All Rights Reserved</p>
             <div className="col-xl-8 col-lg-6">
               <div
                 className="footer-bottom-menu text-lg-end text-center"
