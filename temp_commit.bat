@@ -1,1 +1,2 @@
-git commit -m "FEAT: Enhance footer service links and service details page"
+git commit -m "FEAT: Add new blog posts and update blueprint"
+git push

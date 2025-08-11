@@ -171,6 +171,26 @@ const page = () => {
                 <div className="col-xl-6 col-lg-12 col-md-6" data-aos="fade-up" data-aos-duration={1500} data-aos-offset={50}>
                   <div className="blog-standard-item h-100">
                     <div className="image">
+                      <img src="https://api.a0.dev/assets/image?text=Hans+Ade+Cybersecurity+Trends+2025&aspect=1:1&seed=hansade2" alt="Blog" />
+                    </div>
+                    <div className="content">
+                      <ul className="blog-meta-two">
+                        <li>
+                          <img src="https://randomuser.me/api/portraits/men/17.jpg" alt="Author" style={{width:'24px',borderRadius:'50%',marginRight:'6px'}} />
+                          <Link href="blog">Hans Ade</Link>
+                        </li>
+                        <li><i className="far fa-calendar-alt" /> 30 July 2025</li>
+                        <li><i className="far fa-comments" /> Comments (10)</li>
+                      </ul>
+                      <h3><Link href="/blog/top-cybersecurity-trends-to-watch-in-2025">Top Cybersecurity Trends to Watch in 2025</Link></h3>
+                      <p>Stay ahead of the curve with insights into the most critical cybersecurity trends and how to protect your business from emerging threats.</p>
+                      <Link href="/blog/top-cybersecurity-trends-to-watch-in-2025" className="blog-read-more" data-hover="Read More"><span>Read More</span></Link>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-6 col-lg-12 col-md-6" data-aos="fade-up" data-aos-duration={1500} data-aos-offset={50}>
+                  <div className="blog-standard-item h-100">
+                    <div className="image">
                       <img src="https://api.a0.dev/assets/image?text=Anye+Happiness+Ade+Digital+Transformation+Strategies&aspect=1:1&seed=anyeade1" alt="Blog" />
                     </div>
                     <div className="content">
@@ -185,6 +205,26 @@ const page = () => {
                       <h3><Link href="/blog/digital-transformation-strategies-for-small-businesses">Digital Transformation Strategies for Small Businesses</Link></h3>
                       <p>Understand key digital transformation strategies that can help small businesses thrive in the evolving digital landscape.</p>
                       <Link href="/blog/digital-transformation-strategies-for-small-businesses" className="blog-read-more" data-hover="Read More"><span>Read More</span></Link>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-6 col-lg-12 col-md-6" data-aos="fade-up" data-aos-duration={1500} data-aos-offset={50}>
+                  <div className="blog-standard-item h-100">
+                    <div className="image">
+                      <img src="https://api.a0.dev/assets/image?text=Anye+Happiness+Ade+Cloud+Computing+Benefits&aspect=1:1&seed=anyeade2" alt="Blog" />
+                    </div>
+                    <div className="content">
+                      <ul className="blog-meta-two">
+                        <li>
+                          <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Author" style={{width:'24px',borderRadius:'50%',marginRight:'6px'}} />
+                          <Link href="blog">Anye Happiness Ade</Link>
+                        </li>
+                        <li><i className="far fa-calendar-alt" /> 29 July 2025</li>
+                        <li><i className="far fa-comments" /> Comments (8)</li>
+                      </ul>
+                      <h3><Link href="/blog/maximizing-business-efficiency-with-cloud-computing">Maximizing Business Efficiency with Cloud Computing</Link></h3>
+                      <p>Discover how cloud computing can significantly enhance your business efficiency, reduce costs, and improve scalability.</p>
+                      <Link href="/blog/maximizing-business-efficiency-with-cloud-computing" className="blog-read-more" data-hover="Read More"><span>Read More</span></Link>
                     </div>
                   </div>
                 </div>
@@ -266,48 +306,46 @@ const page = () => {
                   <ul>
                     <li>
                       <div className="image">
-                        <img src="https://api.a0.dev/assets/image?text=cloud+guide+IT+enterprise&aspect=1:1&seed=sidebar2" alt="Post" width={80} height={80} />
+                        <img src="https://api.a0.dev/assets/image?text=AI+transformation+business+operations+modern+workspace+digital+technology&aspect=1:1&seed=blog1" alt="Post" width={80} height={80} />
                       </div>
                       <div className="content">
                         <h5>
-                          <Link href="/blog/ultimate-guide-choosing-right-it-solutions-partner">The Ultimate Guide to Choosing the Right IT Solutions Partner</Link>
+                          <Link href="/blog/ultimate-guide-it-solutions-partner">The Ultimate Guide to Choosing the Right IT Solutions Partner</Link>
                         </h5>
-                        <span className="date">15 October 2024</span>
+                        <span className="date">12 August 2025</span>
                       </div>
                     </li>
                     <li>
                       <div className="image">
-                        <img src="https://api.a0.dev/assets/image?text=cloud+guide+IT+enterprise&aspect=1:1&seed=sidebar2" alt="Post" width={80} height={80} />
+                        <img src="https://api.a0.dev/assets/image?text=cybersecurity+expert+protecting+digital+world+modern+office+security+shields&aspect=1:1&seed=blog2" alt="Post" width={80} height={80} />
                       </div>
                       <div className="content">
                         <h5>
-                          <Link href="/blog/cloud-migration-best-practices-smooth-transition">Cloud Migration: Best Practices for a Smooth Transition</Link>
+                          <Link href="/blog/cybersecurity-protecting-digital-world-2024">Cybersecurity Unlocked: Protecting Your Digital World in 2024</Link>
                         </h5>
-                        <span className="date">15 October 2024</span>
+                        <span className="date">10 August 2025</span>
                       </div>
                     </li>
                     <li>
                       <div className="image">
-                        <img src="https://api.a0.dev/assets/image?text=IT+consulting+cost+savings&aspect=1:1&seed=sidebar3" alt="Post" width={80} height={80} />
+                        <img src="https://api.a0.dev/assets/image?text=Hans+Ade+Cybersecurity+Trends+2025&aspect=1:1&seed=hansade2" alt="Post" width={80} height={80} />
                       </div>
                       <div className="content">
                         <h5>
-                          <Link href="/blog/modern-it-consulting-trends-growing-businesses">Modern IT Consulting Trends for Growing Businesses</Link>
+                          <Link href="/blog/top-cybersecurity-trends-to-watch-in-2025">Top Cybersecurity Trends to Watch in 2025</Link>
                         </h5>
-                        <span className="date">15 October 2024</span>
+                        <span className="date">30 July 2025</span>
                       </div>
                     </li>
                     <li>
                       <div className="image">
-                        <img src="https://api.a0.dev/assets/image?text=IT+consulting+myths+debunked&aspect=1:1&seed=sidebar4" alt="Post" width={80} height={80} />
+                        <img src="https://api.a0.dev/assets/image?text=Anye+Happiness+Ade+Cloud+Computing+Benefits&aspect=1:1&seed=anyeade2" alt="Post" width={80} height={80} />
                       </div>
                       <div className="content">
                         <h5>
-                          <h5>
-                          <Link href="/blog/essential-cybersecurity-practices-business">Essential Cybersecurity Practices Every Business Must Follow</Link>
+                          <Link href="/blog/maximizing-business-efficiency-with-cloud-computing">Maximizing Business Efficiency with Cloud Computing</Link>
                         </h5>
-                        </h5>
-                        <span className="date">15 October 2024</span>
+                        <span className="date">29 July 2025</span>
                       </div>
                     </li>
                   </ul>
