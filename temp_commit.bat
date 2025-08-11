@@ -1,2 +1,2 @@
-git commit -m "FEAT: Add new blog posts and update blueprint"
+git commit -m "FEAT: Add more blog posts and update sidebar"
 git push

@@ -206,6 +206,335 @@ const blogPosts = [
   }
 ];
 
+const blogPosts = [
+  {
+    id: 1,
+    slug: "ultimate-guide-choosing-right-it-solutions-partner",
+    category: "Cyber Security",
+    date: "25 December 2024",
+    title: "The Ultimate Guide to Choosing the Right IT Solutions Partner",
+    description: "Highlights clear problem-solution-result narrative, demonstrating agency's ability to provide.",
+    image: "https://api.a0.dev/assets/image?text=IT+solutions+partner+business+meeting+technology+consulting&aspect=1:1&seed=701",
+    avatar: "https://randomuser.me/api/portraits/men/11.jpg",
+    author: "John Carter",
+    content: `
+      <p>In today's rapidly evolving digital landscape, choosing the right IT solutions partner is crucial for business success. This comprehensive guide will walk you through the essential factors to consider when selecting an IT partner that aligns with your business goals.</p>
+      
+      <h3>Understanding Your Business Needs</h3>
+      <p>Before you begin your search for an IT solutions partner, it's essential to have a clear understanding of your current technology infrastructure and future business objectives. Conduct a thorough assessment of your existing systems, identify pain points, and define your technology goals.</p>
+      
+      <h3>Key Factors to Consider</h3>
+      <ul>
+        <li><strong>Expertise and Experience:</strong> Look for partners with proven experience in your industry and with the specific technologies you need.</li>
+        <li><strong>Scalability:</strong> Ensure your partner can grow with your business and adapt to changing requirements.</li>
+        <li><strong>Security Focus:</strong> In today's threat landscape, cybersecurity should be a top priority for any IT partner.</li>
+        <li><strong>Support and Maintenance:</strong> 24/7 support and proactive maintenance are essential for business continuity.</li>
+      </ul>
+      
+      <h3>Evaluating Potential Partners</h3>
+      <p>When evaluating potential IT partners, request case studies, check references, and assess their technical certifications. A good partner should be transparent about their processes and willing to provide detailed proposals.</p>
+      
+      <h3>Building a Long-term Partnership</h3>
+      <p>The best IT relationships are built on trust, communication, and shared goals. Look for a partner who takes the time to understand your business and provides strategic guidance beyond just technical implementation.</p>
+    `
+  },
+  {
+    id: 2,
+    slug: "cybersecurity-unlocked-protecting-digital-world-2024",
+    category: "Cloud Services",
+    date: "25 December 2024",
+    title: "Cybersecurity Unlocked Protecting Your Digital World in 2024",
+    description: "Highlights clear problem-solution-result narrative, demonstrating agency's ability to provide.",
+    image: "https://api.a0.dev/assets/image?text=cybersecurity+expert+protecting+digital+world+security+office&aspect=1:1&seed=702",
+    avatar: "https://randomuser.me/api/portraits/women/21.jpg",
+    author: "Emily Smith",
+    content: `
+      <p>As we navigate through 2024, cybersecurity threats continue to evolve at an unprecedented pace. Organizations must adopt a comprehensive approach to protect their digital assets and maintain customer trust.</p>
+      
+      <h3>Current Threat Landscape</h3>
+      <p>The cybersecurity landscape in 2024 is characterized by sophisticated ransomware attacks, AI-powered threats, and increased targeting of cloud infrastructure. Understanding these threats is the first step in building effective defenses.</p>
+      
+      <h3>Essential Security Measures</h3>
+      <ul>
+        <li><strong>Zero Trust Architecture:</strong> Implement a "never trust, always verify" approach to network security.</li>
+        <li><strong>Multi-Factor Authentication:</strong> Secure all access points with robust authentication mechanisms.</li>
+        <li><strong>Regular Security Audits:</strong> Conduct frequent assessments to identify vulnerabilities.</li>
+        <li><strong>Employee Training:</strong> Educate staff on security best practices and threat recognition.</li>
+      </ul>
+      
+      <h3>Emerging Technologies in Cybersecurity</h3>
+      <p>Artificial Intelligence and Machine Learning are revolutionizing cybersecurity, enabling faster threat detection and response. However, these same technologies are also being used by attackers, creating an ongoing arms race.</p>
+      
+      <h3>Building a Security Culture</h3>
+      <p>Effective cybersecurity isn't just about technology—it's about creating a culture where security is everyone's responsibility. This requires ongoing training, clear policies, and regular communication about emerging threats.</p>
+    `
+  },
+  {
+    id: 3,
+    slug: "essential-cybersecurity-practices-every-business-must-follow",
+    category: "Cyber Security",
+    date: "25 December 2024",
+    title: "Essential Cybersecurity Practices Every Business Must Follow",
+    description: "Learn the essential cybersecurity strategies and compliance requirements every IT software company should implement to protect digital assets and client data.",
+    image: "https://api.a0.dev/assets/image?text=cybersecurity+best+practices+business+security+data+protection&aspect=1:1&seed=703",
+    avatar: "https://randomuser.me/api/portraits/men/31.jpg",
+    author: "Michael Lee",
+    content: `
+      <p>Cybersecurity is no longer optional for businesses of any size. With cyber threats becoming more sophisticated and frequent, implementing robust security practices is essential for protecting your business, customers, and reputation.</p>
+      
+      <h3>Fundamental Security Practices</h3>
+      <p>Every business should start with these fundamental security practices that form the foundation of a strong cybersecurity posture.</p>
+      
+      <h3>Access Control and Identity Management</h3>
+      <ul>
+        <li><strong>Strong Password Policies:</strong> Implement complex password requirements and regular updates.</li>
+        <li><strong>Role-Based Access:</strong> Limit access to systems based on job requirements.</li>
+        <li><strong>Regular Access Reviews:</strong> Periodically review and update user permissions.</li>
+        <li><strong>Privileged Account Management:</strong> Secure and monitor administrative accounts.</li>
+      </ul>
+      
+      <h3>Data Protection Strategies</h3>
+      <p>Protecting sensitive data requires a multi-layered approach including encryption, backup strategies, and access controls. Regular data classification helps ensure appropriate protection levels.</p>
+      
+      <h3>Incident Response Planning</h3>
+      <p>Having a well-defined incident response plan can significantly reduce the impact of a security breach. This includes preparation, detection, containment, eradication, and recovery phases.</p>
+      
+      <h3>Compliance and Regulations</h3>
+      <p>Understanding and complying with relevant regulations such as GDPR, HIPAA, or industry-specific standards is crucial for avoiding penalties and maintaining customer trust.</p>
+    `
+  },
+  {
+    id: 4,
+    slug: "modern-it-consulting-trends-growing-businesses",
+    category: "IT Consulting",
+    date: "25 December 2024",
+    title: "Modern IT Consulting Trends for Growing Businesses",
+    description: "Explore the latest trends in IT consulting and how they impact business growth in 2024.",
+    image: "https://api.a0.dev/assets/image?text=modern+IT+consulting+trends+business+growth+technology+office&aspect=1:1&seed=704",
+    avatar: "https://randomuser.me/api/portraits/women/41.jpg",
+    author: "Sophia Turner",
+    content: `
+      <p>The IT consulting landscape is rapidly evolving, with new trends reshaping how businesses approach technology strategy and implementation. Understanding these trends is crucial for organizations looking to stay competitive.</p>
+      
+      <h3>Digital Transformation Acceleration</h3>
+      <p>Digital transformation has moved from a nice-to-have to a business imperative. Companies are investing heavily in modernizing their technology infrastructure to improve efficiency and customer experience.</p>
+      
+      <h3>Cloud-First Strategies</h3>
+      <ul>
+        <li><strong>Multi-Cloud Adoption:</strong> Organizations are leveraging multiple cloud providers for flexibility and redundancy.</li>
+        <li><strong>Hybrid Cloud Solutions:</strong> Combining on-premises and cloud resources for optimal performance.</li>
+        <li><strong>Cloud-Native Development:</strong> Building applications specifically designed for cloud environments.</li>
+        <li><strong>Serverless Computing:</strong> Reducing infrastructure management overhead.</li>
+      </ul>
+      
+      <h3>AI and Automation Integration</h3>
+      <p>Artificial Intelligence and automation are becoming integral parts of business operations, from customer service chatbots to automated data analysis and decision-making processes.</p>
+      
+      <h3>Sustainable IT Practices</h3>
+      <p>Environmental consciousness is driving demand for sustainable IT solutions, including energy-efficient hardware, green data centers, and sustainable software development practices.</p>
+      
+      <h3>Strategic Partnership Approach</h3>
+      <p>Modern IT consulting is moving away from traditional vendor relationships toward strategic partnerships that focus on long-term business outcomes and shared success metrics.</p>
+    `
+  },
+  {
+    id: 5,
+    slug: "cloud-migration-best-practices-smooth-transition",
+    category: "Cloud Services",
+    date: "25 December 2024",
+    title: "Cloud Migration: Best Practices for a Smooth Transition",
+    description: "Learn how to migrate your business to the cloud with minimal disruption and maximum security.",
+    image: "https://api.a0.dev/assets/image?text=cloud+migration+expert+business+team+smooth+transition+technology&aspect=1:1&seed=705",
+    avatar: "https://randomuser.me/api/portraits/men/51.jpg",
+    author: "David Kim",
+    content: `
+      <p>Cloud migration is a critical step for businesses looking to improve scalability, reduce costs, and enhance operational efficiency. However, successful migration requires careful planning and execution.</p>
+      
+      <h3>Pre-Migration Assessment</h3>
+      <p>Before beginning your cloud migration journey, conduct a comprehensive assessment of your current infrastructure, applications, and data. This helps identify dependencies, security requirements, and potential challenges.</p>
+      
+      <h3>Migration Strategies</h3>
+      <ul>
+        <li><strong>Lift and Shift:</strong> Moving applications to the cloud with minimal changes.</li>
+        <li><strong>Replatforming:</strong> Making minor optimizations during migration.</li>
+        <li><strong>Refactoring:</strong> Redesigning applications to leverage cloud-native features.</li>
+        <li><strong>Hybrid Approach:</strong> Keeping some systems on-premises while moving others to the cloud.</li>
+        <li><strong>Cloud-Native Development:</strong> Building applications specifically designed for cloud environments.</li>
+      </ul>
+      
+      <h3>Security and Compliance</h3>
+      <p>Maintaining security and compliance during migration is paramount. This includes data encryption in transit and at rest, identity management, and ensuring regulatory compliance throughout the process.</p>
+      
+      <h3>Testing and Validation</h3>
+      <p>Thorough testing is essential for successful migration. This includes performance testing, security validation, and user acceptance testing to ensure applications function correctly in the cloud environment.</p>
+      
+      <h3>Post-Migration Optimization</h3>
+      <p>After migration, focus on optimizing cloud resources for cost and performance. This includes right-sizing instances, implementing auto-scaling, and continuously monitoring resource utilization.</p>
+    `
+  },
+  {
+    id: 6,
+    slug: "data-recovery-solutions-small-businesses",
+    category: "Data Recovery",
+    date: "25 December 2024",
+    title: "Data Recovery Solutions for Small Businesses",
+    description: "Discover effective data recovery strategies tailored for small businesses in the digital age.",
+    image: "https://api.a0.dev/assets/image?text=data+recovery+specialist+small+business+files+restoration+support&aspect=1:1&seed=706",
+    avatar: "https://randomuser.me/api/portraits/women/61.jpg",
+    author: "Olivia Brown",
+    content: `
+      <p>Data loss can be catastrophic for small businesses, potentially leading to significant financial losses and operational disruption. Implementing effective data recovery solutions is essential for business continuity.</p>
+      
+      <h3>Understanding Data Loss Risks</h3>
+      <p>Small businesses face various data loss risks including hardware failures, cyberattacks, human error, and natural disasters. Understanding these risks helps in developing appropriate recovery strategies.</p>
+      
+      <h3>Backup Strategies</h3>
+      <ul>
+        <li><strong>3-2-1 Rule:</strong> Keep 3 copies of data, on 2 different media types, with 1 copy offsite.</li>
+        <li><strong>Automated Backups:</strong> Implement automated backup solutions to ensure consistency.</li>
+        <li><strong>Regular Testing:</strong> Regularly test backup systems to ensure data can be recovered.</li>
+        <li><strong>Version Control:</strong> Maintain multiple versions of important files.</li>
+      </ul>
+      
+      <h3>Recovery Time Objectives</h3>
+      <p>Define clear recovery time objectives (RTO) and recovery point objectives (RPO) based on business needs. This helps in selecting appropriate backup and recovery solutions.</p>
+      
+      <h3>Cloud-Based Recovery Solutions</h3>
+      <p>Cloud-based backup and recovery solutions offer scalability, cost-effectiveness, and geographic redundancy that traditional on-premises solutions may not provide.</p>
+      
+      <h3>Employee Training and Procedures</h3>
+      <p>Ensure employees understand backup procedures and know how to respond to data loss incidents. Regular training and documented procedures are essential for effective data protection.</p>
+    `
+  },
+  {
+    id: 7,
+    slug: "the-future-of-ai-in-business-operations",
+    category: "IT Consulting",
+    date: "1 August 2025",
+    title: "The Future of AI in Business Operations",
+    description: "Explore how artificial intelligence is set to revolutionize business operations, from automation to advanced decision-making processes.",
+    image: "https://api.a0.dev/assets/image?text=Hans+Ade+IT+Consulting+Future+of+AI+in+Business&aspect=1:1&seed=hansade1",
+    avatar: "https://randomuser.me/api/portraits/men/17.jpg",
+    author: "Hans Ade",
+    content: `
+      <p>Artificial Intelligence (AI) is no longer a futuristic concept; it's a present-day reality rapidly transforming how businesses operate. From automating mundane tasks to providing deep insights for strategic decisions, AI is poised to redefine efficiency and innovation.</p>
+
+      <h3>AI-Driven Automation and Efficiency</h3>
+      <p>AI's ability to automate repetitive and data-intensive tasks frees up human capital for more creative and strategic endeavors. This leads to significant improvements in operational efficiency and cost reduction.</p>
+
+      <h3>Enhanced Decision-Making with AI</h3>
+      <ul>
+        <li><strong>Predictive Analytics:</strong> AI algorithms can analyze vast datasets to predict future trends, customer behavior, and market shifts.</li>
+        <li><strong>Personalized Customer Experiences:</strong> AI enables businesses to offer highly personalized services and recommendations, improving customer satisfaction.</li>
+        <li><strong>Optimized Resource Allocation:</strong> AI can help optimize resource utilization, from supply chain management to workforce planning.</li>
+      </ul>
+
+      <h3>Challenges and Ethical Considerations</h3>
+      <p>While the benefits of AI are immense, businesses must also address challenges such as data privacy, algorithmic bias, and the ethical implications of AI deployment. Responsible AI development and deployment are crucial for long-term success.</p>
+
+      <h3>The Road Ahead for AI in Business</h3>
+      <p>The integration of AI into business operations is an ongoing journey. Companies that embrace AI strategically, invest in talent, and prioritize ethical considerations will be at the forefront of innovation and competitive advantage.</p>
+    `
+  },
+  {
+    id: 8,
+    slug: "top-cybersecurity-trends-to-watch-in-2025",
+    category: "Cyber Security",
+    date: "30 July 2025",
+    title: "Top Cybersecurity Trends to Watch in 2025",
+    description: "Stay ahead of the curve with insights into the most critical cybersecurity trends and how to protect your business from emerging threats.",
+    image: "https://api.a0.dev/assets/image?text=Hans+Ade+Cybersecurity+Trends+2025&aspect=1:1&seed=hansade2",
+    avatar: "https://randomuser.me/api/portraits/men/17.jpg",
+    author: "Hans Ade",
+    content: `
+      <p>As the digital landscape continues to expand, so do the complexities and sophistication of cyber threats. Staying informed about the latest cybersecurity trends is paramount for businesses to effectively protect their assets and data.</p>
+
+      <h3>The Rise of AI-Powered Attacks and Defenses</h3>
+      <p>AI is a double-edged sword in cybersecurity. While it empowers advanced threat detection and automated responses, attackers are also leveraging AI to create more sophisticated phishing campaigns, malware, and evasion techniques.</p>
+
+      <h3>Zero Trust Architecture Becomes Mainstream</h3>
+      <ul>
+        <li><strong>Microsegmentation:</strong> Isolating network segments to limit lateral movement of threats.</li>
+        <li><strong>Continuous Verification:</strong> Authenticating and authorizing every user and device, regardless of location.</li>
+        <li><strong>Identity-Centric Security:</strong> Focusing security controls around user identities rather than network perimeters.</li>
+      </ul>
+
+      <h3>Supply Chain Security Takes Center Stage</h3>
+      <p>Recent high-profile attacks have highlighted the vulnerabilities in software supply chains. Businesses are now prioritizing rigorous vetting of third-party vendors and implementing robust supply chain security measures.</p>
+
+      <h3>Quantum Computing and Post-Quantum Cryptography</h3>
+      <p>The advent of quantum computing poses a long-term threat to current encryption standards. Research and development in post-quantum cryptography are accelerating to prepare for a quantum-resistant future.</p>
+
+      <h3>Increased Focus on Data Privacy and Regulations</h3>
+      <p>With evolving data privacy regulations worldwide, businesses face increased scrutiny regarding how they collect, store, and process personal data. Compliance and robust data governance are critical.</p>
+    `
+  },
+  {
+    id: 9,
+    slug: "digital-transformation-strategies-for-small-businesses",
+    category: "IT Consulting",
+    date: "31 July 2025",
+    title: "Digital Transformation Strategies for Small Businesses",
+    description: "Understand key digital transformation strategies that can help small businesses thrive in the evolving digital landscape.",
+    image: "https://api.a0.dev/assets/image?text=Anye+Happiness+Ade+Digital+Transformation+Strategies&aspect=1:1&seed=anyeade1",
+    avatar: "https://randomuser.me/api/portraits/women/50.jpg",
+    author: "Anye Happiness Ade",
+    content: `
+      <p>Digital transformation is no longer just for large enterprises. Small businesses can also leverage digital technologies to improve efficiency, reach new customers, and gain a competitive edge. This article outlines key strategies for successful digital transformation in small businesses.</p>
+
+      <h3>Assessing Your Current Digital Maturity</h3>
+      <p>Before embarking on a digital transformation journey, it's crucial to assess your current digital capabilities and identify areas where technology can bring the most value. This includes evaluating your existing infrastructure, processes, and employee skills.</p>
+
+      <h3>Key Digital Transformation Pillars</h3>
+      <ul>
+        <li><strong>Cloud Adoption:</strong> Migrating to cloud-based solutions for scalability, flexibility, and cost-effectiveness.</li>
+        <li><strong>Automation:</strong> Implementing automation tools for repetitive tasks to free up resources and reduce errors.</li>
+        <li><strong>Data Analytics:</strong> Utilizing data to gain insights into customer behavior, market trends, and operational performance.</li>
+        <li><strong>Customer Experience (CX) Enhancement:</strong> Leveraging digital tools to improve customer interactions and satisfaction.</li>
+      </ul>
+
+      <h3>Overcoming Challenges</h3>
+      <p>Small businesses often face challenges such as limited budgets, lack of in-house expertise, and resistance to change. Strategic planning, phased implementation, and seeking external expertise can help overcome these hurdles.</p>
+
+      <h3>Building a Digital-First Culture</h3>
+      <p>Successful digital transformation requires a shift in mindset. Fostering a digital-first culture that embraces innovation, continuous learning, and agile methodologies is essential for long-term success.</p>
+    `
+  },
+  {
+    id: 10,
+    slug: "maximizing-business-efficiency-with-cloud-computing",
+    category: "Cloud Services",
+    date: "29 July 2025",
+    title: "Maximizing Business Efficiency with Cloud Computing",
+    description: "Discover how cloud computing can significantly enhance your business efficiency, reduce costs, and improve scalability.",
+    image: "https://api.a0.dev/assets/image?text=Anye+Happiness+Ade+Cloud+Computing+Benefits&aspect=1:1&seed=anyeade2",
+    avatar: "https://randomuser.me/api/portraits/women/50.jpg",
+    author: "Anye Happiness Ade",
+    content: `
+      <p>Cloud computing has revolutionized how businesses operate, offering unparalleled opportunities for efficiency, scalability, and cost savings. This article explores how organizations can leverage cloud computing to maximize their operational efficiency.</p>
+
+      <h3>Understanding Cloud Computing Models</h3>
+      <p>Familiarize yourself with different cloud service models (IaaS, PaaS, SaaS) and deployment models (public, private, hybrid) to choose the best fit for your business needs.</p>
+
+      <h3>Key Benefits for Business Efficiency</h3>
+      <ul>
+        <li><strong>Cost Reduction:</strong> Shifting from CapEx to OpEx, reducing infrastructure and maintenance costs.</li>
+        <li><strong>Scalability and Flexibility:</strong> Easily scale resources up or down based on demand, adapting to changing business needs.</li>
+        <li><strong>Enhanced Collaboration:</strong> Cloud-based tools facilitate seamless collaboration among teams, regardless of location.</li>
+        <li><strong>Improved Data Security and Disaster Recovery:</strong> Cloud providers offer robust security measures and disaster recovery solutions.</li>
+      </ul>
+
+      <h3>Strategies for Cloud Adoption</h3>
+      <p>A well-planned cloud adoption strategy is crucial for maximizing benefits. This includes assessing existing applications, defining migration pathways, and ensuring data security and compliance.</p>
+
+      <h3>Optimizing Cloud Resources</h3>
+      <p>Continuous monitoring and optimization of cloud resources are essential to prevent cost overruns and ensure optimal performance. This involves right-sizing instances, utilizing reserved instances, and implementing automation for resource management.</p>
+
+      <h3>The Future of Business in the Cloud</h3>
+      <p>As cloud technologies continue to evolve, businesses that fully embrace cloud computing will be better positioned to innovate, adapt to market changes, and maintain a competitive edge in the digital economy.</p>
+    `
+  }
+
 const BlogDetailsPage = ({ params }) => {
   const { slug } = params;
   
