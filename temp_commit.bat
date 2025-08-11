@@ -1,1 +1,2 @@
 git commit -m "FIX: Standardize footer contact information across all variations."
+git push

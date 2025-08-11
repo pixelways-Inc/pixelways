@@ -7,7 +7,7 @@
 -   **`utility/contactInfo.js`:**
     -   Created a new file to store phone numbers, office location, and email address.
 -   **`layout/Footer.js`:**
-    -   Imported `contactInfo` from `utility/contactInfo.js`.
+    -   Imported `contactInfo` from `utility/contactInfo.js`
     -   Modified `Footer1`, `Footer2`, `Footer3`, `Footer4`, `Footer5`, and `Footer6` components to use contact details from `contactInfo.js` instead of hardcoded values.
 
 ## Fix: Syntax Error in Blog Details Page (August 11, 2025)
@@ -27,3 +27,13 @@
 
 -   **`layout/Footer.js`:**
     -   Modified `Footer2`, `Footer3`, `Footer5`, and `Footer6` components to include `officeLocation` and `email` details, aligning their contact information display with `Footer1` and `Footer4`.
+
+## Update Footer Copyright (August 11, 2025)
+
+**Objective:** Update the copyright text in all footer components to "Made with ❤️ by Hans Ade FT Pixelways Team".
+
+**Summary of Changes:**
+
+-   **`layout/Footer.js`:**
+    -   Modified `Footer1`, `Footer2`, `Footer3`, `Footer4`, and `Footer5` to replace "Copyright © 2025 <Link href="/">Pixelways Inc</Link>, All Rights Reserved." with "Made with ❤️ by Hans Ade FT Pixelways Team".
+    -   Modified `Footer6` to replace "© 2025 Pixelways Inc. All rights reserved." with "Made with ❤️ by Hans Ade FT Pixelways Team".

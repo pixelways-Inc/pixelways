@@ -20,7 +20,7 @@ This document outlines the conventions and steps to follow when working on the P
 To manage changes and ensure proper version control, follow this specific Git workflow:
 
 1.  **Stage Changes:** After modifying files, stage all relevant changes using: `git add .`
-2.  **Prepare Commit Message:** Update the `temp_commit.bat` file (located in the root directory) with your desired commit message. The commit message should be descriptive and follow a conventional commit style (e.g., `FEAT: Add new feature`, `FIX: Resolve bug`, `CHORE: Refactor code`).
+2.  **Prepare Commit Message:** Update the `temp_commit.bat` file (located in the root directory) with your desired commit message. The commit message should  only be single line and be descriptive and follow a conventional commit style (e.g., `FEAT: Add new feature`, `FIX: Resolve bug`, `CHORE: Refactor code`).
 3.  **Commit Changes:** Execute the `temp_commit.bat` file to commit your staged changes: `temp_commit.bat`
     *   *Note:* This method is used to bypass potential shell quoting issues on Windows for commit messages.
 4.  **Push Changes:** After a successful commit, push your changes to the remote repository: `git push`

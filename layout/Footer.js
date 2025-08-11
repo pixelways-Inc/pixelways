@@ -274,7 +274,7 @@ const Footer1 = () => {
             <div className="col-lg-6">
               <div className="copyright-text">
                 <p>
-                  Copyright © 2025 <Link href="/">Pixelways Inc</Link>, All Rights Reserved.
+                  Made with ❤️ by Hans Ade FT Pixelways Team
                 </p>
               </div>
             </div>
@@ -549,7 +549,7 @@ const Footer2 = () => {
             <div className="col-lg-6">
               <div className="copyright-text">
                 <p>
-                  Copyright © 2025 <Link href="/">Pixelways Inc</Link>, All Rights Reserved.
+                  Made with ❤️ by Hans Ade FT Pixelways Team
                 </p>
               </div>
             </div>
@@ -784,7 +784,7 @@ const Footer3 = () => {
             <div className="col-lg-6">
               <div className="copyright-text">
                 <p>
-                  Copyright © 2025 <Link href="/">Pixelways Inc</Link>, All Rights Reserved.
+                  Made with ❤️ by Hans Ade FT Pixelways Team
                 </p>
               </div>
             </div>
@@ -985,7 +985,7 @@ const Footer4 = () => {
                 data-aos-offset={50}
               >
                 <p>
-                  Copyright © 2025 <Link href="/">Pixelways Inc</Link>, All Rights Reserved.
+                  Made with ❤️ by Hans Ade FT Pixelways Team
                 </p>
               </div>
             </div>
@@ -1163,7 +1163,7 @@ const Footer5 = () => {
             <div className="col-md-9 text-center text-lg-end">
               <div className="copyright-text text-center text-md-end">
                 <p>
-                  Copyright © 2025 <Link href="/">Pixelways Inc</Link>, All Rights Reserved.
+                  Made with ❤️ by Hans Ade FT Pixelways Team
                 </p>
               </div>
             </div>
@@ -1450,7 +1450,7 @@ const Footer6 = () => {
             </div>
             <div className="col-lg-4">
               <div className="copyright-text text-lg-end wow fadeInLeft delay-0-2s">
-                <p>© 2025 Pixelways Inc. All rights reserved.</p>
+                <p>Made with ❤️ by Hans Ade FT Pixelways Team</p>
               </div>
             </div>
           </div>
