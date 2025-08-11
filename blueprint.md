@@ -570,3 +570,18 @@ This document tracks all significant changes, progress, and decisions made durin
   - Added a new blog post entry for "Hans Ade" with title "Top Cybersecurity Trends to Watch in 2025" (id: 8).
   - Added a new blog post entry for "Anye Happiness Ade" with title "Digital Transformation Strategies for Small Businesses" (id: 9).
   - Added a new blog post entry for "Anye Happiness Ade" with title "Maximizing Business Efficiency with Cloud Computing" (id: 10).
+
+## Blog Details Page Author and Date Consistency Update (August 11, 2025)
+
+**Objective:** Ensure consistency of author and date information for existing blog posts between the blog listing page (`app/blog/page.js`) and the blog details page (`app/blog-details/[slug]/page.js`).
+
+**Summary of Changes:**
+- **`app/blog-details/[slug]/page.js`:**
+  - Removed duplicate `blogPosts` array definition.
+  - Updated author, avatar, and date for the following posts to match `app/blog/page.js`:
+    - "The Ultimate Guide to Choosing the Right IT Solutions Partner" (id: 1)
+    - "Cybersecurity Unlocked Protecting Your Digital World in 2024" (id: 2)
+    - "Essential Cybersecurity Practices Every Business Must Follow" (id: 3)
+    - "Modern IT Consulting Trends for Growing Businesses" (id: 4)
+    - "Cloud Migration: Best Practices for a Smooth Transition" (id: 5)
+    - "Data Recovery Solutions for Small Businesses" (id: 6)

@@ -1,2 +1,2 @@
-git commit -m "FEAT: Add more blog posts and update sidebar"
+git commit -m "FEAT: Add blog post content to slug pages"
 git push
