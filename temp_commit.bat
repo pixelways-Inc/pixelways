@@ -1,2 +1,2 @@
-git commit -m "FIX: Resolve blog post author and date inconsistencies"
+git commit -m "FEAT: Centralize footer contact information"
 git push

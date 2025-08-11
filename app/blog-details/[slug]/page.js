@@ -334,7 +334,7 @@ const blogPosts = [
       <p>As cloud technologies continue to evolve, businesses that fully embrace cloud computing will be better positioned to innovate, adapt to market changes, and maintain a competitive edge in the digital economy.</p>
     `
   }
-
+];
 const BlogDetailsPage = ({ params }) => {
   const { slug } = params;
   
