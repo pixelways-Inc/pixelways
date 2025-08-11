@@ -1,1 +1,1 @@
-git commit -m "FIX: Homepage Features Area and syntax error in app/page.js"
+git commit -m "FEAT: Enhance footer service links and service details page"
