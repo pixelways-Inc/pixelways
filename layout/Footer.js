@@ -168,6 +168,22 @@ const Footer1 = () => {
                   Phone: <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
                 </div>
               </div>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="fal fa-map-marker-alt" />
+                </div>
+                <div className="content">
+                  Office Location: 4030 Sheppard Ave E, Scarborough, ON. Canada
+                </div>
+              </div>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="far fa-envelope" />
+                </div>
+                <div className="content">
+                  Email Address: <a href="mailto:hello@pixelways.co">hello@pixelways.co</a>
+                </div>
+              </div>
             </div>
           </div>
           <div className="col-xl-3 col-md-3 col-6">

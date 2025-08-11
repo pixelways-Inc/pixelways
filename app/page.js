@@ -12,7 +12,7 @@ import Link from "next/link";
 const page = () => {
   return (
     <TekprofLayout
-      header={1}
+      header={2}
       footer={1}
       rootElements={{
         "--tekprof-primary-color": "#FC5546",
