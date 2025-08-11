@@ -220,7 +220,7 @@ const Footer1 = () => {
               <ul>
                 {servicesData.map((service) => (
                   <li key={service.id}>
-                    <Link href={`/service-details#${service.title.toLowerCase().replace(/ /g, '-')}`}>
+                    <Link href={`/services?service=${service.id}`} scroll={false}>
                       <i className="far fa-angle-right" /> {service.title}
                     </Link>
                   </li>
