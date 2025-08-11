@@ -9,10 +9,12 @@ import servicesData from '../../data/services.json';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
-const page = () => {
+
+import { Suspense } from "react";
+
+function ServiceDetailsContent() {
   const searchParams = useSearchParams();
   const serviceTitle = searchParams.get('title');
-
   const service = servicesData.find(s => s.title.toLowerCase().replace(/ /g, '-') === serviceTitle);
 
   useEffect(() => {
@@ -374,5 +376,12 @@ const page = () => {
       <ClientLogo containerClass="client-logo-area style-two for-border-top" />
     </TekprofLayout>
   );
-};
+}
+
+const page = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <ServiceDetailsContent />
+  </Suspense>
+);
+
 export default page;
