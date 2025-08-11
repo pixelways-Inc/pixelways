@@ -1,2 +1,2 @@
-git commit -m "FEAT: Update footer copyright with Hans Ade FT Pixelways Team"
+git commit -m "CHORE: Add git push to temp_commit.bat"
 git push
