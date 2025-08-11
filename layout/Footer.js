@@ -1,5 +1,6 @@
 import Link from "next/link";
 import servicesData from '../data/services.json';
+import contactInfo from '../utility/contactInfo';
 
 const Footer = ({ footer }) => {
   switch (footer) {
@@ -59,8 +60,8 @@ const Footer1 = () => {
                       <i className="fas fa-envelope" />
                     </div>
                     <div className="content">
-                      Email Address <br />
-                      <a href="mailto:hello@pixelways.co">hello@pixelways.co</a>
+                                        Email Address <br />
+                  <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
                     </div>
                   </div>
                 </div>
@@ -165,7 +166,7 @@ const Footer1 = () => {
                   <i className="far fa-phone-rotary" />
                 </div>
                 <div className="content">
-                  Phone: <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
+                  Phone: <a href={`tel:${contactInfo.phone1}`}>{contactInfo.phone1}</a> / <a href={`tel:${contactInfo.phone2}`}>{contactInfo.phone2}</a>
                 </div>
               </div>
               <div className="info-item">
@@ -173,7 +174,7 @@ const Footer1 = () => {
                   <i className="fal fa-map-marker-alt" />
                 </div>
                 <div className="content">
-                  Office Location: 4030 Sheppard Ave E, Scarborough, ON. Canada
+                  Office Location: {contactInfo.officeLocation}
                 </div>
               </div>
               <div className="info-item">
@@ -440,7 +441,7 @@ const Footer2 = () => {
                   <i className="far fa-phone-rotary" />
                 </div>
                 <div className="content">
-                  Phone: <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
+                  Phone: <a href={`tel:${contactInfo.phone1}`}>{contactInfo.phone1}</a> / <a href={`tel:${contactInfo.phone2}`}>{contactInfo.phone2}</a>
                 </div>
               </div>
             </div>
@@ -659,7 +660,7 @@ const Footer3 = () => {
                   <i className="far fa-phone-rotary" />
                 </div>
                 <div className="content">
-                  Phone: <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
+                  Phone: <a href={`tel:${contactInfo.phone1}`}>{contactInfo.phone1}</a> / <a href={`tel:${contactInfo.phone2}`}>{contactInfo.phone2}</a>
                 </div>
               </div>
             </div>
@@ -851,13 +852,13 @@ const Footer4 = () => {
               <h6 className="footer-title">Contact</h6>
               <ul>
                 <li>
-                  <i className="fal fa-map-marker-alt" /> 4030 Sheppard Ave E, Scarborough, ON. Canada
+                  <i className="fal fa-map-marker-alt" /> {contactInfo.officeLocation}
                 </li>
                 <li>
-                  <i className="fal fa-envelope" /> <a href="mailto:hello@pixelways.co">hello@pixelways.co</a>
+                  <i className="fal fa-envelope" /> <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
                 </li>
                 <li>
-                  <i className="fal fa-phone" /> <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
+                  <i className="fal fa-phone" /> <a href={`tel:${contactInfo.phone1}`}>{contactInfo.phone1}</a> / <a href={`tel:${contactInfo.phone2}`}>{contactInfo.phone2}</a>
                 </li>
               </ul>
             </div>
@@ -1018,7 +1019,7 @@ const Footer5 = () => {
               <p>Get in touch with our team</p>
               <div className="section-title">
                 <h2>
-                  <a href="mailto:hello@pixelways.co">hello@pixelways.co</a>
+                  <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
                 </h2>
               </div>
               <div className="social-style-two mt-10">
@@ -1155,7 +1156,7 @@ const Footer6 = () => {
                 <div className="content">
                   <span>Hotline</span>
                   <br />
-                  <a href="tel:+237679719353">+237 679 719 353</a> / <a href="tel:+14164071923">+1 (416) 407-1923</a>
+                  <a href={`tel:${contactInfo.phone1}`}>{contactInfo.phone1}</a> / <a href={`tel:${contactInfo.phone2}`}>{contactInfo.phone2}</a>
                 </div>
               </div>
           </div>
