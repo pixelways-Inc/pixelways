@@ -444,6 +444,22 @@ const Footer2 = () => {
                   Phone: <a href={`tel:${contactInfo.phone1}`}>{contactInfo.phone1}</a> / <a href={`tel:${contactInfo.phone2}`}>{contactInfo.phone2}</a>
                 </div>
               </div>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="fal fa-map-marker-alt" />
+                </div>
+                <div className="content">
+                  Office Location: {contactInfo.officeLocation}
+                </div>
+              </div>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="far fa-envelope" />
+                </div>
+                <div className="content">
+                  Email Address: <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
+                </div>
+              </div>
             </div>
           </div>
           <div className="col-xl-3 col-md-3 col-6">
@@ -661,6 +677,22 @@ const Footer3 = () => {
                 </div>
                 <div className="content">
                   Phone: <a href={`tel:${contactInfo.phone1}`}>{contactInfo.phone1}</a> / <a href={`tel:${contactInfo.phone2}`}>{contactInfo.phone2}</a>
+                </div>
+              </div>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="fal fa-map-marker-alt" />
+                </div>
+                <div className="content">
+                  Office Location: {contactInfo.officeLocation}
+                </div>
+              </div>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="far fa-envelope" />
+                </div>
+                <div className="content">
+                  Email Address: <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
                 </div>
               </div>
             </div>
@@ -1022,6 +1054,22 @@ const Footer5 = () => {
                   <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
                 </h2>
               </div>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="far fa-phone-rotary" />
+                </div>
+                <div className="content">
+                  Phone: <a href={`tel:${contactInfo.phone1}`}>{contactInfo.phone1}</a> / <a href={`tel:${contactInfo.phone2}`}>{contactInfo.phone2}</a>
+                </div>
+              </div>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="fal fa-map-marker-alt" />
+                </div>
+                <div className="content">
+                  Office Location: {contactInfo.officeLocation}
+                </div>
+              </div>
               <div className="social-style-two mt-10">
                 <Link href="contact">
                   <i className="fab fa-facebook-f" />
@@ -1239,6 +1287,30 @@ const Footer6 = () => {
                 Sed perspiciatis unde omnste natus error voluptatem accusanti
                 doloreue audantium totamrem aeriam.
               </p>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="far fa-phone-rotary" />
+                </div>
+                <div className="content">
+                  Phone: <a href={`tel:${contactInfo.phone1}`}>{contactInfo.phone1}</a> / <a href={`tel:${contactInfo.phone2}`}>{contactInfo.phone2}</a>
+                </div>
+              </div>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="fal fa-map-marker-alt" />
+                </div>
+                <div className="content">
+                  Office Location: {contactInfo.officeLocation}
+                </div>
+              </div>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="far fa-envelope" />
+                </div>
+                <div className="content">
+                  Email Address: <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
+                </div>
+              </div>
               <Link href="about" className="read-more">
                 Learn More Us <i className="fas fa-long-arrow-right" />
               </Link>

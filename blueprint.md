@@ -18,3 +18,12 @@
 
 -   **`app/blog-details/[slug]/page.js`:**
     -   Added `];` to correctly terminate the `blogPosts` array, which was causing a syntax error due to improper closure before the `BlogDetailsPage` component declaration.
+
+## Footer Contact Information Consistency (August 11, 2025)
+
+**Objective:** Standardize contact information display across all footer variations to ensure consistency with the full details available in `utility/contactInfo.js`.
+
+**Summary of Changes:**
+
+-   **`layout/Footer.js`:**
+    -   Modified `Footer2`, `Footer3`, `Footer5`, and `Footer6` components to include `officeLocation` and `email` details, aligning their contact information display with `Footer1` and `Footer4`.
