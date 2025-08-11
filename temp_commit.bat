@@ -1,2 +1,2 @@
-git commit -m "CHORE: Add git push to temp_commit.bat"
+git commit -m "<YOUR_COMMIT_MESSAGE_HERE>"
 git push
