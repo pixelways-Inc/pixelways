@@ -1,14 +1,49 @@
+"use client";
 import ClientLogo from "@/components/ClientLogo";
 import Consultation from "@/components/Consultation";
 import { FAQs2 } from "@/components/FAQs";
 import PageBanner from "@/components/PageBanner";
 import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
+import servicesData from '../../data/services.json';
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
+
 const page = () => {
+  const searchParams = useSearchParams();
+  const serviceTitle = searchParams.get('title');
+
+  const service = servicesData.find(s => s.title.toLowerCase().replace(/ /g, '-') === serviceTitle);
+
+  useEffect(() => {
+    if (serviceTitle) {
+      const element = document.getElementById(serviceTitle);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [serviceTitle]);
+
+  if (!service) {
+    return (
+      <TekprofLayout>
+        <PageBanner pageName="Service Not Found" title="Service Not Found" />
+        <section className="service-details-content-area py-130 rpy-100 rel z-1">
+          <div className="container">
+            <p>The requested service could not be found.</p>
+            <Link href="/services" className="theme-btn mt-35">Back to Services</Link>
+          </div>
+        </section>
+      </TekprofLayout>
+    );
+  }
+
+  const imageUrl = `https://api.a0.dev/assets/image?text=${encodeURIComponent(service.title)}+Pixelways+Solution&aspect=16:9&seed=123`;
+
   return (
     <TekprofLayout>
-      <PageBanner pageName="Services Details" title={"Software Development"} />
-      <section className="service-details-content-area py-130 rpy-100 rel z-1">
+      <PageBanner pageName="Services Details" title={service.title} />
+      <section id={service.title.toLowerCase().replace(/ /g, '-')} className="service-details-content-area py-130 rpy-100 rel z-1">
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
@@ -21,7 +56,7 @@ const page = () => {
                 <span className="sub-title color-primary mb-10">
                   Modern IT Solutions
                 </span>
-                <h2>Custom-Built Software Solutions to Drive Your Success</h2>
+                <h2>{service.title}</h2>
               </div>
             </div>
             <div className="col-lg-6">
@@ -33,14 +68,14 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <img
-                  src="assets/images/services/service-details1.jpg"
-                  alt="Service"
+                  src={imageUrl}
+                  alt={service.title}
                 />
               </div>
             </div>
           </div>
           <div className="row align-items-center mt-40 rmt-30">
-            <div className="col-lg-6">
+            <div className="col-lg-6"> 
               <div
                 className="image rmb-40"
                 data-aos="fade-up"
@@ -48,8 +83,8 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <img
-                  src="assets/images/services/service-details2.jpg"
-                  alt="Service"
+                  src={imageUrl}
+                  alt={service.title}
                 />
               </div>
             </div>
@@ -62,28 +97,21 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <p>
-                  Offering cloud solutions and scalable architecture lets
-                  clients expand their software capabilities as their business
-                  grows, supporting cost-effective scaling without technical
-                  limitations.
+                  {service.description}
                 </p>
                 <ul className="list-style-two mt-30">
-                  <li>
-                    <i className="far fa-check" /> Custom software development
-                  </li>
-                  <li>
-                    <i className="far fa-check" /> Requirement analysis &amp;
-                    planning
-                  </li>
-                  <li>
-                    <i className="far fa-check" /> Support and maintenance
-                  </li>
+                  {service.services.map((item, index) => (
+                    <li key={index}>
+                      <i className="far fa-check" /> {item}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
           </div>
         </div>
       </section>
+      {/* The following sections are placeholders and can be dynamically populated or removed as needed */}
       <section className="modern-it-solutions-area rel z-1">
         <div className="container-fluid">
           <div className="row gap-10">
@@ -95,8 +123,8 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <img
-                  src="assets/images/services/modern-it-solutions.jpg"
-                  alt="Service"
+                  src={imageUrl}
+                  alt={service.title}
                 />
               </div>
             </div>
