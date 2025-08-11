@@ -295,8 +295,9 @@ This document tracks all significant changes, progress, and decisions made durin
 **Summary of Changes:**
 - **`app/globals.css`:**
   - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.contact-info-part` within `body.dark-theme`, and `color: var(--main-text-color);` for its content (`p`, `.contact-info-item .text p`, `.contact-info-item .text a`) and icons (`.contact-info-item .icon i`).
-  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.contact-page-form` within `body.dark-theme`, and `color: var(--main-text-color);` for its content (`h4`, `p`, `label`).
+  - Added CSS rules to set `background-color: var(--main-bg-color);` and `border-color: var(--global-border-color);` for `.contact-page-form` within `body.dark-theme`, and `color: var(--main-text-color);` for its title (`h4`).
   - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.contact-page-form .form-control` within `body.dark-theme`, and `color: rgba(255, 255, 255, 0.7);` for its `::placeholder`.
+  - Added CSS rules to set `background-color: var(--secondary-bg-color);`, `color: var(--main-text-color);`, and `border-color: var(--global-border-color);` for `.contact-page-form select` and its `option` elements within `body.dark-theme`.
 
 ## FAQs Page Dark Theme Adaptation (August 10, 2025)
 
@@ -386,6 +387,8 @@ This document tracks all significant changes, progress, and decisions made durin
 - Used `color: var(--heading-color)` for headings (h2, h4, .title)
 - Added hover state overrides to ensure consistent white text during interactions
 - Covered both `.container.features` and `.container.features-bg` class variations
+- Fixed CSS lint issues by adding standard `appearance` property alongside `-webkit-appearance`
+- Added specific styling for `.sub-title.color-primary` to maintain brand color while respecting dark theme
 
 ## Features Section Background Fix (August 10, 2025)
 
@@ -483,17 +486,17 @@ This document tracks all significant changes, progress, and decisions made durin
 **Objective:** Modified and unified services to to be read from a single file and can the be display / rendered in multiple place basically in slider mode and in list mode. I equally updated the services main page.
 
 **Summary of Changes:**
-- **`app/page.js`:**
+- **`app/page.js`:
   - modified services and added links to the detail page
   - Changed from static rendering to dynamic rendering
   
-- **`app/components/services.js`:**
+- **`app/components/services.js`:
   - Implemented a component for rendering services
   - Implemented two rendering style `list` | `slide` which can be used by passing props the values through props
   - Implemented support passing the `limit` (number of elements to be rendered). This can be passed as params when rendering the component. Leaving the default value would render all content and would not show the see more button.
   - Rendered content based on data imported from `@/data/services.json`
 
-- **`app/component/service.js`:**
+- **`app/component/service.js`:
   - Added auto scrolling once a service id is present on query string
   - Changed from static rendering to dynamic rendering
 
@@ -509,3 +512,31 @@ This document tracks all significant changes, progress, and decisions made durin
 - `README.md` - Added description for the first service (Software development services)
 - `.gitignore` - Added package-lock.json to the gitignore file
 - `@/app/global.css` - Added styling for services content
+
+## Footer and Service Details Page Enhancement (August 11, 2025)
+
+**Objective:** Dynamically generate service links in the footer and populate the service details page with rich, authentic content using the image API, and implement scroll-to-section functionality.
+
+**Summary of Changes:**
+
+-   **`layout/Footer.js`:**
+    -   Imported `servicesData` from `data/services.json`.
+    -   Modified `Footer1`, `Footer2`, `Footer3`, and `Footer6` components to dynamically generate service links using data from `servicesData`.
+    -   Each service link now points to `/service-details#<service_slug>` where `<service_slug>` is a slugified version of the service title (e.g., `software-development-services`).
+
+-   **`app/service-details/page.js`:**
+    -   Added `"use client";` directive at the top.
+    -   Imported `servicesData` from `../../data/services.json` and `useSearchParams` from `next/navigation`.
+    -   Implemented logic to extract the service title from the URL query parameters.
+    -   Dynamically fetched and rendered the `title`, `description`, and `services` (sub-points) of the selected service.
+    -   Replaced hardcoded image paths with dynamic image URLs generated using the `https://api.a0.dev/assets/image` API, utilizing the service title for the `text` parameter, `16:9` aspect ratio, and a fixed `seed=123`.
+    -   Added `id` attributes to the main service content section, matching the slugified service titles for scroll-to-section functionality.
+    -   Implemented a `useEffect` hook to scroll to the relevant section on page load if a hash fragment (service slug) is present in the URL.
+    -   Added a fallback message for when a service is not found.
+
+**Technical Details:**
+-   Used `Array.prototype.map()` to iterate over `servicesData` for dynamic link generation.
+-   Used `String.prototype.toLowerCase()` and `String.prototype.replace(/ /g, '-')` to create URL-friendly slugs from service titles.
+-   Utilized `useSearchParams` for client-side URL parameter access.
+-   Implemented `useEffect` and `element.scrollIntoView({ behavior: 'smooth' })` for smooth scrolling to sections.
+-   Used `encodeURIComponent()` for safe URL encoding of image API `text` parameter.

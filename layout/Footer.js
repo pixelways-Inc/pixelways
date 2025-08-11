@@ -1,4 +1,5 @@
 import Link from "next/link";
+import servicesData from '../data/services.json';
 
 const Footer = ({ footer }) => {
   switch (footer) {
@@ -217,31 +218,13 @@ const Footer1 = () => {
             >
               <h5 className="footer-title">Services</h5>
               <ul>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> IT Management
-                  </Link>
-                </li>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> Cyber Security
-                  </Link>
-                </li>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> Cloud Solutions
-                  </Link>
-                </li>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> Data Backup
-                  </Link>
-                </li>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> IT Consulting
-                  </Link>
-                </li>
+                {servicesData.map((service) => (
+                  <li key={service.id}>
+                    <Link href={`/service-details#${service.title.toLowerCase().replace(/ /g, '-')}`}>
+                      <i className="far fa-angle-right" /> {service.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -494,31 +477,13 @@ const Footer2 = () => {
             >
               <h5 className="footer-title">Services</h5>
               <ul>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> IT Management
-                  </Link>
-                </li>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> Cyber Security
-                  </Link>
-                </li>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> Cloud Solutions
-                  </Link>
-                </li>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> Data Backup
-                  </Link>
-                </li>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> IT Consulting
-                  </Link>
-                </li>
+                {servicesData.map((service) => (
+                  <li key={service.id}>
+                    <Link href={`/service-details#${service.title.toLowerCase().replace(/ /g, '-')}`}>
+                      <i className="far fa-angle-right" /> {service.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -731,31 +696,13 @@ const Footer3 = () => {
             >
               <h5 className="footer-title">Services</h5>
               <ul>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> IT Management
-                  </Link>
-                </li>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> Cyber Security
-                  </Link>
-                </li>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> Cloud Solutions
-                  </Link>
-                </li>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> Data Backup
-                  </Link>
-                </li>
-                <li>
-                  <Link href="service-details">
-                    <i className="far fa-angle-right" /> IT Consulting
-                  </Link>
-                </li>
+                {servicesData.map((service) => (
+                  <li key={service.id}>
+                    <Link href={`/service-details#${service.title.toLowerCase().replace(/ /g, '-')}`}>
+                      <i className="far fa-angle-right" /> {service.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -1349,29 +1296,13 @@ const Footer6 = () => {
                 <div className="footer-widget widget_nav_menu wow fadeInUp delay-0-4s">
                   <h4 className="footer-title">Services</h4>
                   <ul className="list-style-four">
-                    <li>
-                      <Link href="service-details">Product Design</Link>
-                    </li>
-                    <li>
-                      <Link href="service-details">
-                        Design &amp; Development
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="service-details">UX/UI Strategy</Link>
-                    </li>
-                    <li>
-                      <Link href="service-details">Search Engine</Link>
-                    </li>
-                    <li>
-                      <Link href="service-details">IT Consulting</Link>
-                    </li>
-                    <li>
-                      <Link href="service-details">Software Development</Link>
-                    </li>
-                    <li>
-                      <Link href="service-details">Business Analysis</Link>
-                    </li>
+                    {servicesData.map((service) => (
+                      <li key={service.id}>
+                        <Link href={`/service-details#${service.title.toLowerCase().replace(/ /g, '-')}`}>
+                          {service.title}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
