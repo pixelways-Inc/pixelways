@@ -585,3 +585,11 @@ This document tracks all significant changes, progress, and decisions made durin
     - "Modern IT Consulting Trends for Growing Businesses" (id: 4)
     - "Cloud Migration: Best Practices for a Smooth Transition" (id: 5)
     - "Data Recovery Solutions for Small Businesses" (id: 6)
+
+## Blog Details Page Slug Comparison Robustness (August 11, 2025)
+
+**Objective:** Improve the robustness of slug comparison in `app/blog-details/[slug]/page.js` to prevent "post not found" errors due to subtle inconsistencies in slug formatting.
+
+**Summary of Changes:**
+- **`app/blog-details/[slug]/page.js`:**
+  - Modified the `blogPosts.find` method to normalize slugs by converting them to lowercase and trimming whitespace before comparison, ensuring case-insensitive and whitespace-agnostic matching.

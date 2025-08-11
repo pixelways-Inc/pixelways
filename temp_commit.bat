@@ -1,2 +1,2 @@
-git commit -m "FEAT: Add blog post content to slug pages"
+git commit -m "FIX: Resolve blog post author and date inconsistencies"
 git push

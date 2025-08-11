@@ -339,7 +339,7 @@ const BlogDetailsPage = ({ params }) => {
   const { slug } = params;
   
   // Find the blog post by slug
-  const post = blogPosts.find(p => p.slug === slug);
+  const post = blogPosts.find(p => p.slug.toLowerCase().trim() === slug.toLowerCase().trim());
   
   // If post not found, show 404-like content
   if (!post) {
