@@ -524,7 +524,7 @@ This document tracks all significant changes, progress, and decisions made durin
     -   Modified `Footer1`, `Footer2`, `Footer3`, and `Footer6` components to dynamically generate service links using data from `servicesData`.
     -   Each service link now points to `/service-details#<service_slug>` where `<service_slug>` is a slugified version of the service title (e.g., `software-development-services`).
 
--   **`app/service-details/page.js`:**
+-   **`app/service-details/page.js`:
     -   Added `"use client";` directive at the top.
     -   Imported `servicesData` from `../../data/services.json` and `useSearchParams` from `next/navigation`.
     -   Implemented logic to extract the service title from the URL query parameters.
@@ -540,3 +540,12 @@ This document tracks all significant changes, progress, and decisions made durin
 -   Utilized `useSearchParams` for client-side URL parameter access.
 -   Implemented `useEffect` and `element.scrollIntoView({ behavior: 'smooth' })` for smooth scrolling to sections.
 -   Used `encodeURIComponent()` for safe URL encoding of image API `text` parameter.
+
+## Blog Page Content Update (August 11, 2025)
+
+**Objective:** Add new blog posts for authors "Hans Ade" and "Anye Happiness Ade" to the blog page.
+
+**Summary of Changes:**
+- **`app/blog/page.js`:**
+  - Added a new blog post entry for "Hans Ade" with title "The Future of AI in Business Operations" and slug `/blog/the-future-of-ai-in-business-operations`.
+  - Added a new blog post entry for "Anye Happiness Ade" with title "Digital Transformation Strategies for Small Businesses" and slug `/blog/digital-transformation-strategies-for-small-businesses`.

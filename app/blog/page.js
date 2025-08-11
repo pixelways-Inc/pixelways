@@ -151,6 +151,46 @@ const page = () => {
                 <div className="col-xl-6 col-lg-12 col-md-6" data-aos="fade-up" data-aos-duration={1500} data-aos-offset={50}>
                   <div className="blog-standard-item h-100">
                     <div className="image">
+                      <img src="https://api.a0.dev/assets/image?text=Hans+Ade+IT+Consulting+Future+of+AI+in+Business&aspect=1:1&seed=hansade1" alt="Blog" />
+                    </div>
+                    <div className="content">
+                      <ul className="blog-meta-two">
+                        <li>
+                          <img src="https://randomuser.me/api/portraits/men/17.jpg" alt="Author" style={{width:'24px',borderRadius:'50%',marginRight:'6px'}} />
+                          <Link href="blog">Hans Ade</Link>
+                        </li>
+                        <li><i className="far fa-calendar-alt" /> 1 August 2025</li>
+                        <li><i className="far fa-comments" /> Comments (5)</li>
+                      </ul>
+                      <h3><Link href="/blog/the-future-of-ai-in-business-operations">The Future of AI in Business Operations</Link></h3>
+                      <p>Explore how artificial intelligence is set to revolutionize business operations, from automation to advanced decision-making processes.</p>
+                      <Link href="/blog/the-future-of-ai-in-business-operations" className="blog-read-more" data-hover="Read More"><span>Read More</span></Link>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-6 col-lg-12 col-md-6" data-aos="fade-up" data-aos-duration={1500} data-aos-offset={50}>
+                  <div className="blog-standard-item h-100">
+                    <div className="image">
+                      <img src="https://api.a0.dev/assets/image?text=Anye+Happiness+Ade+Digital+Transformation+Strategies&aspect=1:1&seed=anyeade1" alt="Blog" />
+                    </div>
+                    <div className="content">
+                      <ul className="blog-meta-two">
+                        <li>
+                          <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Author" style={{width:'24px',borderRadius:'50%',marginRight:'6px'}} />
+                          <Link href="blog">Anye Happiness Ade</Link>
+                        </li>
+                        <li><i className="far fa-calendar-alt" /> 31 July 2025</li>
+                        <li><i className="far fa-comments" /> Comments (6)</li>
+                      </ul>
+                      <h3><Link href="/blog/digital-transformation-strategies-for-small-businesses">Digital Transformation Strategies for Small Businesses</Link></h3>
+                      <p>Understand key digital transformation strategies that can help small businesses thrive in the evolving digital landscape.</p>
+                      <Link href="/blog/digital-transformation-strategies-for-small-businesses" className="blog-read-more" data-hover="Read More"><span>Read More</span></Link>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-6 col-lg-12 col-md-6" data-aos="fade-up" data-aos-duration={1500} data-aos-offset={50}>
+                  <div className="blog-standard-item h-100">
+                    <div className="image">
                       <img src="https://api.a0.dev/assets/image?text=data+recovery+specialist+helping+small+business+restore+files&aspect=1:1&seed=blog6" alt="Blog" />
                     </div>
                     <div className="content">
