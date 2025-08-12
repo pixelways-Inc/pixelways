@@ -64,6 +64,15 @@ const Footer1 = () => {
                   <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
                     </div>
                   </div>
+                  <div className="mail-info mb-20">
+                    <div className="icon">
+                      <i className="fas fa-headset" />
+                    </div>
+                    <div className="content">
+                                        Support Tickets <br />
+                  <a href={`mailto:${contactInfo.supportEmail}`}>{contactInfo.supportEmail}</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

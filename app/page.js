@@ -662,7 +662,7 @@ const page = () => {
                     </li>
                   </ul>
                   <h4 className="title">
-                    <Link href="blog-details">
+                    <Link href="/blog/cybersecurity-essentials-protecting-business-from-emerging-threats">
                       Cybersecurity Essentials Protecting Business from Emerging
                       Threats
                     </Link>
@@ -671,7 +671,7 @@ const page = () => {
                     <p>
                       Stay ahead of evolving cyber threats with our essential guide to protecting your business through robust security practices and proactive measures.
                     </p>
-                    <Link className="theme-btn btn-small" href="blog-details">
+                    <Link className="theme-btn btn-small" href="/blog/cybersecurity-essentials-protecting-business-from-emerging-threats">
                       Read More
                     </Link>
                   </div>
@@ -699,7 +699,7 @@ const page = () => {
                     </li>
                   </ul>
                   <h4 className="title">
-                    <Link href="blog-details">
+                    <Link href="/blog/ultimate-guide-choosing-right-it-solutions-partner">
                       The Ultimate Guide to Choosing the Right IT Solutions
                       Partner
                     </Link>
@@ -708,7 +708,7 @@ const page = () => {
                     <p>
                       Navigate the complexities of selecting an IT partner with our comprehensive guide, ensuring you make an informed decision for your business's future.
                     </p>
-                    <Link className="theme-btn btn-small" href="blog-details">
+                    <Link className="theme-btn btn-small" href="/blog/ultimate-guide-choosing-right-it-solutions-partner">
                       Read More
                     </Link>
                   </div>
@@ -736,7 +736,7 @@ const page = () => {
                     </li>
                   </ul>
                   <h4 className="title">
-                    <Link href="blog-details">
+                    <Link href="/blog/importance-data-backup-disaster-recovery-plans">
                       The Importance of Data Backup and Disaster Recovery Plans
                     </Link>
                   </h4>
@@ -744,7 +744,7 @@ const page = () => {
                     <p>
                       Understand why robust data backup and disaster recovery plans are crucial for business continuity and protecting your valuable information from unforeseen events.
                     </p>
-                    <Link className="theme-btn btn-small" href="blog-details">
+                    <Link className="theme-btn btn-small" href="/blog/importance-data-backup-disaster-recovery-plans">
                       Read More
                     </Link>
                   </div>

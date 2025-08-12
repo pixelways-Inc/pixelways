@@ -26,6 +26,7 @@ const SupportPage = () => {
                 </p>
                 <ul className="list-style-one mt-4">
                   <li><strong>Email:</strong> <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a></li>
+                  <li><strong>Support Tickets:</strong> <a href={`mailto:${contactInfo.supportEmail}`}>{contactInfo.supportEmail}</a></li>
                   <li><strong>Phone:</strong> <a href={`tel:${contactInfo.phone1}`}>{contactInfo.phone1}</a></li>
                   <li><strong>Live Chat:</strong> Available during business hours on our homepage.</li>
                 </ul>

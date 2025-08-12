@@ -42,6 +42,15 @@ const page = () => {
                   </div>
                   <div className="contact-info-item">
                     <div className="icon">
+                      <i className="far fa-headset" />
+                    </div>
+                    <div className="text">
+                      <span className="title">Support Tickets</span>
+                      <a href="mailto:tickets@pixelways-solutions-inc.p.tawk.email">tickets@pixelways-solutions-inc.p.tawk.email</a>
+                    </div>
+                  </div>
+                  <div className="contact-info-item">
+                    <div className="icon">
                       <i className="far fa-phone-volume" />
                     </div>
                     <div className="text">
