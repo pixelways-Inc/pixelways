@@ -1,3 +1,18 @@
+## Add New Case Study: Optima AI Inc. (August 12, 2025)
+
+**Objective:** Add a new case study for "Optima AI Inc.", highlighting its mission to empower businesses with cutting-edge AI solutions.
+
+**Summary of Changes:**
+
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "Optima AI Inc." with a link to its dedicated slug page `/cases/optima-ai-inc`.
+    -   Assigned categories "AI Solutions", "Business Transformation", and "Innovation" to this new entry.
+    -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=Optima+AI+Artificial+Intelligence+Business+Solutions&aspect=16:9&seed=1234`.
+-   **`app/cases/optima-ai-inc/page.js`:**
+    -   Created a new dynamic page for the "Optima AI Inc." case study.
+    -   Populated the page with details including client (Optima AI Inc.), live project URL, developer details, tech stack (AI Technologies, Machine Learning, Data Science, Cloud Computing, Custom Software Development), objective, solution, and results.
+    -   Integrated the image API for the main case study image: `https://api.a0.dev/assets/image?text=Optima+AI+Artificial+Intelligence+Business+Solutions&aspect=16:9&seed=1234`.
+
 ## Update TweetChat Case Study Dates (August 12, 2025)
 
 **Objective:** Update the start and end dates for the "TweetChat" case study.

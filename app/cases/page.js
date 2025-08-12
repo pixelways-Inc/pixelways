@@ -100,6 +100,19 @@ const page = () => {
                 </div>
               </div>
             </div>
+            <div className="col-lg-4 col-md-6 item solutions security">
+              <div className="case-item-two">
+                <div className="image">
+                  <img src="https://api.a0.dev/assets/image?text=Optima+AI+Artificial+Intelligence+Business+Solutions&aspect=16:9&seed=1234" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/optima-ai-inc">Optima AI Inc.</Link>
+                  </h4>
+                  <span>AI Solutions, Business Transformation, Innovation</span>
+                </div>
+              </div>
+            </div>
             <div className="col-lg-4 col-md-6 item consulting security">
               <div className="case-item-two">
                 <div className="image">
