@@ -64,7 +64,7 @@ const page = () => {
             <div className="col-lg-4 col-md-6 item consulting solutions">
               <div className="case-item-two">
                 <div className="image">
-                  <img src="assets/images/cases/case2.jpg" alt="Case Image" />
+                  <img src="https://api.a0.dev/assets/image?text=Mannor+Janitorial+Enterprise+Cleaning+Solutions&aspect=16:9&seed=456" alt="Case Image" />
                 </div>
                 <div className="content">
                   <h4>

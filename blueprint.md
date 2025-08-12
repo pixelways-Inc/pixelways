@@ -1,3 +1,14 @@
+## Update Mannor Janitorial Enterprise, Inc. Image Source (August 12, 2025)
+
+**Objective:** Update the image source for the "Mannor Janitorial Enterprise, Inc." case study to use the image API, consistent with the Veela Store project.
+
+**Summary of Changes:**
+
+-   **`app/cases/mannor-janitorial-enterprise/page.js`:**
+    -   Modified the `imageUrl` property to use the image API: `https://api.a0.dev/assets/image?text=Mannor+Janitorial+Enterprise+Cleaning+Solutions&aspect=16:9&seed=456`.
+-   **`app/cases/page.js`:**
+    -   Updated the `src` attribute of the image tag for the "Mannor Janitorial Enterprise, Inc." entry to use the same image API URL.
+
 ## Update Mannor Janitorial Enterprise, Inc. Case Study (August 12, 2025)
 
 **Objective:** Update the Mannor Janitorial Enterprise, Inc. case study with live project link, client name, developer details, and expanded tech stack.
