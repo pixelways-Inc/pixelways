@@ -1,1 +1,1 @@
-git commit -m "FEAT: Generate thumbnail for Veela Store Project"
+git commit -m "FEAT: Add live project link to Veela Store case study"

@@ -61,6 +61,19 @@ const page = () => {
                 </div>
               </div>
             </div>
+            <div className="col-lg-4 col-md-6 item consulting solutions">
+              <div className="case-item-two">
+                <div className="image">
+                  <img src="assets/images/cases/case2.jpg" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/mannor-janitorial-enterprise">Mannor Janitorial Enterprise, Inc.</Link>
+                  </h4>
+                  <span>Cleaning Solutions, Facility Management</span>
+                </div>
+              </div>
+            </div>
             <div className="col-lg-4 col-md-6 item consulting security">
               <div className="case-item-two">
                 <div className="image">

@@ -1,3 +1,17 @@
+## Add New Case Study: Mannor Janitorial Enterprise, Inc. (August 12, 2025)
+
+**Objective:** Add a new case study for "Mannor Janitorial Enterprise, Inc." to the cases section.
+
+**Summary of Changes:**
+
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "Mannor Janitorial Enterprise, Inc." with a link to its dedicated slug page `/cases/mannor-janitorial-enterprise`.
+    -   Assigned categories "Cleaning Solutions" and "Facility Management" to this new entry.
+-   **`app/cases/mannor-janitorial-enterprise/page.js`:**
+    -   Created a new dynamic page for the "Mannor Janitorial Enterprise, Inc." case study.
+    -   Populated the page with details including client name, services provided, objective, solution, and results.
+    -   Set the image URL to `/mannor.jpg` (assuming the image is in the `public` folder).
+
 ## Add Live Project Link to Veela Store Case Study (August 12, 2025)
 
 **Objective:** Include a link to the live project for the 'Veela Wig Store' case study.
