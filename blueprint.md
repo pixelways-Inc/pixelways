@@ -1,3 +1,18 @@
+## Add New Case Study: DOTTSA Travels Agency (August 12, 2025)
+
+**Objective:** Add a new case study for "DOTTSA Travels Agency" to the cases section, including detailed information and image API integration.
+
+**Summary of Changes:**
+
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "DOTTSA Travels Agency" with a link to its dedicated slug page `/cases/dottsa-travels-agency`.
+    -   Assigned categories "Travel Solutions", "Visa Services", and "Study Abroad" to this new entry.
+    -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=DOTTSA+Travels+Agency+Visa+Booking+Study+Abroad&aspect=16:9&seed=789`.
+-   **`app/cases/dottsa-travels-agency/page.js`:**
+    -   Created a new dynamic page for the "DOTTSA Travels Agency" case study.
+    -   Populated the page with details including client name, project dates, live project URL, developer details, tech stack, services provided, objective, solution, and results.
+    -   Integrated the image API for the main case study image: `https://api.a0.dev/assets/image?text=DOTTSA+Travels+Agency+Visa+Booking+Study+Abroad&aspect=16:9&seed=789`.
+
 ## Update Mannor Janitorial Enterprise, Inc. Case Study Dates (August 12, 2025)
 
 **Objective:** Update the start and end dates for the "Mannor Janitorial Enterprise, Inc." case study.
@@ -90,7 +105,7 @@
 
 ## Centralized Footer Contact Information (August 11, 2025)
 
-**Objective:** Ensure all footer components display consistent contact information by centralizing contact details in a single file.
+**Objective:** Ensure all footer components display consistent contact information by centralizing contact information by centralizing contact details in a single file.
 
 **Summary of Changes:**
 

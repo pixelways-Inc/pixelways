@@ -74,6 +74,19 @@ const page = () => {
                 </div>
               </div>
             </div>
+            <div className="col-lg-4 col-md-6 item solutions design">
+              <div className="case-item-two">
+                <div className="image">
+                  <img src="https://api.a0.dev/assets/image?text=DOTTSA+Travels+Agency+Visa+Booking+Study+Abroad&aspect=16:9&seed=789" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/dottsa-travels-agency">DOTTSA Travels Agency</Link>
+                  </h4>
+                  <span>Travel Solutions, Visa Services, Study Abroad</span>
+                </div>
+              </div>
+            </div>
             <div className="col-lg-4 col-md-6 item consulting security">
               <div className="case-item-two">
                 <div className="image">
