@@ -51,7 +51,7 @@ const page = () => {
             <div className="col-lg-4 col-md-6 item solutions development">
               <div className="case-item-two">
                 <div className="image">
-                  <img src="https://api.a0.dev/assets/image?text=Retrobuilder+AI+Frontend+Developer&aspect=16:9&seed=12345" alt="Case Image" />
+                  <img src="/retrobuilder.png" alt="Case Image" />
                 </div>
                 <div className="content">
                   <h4>

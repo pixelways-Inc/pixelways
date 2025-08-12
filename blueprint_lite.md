@@ -94,3 +94,14 @@
     -   Added a new case study entry for "Retrobuilder - AI Frontend Developer" with a link to its dedicated slug page `/cases/retrobuilder`.
     -   Assigned categories "AI Development", "Frontend Development", and "Web Design" to this new entry.
     -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=Retrobuilder+AI+Frontend+Developer&aspect=16:9&seed=12345`.
+
+## Update Image Source for Retrobuilder Case Study (August 12, 2025)
+
+**Objective:** Change the image source for the "Retrobuilder" case study to use a local image (`public/retrobuilder.png`) instead of the image API, as specifically requested for this project.
+
+**Summary of Changes:**
+
+-   **`app/cases/retrobuilder/page.js`:**
+    -   Updated `imageUrl` to `"/retrobuilder.png"`.
+-   **`app/cases/page.js`:**
+    -   Updated the `src` attribute for the "Retrobuilder" case study entry to `"/retrobuilder.png"`.
