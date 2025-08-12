@@ -18,6 +18,34 @@ export const tekprofUtility = {
       }
     });
   },
+  isotope() {
+    // Initialize isotope filtering for case studies
+    if (typeof window !== 'undefined') {
+      import('isotope-layout').then((Isotope) => {
+        const IsotopeLayout = Isotope.default;
+        const grid = document.querySelector('.case-active');
+        if (grid) {
+          const iso = new IsotopeLayout(grid, {
+            itemSelector: '.item',
+            layoutMode: 'fitRows'
+          });
+
+          // Filter items on button click
+          const filterButtons = document.querySelectorAll('.case-nav li');
+          filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+              const filterValue = this.getAttribute('data-filter');
+              iso.arrange({ filter: filterValue });
+              
+              // Update active class
+              filterButtons.forEach(btn => btn.classList.remove('active'));
+              this.classList.add('active');
+            });
+          });
+        }
+      });
+    }
+  },
   sidebar() {
     const menuSidebar = document.querySelector(".menu-sidebar");
     if (menuSidebar) {

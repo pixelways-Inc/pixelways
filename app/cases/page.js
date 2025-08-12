@@ -1,7 +1,44 @@
+"use client";
 import PageBanner from "@/components/PageBanner";
 import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
+import { useEffect } from "react";
+
 const page = () => {
+  useEffect(() => {
+    // Initialize isotope filtering after component mounts
+    const initializeIsotope = async () => {
+      if (typeof window !== 'undefined') {
+        const { default: Isotope } = await import('isotope-layout');
+        
+        setTimeout(() => {
+          const grid = document.querySelector('.case-active');
+          if (grid) {
+            const iso = new Isotope(grid, {
+              itemSelector: '.item',
+              layoutMode: 'fitRows'
+            });
+
+            // Filter items on button click
+            const filterButtons = document.querySelectorAll('.case-nav li');
+            filterButtons.forEach(button => {
+              button.addEventListener('click', function() {
+                const filterValue = this.getAttribute('data-filter');
+                iso.arrange({ filter: filterValue });
+                
+                // Update active class
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+              });
+            });
+          }
+        }, 100);
+      }
+    };
+
+    initializeIsotope();
+  }, []);
+
   return (
     <TekprofLayout>
       <PageBanner pageName="Case Studies" />

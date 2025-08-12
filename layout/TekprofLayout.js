@@ -25,6 +25,7 @@ const TekprofLayout = ({
   useEffect(() => {
     tekprofUtility.animation();
     tekprofUtility.fixedHeader();
+    tekprofUtility.isotope();
     Object.keys(rootElements).forEach((key) => {
       document.body.style.setProperty(key, rootElements[key]);
     });
