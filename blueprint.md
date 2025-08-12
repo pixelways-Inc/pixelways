@@ -1,3 +1,13 @@
+## Add Live Project Link to Veela Store Case Study (August 12, 2025)
+
+**Objective:** Include a link to the live project for the 'Veela Wig Store' case study.
+
+**Summary of Changes:**
+
+-   **`app/cases/[slug]/page.js`:**
+    -   Updated the `caseStudy` object to include a `liveProjectUrl` property with the link `https://www.veelastore.com/`.
+    -   Added a display for the live project link under the "Results" section of the case study page.
+
 ## Thumbnail Generation for Veela Store Project (August 12, 2025)
 
 **Objective:** Generate a stunning thumbnail for the 'Veela Store Project' using the image API.

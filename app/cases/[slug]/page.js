@@ -6,6 +6,7 @@ const CaseStudySlugPage = () => {
   const caseStudy = {
     title: "Veela Wig Store",
     clientName: "Vivian Amaefule",
+    liveProjectUrl: "https://www.veelastore.com/",
     commencementDate: "12th June 2025",
     endDate: "01 July 2025",
     developer: {
@@ -192,6 +193,8 @@ const CaseStudySlugPage = () => {
                 data-aos-offset={50}
               >
                 <p>{caseStudy.results}</p>
+                <h5 className="mt-40">View Live Project:</h5>
+                <p><a href={caseStudy.liveProjectUrl} target="_blank" rel="noopener noreferrer">{caseStudy.liveProjectUrl}</a></p>
               </div>
             </div>
           </div>
