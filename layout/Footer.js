@@ -884,7 +884,7 @@ const Footer4 = () => {
               data-aos-duration={1500}
               data-aos-offset={50}
             >
-              <h6 className="footer-title">Contact</h4>
+              <h6 className="footer-title">Contact</h6>
               <ul>
                 <li>
                   <i className="fal fa-map-marker-alt" /> {contactInfo.officeLocation}
