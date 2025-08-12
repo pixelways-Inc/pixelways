@@ -1,1 +1,1 @@
-git commit -m "FEAT: Update Optima AI Inc. case study dates"
+git commit -m "FEAT: Add new case study for Carpool Connect and update blueprint_lite.md"

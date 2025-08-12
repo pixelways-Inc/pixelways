@@ -126,6 +126,19 @@ const page = () => {
                 </div>
               </div>
             </div>
+            <div className="col-lg-4 col-md-6 item solutions design">
+              <div className="case-item-two">
+                <div className="image">
+                  <img src="https://api.a0.dev/assets/image?text=SOBA+Ontario+Alumni+Association+Community+Service&aspect=16:9&seed=1718" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/soba-ontario">SOBA Ontario</Link>
+                  </h4>
+                  <span>Non-Profit, Community, Alumni Association</span>
+                </div>
+              </div>
+            </div>
             <div className="col-lg-4 col-md-6 item consulting security">
               <div className="case-item-two">
                 <div className="image">
