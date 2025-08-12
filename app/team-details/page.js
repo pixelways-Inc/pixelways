@@ -69,7 +69,7 @@ const page = () => {
                   <h2>About Our Team's Expertise</h2>
                 </div>
                 <p>
-                  At Pixelways Solution, our team of dedicated IT and digital consultants provides expert guidance to help organizations navigate complex challenges, seize opportunities, and achieve their full potential. By analyzing current operations, identifying inefficiencies, and uncovering growth opportunities, we develop tailored strategies that drive success. We work closely with clients to deliver actionable solutions, from refining business processes and optimizing financial performance to implementing innovative technologies.
+                  At Pixelways Solutions, our team of dedicated IT and digital consultants provides expert guidance to help organizations navigate complex challenges, seize opportunities, and achieve their full potential. By analyzing current operations, identifying inefficiencies, and uncovering growth opportunities, we develop tailored strategies that drive success. We work closely with clients to deliver actionable solutions, from refining business processes and optimizing financial performance to implementing innovative technologies.
                 </p>
                 <div
                   className="qualification-wrap mt-50"

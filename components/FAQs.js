@@ -127,11 +127,11 @@ export const FAQs2 = ({ limit = 100 }) => {
   const [toggle, setToggle] = useState(1);
   const faqs = [
     {
-      title: "What services does Pixelways Solution offer?",
-      body: "Pixelways Solution offers a comprehensive suite of digital solutions including custom software development, UI/UX design, cloud & infrastructure solutions, AI & data analytics, cybersecurity, consulting, e-commerce & CMS, maintenance & support, emerging technologies, and logistics tech solutions.",
+      title: "What services does Pixelways Solutions offer?",
+      body: "Pixelways Solutions offers a comprehensive suite of digital solutions including custom software development, UI/UX design, cloud & infrastructure solutions, AI & data analytics, cybersecurity, consulting, e-commerce & CMS, maintenance & support, emerging technologies, and logistics tech solutions.",
     },
     {
-      title: "How can Pixelways Solution help my business grow?",
+      title: "How can Pixelways Solutions help my business grow?",
       body: "We empower businesses by delivering innovative, scalable, and secure technology solutions tailored to your unique needs. Our expertise helps optimize operations, enhance efficiency, and drive digital transformation, enabling you to achieve your strategic goals.",
     },
     {
@@ -152,10 +152,10 @@ export const FAQs2 = ({ limit = 100 }) => {
     },
     {
       title: "What industries do you serve?",
-      body: "Pixelways Solution serves a diverse range of industries, providing tailored digital solutions to startups, small and medium-sized businesses, and large enterprises across various sectors.",
+      body: "Pixelways Solutions serves a diverse range of industries, providing tailored digital solutions to startups, small and medium-sized businesses, and large enterprises across various sectors.",
     },
     {
-      title: "How do I get started with Pixelways Solution?",
+      title: "How do I get started with Pixelways Solutions?",
       body: "Getting started is easy! Simply contact us through our website, email, or phone. We'll schedule an initial consultation to understand your needs and discuss how we can help you achieve your digital objectives.",
     },
     {
@@ -163,7 +163,7 @@ export const FAQs2 = ({ limit = 100 }) => {
       body: "Yes, we offer strategic consulting and technical advisory services, including CTO-as-a-Service, system architecture consulting, technology stack evaluation, and digital transformation strategy to guide your business decisions.",
     },
     {
-      title: "What makes Pixelways Solution different from other IT companies?",
+      title: "What makes Pixelways Solutions different from other IT companies?",
       body: "Our commitment to innovation, client-centric approach, deep industry expertise, and focus on delivering measurable results set us apart. We build lasting partnerships by providing solutions that are not just technologically advanced but also strategically aligned with your business success.",
     },
   ];

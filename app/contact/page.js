@@ -19,7 +19,7 @@ const page = () => {
                   <h2>Ready to Transform Your Business? Let's Connect</h2>
                 </div>
                 <p>
-                  We're eager to hear about your project and discuss how Pixelways Solution can help you achieve your digital goals. Reach out to us through the form or directly via our contact details.
+                  We're eager to hear about your project and discuss how Pixelways Solutions can help you achieve your digital goals. Reach out to us through the form or directly via our contact details.
                 </p>
                 <div className="contact-info-wrap mt-40">
                   <div className="contact-info-item">

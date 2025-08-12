@@ -82,7 +82,7 @@ const page = () => {
                   The Strategic Impact of Business Consulting: Driving Innovation and Sustainable Growth
                 </h3>
                 <p>
-                  In today's rapidly evolving business landscape, staying competitive requires more than just hard work—it demands strategic foresight and continuous innovation. This is where a proficient business consulting agency becomes an invaluable partner. At Pixelways Solution, we empower organizations to navigate complex challenges, optimize operations, and unlock new opportunities for growth.
+                  In today's rapidly evolving business landscape, staying competitive requires more than just hard work—it demands strategic foresight and continuous innovation. This is where a proficient business consulting agency becomes an invaluable partner. At Pixelways Solutions, we empower organizations to navigate complex challenges, optimize operations, and unlock new opportunities for growth.
                 </p>
                 <h4>Streamlining Business Processes for Peak Efficiency</h4>
                 <p>
@@ -101,7 +101,7 @@ const page = () => {
                   <div className="text">
                     "In the digital age, success isn't just about working harder; it's about working smarter. A strategic business consultant helps you identify unseen opportunities, transforming challenges into pathways for sustainable growth."
                   </div>
-                  <div className="blockquote-footer">Pixelways Solution Team</div>
+                  <div className="blockquote-footer">Pixelways Solutions Team</div>
                 </blockquote>
                 <div
                   className="image mb-40 rmb-30"

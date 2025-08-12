@@ -13,7 +13,7 @@ const SupportPage = () => {
               <div className="support-content">
                 <h2 className="mb-4">How Can We Help You?</h2>
                 <p>
-                  Welcome to Pixelways Solution Support. We are here to assist you with any questions, issues, or feedback you may have regarding our services and products. Our goal is to provide you with timely and effective support.
+                  Welcome to Pixelways Solutionss Support. We are here to assist you with any questions, issues, or feedback you may have regarding our services and products. Our goal is to provide you with timely and effective support.
                 </p>
                 <h3 className="mt-5 mb-3">Frequently Asked Questions</h3>
                 <p>

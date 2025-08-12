@@ -5,7 +5,7 @@ import Link from "next/link";
 const CaseStudySlugPage = () => {
   const caseStudy = {
     title: "TweetChat",
-    clientName: "Pixelways Solution (Owned Product)",
+    clientName: "Pixelways Solutions (Owned Product)",
     commencementDate: "February 2024",
     endDate: "November 2024",
     liveProjectUrl: "https://tweetchat.me",

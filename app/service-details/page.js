@@ -20,12 +20,12 @@ const page = () => {
               >
                 <div className="section-title mb-50 rmb-30">
                   <span className="sub-title color-primary mb-10">
-                    Why Pixelways Solution?
+                    Why Pixelways Solutions?
                   </span>
                   <h2>Your Partner for Comprehensive Digital Solutions</h2>
                 </div>
                 <p>
-                  At Pixelways Solution, we specialize in crafting adaptable and scalable digital solutions that evolve with your business needs. Our team of experts is committed to leveraging cutting-edge technology to drive your success.
+                  At Pixelways Solutions, we specialize in crafting adaptable and scalable digital solutions that evolve with your business needs. Our team of experts is committed to leveraging cutting-edge technology to drive your success.
                 </p>
                 <a href="#agile-services" className="theme-btn mt-35 rmt-20">
                   Explore Our Services

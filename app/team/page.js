@@ -22,7 +22,7 @@ const page = () => {
                   </h2>
                 </div>
                 <p>
-                  At Pixelways Solution, we are dedicated to being your trusted partner in digital transformation. Our team provides the expertise, innovative technology, and unwavering support needed to help your business thrive.
+                  At Pixelways Solutions, we are dedicated to being your trusted partner in digital transformation. Our team provides the expertise, innovative technology, and unwavering support needed to help your business thrive.
                 </p>
                 <div className="row pt-35 rpt-25">
                   <div className="col-sm-6">

@@ -12,7 +12,7 @@ const TermsAndConditionsPage = () => {
               <div className="terms-conditions-content">
                 <h2 className="mb-4">Agreement to Our Terms</h2>
                 <p>
-                  These Terms and Conditions constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you") and Pixelways Solution ("we," "us" or "our"), concerning your access to and use of the [Your Website Name] website as well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto (collectively, the “Site”).
+                  These Terms and Conditions constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you") and Pixelways Solutions ("we," "us" or "our"), concerning your access to and use of the [Your Website Name] website as well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto (collectively, the “Site”).
                 </p>
                 <h3 className="mt-5 mb-3">Intellectual Property Rights</h3>
                 <p>

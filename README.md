@@ -1,10 +1,10 @@
-# Pixelways Solution
+# Pixelways Solutions
 
-Pixelways Solution is a modern IT consultancy and software development company, specializing in delivering future-ready digital solutions for businesses of all sizes. This website is the official digital presence for Pixelways Solution, showcasing our expertise, services, and commitment to client success.
+Pixelways Solutions is a modern IT consultancy and software development company, specializing in delivering future-ready digital solutions for businesses of all sizes. This website is the official digital presence for Pixelways Solutions, showcasing our expertise, services, and commitment to client success.
 
-## About Pixelways Solution
+## About Pixelways Solutions
 
-Pixelways Solution empowers organizations to thrive in the digital age through innovative, scalable, and secure technology solutions. Our team of experienced professionals combines deep industry knowledge with a passion for excellence, helping clients transform their operations and achieve their business goals.
+Pixelways Solutions empowers organizations to thrive in the digital age through innovative, scalable, and secure technology solutions. Our team of experienced professionals combines deep industry knowledge with a passion for excellence, helping clients transform their operations and achieve their business goals.
 
 
 ## Service Categories
@@ -111,7 +111,7 @@ Smart automation, transparency, and real-time tracking in logistics and delivery
 
 
 ## Contact Details
-**Company Name:** Pixelways Solution
+**Company Name:** Pixelways Solutions
 **Website:** https://pixelways.co
 **Email:** hello@pixelways.co
 **Phone:** +237 679 719 353 / +1 (416) 407-1923
@@ -121,7 +121,7 @@ For business inquiries, partnership opportunities, or support, please reach out 
 
 ---
 
-© 2025 Pixelways Solution. All rights reserved.
+© 2025 Pixelways Solutions. All rights reserved.
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request

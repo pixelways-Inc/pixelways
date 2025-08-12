@@ -73,12 +73,12 @@ const page = () => {
                   Our Core Expertise
                 </span>
                 <h2>
-                  Transforming Challenges into Opportunities with Pixelways Solutions
+                  Transforming Challenges into Opportunities with Pixelways Solutionss
                 </h2>
                 <div className="row justify-content-center">
                   <div className="col-lg-10">
                     <p>
-                      At Pixelways Solutions, we integrate cutting-edge technologies with
+                      At Pixelways Solutionss, we integrate cutting-edge technologies with
                       strategic planning to optimize your processes, drive innovation, and deliver
                       measurable results. Partner with our IT experts to unlock your business's full potential.
                     </p>
@@ -105,13 +105,13 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <div className="section-title mb-25">
-                  <span className="sub-title mb-10">Why Pixelways Solutions?</span>
+                  <span className="sub-title mb-10">Why Pixelways Solutionss?</span>
                   <h2>
                     Your Partner in Digital Transformation: Solutions Beyond Technology, Success Beyond Boundaries
                   </h2>
                 </div>
                 <p>
-                  Choose Pixelways Solutions as your trusted partner for digital transformation. We provide not just technology, but comprehensive support and strategic guidance to help your business thrive in the digital age.
+                  Choose Pixelways Solutionss as your trusted partner for digital transformation. We provide not just technology, but comprehensive support and strategic guidance to help your business thrive in the digital age.
                 </p>
                 <Link href="about" className="theme-btn mt-20 mb-50">
                   Discover Our Story
@@ -345,7 +345,7 @@ const page = () => {
                   <h2>Driving Innovation and Delivering Excellence</h2>
                 </div>
                 <p>
-                  At Pixelways Solution, we are committed to empowering businesses to thrive in the digital era through innovative IT solutions and a relentless pursuit of excellence.
+                  At Pixelways Solutions, we are committed to empowering businesses to thrive in the digital era through innovative IT solutions and a relentless pursuit of excellence.
                 </p>
                 <Link href="about" className="theme-btn mt-20">
                   Request a Consultation

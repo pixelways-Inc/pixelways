@@ -12,7 +12,7 @@ const PrivacyPolicyPage = () => {
               <div className="privacy-policy-content">
                 <h2 className="mb-4">Our Commitment to Your Privacy</h2>
                 <p>
-                  At Pixelways Solution, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+                  At Pixelways Solutions, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
                 </p>
                 <h3 className="mt-5 mb-3">Information We Collect</h3>
                 <p>

@@ -1,6 +1,6 @@
-# Gemini Agent Guidelines for Pixelways Solution Codebase
+# Gemini Agent Guidelines for Pixelways Solutions Codebase
 
-This document outlines the conventions and steps to follow when working on the Pixelways Solution codebase. Adhering to these guidelines ensures consistency, maintainability, and efficient collaboration.
+This document outlines the conventions and steps to follow when working on the Pixelways Solutions codebase. Adhering to these guidelines ensures consistency, maintainability, and efficient collaboration.
 
 ## 1. General Principles
 
@@ -49,7 +49,7 @@ To manage changes and ensure proper version control, follow this specific Git wo
 *   When adapting components or pages to the dark theme, systematically go through all visual elements (backgrounds, text, borders, icons, form elements, etc.) and apply the appropriate CSS variables or overrides in `app/globals.css`.
 *   For icons, ensure their color adapts to the dark theme (e.g., becoming white on a dark background).
 
-By following these guidelines, you will contribute effectively to the Pixelways Solution codebase.
+By following these guidelines, you will contribute effectively to the Pixelways Solutions codebase.
 
 ## Current Development Focus
 
