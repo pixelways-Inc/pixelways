@@ -2,6 +2,8 @@ import PageBanner from "@/components/PageBanner";
 import PriceRanger from "@/components/PriceRanger";
 import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
+import products from "@/data/products"; // Import product data
+
 const page = () => {
   return (
     <TekprofLayout>
@@ -36,28 +38,13 @@ const page = () => {
                   <h5 className="widget-title">Category</h5>
                   <ul>
                     <li>
-                      <Link href="blog">
-                        Digital Marketing <i className="far fa-arrow-right" />
+                      <Link href="/shop">
+                        Electronics <i className="far fa-arrow-right" />
                       </Link>
                     </li>
                     <li>
-                      <Link href="blog">
-                        SEO optimization <i className="far fa-arrow-right" />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="blog">
-                        Content Marketing <i className="far fa-arrow-right" />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="blog">
-                        Keywords Research <i className="far fa-arrow-right" />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="blog">
-                        Technical Adult <i className="far fa-arrow-right" />
+                      <Link href="/shop">
+                        Devices <i className="far fa-arrow-right" />
                       </Link>
                     </li>
                   </ul>
@@ -81,69 +68,28 @@ const page = () => {
                 >
                   <h5 className="widget-title">Products</h5>
                   <ul>
-                    <li>
-                      <div className="image">
-                        <img
-                          src="assets/images/widgets/product1.jpg"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
+                    {products.slice(0, 3).map((product) => (
+                      <li key={product.slug}>
+                        <div className="image">
+                          <img src={product.image} alt={product.name} />
                         </div>
-                        <h6>
-                          <Link href="product-details">Summer M T-Shirt</Link>
-                        </h6>
-                        <span className="price">$13.00</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="image">
-                        <img
-                          src="assets/images/widgets/product2.jpg"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
+                        <div className="content">
+                          <div className="ratting">
+                            <i className="fas fa-star" />
+                            <i className="fas fa-star" />
+                            <i className="fas fa-star" />
+                            <i className="fas fa-star" />
+                            <i className="fas fa-star" />
+                          </div>
+                          <h6>
+                            <Link href={`/shop/${product.slug}`}>
+                              {product.name}
+                            </Link>
+                          </h6>
+                          <span className="price">${product.currentMarketValue}.00</span>
                         </div>
-                        <h6>
-                          <Link href="product-details">Boy Winter Shoe</Link>
-                        </h6>
-                        <span className="price">$25.00</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="image">
-                        <img
-                          src="assets/images/widgets/product3.jpg"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </div>
-                        <h6>
-                          <Link href="product-details">Men Smart Watch</Link>
-                        </h6>
-                        <span className="price">$18.00</span>
-                      </div>
-                    </li>
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 <div
@@ -154,11 +100,10 @@ const page = () => {
                 >
                   <h4 className="widget-title">Popular Tags</h4>
                   <div className="tag-clouds">
-                    <Link href="shop">Shop</Link>
-                    <Link href="shop">Men</Link>
-                    <Link href="shop">Women</Link>
-                    <Link href="shop">Watch</Link>
-                    <Link href="shop">T-Shirt</Link>
+                    <Link href="/shop">Electronics</Link>
+                    <Link href="/shop">Devices</Link>
+                    <Link href="/shop">Used</Link>
+                    <Link href="/shop">Refurbished</Link>
                   </div>
                 </div>
                 <div
@@ -167,9 +112,9 @@ const page = () => {
                   data-aos-duration={1500}
                   data-aos-offset={50}
                 >
-                  <h3>Boost your Digital Product marketing?</h3>
-                  <Link href="contact" className="theme-btn style-two">
-                    Shop Now <i className="far fa-arrow-right" />
+                  <h3>Looking for specific IT solutions?</h3>
+                  <Link href="/contact" className="theme-btn style-two">
+                    Contact Us <i className="far fa-arrow-right" />
                   </Link>
                   <div
                     className="bg bgs-cover"
@@ -189,7 +134,7 @@ const page = () => {
                     data-aos-duration={1500}
                     data-aos-offset={50}
                   >
-                    Showing 1 - 12 of 30 Results
+                    Showing 1 - {products.length} of {products.length} Results
                   </div>
                   <div
                     className="products-dropdown mb-20"
@@ -209,394 +154,39 @@ const page = () => {
                   </div>
                 </div>
                 <div className="row">
-                  <div
-                    className="col-xl-4 col-sm-6"
-                    data-aos="fade-up"
-                    data-aos-delay={50}
-                    data-aos-duration={1500}
-                    data-aos-offset={50}
-                  >
-                    <div className="product-item">
-                      <div className="image">
-                        <img
-                          src="assets/images/products/product1.png"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
+                  {products.map((product) => (
+                    <div
+                      key={product.slug}
+                      className="col-xl-4 col-sm-6"
+                      data-aos="fade-up"
+                      data-aos-delay={50}
+                      data-aos-duration={1500}
+                      data-aos-offset={50}
+                    >
+                      <div className="product-item">
+                        <div className="image">
+                          <img src={product.image} alt={product.name} />
                         </div>
-                        <h5>
-                          <Link href="product-details">Summer M T-Shirt</Link>
-                        </h5>
-                        <span className="price">$13.00</span>
+                        <div className="content">
+                          <div className="ratting">
+                            <i className="fas fa-star" />
+                            <i className="fas fa-star" />
+                            <i className="fas fa-star" />
+                            <i className="fas fa-star" />
+                            <i className="fas fa-star" />
+                          </div>
+                          <h5>
+                            <Link href={`/shop/${product.slug}`}>
+                              {product.name}
+                            </Link>
+                          </h5>
+                          <span className="price">${product.currentMarketValue}.00</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div
-                    className="col-xl-4 col-sm-6"
-                    data-aos="fade-up"
-                    data-aos-delay={100}
-                    data-aos-duration={1500}
-                    data-aos-offset={50}
-                  >
-                    <div className="product-item">
-                      <div className="image">
-                        <img
-                          src="assets/images/products/product2.png"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </div>
-                        <h5>
-                          <Link href="product-details">Men Leather Shoe</Link>
-                        </h5>
-                        <span className="price">$13.00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-xl-4 col-sm-6"
-                    data-aos="fade-up"
-                    data-aos-delay={150}
-                    data-aos-duration={1500}
-                    data-aos-offset={50}
-                  >
-                    <div className="product-item">
-                      <div className="image">
-                        <img
-                          src="assets/images/products/product3.png"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </div>
-                        <h5>
-                          <Link href="product-details">Men Leather Shoe</Link>
-                        </h5>
-                        <span className="price">$13.00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-xl-4 col-sm-6"
-                    data-aos="fade-up"
-                    data-aos-delay={50}
-                    data-aos-duration={1500}
-                    data-aos-offset={50}
-                  >
-                    <div className="product-item">
-                      <div className="image">
-                        <img
-                          src="assets/images/products/product4.png"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </div>
-                        <h5>
-                          <Link href="product-details">Summer M T-Shirt</Link>
-                        </h5>
-                        <span className="price">$13.00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-xl-4 col-sm-6"
-                    data-aos="fade-up"
-                    data-aos-delay={100}
-                    data-aos-duration={1500}
-                    data-aos-offset={50}
-                  >
-                    <div className="product-item">
-                      <div className="image">
-                        <img
-                          src="assets/images/products/product5.png"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </div>
-                        <h5>
-                          <Link href="product-details">Modern smart watch</Link>
-                        </h5>
-                        <span className="price">$13.00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-xl-4 col-sm-6"
-                    data-aos="fade-up"
-                    data-aos-delay={150}
-                    data-aos-duration={1500}
-                    data-aos-offset={50}
-                  >
-                    <div className="product-item">
-                      <div className="image">
-                        <img
-                          src="assets/images/products/product6.png"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </div>
-                        <h5>
-                          <Link href="product-details">Women Leather Bag</Link>
-                        </h5>
-                        <span className="price">$13.00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-xl-4 col-sm-6"
-                    data-aos="fade-up"
-                    data-aos-delay={50}
-                    data-aos-duration={1500}
-                    data-aos-offset={50}
-                  >
-                    <div className="product-item">
-                      <div className="image">
-                        <img
-                          src="assets/images/products/product7.png"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </div>
-                        <h5>
-                          <Link href="product-details">Leather Black Belt</Link>
-                        </h5>
-                        <span className="price">$13.00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-xl-4 col-sm-6"
-                    data-aos="fade-up"
-                    data-aos-delay={100}
-                    data-aos-duration={1500}
-                    data-aos-offset={50}
-                  >
-                    <div className="product-item">
-                      <div className="image">
-                        <img
-                          src="assets/images/products/product8.png"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </div>
-                        <h5>
-                          <Link href="product-details">Women Leather Bag</Link>
-                        </h5>
-                        <span className="price">$13.00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-xl-4 col-sm-6"
-                    data-aos="fade-up"
-                    data-aos-delay={150}
-                    data-aos-duration={1500}
-                    data-aos-offset={50}
-                  >
-                    <div className="product-item">
-                      <div className="image">
-                        <img
-                          src="assets/images/products/product9.png"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </div>
-                        <h5>
-                          <Link href="product-details">Leather Black VR</Link>
-                        </h5>
-                        <span className="price">$13.00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-xl-4 col-sm-6"
-                    data-aos="fade-up"
-                    data-aos-delay={50}
-                    data-aos-duration={1500}
-                    data-aos-offset={50}
-                  >
-                    <div className="product-item">
-                      <div className="image">
-                        <img
-                          src="assets/images/products/product10.png"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </div>
-                        <h5>
-                          <Link href="product-details">Men Leather Shoe</Link>
-                        </h5>
-                        <span className="price">$13.00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-xl-4 col-sm-6"
-                    data-aos="fade-up"
-                    data-aos-delay={100}
-                    data-aos-duration={1500}
-                    data-aos-offset={50}
-                  >
-                    <div className="product-item">
-                      <div className="image">
-                        <img
-                          src="assets/images/products/product11.png"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </div>
-                        <h5>
-                          <Link href="product-details">Modern smart watch</Link>
-                        </h5>
-                        <span className="price">$13.00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-xl-4 col-sm-6"
-                    data-aos="fade-up"
-                    data-aos-delay={150}
-                    data-aos-duration={1500}
-                    data-aos-offset={50}
-                  >
-                    <div className="product-item">
-                      <div className="image">
-                        <img
-                          src="assets/images/products/product12.png"
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="content">
-                        <div className="ratting">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </div>
-                        <h5>
-                          <Link href="product-details">
-                            Leather brown wallet
-                          </Link>
-                        </h5>
-                        <span className="price">$13.00</span>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-                <ul
-                  className="pagination mt-10 flex-wrap"
-                  data-aos="fade-up"
-                  data-aos-duration={1500}
-                  data-aos-offset={50}
-                >
-                  <li className="page-item disabled">
-                    <span className="page-link">
-                      <i className="fas fa-angle-left" />
-                    </span>
-                  </li>
-                  <li className="page-item active">
-                    <span className="page-link">
-                      1<span className="sr-only">(current)</span>
-                    </span>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      4
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      <i className="fas fa-angle-right" />
-                    </a>
-                  </li>
-                </ul>
+                {/* Removed pagination as there are only 6 products */}
               </div>
             </div>
           </div>
