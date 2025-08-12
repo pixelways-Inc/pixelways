@@ -1,1 +1,1 @@
-git commit -m "FEAT: Add new case study for FCDA Exchange and update blueprint_lite.md"
+git commit -m "FEAT: Add new case study for CAM TRAV International Consulting and update blueprint_lite.md"
