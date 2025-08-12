@@ -53,7 +53,7 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <div className="section-title mb-20">
-                  <h2>We've 14+ Projects Complete</h2>
+                  <h2>We've 15+ Projects Complete</h2>
                 </div>
                 <p>
                  All clients have reported significant improvements in their operations and customer satisfaction.
@@ -82,6 +82,19 @@ const page = () => {
             </div>
           </div>
           <div className="row case-active">
+            <div className="col-lg-4 col-md-6 item solutions development">
+              <div className="case-item-two">
+                <div className="image">
+                  <img src="/pynalis.png" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/pynalis">Pynalis: French-language educational web application for learning Python in data analysis</Link>
+                  </h4>
+                  <span>E-Learning, Data Analysis, AI Education</span>
+                </div>
+              </div>
+            </div>
             <div className="col-lg-4 col-md-6 item solutions development">
               <div className="case-item-two">
                 <div className="image">

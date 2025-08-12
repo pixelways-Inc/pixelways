@@ -172,3 +172,18 @@
     -   Added a new case study entry for "FCDA Mobile Payment Gateway" with a link to its dedicated slug page `/cases/fcda-mobile-payment-gateway`.
     -   Assigned categories "Payment Gateway", "Mobile Money", and "API Development" to this new entry.
     -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=FCDA+Mobile+Payment+Gateway+Cameroon&aspect=16:9&seed=789012`.
+
+## Add New Case Study: Pynalis (August 12, 2025)
+
+**Objective:** Add a new case study for "Pynalis", a French-language educational web application for learning Python in data analysis.
+
+**Summary of Changes:**
+
+-   **`app/cases/pynalis/page.js`:**
+    -   Created a new dynamic page for the "Pynalis" case study.
+    -   Populated the page with details including client name ("Anonymous"), developer details ("Hans Ade (Anye Happiness Ade) plus the contribution of the Client"), project dates ("July 14 2025" - "Still under Development"), tech stack (Next.js 15, Supabase DB, Auth, Edge Functions, Prisma Migration, AI SDK), services offered, additional highlights, objective, solution, and results.
+    -   Used the local image: `"/pynalis.png"`.
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "Pynalis: French-language educational web application for learning Python in data analysis" with a link to its dedicated slug page `/cases/pynalis`.
+    -   Assigned categories "E-Learning", "Data Analysis", and "AI Education" to this new entry.
+    -   Used the local image for the thumbnail: `"/pynalis.png"`.
