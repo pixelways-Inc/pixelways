@@ -1,1 +1,1 @@
-git commit -m "FEAT: Update Mannor Janitorial Enterprise case study dates"
+git commit -m "FEAT: Add new case study for DOTTSA Travels Agency"

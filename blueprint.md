@@ -1,3 +1,13 @@
+## Confirm Live Project URL for DOTTSA Travels Agency (August 12, 2025)
+
+**Objective:** Confirm the live project URL for DOTTSA Travels Agency and acknowledge the consistent use of the same developer across projects.
+
+**Summary of Changes:**
+
+-   **`app/cases/dottsa-travels-agency/page.js`:**
+    -   Confirmed that `liveProjectUrl` is correctly set to `https://dottsa.com/`.
+    -   Acknowledged the consistent use of "Hans Ade (Anye Happiness Ade)" as the developer for this and other case studies.
+
 ## Add New Case Study: DOTTSA Travels Agency (August 12, 2025)
 
 **Objective:** Add a new case study for "DOTTSA Travels Agency" to the cases section, including detailed information and image API integration.
@@ -145,7 +155,7 @@
 
 ## Add Copyright 2025 All Rights Reserved to Footer (August 11, 2025)
 
-**Objective:** Insert "Copyright © 2025 All Rights Reserved" between the "Made with ❤️ by Hans Ade FT Pixelways Team" and the privacy links in applicable footer components.
+**Objective:** Insert "<p>Copyright © 2025 All Rights Reserved</p>" between the "Made with ❤️ by Hans Ade FT Pixelways Team" and the privacy links in applicable footer components.
 
 **Summary of Changes:**
 
