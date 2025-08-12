@@ -1,1 +1,1 @@
-git commit -m "FEAT: Add live project link to Veela Store case study"
+git commit -m "FEAT: Add new case study for Mannor Janitorial Enterprise, Inc."

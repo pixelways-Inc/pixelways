@@ -5,14 +5,27 @@ import Link from "next/link";
 const CaseStudySlugPage = () => {
   const caseStudy = {
     title: "Mannor Janitorial Enterprise, Inc.",
-    clientName: "Mannor Janitorial Enterprise, Inc.",
+    clientName: "Anonymous",
     commencementDate: "N/A", // Not provided
     endDate: "N/A", // Not provided
+    liveProjectUrl: "https://manjanenterprise.com/?i=1",
+    developer: {
+      name: "Hans Ade (Anye Happiness Ade)",
+      profession: "Software Developer and AI Engineer",
+      github: "Hansade2005",
+    },
+    techStack: [
+      "React",
+      "Vite.js",
+      "Tailwind CSS",
+      "PHP backend for contact form submission",
+      "Tidio Live Chat support plugin",
+    ],
     services: "Professional cleaning solutions focusing on flooring maintenance (cleaning, polishing) across multiple surface types, plus window cleaning",
     imageUrl: "/mannor.jpg", // Assuming image is directly in public folder
     objective: `To provide comprehensive and professional cleaning solutions to various clients, ensuring pristine environments and extending the lifespan of diverse flooring types. The objective also includes delivering high-quality window cleaning services to enhance aesthetic appeal and natural light.`,
-    solution: `Mannor Janitorial Enterprise, Inc. offers specialized cleaning services tailored to client needs. This includes advanced flooring maintenance, covering cleaning and polishing for a multitude of surface types such as hardwood, tile, concrete, and carpet. Utilizing industry-leading equipment and eco-friendly products, they ensure deep cleaning and protective finishes. Additionally, they provide meticulous window cleaning services for both interior and exterior surfaces, ensuring streak-free clarity and enhancing the overall appearance of commercial and residential properties.`,
-    results: `Clients consistently report high satisfaction with the cleanliness and maintenance of their premises. Regular flooring maintenance has led to a noticeable improvement in the longevity and appearance of various floor types, reducing the need for premature replacements. The window cleaning services have significantly enhanced natural light penetration and the visual appeal of buildings. Mannor Janitorial Enterprise, Inc. has established a reputation for reliability, thoroughness, and professionalism, leading to strong client retention and positive referrals.`,
+    solution: `Mannor Janitorial Enterprise, Inc. offers specialized cleaning services tailored to client needs. This includes advanced flooring maintenance, covering cleaning and polishing for a multitude of surface types such as hardwood, tile, concrete, and carpet. The website, built with React, Vite.js, and Tailwind CSS, provides a modern and responsive interface for clients to learn about services and request quotes. A PHP backend handles secure contact form submissions. Additionally, the Tidio Live Chat support plugin was integrated to provide real-time customer assistance. Utilizing industry-leading equipment and eco-friendly products, they ensure deep cleaning and protective finishes. They also provide meticulous window cleaning services for both interior and exterior surfaces, ensuring streak-free clarity and enhancing the overall appearance of commercial and residential properties.`,
+    results: `Clients consistently report high satisfaction with the cleanliness and maintenance of their premises. The new website has streamlined client communication and service inquiries. Regular flooring maintenance has led to a noticeable improvement in the longevity and appearance of various floor types, reducing the need for premature replacements. The window cleaning services have significantly enhanced natural light penetration and the visual appeal of buildings. Mannor Janitorial Enterprise, Inc. has established a reputation for reliability, thoroughness, and professionalism, leading to strong client retention and positive referrals. The Tidio Live Chat has improved customer engagement and support.`,
   };
 
   return (
@@ -78,9 +91,11 @@ const CaseStudySlugPage = () => {
                       </div>
                     </div>
                     <div className="case-info-item">
-                      <h4 className="title">Services Provided</h4>
+                      <h4 className="title">Developer</h4>
                       <div className="content">
-                        <p>{caseStudy.services}</p>
+                        <p>{caseStudy.developer.name}</p>
+                        <p>{caseStudy.developer.profession}</p>
+                        <p>GitHub: <a href={`https://github.com/${caseStudy.developer.github}`} target="_blank" rel="noopener noreferrer">{caseStudy.developer.github}</a></p>
                       </div>
                     </div>
                   </div>
@@ -135,7 +150,7 @@ const CaseStudySlugPage = () => {
                 data-aos-duration={1500}
                 data-aos-offset={50}
               >
-                <h2>Solution</h2>
+                <h2>Solution & Tech Stack</h2>
               </div>
             </div>
             <div className="col-lg-6">
@@ -147,6 +162,14 @@ const CaseStudySlugPage = () => {
                 data-aos-offset={50}
               >
                 <p>{caseStudy.solution}</p>
+                <h5 className="mt-40">Tech Stack Used:</h5>
+                <ul className="list-style-two mt-20">
+                  {caseStudy.techStack.map((tech, i) => (
+                    <li key={i}>
+                      <i className="far fa-check" /> {tech}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -171,6 +194,8 @@ const CaseStudySlugPage = () => {
                 data-aos-offset={50}
               >
                 <p>{caseStudy.results}</p>
+                <h5 className="mt-40">View Live Project:</h5>
+                <p><a href={caseStudy.liveProjectUrl} target="_blank" rel="noopener noreferrer">{caseStudy.liveProjectUrl}</a></p>
               </div>
             </div>
           </div>

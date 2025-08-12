@@ -1,3 +1,16 @@
+## Update Mannor Janitorial Enterprise, Inc. Case Study (August 12, 2025)
+
+**Objective:** Update the Mannor Janitorial Enterprise, Inc. case study with live project link, client name, developer details, and expanded tech stack.
+
+**Summary of Changes:**
+
+-   **`app/cases/mannor-janitorial-enterprise/page.js`:**
+    -   Updated `clientName` to "Anonymous".
+    -   Added `liveProjectUrl` with the link `https://manjanenterprise.com/?i=1`.
+    -   Included developer details (Hans Ade) and a comprehensive `techStack` list (React, Vite.js, Tailwind CSS, PHP backend, Tidio Live Chat).
+    -   Expanded the `solution` and `results` sections to reflect the new tech stack and features.
+    -   Added a display for the developer information and the live project link on the page.
+
 ## Add New Case Study: Mannor Janitorial Enterprise, Inc. (August 12, 2025)
 
 **Objective:** Add a new case study for "Mannor Janitorial Enterprise, Inc." to the cases section.
