@@ -83,3 +83,14 @@
     -   Created a new dynamic page for the "Retrobuilder" case study.
     -   Populated the page with details including client name ("Owned project of Pixelways"), project dates ("July 19 2025" - "July 28 2025"), live project URL (`https://retro.optimaai.cc`), developer details (Hans Ade), tech stack (Next JS 15, Supabase DB, Supabase Auth, AI SDK), services offered, additional highlights, objective, solution, and results.
     -   Integrated the image API for the main case study image: `https://api.a0.dev/assets/image?text=Retrobuilder+AI+Frontend+Developer&aspect=16:9&seed=12345`.
+
+## Update Case Studies Listing: Retrobuilder (August 12, 2025)
+
+**Objective:** Add the new "Retrobuilder" case study to the main case studies listing page.
+
+**Summary of Changes:**
+
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "Retrobuilder - AI Frontend Developer" with a link to its dedicated slug page `/cases/retrobuilder`.
+    -   Assigned categories "AI Development", "Frontend Development", and "Web Design" to this new entry.
+    -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=Retrobuilder+AI+Frontend+Developer&aspect=16:9&seed=12345`.

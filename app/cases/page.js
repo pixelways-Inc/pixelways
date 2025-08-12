@@ -51,6 +51,19 @@ const page = () => {
             <div className="col-lg-4 col-md-6 item solutions development">
               <div className="case-item-two">
                 <div className="image">
+                  <img src="https://api.a0.dev/assets/image?text=Retrobuilder+AI+Frontend+Developer&aspect=16:9&seed=12345" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/retrobuilder">Retrobuilder - AI Frontend Developer</Link>
+                  </h4>
+                  <span>AI Development, Frontend Development, Web Design</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6 item solutions development">
+              <div className="case-item-two">
+                <div className="image">
                   <img src="https://api.a0.dev/assets/image?text=Veela+Store+E-commerce+Modern+Online+Shop&aspect=16:9&seed=123" alt="Case Image" />
                 </div>
                 <div className="content">
