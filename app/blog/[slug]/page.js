@@ -17,7 +17,7 @@ const BlogPostPage = ({ params }) => {
       date: "25 December 2024",
       author: "John Carter",
       avatar: "https://randomuser.me/api/portraits/men/11.jpg",
-      image: "https://api.a0.dev/assets/image?text=Business leader writing a cybersecurity article in a modern workspace, with digital threat icons in the background. Professional, informative, 8K, 800x400px.&aspect=2:1&seed=801",
+      image: "https://api.a0.dev/assets/image?text=AI+transformation+business+operations+modern+workspace+digital+technology&aspect=1:1&seed=blog1",
       excerpt: "Discover how to select the perfect IT solutions partner for your business with our comprehensive guide.",
       content: `
         <p>In today's fast-paced business world, optimizing efficiency and reducing costs are essential to staying competitive. IT consulting can provide the strategic insights and technical solutions that streamline operations, eliminate inefficiencies, and enhance productivity.</p>
@@ -35,7 +35,6 @@ const BlogPostPage = ({ params }) => {
         <p>A reliable IT partner will help you implement industry best practices, maintain compliance with regulations, and establish robust security frameworks that protect your business assets.</p>
       `,
       tags: ["IT Consulting", "Business Strategy", "Technology"],
-      comments: 5,
       readTime: "8 min read"
     },
     {
@@ -45,7 +44,7 @@ const BlogPostPage = ({ params }) => {
       date: "25 December 2024",
       author: "Emily Smith",
       avatar: "https://randomuser.me/api/portraits/women/21.jpg",
-      image: "https://api.a0.dev/assets/image?text=Cybersecurity expert analyzing threat data on multiple monitors in a security operations center. High-tech, secure, 8K, 800x400px.&aspect=2:1&seed=802",
+      image: "https://api.a0.dev/assets/image?text=cybersecurity+expert+protecting+digital+world+modern+office+security+shields&aspect=1:1&seed=blog2",
       excerpt: "Learn the latest cybersecurity strategies to protect your business from evolving digital threats.",
       content: `
         <p>Cybersecurity has evolved dramatically in 2024, with new threats emerging daily and traditional security measures becoming insufficient. Businesses must adopt a proactive, multi-layered approach to protect their digital assets.</p>
@@ -63,7 +62,6 @@ const BlogPostPage = ({ params }) => {
         <p>Stay ahead of threats by implementing AI-powered security tools, conducting regular penetration testing, and maintaining an incident response plan that can adapt to new attack vectors.</p>
       `,
       tags: ["Cybersecurity", "Data Protection", "Risk Management"],
-      comments: 12,
       readTime: "10 min read"
     },
     {
@@ -73,7 +71,7 @@ const BlogPostPage = ({ params }) => {
       date: "25 December 2024",
       author: "Michael Lee",
       avatar: "https://randomuser.me/api/portraits/men/31.jpg",
-      image: "https://api.a0.dev/assets/image?text=Security team implementing cybersecurity protocols in a modern office environment. Professional, secure, 8K, 800x400px.&aspect=2:1&seed=803",
+      image: "https://api.a0.dev/assets/image?text=cybersecurity+best+practices+business+security+consultant+reviewing+data&aspect=1:1&seed=blog3",
       excerpt: "Discover the fundamental cybersecurity practices that every business should implement immediately.",
       content: `
         <p>Every business, regardless of size, faces cybersecurity threats. Implementing essential security practices can significantly reduce your risk of data breaches and cyber attacks.</p>
@@ -91,7 +89,6 @@ const BlogPostPage = ({ params }) => {
         <p>Encrypt sensitive data both in transit and at rest, implement regular backup procedures, and establish clear data handling policies for all employees.</p>
       `,
       tags: ["Security Practices", "Data Protection", "Compliance"],
-      comments: 8,
       readTime: "7 min read"
     },
     {
@@ -101,7 +98,7 @@ const BlogPostPage = ({ params }) => {
       date: "25 December 2024",
       author: "Sophia Turner",
       avatar: "https://randomuser.me/api/portraits/women/41.jpg",
-      image: "https://api.a0.dev/assets/image?text=Modern IT consultant presenting growth strategies to a team in a high-tech office. Trendy, collaborative, 8K, 800x400px.&aspect=2:1&seed=804",
+      image: "https://api.a0.dev/assets/image?text=modern+IT+consultant+presenting+business+growth+strategies+tech+office&aspect=1:1&seed=blog4",
       excerpt: "Explore the latest trends in IT consulting and how they impact business growth in 2024.",
       content: `
         <p>The IT consulting landscape is rapidly evolving, with new technologies and methodologies reshaping how businesses approach digital transformation and growth strategies.</p>
@@ -119,7 +116,6 @@ const BlogPostPage = ({ params }) => {
         <p>Green IT practices, energy-efficient systems, and sustainable technology choices are becoming central to modern consulting approaches.</p>
       `,
       tags: ["IT Consulting", "Digital Transformation", "Business Growth"],
-      comments: 15,
       readTime: "9 min read"
     },
     {
@@ -129,7 +125,7 @@ const BlogPostPage = ({ params }) => {
       date: "25 December 2024",
       author: "David Kim",
       avatar: "https://randomuser.me/api/portraits/men/51.jpg",
-      image: "https://api.a0.dev/assets/image?text=Cloud migration expert guiding a business team through a seamless transition. Efficient, secure, 8K, 800x400px.&aspect=2:1&seed=805",
+      image: "https://api.a0.dev/assets/image?text=cloud+migration+expert+guiding+business+team+smooth+transition&aspect=1:1&seed=blog5",
       excerpt: "Learn how to migrate your business to the cloud with minimal disruption and maximum security.",
       content: `
         <p>Cloud migration is a critical step for modern businesses seeking scalability, cost efficiency, and enhanced security. However, successful migration requires careful planning and execution.</p>
@@ -147,7 +143,6 @@ const BlogPostPage = ({ params }) => {
         <p>Continuously monitor performance, optimize costs, implement backup strategies, and train staff on new cloud-based workflows to maximize ROI.</p>
       `,
       tags: ["Cloud Migration", "Infrastructure", "Digital Transformation"],
-      comments: 10,
       readTime: "12 min read"
     },
     {
@@ -157,7 +152,7 @@ const BlogPostPage = ({ params }) => {
       date: "25 December 2024",
       author: "Olivia Brown",
       avatar: "https://randomuser.me/api/portraits/women/61.jpg",
-      image: "https://api.a0.dev/assets/image?text=Data recovery specialist helping a small business restore lost files. Reliable, supportive, 8K, 800x400px.&aspect=2:1&seed=806",
+      image: "https://api.a0.dev/assets/image?text=data+recovery+specialist+helping+small+business+restore+files&aspect=1:1&seed=blog6",
       excerpt: "Discover effective data recovery strategies tailored for small businesses in the digital age.",
       content: `
         <p>Data loss can be devastating for small businesses, potentially resulting in significant financial losses and operational disruptions. Having robust data recovery solutions is essential for business continuity.</p>
@@ -175,7 +170,6 @@ const BlogPostPage = ({ params }) => {
         <p>Develop comprehensive disaster recovery plans that outline step-by-step procedures for data restoration, communication protocols, and business continuity measures.</p>
       `,
       tags: ["Data Recovery", "Backup Solutions", "Business Continuity"],
-      comments: 6,
       readTime: "8 min read"
     }
   ];
@@ -284,9 +278,6 @@ const BlogPostPage = ({ params }) => {
                       </li>
                       <li>
                         <i className="far fa-calendar-alt" /> {post.date}
-                      </li>
-                      <li>
-                        <i className="far fa-comments" /> Comments ({post.comments})
                       </li>
                       <li>
                         <i className="far fa-clock" /> {post.readTime}

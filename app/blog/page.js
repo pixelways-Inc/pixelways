@@ -60,7 +60,6 @@ const page = () => {
                           <Link href="blog">Alex Johnson</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 12 August 2025</li>
-                        <li><i className="far fa-comments" /> Comments (12)</li>
                       </ul>
                       <h3><Link href="/blog/ultimate-guide-it-solutions-partner">The Ultimate Guide to Choosing the Right IT Solutions Partner</Link></h3>
                       <p>Discover how to select the perfect IT solutions partner for your business with our comprehensive guide covering expertise, security, and scalability.</p>
@@ -80,7 +79,6 @@ const page = () => {
                           <Link href="blog">Maria Chen</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 10 August 2025</li>
-                        <li><i className="far fa-comments" /> Comments (8)</li>
                       </ul>
                       <h3><Link href="/blog/cybersecurity-protecting-digital-world-2024">Cybersecurity Unlocked: Protecting Your Digital World in 2024</Link></h3>
                       <p>Learn the latest cybersecurity strategies to protect your business from evolving digital threats and secure your digital infrastructure.</p>
@@ -100,7 +98,6 @@ const page = () => {
                           <Link href="blog">Robert S. Hummel</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 8 August 2025</li>
-                        <li><i className="far fa-comments" /> Comments (15)</li>
                       </ul>
                       <h3><Link href="/blog/essential-cybersecurity-practices-business">Essential Cybersecurity Practices Every Business Must Follow</Link></h3>
                       <p>Discover the fundamental cybersecurity practices that every business should implement immediately to protect against cyber threats.</p>
@@ -120,7 +117,6 @@ const page = () => {
                           <Link href="blog">Leonard G. Trahan</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 5 August 2025</li>
-                        <li><i className="far fa-comments" /> Comments (10)</li>
                       </ul>
                       <h3><Link href="/blog/modern-it-consulting-trends-growing-businesses">Modern IT Consulting Trends for Growing Businesses</Link></h3>
                       <p>Explore the latest trends in IT consulting and how they impact business growth in 2024, including AI-driven consulting and sustainable IT practices.</p>
@@ -140,7 +136,6 @@ const page = () => {
                           <Link href="blog">Hans Ade</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 2 August 2025</li>
-                        <li><i className="far fa-comments" /> Comments (7)</li>
                       </ul>
                       <h3><Link href="/blog/cloud-migration-best-practices-smooth-transition">Cloud Migration: Best Practices for a Smooth Transition</Link></h3>
                       <p>Learn how to migrate your business to the cloud with minimal disruption and maximum security, with real-world examples and expert guidance.</p>
@@ -160,7 +155,6 @@ const page = () => {
                           <Link href="blog">Hans Ade</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 1 August 2025</li>
-                        <li><i className="far fa-comments" /> Comments (5)</li>
                       </ul>
                       <h3><Link href="/blog/the-future-of-ai-in-business-operations">The Future of AI in Business Operations</Link></h3>
                       <p>Explore how artificial intelligence is set to revolutionize business operations, from automation to advanced decision-making processes.</p>
@@ -180,7 +174,6 @@ const page = () => {
                           <Link href="blog">Hans Ade</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 30 July 2025</li>
-                        <li><i className="far fa-comments" /> Comments (10)</li>
                       </ul>
                       <h3><Link href="/blog/top-cybersecurity-trends-to-watch-in-2025">Top Cybersecurity Trends to Watch in 2025</Link></h3>
                       <p>Stay ahead of the curve with insights into the most critical cybersecurity trends and how to protect your business from emerging threats.</p>
@@ -200,7 +193,6 @@ const page = () => {
                           <Link href="blog">Anye Happiness Ade</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 31 July 2025</li>
-                        <li><i className="far fa-comments" /> Comments (6)</li>
                       </ul>
                       <h3><Link href="/blog/digital-transformation-strategies-for-small-businesses">Digital Transformation Strategies for Small Businesses</Link></h3>
                       <p>Understand key digital transformation strategies that can help small businesses thrive in the evolving digital landscape.</p>
@@ -220,7 +212,6 @@ const page = () => {
                           <Link href="blog">Anye Happiness Ade</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 29 July 2025</li>
-                        <li><i className="far fa-comments" /> Comments (8)</li>
                       </ul>
                       <h3><Link href="/blog/maximizing-business-efficiency-with-cloud-computing">Maximizing Business Efficiency with Cloud Computing</Link></h3>
                       <p>Discover how cloud computing can significantly enhance your business efficiency, reduce costs, and improve scalability.</p>
@@ -240,7 +231,6 @@ const page = () => {
                           <Link href="blog">Sarah Mitchell</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 1 August 2025</li>
-                        <li><i className="far fa-comments" /> Comments (9)</li>
                       </ul>
                       <h3><Link href="/blog/data-recovery-solutions-small-businesses">Data Recovery Solutions for Small Businesses</Link></h3>
                       <p>Discover effective data recovery strategies tailored for small businesses in the digital age, including backup solutions and disaster recovery planning.</p>
