@@ -1,3 +1,18 @@
+## Add New Case Study: CAM TRAV International Consulting (August 12, 2025)
+
+**Objective:** Add a new case study for "CAM TRAV International Consulting", a travel agency and consultancy, highlighting its services for international travel, study, and work.
+
+**Summary of Changes:**
+
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "CAM TRAV International Consulting" with a link to its dedicated slug page `/cases/cam-trav-international`.
+    -   Assigned categories "Travel Agency", "Consultancy", and "International Services" to this new entry.
+    -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=CAM+TRAV+International+Consulting+Travel+Agency+Cameroon&aspect=16:9&seed=2324`.
+-   **`app/cases/cam-trav-international/page.js`:**
+    -   Created a new dynamic page for the "CAM TRAV International Consulting" case study.
+    -   Populated the page with details including client name ("Cam Trav International"), project dates ("September 14 2022" - "June 2023" - *Note: End date assumed as June 2023 due to provided end date (June 2022) being before start date*), live project URL (`https://camtravinternational.cm`), developer details, inferred tech stack (Web Development, CRM, Booking Systems Integration, Financial Management Tools, Document Management Systems), services offered, additional highlights, objective, solution, and results.
+    -   Integrated the image API for the main case study image: `https://api.a0.dev/assets/image?text=CAM+TRAV+International+Consulting+Travel+Agency+Cameroon&aspect=16:9&seed=2324`.
+
 ## Add New Case Study: FCDA Exchange (August 12, 2025)
 
 **Objective:** Add a new case study for "FCDA Exchange", the digital commodity exchange platform by FCDA Cameroon, highlighting its role in empowering agricultural communities.

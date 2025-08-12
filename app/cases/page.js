@@ -165,6 +165,19 @@ const page = () => {
                 </div>
               </div>
             </div>
+            <div className="col-lg-4 col-md-6 item consulting solutions">
+              <div className="case-item-two">
+                <div className="image">
+                  <img src="https://api.a0.dev/assets/image?text=CAM+TRAV+International+Consulting+Travel+Agency+Cameroon&aspect=16:9&seed=2324" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/cam-trav-international">CAM TRAV International Consulting</Link>
+                  </h4>
+                  <span>Travel Agency, Consultancy, International Services</span>
+                </div>
+              </div>
+            </div>
             <div className="col-lg-4 col-md-6 item consulting security">
               <div className="case-item-two">
                 <div className="image">
