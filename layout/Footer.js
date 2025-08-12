@@ -282,13 +282,13 @@ const Footer1 = () => {
               <p>Copyright © 2025 All Rights Reserved</p>
               <ul className="footer-bottom-nav">
                 <li>
-                  <Link href="about">Privacy Policy</Link>
+                  <Link href="/privacy-policy">Privacy Policy</Link>
                 </li>
                 <li>
-                  <Link href="about">Terms and Conditions</Link>
+                  <Link href="/terms-and-conditions">Terms and Conditions</Link>
                 </li>
                 <li>
-                  <Link href="about">Support</Link>
+                  <Link href="/support">Support</Link>
                 </li>
               </ul>
             </div>
@@ -558,13 +558,13 @@ const Footer2 = () => {
               <p>Copyright © 2025 All Rights Reserved</p>
               <ul className="footer-bottom-nav">
                 <li>
-                  <Link href="about">Privacy Policy</Link>
+                  <Link href="/privacy-policy">Privacy Policy</Link>
                 </li>
                 <li>
-                  <Link href="about">Terms and Conditions</Link>
+                  <Link href="/terms-and-conditions">Terms and Conditions</Link>
                 </li>
                 <li>
-                  <Link href="about">Support</Link>
+                  <Link href="/support">Support</Link>
                 </li>
               </ul>
             </div>
@@ -794,13 +794,13 @@ const Footer3 = () => {
               <p>Copyright © 2025 All Rights Reserved</p>
               <ul className="footer-bottom-nav">
                 <li>
-                  <Link href="about">Privacy Policy</Link>
+                  <Link href="/privacy-policy">Privacy Policy</Link>
                 </li>
                 <li>
-                  <Link href="about">Terms and Conditions</Link>
+                  <Link href="/terms-and-conditions">Terms and Conditions</Link>
                 </li>
                 <li>
-                  <Link href="about">Support</Link>
+                  <Link href="/support">Support</Link>
                 </li>
               </ul>
             </div>
@@ -884,7 +884,7 @@ const Footer4 = () => {
               data-aos-duration={1500}
               data-aos-offset={50}
             >
-              <h6 className="footer-title">Contact</h6>
+              <h6 className="footer-title">Contact</h4>
               <ul>
                 <li>
                   <i className="fal fa-map-marker-alt" /> {contactInfo.officeLocation}
@@ -1008,7 +1008,7 @@ const Footer4 = () => {
                     <Link href="about">Setting</Link>
                   </li>
                   <li>
-                    <Link href="about">Privacy</Link>
+                    <Link href="/privacy-policy">Privacy</Link>
                   </li>
                   <li>
                     <Link href="contact">Contact</Link>
