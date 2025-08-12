@@ -131,3 +131,18 @@
     -   Updated `imageUrl` to `"/trioagent.png"`.
 -   **`app/cases/page.js`:**
     -   Updated the `src` attribute for the "Trio Agent" case study entry to `"/trioagent.png"`.
+
+## Add New Case Study: Optima AI Chat Platform (August 12, 2025)
+
+**Objective:** Add a new case study for "Optima AI Chat Platform", a unified interface for AI model providers.
+
+**Summary of Changes:**
+
+-   **`app/cases/optima-ai-chat-platform/page.js`:**
+    -   Created a new dynamic page for the "Optima AI Chat Platform" case study.
+    -   Populated the page with details including client name ("Optima AI Inc"), project dates ("March 04 2025" - "June 28 2025"), developer details (Hans Ade), tech stack (Nuxt, Supabase DB, Supabase Auth, Supabase Edge Functions, AI SDK), services offered, additional highlights, objective, solution, and results.
+    -   Used the local image: `"/optimachat.png"`.
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "Optima AI Chat Platform: A Unified Interface to Call Any Model Provider" with a link to its dedicated slug page `/cases/optima-ai-chat-platform`.
+    -   Assigned categories "AI Platform", "Chatbot", and "Unified Interface" to this new entry.
+    -   Used the local image for the thumbnail: `"/optimachat.png"`.

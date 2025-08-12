@@ -51,6 +51,19 @@ const page = () => {
             <div className="col-lg-4 col-md-6 item solutions development">
               <div className="case-item-two">
                 <div className="image">
+                  <img src="/optimachat.png" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/optima-ai-chat-platform">Optima AI Chat Platform: A Unified Interface to Call Any Model Provider</Link>
+                  </h4>
+                  <span>AI Platform, Chatbot, Unified Interface</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6 item solutions development">
+              <div className="case-item-two">
+                <div className="image">
                   <img src="/trioagent.png" alt="Case Image" />
                 </div>
                 <div className="content">
