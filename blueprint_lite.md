@@ -1,3 +1,18 @@
+## Add New Case Study: FCDA Exchange (August 12, 2025)
+
+**Objective:** Add a new case study for "FCDA Exchange", the digital commodity exchange platform by FCDA Cameroon, highlighting its role in empowering agricultural communities.
+
+**Summary of Changes:**
+
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "FCDA Exchange" with a link to its dedicated slug page `/cases/fcda-exchange`.
+    -   Assigned categories "E-commerce", "Agriculture", "Digital Marketplace", and "Fintech" to this new entry.
+    -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=FCDA+Exchange+Digital+Commodity+Marketplace+Agriculture&aspect=16:9&seed=2122`.
+-   **`app/cases/fcda-exchange/page.js`:**
+    -   Created a new dynamic page for the "FCDA Exchange" case study.
+    -   Populated the page with details including client name ("FCDA Cameroon"), project dates ("January 14" - "March 11 2025"), live project URL (`https://market.fcdacameroon.org`), developer details, tech stack (PHP, MySQL, Apex, Datatables, Bootstrap, Mobile money Gateway for MTN Mobile Money and Orange Money), services offered (Marketplace, Analytics, Warehousing, Resources & Guides), objective, solution, and results.
+    -   Integrated the image API for the main case study image: `https://api.a0.dev/assets/image?text=FCDA+Exchange+Digital+Commodity+Marketplace+Agriculture&aspect=16:9&seed=2122`.
+
 ## Add New Case Study: FCDA Cameroon (August 12, 2025)
 
 **Objective:** Add a new case study for "FCDA Cameroon", a non-governmental organization, highlighting its mission to empower agricultural communities through digital innovation and sustainable development.

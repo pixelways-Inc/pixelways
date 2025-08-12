@@ -1,1 +1,1 @@
-git commit -m "FEAT: Add new case study for SOBA Ontario and update blueprint_lite.md"
+git commit -m "FEAT: Add new case study for FCDA Cameroon and update blueprint_lite.md"

@@ -152,6 +152,19 @@ const page = () => {
                 </div>
               </div>
             </div>
+            <div className="col-lg-4 col-md-6 item solutions design">
+              <div className="case-item-two">
+                <div className="image">
+                  <img src="https://api.a0.dev/assets/image?text=FCDA+Exchange+Digital+Commodity+Marketplace+Agriculture&aspect=16:9&seed=2122" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/fcda-exchange">FCDA Exchange</Link>
+                  </h4>
+                  <span>E-commerce, Agriculture, Digital Marketplace, Fintech</span>
+                </div>
+              </div>
+            </div>
             <div className="col-lg-4 col-md-6 item consulting security">
               <div className="case-item-two">
                 <div className="image">
