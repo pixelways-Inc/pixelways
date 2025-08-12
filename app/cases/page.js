@@ -51,7 +51,7 @@ const page = () => {
             <div className="col-lg-4 col-md-6 item solutions development">
               <div className="case-item-two">
                 <div className="image">
-                  <img src="https://api.a0.dev/assets/image?text=Trio+Agent+AI+App+Website+Builder&aspect=16:9&seed=123456" alt="Case Image" />
+                  <img src="/trioagent.png" alt="Case Image" />
                 </div>
                 <div className="content">
                   <h4>

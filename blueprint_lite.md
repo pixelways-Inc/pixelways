@@ -120,3 +120,14 @@
     -   Added a new case study entry for "Trio Agent: Build Anything by Chatting with AI" with a link to its dedicated slug page `/cases/trio-agent`.
     -   Assigned categories "AI Development", "No-Code", and "App Development" to this new entry.
     -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=Trio+Agent+AI+App+Website+Builder&aspect=16:9&seed=123456`.
+
+## Update Image Source for Trio Agent Case Study (August 12, 2025)
+
+**Objective:** Change the image source for the "Trio Agent" case study to use a local image (`public/trioagent.png`) instead of the image API, as specifically requested for this project.
+
+**Summary of Changes:**
+
+-   **`app/cases/trio-agent/page.js`:**
+    -   Updated `imageUrl` to `"/trioagent.png"`.
+-   **`app/cases/page.js`:**
+    -   Updated the `src` attribute for the "Trio Agent" case study entry to `"/trioagent.png"`.
