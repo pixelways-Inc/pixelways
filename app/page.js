@@ -78,7 +78,7 @@ const page = () => {
                 <div className="row justify-content-center">
                   <div className="col-lg-10">
                     <p>
-                      At Pixelways Solutionss, we integrate cutting-edge technologies with
+                      At Pixelways Solutions, we integrate cutting-edge technologies with
                       strategic planning to optimize your processes, drive innovation, and deliver
                       measurable results. Partner with our IT experts to unlock your business's full potential.
                     </p>
