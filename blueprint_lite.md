@@ -1,3 +1,18 @@
+## Add New Case Study: FCDA Cameroon (August 12, 2025)
+
+**Objective:** Add a new case study for "FCDA Cameroon", a non-governmental organization, highlighting its mission to empower agricultural communities through digital innovation and sustainable development.
+
+**Summary of Changes:**
+
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "FCDA Cameroon" with a link to its dedicated slug page `/cases/fcda-cameroon`.
+    -   Assigned categories "Non-Profit", "Agriculture", "Community Development", and "Digital Innovation" to this new entry.
+    -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=FCDA+Cameroon+Agriculture+Community+Development+Digital+Innovation&aspect=16:9&seed=1920`.
+-   **`app/cases/fcda-cameroon/page.js`:**
+    -   Created a new dynamic page for the "FCDA Cameroon" case study.
+    -   Populated the page with details including client name ("FCDA Cameroon"), project dates ("June 12 2024" - "August 18 2024"), live project URL (`https://www.fcdacameroon.org`), developer details, tech stack (PHP, MySQL, Stripe for mobile money donation option, Web Development, Digital Platform Development), services and key offerings, objective, solution, and results.
+    -   Integrated the image API for the main case study image: `https://api.a0.dev/assets/image?text=FCDA+Cameroon+Agriculture+Community+Development+Digital+Innovation&aspect=16:9&seed=1920`.
+
 ## Add New Case Study: SOBA Ontario (August 12, 2025)
 
 **Objective:** Add a new case study for "SOBA Ontario", a not-for-profit alumni association, highlighting its community service and member support initiatives.
