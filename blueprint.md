@@ -1,3 +1,13 @@
+## Update Optima AI Inc. Case Study Dates (August 12, 2025)
+
+**Objective:** Update the start and end dates for the "Optima AI Inc." case study.
+
+**Summary of Changes:**
+
+-   **`app/cases/optima-ai-inc/page.js`:**
+    -   Updated `commencementDate` to "June 2025".
+    -   Updated `endDate` to "Present".
+
 ## Update Optima AI Inc. Case Study Client Details (August 12, 2025)
 
 **Objective:** Update the client details for the "Optima AI Inc." case study to reflect its relationship with Pixelways Solution Inc. and its mission.
@@ -17,7 +27,7 @@
 -   **`app/cases/page.js`:**
     -   Added a new case study entry for "Optima AI Inc." with a link to its dedicated slug page `/cases/optima-ai-inc`.
     -   Assigned categories "AI Solutions", "Business Transformation", and "Innovation" to this new entry.
-    -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=Optima+AI+Artificial+Intelligence+Business+Solutions&aspect=16:9&seed=1234`.
+    -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=Optima+AI+Artificial+Intelligence+Business+Solutions&aspect=16:9&&seed=1234`.
 -   **`app/cases/optima-ai-inc/page.js`:**
     -   Created a new dynamic page for the "Optima AI Inc." case study.
     -   Populated the page with details including client (Optima AI Inc.), live project URL, developer details, tech stack (AI Technologies, Machine Learning, Data Science, Cloud Computing, Custom Software Development), objective, solution, and results.

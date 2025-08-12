@@ -6,8 +6,8 @@ const CaseStudySlugPage = () => {
   const caseStudy = {
     title: "Optima AI Inc.",
     clientName: "Pixelways Solution Inc. (Baby Company)",
-    commencementDate: "N/A", // Not provided
-    endDate: "N/A", // Not provided
+    commencementDate: "June 2025",
+    endDate: "Present",
     liveProjectUrl: "https://optimaai.cc/",
     developer: {
       name: "Hans Ade (Anye Happiness Ade)",
