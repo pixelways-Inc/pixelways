@@ -146,3 +146,14 @@
     -   Added a new case study entry for "Optima AI Chat Platform: A Unified Interface to Call Any Model Provider" with a link to its dedicated slug page `/cases/optima-ai-chat-platform`.
     -   Assigned categories "AI Platform", "Chatbot", and "Unified Interface" to this new entry.
     -   Used the local image for the thumbnail: `"/optimachat.png"`.
+
+## Update Live Project URLs for Optima AI Chat Platform and Trio Agent (August 12, 2025)
+
+**Objective:** Update the live project URLs for the "Optima AI Chat Platform" and "Trio Agent" case studies.
+
+**Summary of Changes:**
+
+-   **`app/cases/optima-ai-chat-platform/page.js`:**
+    -   Updated `liveProjectUrl` to `https://chat.optimaai.cc`.
+-   **`app/cases/trio-agent/page.js`:**
+    -   Updated `liveProjectUrl` to `https://www.optimaai.cc/pricing`.

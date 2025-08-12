@@ -8,7 +8,7 @@ const CaseStudySlugPage = () => {
     clientName: "Optima AI Inc",
     commencementDate: "March 04 2025",
     endDate: "June 28 2025",
-    liveProjectUrl: "", // Not provided
+    liveProjectUrl: "https://chat.optimaai.cc",
     developer: {
       name: "Hans Ade (Anye Happiness Ade)",
       profession: "Software Developer and AI Engineer",
