@@ -1,4 +1,6 @@
 import Preloader from "@/layout/Preloader";
+import Script from "next/script";
+
 import "./globals.css";
 
 import "@css/aos.css";
@@ -22,6 +24,10 @@ export default function RootLayout({ children }) {
       <body>
         <Preloader />
         {children}
+        <Script
+          src="https://embed.tawk.to/689b8789e0fd9f192a11305d/1j2foite4"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
