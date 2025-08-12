@@ -1,3 +1,13 @@
+## Update Optima AI Inc. Case Study Client Details (August 12, 2025)
+
+**Objective:** Update the client details for the "Optima AI Inc." case study to reflect its relationship with Pixelways Solution Inc. and its mission.
+
+**Summary of Changes:**
+
+-   **`app/cases/optima-ai-inc/page.js`:**
+    -   Updated `clientName` to "Pixelways Solution Inc. (Baby Company)".
+    -   Refined `objective`, `solution`, and `results` sections to emphasize the mission of making AI "radically accessible, private, and empowering".
+
 ## Add New Case Study: Optima AI Inc. (August 12, 2025)
 
 **Objective:** Add a new case study for "Optima AI Inc.", highlighting its mission to empower businesses with cutting-edge AI solutions.

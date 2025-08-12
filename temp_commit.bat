@@ -1,1 +1,1 @@
-git commit -m "FEAT: Update TweetChat case study dates"
+git commit -m "FEAT: Add new case study for Optima AI Inc."
