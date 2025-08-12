@@ -157,3 +157,18 @@
     -   Updated `liveProjectUrl` to `https://chat.optimaai.cc`.
 -   **`app/cases/trio-agent/page.js`:**
     -   Updated `liveProjectUrl` to `https://www.optimaai.cc/pricing`.
+
+## Add New Case Study: FCDA Mobile Payment Gateway (August 12, 2025)
+
+**Objective:** Add a new case study for "FCDA Mobile Payment Gateway", a mobile money API for MTN and Orange services in Cameroon.
+
+**Summary of Changes:**
+
+-   **`app/cases/fcda-mobile-payment-gateway/page.js`:**
+    -   Created a new dynamic page for the "FCDA Mobile Payment Gateway" case study.
+    -   Populated the page with details including client name ("FCDA Cameroon"), project dates ("April 03 2025" - "April 21 2025"), developer details (Hans Ade), tech stack (PHP 8.2, MySQL 5, Tankstack Query, Pusher), services offered, additional highlights, objective, solution, and results.
+    -   Integrated the image API for the main case study image: `https://api.a0.dev/assets/image?text=FCDA+Mobile+Payment+Gateway+Cameroon&aspect=16:9&seed=789012`.
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "FCDA Mobile Payment Gateway" with a link to its dedicated slug page `/cases/fcda-mobile-payment-gateway`.
+    -   Assigned categories "Payment Gateway", "Mobile Money", and "API Development" to this new entry.
+    -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=FCDA+Mobile+Payment+Gateway+Cameroon&aspect=16:9&seed=789012`.

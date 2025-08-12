@@ -85,6 +85,19 @@ const page = () => {
             <div className="col-lg-4 col-md-6 item solutions development">
               <div className="case-item-two">
                 <div className="image">
+                  <img src="https://api.a0.dev/assets/image?text=FCDA+Mobile+Payment+Gateway+Cameroon&aspect=16:9&seed=789012" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/fcda-mobile-payment-gateway">FCDA Mobile Payment Gateway</Link>
+                  </h4>
+                  <span>Payment Gateway, Mobile Money, API Development</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6 item solutions development">
+              <div className="case-item-two">
+                <div className="image">
                   <img src="/optimachat.png" alt="Case Image" />
                 </div>
                 <div className="content">
