@@ -64,7 +64,7 @@ const CaseStudySlugPage = () => {
                     <div className="case-info-item">
                       <h4 className="title">Client</h4>
                       <div className="content">
-                        <span className="client-name">{caseStudy.clientName}</span>
+                        <span className="title">{caseStudy.clientName}</span>
                       </div>
                     </div>
                   </div>
