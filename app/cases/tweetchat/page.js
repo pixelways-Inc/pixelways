@@ -6,8 +6,8 @@ const CaseStudySlugPage = () => {
   const caseStudy = {
     title: "TweetChat",
     clientName: "Pixelways Solution (Owned Product)",
-    commencementDate: "N/A", // Not provided
-    endDate: "N/A", // Not provided
+    commencementDate: "February 2024",
+    endDate: "November 2024",
     liveProjectUrl: "https://tweetchat.me",
     developer: {
       name: "Hans Ade (Anye Happiness Ade)",

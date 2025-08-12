@@ -1,3 +1,13 @@
+## Update TweetChat Case Study Dates (August 12, 2025)
+
+**Objective:** Update the start and end dates for the "TweetChat" case study.
+
+**Summary of Changes:**
+
+-   **`app/cases/tweetchat/page.js`:**
+    -   Updated `commencementDate` to "February 2024".
+    -   Updated `endDate` to "November 2024".
+
 ## Add New Case Study: TweetChat (August 12, 2025)
 
 **Objective:** Add a new case study for "TweetChat", an owned product of Pixelways Solution, highlighting its comprehensive social networking features and AI integration.
