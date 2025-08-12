@@ -53,7 +53,7 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <div className="section-title mb-20">
-                  <h2>We’ve 960+ Project Complete</h2>
+                  <h2>We've 13+ Projects Complete</h2>
                 </div>
                 <p>
                   Specific benefits and industries, helping potential clients
