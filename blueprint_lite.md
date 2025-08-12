@@ -105,3 +105,18 @@
     -   Updated `imageUrl` to `"/retrobuilder.png"`.
 -   **`app/cases/page.js`:**
     -   Updated the `src` attribute for the "Retrobuilder" case study entry to `"/retrobuilder.png"`.
+
+## Add New Case Study: Trio Agent (August 12, 2025)
+
+**Objective:** Add a new case study for "Trio Agent", an AI-powered app and website builder.
+
+**Summary of Changes:**
+
+-   **`app/cases/trio-agent/page.js`:**
+    -   Created a new dynamic page for the "Trio Agent" case study.
+    -   Populated the page with details including client name ("Optima AI Inc"), project dates ("May 14 2025" - "July 27 2025"), developer details (Hans Ade), tech stack (Electron SDK, Vite JS, Drizzle ORM, Supabase Admin API, GITHUB Admin API, Neon DB, Vercel integration, AI Sdk, Trio AI agentic coding model), services offered, additional highlights, objective, solution, and results.
+    -   Integrated the image API for the main case study image: `https://api.a0.dev/assets/image?text=Trio+Agent+AI+App+Website+Builder&aspect=16:9&seed=123456`.
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "Trio Agent: Build Anything by Chatting with AI" with a link to its dedicated slug page `/cases/trio-agent`.
+    -   Assigned categories "AI Development", "No-Code", and "App Development" to this new entry.
+    -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=Trio+Agent+AI+App+Website+Builder&aspect=16:9&seed=123456`.

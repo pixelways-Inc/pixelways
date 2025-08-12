@@ -51,6 +51,19 @@ const page = () => {
             <div className="col-lg-4 col-md-6 item solutions development">
               <div className="case-item-two">
                 <div className="image">
+                  <img src="https://api.a0.dev/assets/image?text=Trio+Agent+AI+App+Website+Builder&aspect=16:9&seed=123456" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/trio-agent">Trio Agent: Build Anything by Chatting with AI</Link>
+                  </h4>
+                  <span>AI Development, No-Code, App Development</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6 item solutions development">
+              <div className="case-item-two">
+                <div className="image">
                   <img src="/retrobuilder.png" alt="Case Image" />
                 </div>
                 <div className="content">
