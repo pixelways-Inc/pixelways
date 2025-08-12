@@ -6,8 +6,8 @@ const CaseStudySlugPage = () => {
   const caseStudy = {
     title: "Mannor Janitorial Enterprise, Inc.",
     clientName: "Anonymous",
-    commencementDate: "N/A", // Not provided
-    endDate: "N/A", // Not provided
+    commencementDate: "15 April 2025",
+    endDate: "20 April 2025",
     liveProjectUrl: "https://manjanenterprise.com/?i=1",
     developer: {
       name: "Hans Ade (Anye Happiness Ade)",

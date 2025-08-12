@@ -1,3 +1,13 @@
+## Update Mannor Janitorial Enterprise, Inc. Case Study Dates (August 12, 2025)
+
+**Objective:** Update the start and end dates for the "Mannor Janitorial Enterprise, Inc." case study.
+
+**Summary of Changes:**
+
+-   **`app/cases/mannor-janitorial-enterprise/page.js`:**
+    -   Updated `commencementDate` to "15 April 2025".
+    -   Updated `endDate` to "20 April 2025".
+
 ## Update Mannor Janitorial Enterprise, Inc. Image Source (August 12, 2025)
 
 **Objective:** Update the image source for the "Mannor Janitorial Enterprise, Inc." case study to use the image API, consistent with the Veela Store project.
