@@ -513,7 +513,7 @@ const Footer2 = () => {
               <ul>
                 {servicesData.map((service) => (
                   <li key={service.id}>
-                    <Link href={`/service-details#${service.title.toLowerCase().replace(/ /g, '-')}`}>
+                    <Link href={`/services?service=${service.id}`} scroll={false}>
                       <i className="far fa-angle-right" /> {service.title}
                     </Link>
                   </li>
@@ -749,7 +749,7 @@ const Footer3 = () => {
               <ul>
                 {servicesData.map((service) => (
                   <li key={service.id}>
-                    <Link href={`/service-details#${service.title.toLowerCase().replace(/ /g, '-')}`}>
+                    <Link href={`/services?service=${service.id}`} scroll={false}>
                       <i className="far fa-angle-right" /> {service.title}
                     </Link>
                   </li>
@@ -1391,7 +1391,7 @@ const Footer6 = () => {
                   <ul className="list-style-four">
                     {servicesData.map((service) => (
                       <li key={service.id}>
-                        <Link href={`/service-details#${service.title.toLowerCase().replace(/ /g, '-')}`}>
+                        <Link href={`/services?service=${service.id}`} scroll={false}>
                           {service.title}
                         </Link>
                       </li>
