@@ -1,29 +1,8 @@
 "use client";
 import Link from "next/link";
 import { Nav, Tab } from "react-bootstrap";
-import { useState } from "react";
 
-const ProductDetailsContent = ({ product, products }) => {
-  const [sortCriteria, setSortCriteria] = useState("name");
-  const [filterCategory, setFilterCategory] = useState("");
-
-  const handleSort = (criteria) => {
-    setSortCriteria(criteria);
-  };
-
-  const handleFilter = (category) => {
-    setFilterCategory(category);
-  };
-
-  const sortedAndFilteredProducts = products
-    .filter((p) => (filterCategory ? p.category === filterCategory : true))
-    .sort((a, b) => {
-      if (sortCriteria === "price") {
-        return a.price - b.price;
-      }
-      return a.name.localeCompare(b.name);
-    });
-
+const ProductDetailsContent = ({ product }) => {
   if (!product) {
     return <p>Product not found.</p>;
   }
@@ -31,28 +10,6 @@ const ProductDetailsContent = ({ product, products }) => {
   return (
     <section className="product-details pb-10 pt-130 rpt-100">
       <div className="container">
-        <div className="sorting-filtering">
-          <select onChange={(e) => handleSort(e.target.value)}>
-            <option value="name">Sort by Name</option>
-            <option value="price">Sort by Price</option>
-          </select>
-          <select onChange={(e) => handleFilter(e.target.value)}>
-            <option value="">All Categories</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Devices">Devices</option>
-          </select>
-        </div>
-        <div className="row gap-110">
-          {sortedAndFilteredProducts.map((p) => (
-            <div key={p.id} className="col-lg-4">
-              <div className="product-item">
-                <img src={p.image} alt={p.name} />
-                <h3>{p.name}</h3>
-                <p>${p.price}</p>
-              </div>
-            </div>
-          ))}
-        </div>
         <div className="row gap-110">
           <div className="col-lg-7">
             <div
@@ -117,17 +74,17 @@ const ProductDetailsContent = ({ product, products }) => {
                   Add to Cart <i className="far fa-arrow-right" />
                 </button>
               </form>
-              <ul className="category-tags pt-45 rpt-20" style={{ color: 'white' }}>
+              <ul className="category-tags pt-45 rpt-20">
                 <li>
                   <h5>Categories : </h5>
-                  <a href="#" style={{ color: 'white' }}>Electronics</a>
-                  <a href="#" style={{ color: 'white' }}>Devices</a>
+                  <a href="#">Electronics</a>
+                  <a href="#">Devices</a>
                 </li>
                 <li>
                   <h5>Popular Tags : </h5>
                   <div className="tag-clouds">
-                    <a href="#" style={{ color: 'white' }}>{product.name.split(' ')[0]}</a>
-                    <a href="#" style={{ color: 'white' }}>{product.name.split(' ')[1] || 'Device'}</a>
+                    <a href="#">{product.name.split(' ')[0]}</a>
+                    <a href="#">{product.name.split(' ')[1] || 'Device'}</a>
                   </div>
                 </li>
               </ul>

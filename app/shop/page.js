@@ -1,10 +1,44 @@
+"use client";
 import PageBanner from "@/components/PageBanner";
 import PriceRanger from "@/components/PriceRanger";
 import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
 import products from "@/data/products"; // Import product data
+import { useState, useMemo } from "react";
 
 const page = () => {
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [sortBy, setSortBy] = useState("default");
+
+  // Filter and sort products based on state
+  const filteredProducts = useMemo(() => {
+    let filtered = products.filter((product) => {
+      const matchesSearch = product.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+                           product.condition.toLowerCase().includes(searchKeyword.toLowerCase());
+      const matchesCategory = selectedCategory === "all" || 
+                             product.name.toLowerCase().includes(selectedCategory.toLowerCase());
+      const matchesPrice = product.currentMarketValue >= priceRange[0] && 
+                          product.currentMarketValue <= priceRange[1];
+      
+      return matchesSearch && matchesCategory && matchesPrice;
+    });
+
+    // Sort products
+    switch (sortBy) {
+      case "new":
+        return filtered.reverse();
+      case "old":
+        return filtered;
+      case "hight-to-low":
+        return filtered.sort((a, b) => b.currentMarketValue - a.currentMarketValue);
+      case "low-to-high":
+        return filtered.sort((a, b) => a.currentMarketValue - b.currentMarketValue);
+      default:
+        return filtered;
+    }
+  }, [searchKeyword, selectedCategory, priceRange, sortBy]);
   return (
     <TekprofLayout>
       <PageBanner pageName="Shop" title={"All Products"} />
@@ -19,9 +53,15 @@ const page = () => {
                   data-aos-duration={1500}
                   data-aos-offset={50}
                 >
-                  <h5 className="widget-title">Search</h5>
-                  <form action="#" className="default-search-form">
-                    <input type="text" placeholder="Keywords" required />
+                  <h5 className="widget-title" style={{color: 'white'}}>Search</h5>
+                  <form action="#" className="default-search-form" onSubmit={(e) => e.preventDefault()}>
+                    <input 
+                      type="text" 
+                      placeholder="Keywords" 
+                      value={searchKeyword}
+                      onChange={(e) => setSearchKeyword(e.target.value)}
+                      style={{color: 'white'}}
+                    />
                     <button
                       type="submit"
                       className="searchbutton far fa-search"
@@ -35,16 +75,21 @@ const page = () => {
                   data-aos-duration={1500}
                   data-aos-offset={50}
                 >
-                  <h5 className="widget-title">Category</h5>
+                  <h5 className="widget-title" style={{color: 'white'}}>Category</h5>
                   <ul>
                     <li>
-                      <Link href="/shop">
+                      <Link href="#" onClick={(e) => {e.preventDefault(); setSelectedCategory("electronics")}} style={{color: 'white'}}>
                         Electronics <i className="far fa-arrow-right" />
                       </Link>
                     </li>
                     <li>
-                      <Link href="/shop">
+                      <Link href="#" onClick={(e) => {e.preventDefault(); setSelectedCategory("devices")}} style={{color: 'white'}}>
                         Devices <i className="far fa-arrow-right" />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" onClick={(e) => {e.preventDefault(); setSelectedCategory("all")}} style={{color: 'white'}}>
+                        All Categories <i className="far fa-arrow-right" />
                       </Link>
                     </li>
                   </ul>
@@ -55,9 +100,29 @@ const page = () => {
                   data-aos-duration={1500}
                   data-aos-offset={50}
                 >
-                  <h5 className="widget-title">Filter</h5>
+                  <h5 className="widget-title" style={{color: 'white'}}>Filter</h5>
                   <div className="price-filter-wrap">
-                    <PriceRanger />
+                    <div style={{color: 'white', marginBottom: '10px'}}>
+                      Price Range: ${priceRange[0]} - ${priceRange[1]}
+                    </div>
+                    <div style={{marginBottom: '10px'}}>
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="1000" 
+                        value={priceRange[0]}
+                        onChange={(e) => setPriceRange([parseInt(e.target.value), priceRange[1]])}
+                        style={{width: '100%', marginBottom: '5px'}}
+                      />
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="1000" 
+                        value={priceRange[1]}
+                        onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
+                        style={{width: '100%'}}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div
@@ -66,9 +131,9 @@ const page = () => {
                   data-aos-duration={1500}
                   data-aos-offset={50}
                 >
-                  <h5 className="widget-title">Products</h5>
+                  <h5 className="widget-title" style={{color: 'white'}}>Products</h5>
                   <ul>
-                    {products.slice(0, 3).map((product) => (
+                    {filteredProducts.slice(0, 3).map((product) => (
                       <li key={product.slug}>
                         <div className="image">
                           <img src={product.image} alt={product.name} />
@@ -81,12 +146,12 @@ const page = () => {
                             <i className="fas fa-star" />
                             <i className="fas fa-star" />
                           </div>
-                          <h6>
+                          <h6 style={{color: 'white'}}>
                             <Link href={`/shop/${product.slug}`}>
                               {product.name}
                             </Link>
                           </h6>
-                          <span className="price">${product.currentMarketValue}.00</span>
+                          <span className="price" style={{color: 'white'}}>${product.currentMarketValue}.00</span>
                         </div>
                       </li>
                     ))}
@@ -98,12 +163,12 @@ const page = () => {
                   data-aos-duration={1500}
                   data-aos-offset={50}
                 >
-                  <h4 className="widget-title">Popular Tags</h4>
+                  <h4 className="widget-title" style={{color: 'white'}}>Popular Tags</h4>
                   <div className="tag-clouds">
-                    <Link href="/shop">Electronics</Link>
-                    <Link href="/shop">Devices</Link>
-                    <Link href="/shop">Used</Link>
-                    <Link href="/shop">Refurbished</Link>
+                    <Link href="#" onClick={(e) => {e.preventDefault(); setSearchKeyword("electronics")}} style={{color: 'white'}}>Electronics</Link>
+                    <Link href="#" onClick={(e) => {e.preventDefault(); setSearchKeyword("devices")}} style={{color: 'white'}}>Devices</Link>
+                    <Link href="#" onClick={(e) => {e.preventDefault(); setSearchKeyword("used")}} style={{color: 'white'}}>Used</Link>
+                    <Link href="#" onClick={(e) => {e.preventDefault(); setSearchKeyword("refurbished")}} style={{color: 'white'}}>Refurbished</Link>
                   </div>
                 </div>
                 <div
@@ -133,8 +198,9 @@ const page = () => {
                     data-aos="fade-left"
                     data-aos-duration={1500}
                     data-aos-offset={50}
+                    style={{color: 'white'}}
                   >
-                    Showing 1 - {products.length} of {products.length} Results
+                    Showing 1 - {filteredProducts.length} of {filteredProducts.length} Results
                   </div>
                   <div
                     className="products-dropdown mb-20"
@@ -142,8 +208,12 @@ const page = () => {
                     data-aos-duration={1500}
                     data-aos-offset={50}
                   >
-                    <select>
-                      <option value="default" selected>
+                    <select 
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value)}
+                      style={{color: 'white', backgroundColor: '#333'}}
+                    >
+                      <option value="default">
                         Default sorting
                       </option>
                       <option value="new">Sort by Newness</option>
@@ -154,7 +224,7 @@ const page = () => {
                   </div>
                 </div>
                 <div className="row">
-                  {products.map((product) => (
+                  {filteredProducts.map((product) => (
                     <div
                       key={product.slug}
                       className="col-xl-4 col-sm-6"
@@ -175,12 +245,12 @@ const page = () => {
                             <i className="fas fa-star" />
                             <i className="fas fa-star" />
                           </div>
-                          <h5>
+                          <h5 style={{color: 'white'}}>
                             <Link href={`/shop/${product.slug}`}>
                               {product.name}
                             </Link>
                           </h5>
-                          <span className="price">${product.currentMarketValue}.00</span>
+                          <span className="price" style={{color: 'white'}}>${product.currentMarketValue}.00</span>
                         </div>
                       </div>
                     </div>
