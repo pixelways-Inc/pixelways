@@ -85,6 +85,19 @@ const page = () => {
             <div className="col-lg-4 col-md-6 item solutions development">
               <div className="case-item-two">
                 <div className="image">
+                  <img src="https://api.a0.dev/assets/image?text=FlexFi+AI+Finance+Companion&aspect=16:9&seed=987654" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/flexfi">FlexFi — Adaptive AI Finance Companion</Link>
+                  </h4>
+                  <span>Upcoming Project, Fintech, AI Finance</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6 item solutions development">
+              <div className="case-item-two">
+                <div className="image">
                   <img src="/pynalis.png" alt="Case Image" />
                 </div>
                 <div className="content">

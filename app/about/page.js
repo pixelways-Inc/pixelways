@@ -37,7 +37,7 @@ const page = () => {
                     data-aos-offset={50}
                   >
                     <p>
-                      At Pixelways Solution, we are dedicated to transforming businesses through
+                      At Pixelways Solutions, we are dedicated to transforming businesses through
                       innovative, tailored digital solutions. With a team of highly skilled professionals and a commitment to cutting-edge technology, we specialize in creating scalable, user-friendly software and robust IT infrastructures.
                     </p>
                   </div>
@@ -102,10 +102,10 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <div className="section-title mb-30">
-                  <h2>Experience Excellence with Pixelways Solution</h2>
+                  <h2>Experience Excellence with Pixelways Solutions</h2>
                 </div>
                 <p>
-                  At Pixelways Solution, excellence is at the core of everything we
+                  At Pixelways Solutions, excellence is at the core of everything we
                   do. Our team of dedicated professionals combines deep industry
                   expertise with a passion for innovation to deliver
                   high-quality, tailored digital solutions that drive measurable results.
@@ -113,7 +113,7 @@ const page = () => {
                   complex challenges into impactful outcomes. When you partner
                   with us, you’re not just getting a service provider—you’re
                   gaining a trusted ally committed to helping your business succeed.
-                  Discover what true excellence means with Pixelways Solution by your
+                  Discover what true excellence means with Pixelways Solutions by your
                   side.
                 </p>
               </div>
@@ -152,7 +152,7 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <span className="sub-title color-primary mb-10">
-                  Why Choose Pixelways Solution?
+                  Why Choose Pixelways Solutions?
                 </span>
                 <h2>Your Strategic Partner for Advanced Digital Solutions</h2>
               </div>
