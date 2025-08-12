@@ -90,7 +90,6 @@ const ProductDetailsContent = ({ product }) => {
               </ul>
             </div>
           </div>
-        }
         <Tab.Container defaultActiveKey={"details"}>
           <Nav
             as="ul"
