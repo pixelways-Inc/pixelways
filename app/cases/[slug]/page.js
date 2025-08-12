@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const CaseStudySlugPage = () => {
   const caseStudy = {
-    title: "Modern E-commerce Store",
+    title: "Veela Wig Store",
     clientName: "Vivian Amaefule",
     commencementDate: "12th June 2025",
     endDate: "01 July 2025",
@@ -19,7 +19,7 @@ const CaseStudySlugPage = () => {
       "Supabase storage",
       "Stripe Integration for checkout",
     ],
-    imageUrl: "https://github.com/adejamesanye/veel/blob/main/Video%20Screen1754963815430.png?raw=true",
+    imageUrl: "https://api.a0.dev/assets/image?text=Veela+Store+E-commerce+Modern+Online+Shop&aspect=16:9&seed=123",
     objective: `To develop a modern, high-performance e-commerce platform tailored for Vivian Amaefule, focusing on a seamless user experience, robust backend infrastructure, and secure payment processing. The goal was to create a visually appealing and functional online store capable of handling various product types and customer interactions efficiently.`,
     solution: `The e-commerce store was built using Next.js 15 for a fast and scalable frontend, leveraging its server-side rendering capabilities for optimal performance and SEO. NeonDB was chosen for the primary database, providing a reliable and efficient data storage solution. Supabase storage was integrated for handling media assets, ensuring quick and secure file management. For payment processing, Stripe Integration was implemented to provide a secure and smooth checkout experience for customers.`,
     results: `The project successfully delivered a fully functional and modern e-commerce store within the stipulated timeframe. The platform offers a highly responsive and intuitive user interface, backed by a robust and scalable architecture. The integration of Stripe ensures secure and efficient transactions, enhancing customer trust and satisfaction. The client, Vivian Amaefule, now possesses a powerful online sales channel ready for market expansion.`,
