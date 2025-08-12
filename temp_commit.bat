@@ -1,1 +1,2 @@
-git commit -m "FIX: Ensure temp_commit.bat includes both commit and push"
+git commit -m "FEAT: Add 'Copyright 2025 All Rights Reserved' to footer"
+git push

@@ -1,3 +1,15 @@
+## Case Study Slug Page Creation (August 12, 2025)
+
+**Objective:** Create a dynamic case study page to display detailed information for individual cases, replicating the design of the existing `case-details` page.
+
+**Summary of Changes:**
+
+-   **`app/cases/[slug]/page.js`:**
+    -   Created a new dynamic route to handle individual case studies.
+    -   Implemented the page using the structure and styling of `app/case-details/page.js`.
+    -   Populated the page with specific details for the 'Modern E-commerce Store' case, including client information, project dates, developer details, tech stack, objective, solution, and results.
+    -   Integrated the provided screenshot URL for the case image.
+
 ## Centralized Footer Contact Information (August 11, 2025)
 
 **Objective:** Ensure all footer components display consistent contact information by centralizing contact details in a single file.

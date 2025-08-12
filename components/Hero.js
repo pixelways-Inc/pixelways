@@ -18,7 +18,7 @@ const Hero = () => {
         >
           <div className="slider-item">
             <div className="slide-content text-white">
-              <span className="sub-title">Pixelways Solution</span>
+              <span className="sub-title">Pixelways Solutions</span>
               <span className="h2">Innovating for Your Success</span>
               <h1>Leading Digital Solutions</h1>
               <Link href="about" className="theme-btn">
@@ -28,7 +28,7 @@ const Hero = () => {
           </div>
           <div className="slider-item">
             <div className="slide-content text-white">
-              <span className="sub-title">Pixelways Solution</span>
+              <span className="sub-title">Pixelways Solutions</span>
               <span className="h2">Innovating for Your Success</span>
               <h1>Leading Digital Solutions</h1>
               <Link href="about" className="theme-btn">
