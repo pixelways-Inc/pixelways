@@ -37,7 +37,7 @@ const page = () => {
                 <span className="sub-title mb-15">Future-Ready Digital Solutions</span>
                 <h1>Empowering Your Business with Innovative Digital Solutions</h1>
                 <p>
-                  Pixelways Solution is your trusted partner in navigating the complexities of the digital landscape. We deliver innovative, scalable, and secure technology solutions tailored to your unique business needs.
+                  Pixelways Solutions is your trusted partner in navigating the complexities of the digital landscape. We deliver innovative, scalable, and secure technology solutions tailored to your unique business needs.
                 </p>
                 <Link href="services" className="theme-btn mt-15">
                   Explore Our Services
@@ -78,7 +78,7 @@ const page = () => {
                 <div className="row justify-content-center">
                   <div className="col-lg-10">
                     <p>
-                      At Pixelways Solution, we integrate cutting-edge technologies with
+                      At Pixelways Solutions, we integrate cutting-edge technologies with
                       strategic planning to optimize your processes, drive innovation, and deliver
                       measurable results. Partner with our IT experts to unlock your business's full potential.
                     </p>
@@ -105,13 +105,13 @@ const page = () => {
                 data-aos-offset={50}
               >
                 <div className="section-title mb-25">
-                  <span className="sub-title mb-10">Why Pixelways Solution?</span>
+                  <span className="sub-title mb-10">Why Pixelways Solutions?</span>
                   <h2>
                     Your Partner in Digital Transformation: Solutions Beyond Technology, Success Beyond Boundaries
                   </h2>
                 </div>
                 <p>
-                  Choose Pixelways Solution as your trusted partner for digital transformation. We provide not just technology, but comprehensive support and strategic guidance to help your business thrive in the digital age.
+                  Choose Pixelways Solutions as your trusted partner for digital transformation. We provide not just technology, but comprehensive support and strategic guidance to help your business thrive in the digital age.
                 </p>
                 <Link href="about" className="theme-btn mt-20 mb-50">
                   Discover Our Story
