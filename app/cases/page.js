@@ -113,6 +113,19 @@ const page = () => {
                 </div>
               </div>
             </div>
+            <div className="col-lg-4 col-md-6 item consulting development">
+              <div className="case-item-two">
+                <div className="image">
+                  <img src="https://api.a0.dev/assets/image?text=Carpool+Connect+Ridesharing+App+Maryland&aspect=16:9&seed=1516" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/carpool-connect">Carpool Connect</Link>
+                  </h4>
+                  <span>Ridesharing, Mobile App, Transportation</span>
+                </div>
+              </div>
+            </div>
             <div className="col-lg-4 col-md-6 item consulting security">
               <div className="case-item-two">
                 <div className="image">

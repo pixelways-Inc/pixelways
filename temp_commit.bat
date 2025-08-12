@@ -1,1 +1,1 @@
-git commit -m "FEAT: Update Optima AI Inc. case study client details and mission"
+git commit -m "FEAT: Update Optima AI Inc. case study dates"

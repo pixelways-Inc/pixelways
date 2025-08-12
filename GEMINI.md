@@ -50,3 +50,8 @@ To manage changes and ensure proper version control, follow this specific Git wo
 *   For icons, ensure their color adapts to the dark theme (e.g., becoming white on a dark background).
 
 By following these guidelines, you will contribute effectively to the Pixelways Solution codebase.
+
+## Current Development Focus
+
+*   **`blueprint_lite.md`:** A new, simplified blueprint file has been introduced for streamlined documentation of minor changes or specific feature developments.
+*   **Login Feature Development:** The current primary task involves developing the login functionality for the application.
