@@ -1,3 +1,18 @@
+## Add New Case Study: TweetChat (August 12, 2025)
+
+**Objective:** Add a new case study for "TweetChat", an owned product of Pixelways Solution, highlighting its comprehensive social networking features and AI integration.
+
+**Summary of Changes:**
+
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "TweetChat" with a link to its dedicated slug page `/cases/tweetchat`.
+    -   Assigned categories "Social Media", "AI Integration", and "Monetization" to this new entry.
+    -   Integrated the image API for the thumbnail: `https://api.a0.dev/assets/image?text=TweetChat+Social+Network+AI+Monetization&aspect=16:9&seed=1011`.
+-   **`app/cases/tweetchat/page.js`:**
+    -   Created a new dynamic page for the "TweetChat" case study.
+    -   Populated the page with details including client (Pixelways Solution), live project URL, developer details, comprehensive tech stack (PHP, MySQL, Pusher, AI for content/image generation), and a detailed list of features (pages, groups, forums, funding, nearby friends, in-app money, payment top-ups, mobile responsive, audio/video call, movies, games, chat).
+    -   Integrated the image API for the main case study image: `https://api.a0.dev/assets/image?text=TweetChat+Social+Network+AI+Monetization&aspect=16:9&seed=1011`.
+
 ## Confirm Live Project URL for DOTTSA Travels Agency (August 12, 2025)
 
 **Objective:** Confirm the live project URL for DOTTSA Travels Agency and acknowledge the consistent use of the same developer across projects.
@@ -155,10 +170,9 @@
 
 ## Add Copyright 2025 All Rights Reserved to Footer (August 11, 2025)
 
-**Objective:** Insert "<p>Copyright © 2025 All Rights Reserved</p>" between the "Made with ❤️ by Hans Ade FT Pixelways Team" and the privacy links in applicable footer components.
+**Objective:** Insert "<p>Copyright © 2025 All Rights Reserved</p>" in `Footer1`, `Footer2`, and `Footer3` between the "Made with Love" text and the privacy policy links.
 
 **Summary of Changes:**
 
 -   **`layout/Footer.js`:**
-    -   Inserted "<p>Copyright © 2025 All Rights Reserved</p>" in `Footer1`, `Footer2`, and `Footer3` between the "Made with Love" text and the privacy policy links.
     -   Inserted "<p>Copyright © 2025 All Rights Reserved</p>" in `Footer4` between the "Made with Love" text and the privacy policy links.

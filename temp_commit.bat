@@ -1,1 +1,1 @@
-git commit -m "FEAT: Add new case study for DOTTSA Travels Agency"
+git commit -m "CHORE: Confirm DOTTSA Travels Agency live URL and developer consistency"
