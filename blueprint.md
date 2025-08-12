@@ -1,3 +1,14 @@
+## Update Cases Listing Page (August 12, 2025)
+
+**Objective:** Integrate the newly created dynamic case study into the main cases listing page.
+
+**Summary of Changes:**
+
+-   **`app/cases/page.js`:**
+    -   Added a new case study entry for "Modern E-commerce Store" at the beginning of the case list.
+    -   Linked the new entry to the dynamic slug page `/cases/modern-ecommerce-store`.
+    -   Assigned the category "E-commerce Development" to the new case study.
+
 ## Case Study Slug Page Creation (August 12, 2025)
 
 **Objective:** Create a dynamic case study page to display detailed information for individual cases, replicating the design of the existing `case-details` page.

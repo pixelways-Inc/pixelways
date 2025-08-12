@@ -48,6 +48,19 @@ const page = () => {
             </div>
           </div>
           <div className="row case-active">
+            <div className="col-lg-4 col-md-6 item solutions development">
+              <div className="case-item-two">
+                <div className="image">
+                  <img src="assets/images/cases/case1.jpg" alt="Case Image" />
+                </div>
+                <div className="content">
+                  <h4>
+                    <Link href="/cases/modern-ecommerce-store">Modern E-commerce Store</Link>
+                  </h4>
+                  <span>E-commerce Development</span>
+                </div>
+              </div>
+            </div>
             <div className="col-lg-4 col-md-6 item consulting security">
               <div className="case-item-two">
                 <div className="image">

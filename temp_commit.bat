@@ -1,2 +1,1 @@
-git commit -m "FEAT: Add 'Copyright 2025 All Rights Reserved' to footer"
-git push
+git commit -m "FEAT: Add dynamic case study slug page for e-commerce store"
