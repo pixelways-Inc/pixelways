@@ -51,11 +51,11 @@ const page = () => {
             <div className="col-lg-4 col-md-6 item solutions development">
               <div className="case-item-two">
                 <div className="image">
-                  <img src="assets/images/cases/case1.jpg" alt="Case Image" />
+                  <img src="https://github.com/adejamesanye/veel/blob/main/Video%20Screen1754963815430.png?raw=true" alt="Case Image" />
                 </div>
                 <div className="content">
                   <h4>
-                    <Link href="/cases/modern-ecommerce-store">Modern E-commerce Store</Link>
+                    <Link href="/cases/modern-ecommerce-store">Veela Store Wigs E-commerce Store</Link>
                   </h4>
                   <span>E-commerce Development</span>
                 </div>

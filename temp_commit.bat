@@ -1,1 +1,1 @@
-git commit -m "FEAT: Add dynamic case study slug page for e-commerce store"
+git commit -m "FEAT: Update cases listing page with new e-commerce case study"
