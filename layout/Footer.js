@@ -194,6 +194,15 @@ const Footer1 = () => {
                   Email Address: <a href="mailto:hello@pixelways.co">hello@pixelways.co</a>
                 </div>
               </div>
+              <div className="footer-info-item">
+                <div className="icon">
+                  <i className="far fa-headset" />
+                </div>
+                <div className="content">
+                  Support Tickets: <a href={`mailto:${contactInfo.supportEmail}`}>{contactInfo.supportEmail}</a>
+                </div>
+              </div>
+              
             </div>
           </div>
           <div className="col-xl-3 col-md-3 col-6">
@@ -902,6 +911,9 @@ const Footer4 = () => {
                   <i className="fal fa-envelope" /> <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
                 </li>
                 <li>
+                  <i className="fal fa-headset" /> <a href={`mailto:${contactInfo.supportEmail}`}>{contactInfo.supportEmail}</a>
+                </li>
+                <li>
                   <i className="fal fa-phone" /> <a href={`tel:${contactInfo.phone1}`}>{contactInfo.phone1}</a> / <a href={`tel:${contactInfo.phone2}`}>{contactInfo.phone2}</a>
                 </li>
               </ul>
@@ -1066,6 +1078,14 @@ const Footer5 = () => {
                 <h2>
                   <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
                 </h2>
+              </div>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="far fa-headset" />
+                </div>
+                <div className="content">
+                  Support Tickets: <a href={`mailto:${contactInfo.supportEmail}`}>{contactInfo.supportEmail}</a>
+                </div>
               </div>
               <div className="info-item">
                 <div className="icon">
@@ -1322,6 +1342,14 @@ const Footer6 = () => {
                 </div>
                 <div className="content">
                   Email Address: <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
+                </div>
+              </div>
+              <div className="info-item">
+                <div className="icon">
+                  <i className="far fa-headset" />
+                </div>
+                <div className="content">
+                  Support Tickets: <a href={`mailto:${contactInfo.supportEmail}`}>{contactInfo.supportEmail}</a>
                 </div>
               </div>
               <Link href="about" className="read-more">
