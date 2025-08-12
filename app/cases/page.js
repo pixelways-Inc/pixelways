@@ -56,10 +56,7 @@ const page = () => {
                   <h2>We've 13+ Projects Complete</h2>
                 </div>
                 <p>
-                  Specific benefits and industries, helping potential clients
-                  identify with the outcomes and successes achieved. Let me know
-                  if you need titles tailored to a particular service or
-                  industry!
+                 All clients have reported significant improvements in their operations and customer satisfaction.
                 </p>
               </div>
             </div>
