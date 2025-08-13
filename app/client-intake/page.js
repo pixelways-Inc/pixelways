@@ -51,7 +51,7 @@ const ClientIntakePage = () => {
           .upload(logoFileName, logoFile, { cacheControl: '3600', upsert: false });
 
         if (uploadError) throw uploadError;
-        logo_url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/quotes/${logoFileName}`;
+        logo_url = `https://dlunpilhklsgvkegnnlp.supabase.co/storage/v1/object/public/quotes/${logoFileName}`;
       }
 
       const uploadedFileUrls = [];
@@ -62,7 +62,7 @@ const ClientIntakePage = () => {
           .upload(otherFileName, file, { cacheControl: '3600', upsert: false });
 
         if (uploadError) throw uploadError;
-        uploadedFileUrls.push(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/quotes/${otherFileName}`);
+        uploadedFileUrls.push(`https://dlunpilhklsgvkegnnlp.supabase.co/storage/v1/object/public/quotes/${otherFileName}`);
       }
 
       const { data, error: insertError } = await supabase

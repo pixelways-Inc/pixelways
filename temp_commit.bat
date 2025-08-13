@@ -1,1 +1,1 @@
-git commit -m "FIX: Add 'use client' directive to client intake page"
+git commit -m "FEAT: Add new-badge class to client intake link in footers"

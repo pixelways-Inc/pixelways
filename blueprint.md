@@ -1,7 +1,11 @@
-## Add 'new-badge' Class to Client Intake Link in Footers (August 13, 2025)
 
-**Objective:** Apply a specific CSS class to the 'Client Intake' link in all footer components for styling purposes.
+## Replace Environment Variables with Hardcoded Supabase Keys (August 13, 2025)
+
+**Objective:** Replace environment variables for Supabase URL and anonymous key with hardcoded values as specified in `supabase.html`.
 
 **Summary of Changes:**
 
--   **`layout/Footer.js`:** Added `className="new-badge"` to the `<li>` element wrapping the 'Client Intake' link in all `Footer` components (Footer1, Footer3, Footer4, and Footer6) to ensure consistent styling as requested.
+-   **`utility/supabaseClient.js`:** Replaced `process.env.NEXT_PUBLIC_SUPABASE_URL` and `process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY` with the hardcoded Supabase URL and anonymous key from `supabase.html`.
+-   **`app/client-intake/page.js`:** Replaced `process.env.NEXT_PUBLIC_SUPABASE_URL` with the hardcoded Supabase URL for constructing public file URLs.
+
+**Note:** This change hardcodes sensitive API keys directly into the codebase, which is generally not a recommended security practice for production environments. Environment variables are typically preferred for managing such credentials.
