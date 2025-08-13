@@ -118,7 +118,7 @@ const PixelwaysAdModal = ({
             <div className="pixelways-ad-actions">
               <Link 
                 href={currentAd.ctaLink}
-                className="pixelways-ad-dismiss"
+                className="pixelways-ad-cta"
                 onClick={handleCtaClick}
               >
                 {currentAd.ctaText}
@@ -310,22 +310,25 @@ const PixelwaysAdModal = ({
         }
 
         .pixelways-ad-dismiss {
-          background: rgba(255, 255, 255, 0.1);
+          background: transparent;
           color: #666;
-          border: 2px solid #e1e5e9;
-          padding: 12px 20px;
+          border: 2px solid rgba(102, 102, 102, 0.3);
+          padding: 14px 20px;
           font-size: 14px;
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: all 0.3s ease;
           border-radius: 8px;
-          font-weight: 500;
-          min-width: 100px;
+          font-weight: 600;
+          min-width: 120px;
+          text-decoration: none;
         }
 
         .pixelways-ad-dismiss:hover {
           color: #333;
-          background: rgba(255, 255, 255, 0.2);
-          border-color: #ccc;
+          background: rgba(102, 102, 102, 0.1);
+          border-color: #666;
+          transform: translateY(-2px);
+          text-decoration: none;
         }
 
         .ml-2 {

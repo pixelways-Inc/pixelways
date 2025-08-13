@@ -5,13 +5,16 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const HostingPage = () => {
-    const [countdown, setCountdown] = useState(30);
+    const [countdown, setCountdown] = useState(60);
     const [isRedirecting, setIsRedirecting] = useState(false);
+    const [isCancelled, setIsCancelled] = useState(false);
 
     useEffect(() => {
+        if (isCancelled) return;
+        
         const timer = setInterval(() => {
             setCountdown((prev) => {
-                if (prev <= 1) {
+                if (prev <= 1 && !isCancelled) {
                     setIsRedirecting(true);
                     setTimeout(() => {
                         window.location.href = "https://pixelways.duoservers.com/";
@@ -23,13 +26,22 @@ const HostingPage = () => {
         }, 1000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [isCancelled]);
 
     const handleImmediateRedirect = () => {
         setIsRedirecting(true);
         setTimeout(() => {
             window.location.href = "https://pixelways.duoservers.com/";
         }, 500);
+    };
+
+    const handleCancelRedirect = () => {
+        setIsCancelled(true);
+        setCountdown(0);
+    };
+
+    const handleDemoLink = () => {
+        window.open("https://demo.hepsia.com/domains/hosted/", "_blank");
     };
 
     return (
@@ -80,7 +92,7 @@ const HostingPage = () => {
                                     </p>
 
                                     {/* Countdown Timer */}
-                                    {!isRedirecting ? (
+                                    {!isRedirecting && !isCancelled ? (
                                         <div className="countdown-container mb-30">
                                             <div className="countdown-circle">
                                                 <span className="countdown-number">{countdown}</span>
@@ -88,6 +100,20 @@ const HostingPage = () => {
                                             <p className="countdown-text">
                                                 Redirecting in <strong>{countdown}</strong> seconds...
                                             </p>
+                                            <button
+                                                onClick={handleCancelRedirect}
+                                                className="btn-cancel-redirect mt-15"
+                                            >
+                                                <i className="fas fa-times"></i> Cancel Redirect
+                                            </button>
+                                        </div>
+                                    ) : isCancelled ? (
+                                        <div className="cancelled-container mb-30">
+                                            <div className="cancelled-icon mb-20">
+                                                <i className="fas fa-check-circle"></i>
+                                            </div>
+                                            <h4 className="mb-15">Redirect Cancelled</h4>
+                                            <p className="mb-20">You can now explore our hosting options at your own pace.</p>
                                         </div>
                                     ) : (
                                         <div className="redirecting-animation mb-30">
@@ -100,15 +126,22 @@ const HostingPage = () => {
                                     <div className="redirect-buttons">
                                         <button
                                             onClick={handleImmediateRedirect}
-                                            className="theme-btn color-white hover-secondary mr-15"
+                                            className="theme-btn color-white hover-secondary mr-15 mb-15"
                                             disabled={isRedirecting}
                                         >
-                                            <span>Go Now</span>
+                                            <span>Go to Hosting Portal</span>
                                             <i className="fas fa-arrow-right ml-10"></i>
+                                        </button>
+                                        <button
+                                            onClick={handleDemoLink}
+                                            className="theme-btn style-two mr-15 mb-15"
+                                        >
+                                            <i className="fas fa-play mr-10"></i>
+                                            <span>Try Demo</span>
                                         </button>
                                         <Link
                                             href="/"
-                                            className="theme-btn btn-outline-white"
+                                            className="theme-btn btn-outline-white mb-15"
                                         >
                                             <span>Back to Home</span>
                                         </Link>
@@ -332,6 +365,48 @@ const HostingPage = () => {
                 @keyframes spin {
                     0% { transform: rotate(0deg); }
                     100% { transform: rotate(360deg); }
+                }
+
+                .btn-cancel-redirect {
+                    background: transparent;
+                    border: 2px solid rgba(255, 255, 255, 0.3);
+                    color: rgba(255, 255, 255, 0.8);
+                    padding: 8px 20px;
+                    border-radius: 25px;
+                    font-size: 14px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                .btn-cancel-redirect:hover {
+                    background: rgba(255, 255, 255, 0.1);
+                    border-color: rgba(255, 255, 255, 0.5);
+                    color: white;
+                    transform: translateY(-2px);
+                }
+
+                .cancelled-container {
+                    text-align: center;
+                }
+
+                .cancelled-icon {
+                    font-size: 48px;
+                    color: #28a745;
+                    animation: pop-in 0.5s ease-out;
+                }
+
+                @keyframes pop-in {
+                    0% {
+                        transform: scale(0);
+                        opacity: 0;
+                    }
+                    50% {
+                        transform: scale(1.2);
+                    }
+                    100% {
+                        transform: scale(1);
+                        opacity: 1;
+                    }
                 }
 
                 .bg-animation {

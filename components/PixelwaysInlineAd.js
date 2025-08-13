@@ -56,7 +56,7 @@ const PixelwaysInlineAd = ({
             <p>{currentAd.description}</p>
             <Link 
               href={currentAd.ctaLink} 
-              className="ad-badge"
+              className="ad-cta-btn"
               onClick={handleClick}
             >
               {currentAd.ctaText}
@@ -144,8 +144,8 @@ const PixelwaysInlineAd = ({
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: all 0.2s ease;
-            box-shadow: 0 3px 10px rgba(252, 85, 70, 0.3);
+             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(252, 85, 70, 0.4);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             min-width: 120px;
