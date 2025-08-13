@@ -44,32 +44,37 @@ const ClientIntakePage = () => {
 
     try {
       let logo_url = null;
+      // Logo upload (optional)
       if (logoFile) {
         const logoFileName = `${formData.business_name}/logo/${logoFile.name}`;
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from('quotes')
           .upload(logoFileName, logoFile, { cacheControl: '3600', upsert: false });
-
         if (uploadError) throw uploadError;
         logo_url = `https://dlunpilhklsgvkegnnlp.supabase.co/storage/v1/object/public/quotes/${logoFileName}`;
       }
 
+      // Restrict to max 3 files (optional)
       const uploadedFileUrls = [];
-      for (const file of otherFiles) {
+      const filesToUpload = otherFiles.slice(0, 3);
+      for (const file of filesToUpload) {
         const otherFileName = `${formData.business_name}/other_files/${file.name}`;
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from('quotes')
           .upload(otherFileName, file, { cacheControl: '3600', upsert: false });
-
         if (uploadError) throw uploadError;
         uploadedFileUrls.push(`https://dlunpilhklsgvkegnnlp.supabase.co/storage/v1/object/public/quotes/${otherFileName}`);
       }
 
+      // Generate client_id (simple UUID)
+      const client_id = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 18);
+
       const { data, error: insertError } = await supabase
         .from('client_intake')
         .insert({
+          client_id,
           ...formData,
-          logo_url: logo_url,
+          logo_url: logo_url || null,
           uploaded_files: uploadedFileUrls.length > 0 ? uploadedFileUrls : null,
         });
 
