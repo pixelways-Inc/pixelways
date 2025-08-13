@@ -120,9 +120,10 @@ const PixelwaysAdModal = ({
                 href={currentAd.ctaLink}
                 className="pixelways-ad-badge"
                 onClick={handleCtaClick}
-              >
+              > <button 
+                className="pixelways-ad-dismiss">
                 {currentAd.ctaText}
-                <i className="far fa-arrow-right ml-2"></i>
+                <i className="far fa-arrow-right ml-2"></i></button>
               </Link>
               <button 
                 className="pixelways-ad-dismiss"
