@@ -240,8 +240,10 @@ const Footer1 = () => {
                     <i className="far fa-angle-right" /> Contact Us
                   </Link>
                 </li>
-                 <li className="new-badge">
-                      <Link href="/client-intake">Client Intake</Link>
+                 <li>
+                  <Link href="/client-intake">
+                    <i className="far fa-angle-right" /> Client Intake
+                      </Link>
                     </li>
               </ul>
             </div>
@@ -519,8 +521,10 @@ const Footer2 = () => {
                     <i className="far fa-angle-right" /> Contact Us
                   </Link>
                 </li>
-                 <li className="new-badge">
-                      <Link href="/client-intake">Client Intake</Link>
+                                 <li>
+                  <Link href="/client-intake">
+                    <i className="far fa-angle-right" /> Client Intake
+                      </Link>
                     </li>
               </ul>
             </div>
@@ -758,8 +762,10 @@ const Footer3 = () => {
                     <i className="far fa-angle-right" /> Contact Us
                   </Link>
                 </li>
-                 <li className="new-badge">
-                      <Link href="/client-intake">Client Intake</Link>
+                                  <li>
+                  <Link href="/client-intake">
+                    <i className="far fa-angle-right" /> Client Intake
+                      </Link>
                     </li>
               </ul>
             </div>
@@ -1428,8 +1434,10 @@ const Footer6 = () => {
                     <li>
                       <Link href="contact">Contact us</Link>
                     </li>
-                     <li className="new-badge">
-                      <Link href="/client-intake">Client Intake</Link>
+                                      <li>
+                  <Link href="/client-intake">
+                    <i className="far fa-angle-right" /> Client Intake
+                      </Link>
                     </li>
                   </ul>
                 </div>

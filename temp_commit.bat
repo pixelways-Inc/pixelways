@@ -1,1 +1,1 @@
-git commit -m "FEAT: Add new-badge class to client intake link in footers"
+git commit -m "FEAT: Re-add client intake link with new-badge class to footers"
