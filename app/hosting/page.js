@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const HostingPage = () => {
-    const [countdown, setCountdown] = useState(10);
+    const [countdown, setCountdown] = useState(30);
     const [isRedirecting, setIsRedirecting] = useState(false);
 
     useEffect(() => {
@@ -426,6 +426,30 @@ const HostingPage = () => {
                 .btn-outline-white:hover {
                     background: rgba(255, 255, 255, 0.1);
                     border-color: rgba(255, 255, 255, 0.5);
+                }
+
+                .subtitle-container {
+                    margin-bottom: 40px;
+                }
+
+                .subtitle-one {
+                    display: inline-block;
+                    background: rgba(252, 85, 70, 0.1);
+                    color: #FFFFFF;
+                    font-size: 18px;
+                    font-weight: 600;
+                    padding: 12px 25px;
+                    border-radius: 50px;
+                    border: 2px solid rgba(252, 85, 70, 0.3);
+                    backdrop-filter: blur(10px);
+                    box-shadow: 0 4px 15px rgba(252, 85, 70, 0.2);
+                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                }
+
+                .subtitle-one i {
+                    color: #FC5546;
+                    margin-right: 8px;
+                    font-size: 16px;
                 }
 
                 @media (max-width: 768px) {
