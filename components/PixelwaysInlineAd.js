@@ -54,14 +54,15 @@ const PixelwaysInlineAd = ({
             <div className="ad-badge">Sponsored by Pixelways</div>
             <h4>{currentAd.title}</h4>
             <p>{currentAd.description}</p>
+             <div className="ad-badge">
             <Link 
               href={currentAd.ctaLink} 
-              className="ad-badge"
+              className="ad-cta-btn"
               onClick={handleClick}
             >
               {currentAd.ctaText}
               <i className="far fa-arrow-right"></i>
-            </Link>
+            </Link> </div>
           </div>
         </div>
 
