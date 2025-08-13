@@ -1,1 +1,1 @@
-git commit -m "FEAT: Add new-badge class to client intake link in footers"
+git commit -m "CHORE: Replace Supabase environment variables with hardcoded values"
