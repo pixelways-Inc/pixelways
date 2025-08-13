@@ -4,6 +4,7 @@ import Services from "@/components/services";
 import Counter from "@/components/Counter";
 import Team from "@/components/Team";
 import Testimonials from "@/components/testimonials/Testimonials1";
+import PixelwaysAdModal from "@/components/PixelwaysAdModal";
 
 import { WorkingProcess2 } from "@/components/WorkingProcess";
 import TekprofLayout from "@/layout/TekprofLayout";
@@ -648,6 +649,40 @@ const page = () => {
       {/* Testimonials Area start */}
       <Testimonials />
       {/* Testimonials Area end */}
+      {/* Call to Action Area start */}
+      <section className="cta-area bgc-primary py-80 rel z-1">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-8">
+              <div
+                className="cta-content text-white"
+                data-aos="fade-right"
+                data-aos-duration={1500}
+                data-aos-offset={50}
+              >
+                <h2>Ready to Transform Your Business with Digital Solutions?</h2>
+                <p>Join hundreds of businesses that trust Pixelways Solutions for their digital transformation journey. Get started today!</p>
+              </div>
+            </div>
+            <div className="col-lg-4 text-lg-end">
+              <div
+                className="cta-buttons"
+                data-aos="fade-left"
+                data-aos-duration={1500}
+                data-aos-offset={50}
+              >
+                <Link href="/client-intake" className="theme-btn style-two mb-15">
+                  Start Your Project
+                </Link>
+                <Link href="/hosting" className="theme-btn style-three">
+                  View Hosting Plans
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Call to Action Area end */}
       {/* Client Logo Area start */}
       <ClientLogo />
       {/* Client Logo Area end */}
@@ -784,6 +819,14 @@ const page = () => {
         </div>
       </section>
       {/* Blog Area end */}
+      
+      {/* Pixelways Ad Modal */}
+      <PixelwaysAdModal 
+        currentPage="home" 
+        showOnMount={true} 
+        delay={15000}
+        frequency={300000}
+      />
     </TekprofLayout>
   );
 };

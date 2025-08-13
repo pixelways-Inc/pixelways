@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState, useEffect  } from "react";
 import { Accordion } from "react-bootstrap";
+import PixelwaysInlineAd from "./PixelwaysInlineAd";
 
 import allServices from '../data/services.json'
 import { color } from "framer-motion";
@@ -526,6 +527,20 @@ const Service = ({ style }) => {
               </div> */}
             </Accordion>
             
+            {/* Inline Hosting and Development Ads */}
+            <div className="mt-60">
+              <PixelwaysInlineAd 
+                category="hosting" 
+                priority="medium" 
+                style="card"
+                className="mb-30"
+              />
+              <PixelwaysInlineAd 
+                category="development" 
+                priority="high" 
+                style="banner"
+              />
+            </div>
 
 
              <style>{`

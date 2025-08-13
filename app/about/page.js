@@ -4,6 +4,7 @@ import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 import Team from "@/components/Team";
 import { Testimonials2 } from "@/components/testimonials/Testimonials2";
+import PixelwaysAdModal from "@/components/PixelwaysAdModal";
 import TekprofLayout from "@/layout/TekprofLayout";
 const page = () => {
   return (
@@ -51,6 +52,14 @@ const page = () => {
                     <p>
                       Our comprehensive services span custom software development, cloud solutions, cybersecurity, data analytics, and more. We empower organizations to streamline operations, enhance efficiency, and achieve their strategic goals in an ever-evolving digital landscape.
                     </p>
+                    <div className="about-actions mt-35">
+                      <Link href="/services" className="theme-btn">
+                        View Our Services
+                      </Link>
+                      <Link href="/client-intake" className="theme-btn style-two ml-15">
+                        Start Your Project
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -390,6 +399,14 @@ const page = () => {
       {/* Testimonial Area end */}
       {/* Client Logo Area start */}
       <ClientLogo containerClass="client-logo-area style-two for-border-top" />
+      
+      {/* Pixelways Ad Modal */}
+      <PixelwaysAdModal 
+        currentPage="about" 
+        showOnMount={true} 
+        delay={18000}
+        frequency={360000}
+      />
     </TekprofLayout>
   );
 };

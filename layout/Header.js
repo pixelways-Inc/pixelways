@@ -970,6 +970,9 @@ const Menu = ({ logo = "/logo.png", singleMenu }) => {
     <Link href="/services">Services</Link>
   </li>
   <li>
+    <Link href="/hosting">Hosting</Link>
+  </li>
+  <li>
     <Link href="/cases">Cases</Link>
   </li>
   <li>

@@ -1,5 +1,6 @@
 "use client";
 import PageBanner from "@/components/PageBanner";
+import PixelwaysAdModal from "@/components/PixelwaysAdModal";
 import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -293,8 +294,35 @@ const page = () => {
            
             
           </div>
+          <div className="row justify-content-center mt-50">
+            <div className="col-lg-8 text-center">
+              <div
+                className="case-actions"
+                data-aos="fade-up"
+                data-aos-duration={1500}
+                data-aos-offset={50}
+              >
+                <h4 className="mb-25">Ready to Start Your Project?</h4>
+                <p className="mb-30">Join our satisfied clients and transform your business with our innovative solutions.</p>
+                <Link href="/client-intake" className="theme-btn me-15 mb-15">
+                  Start Your Project
+                </Link>
+                <Link href="/services" className="theme-btn style-two mb-15">
+                  View All Services
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
+      
+      {/* Pixelways Ad Modal */}
+      <PixelwaysAdModal 
+        currentPage="cases" 
+        showOnMount={true} 
+        delay={22000}
+        frequency={300000}
+      />
     </TekprofLayout>
   );
 };

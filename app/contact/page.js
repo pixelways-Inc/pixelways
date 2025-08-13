@@ -1,4 +1,5 @@
 import PageBanner from "@/components/PageBanner";
+import PixelwaysInlineAd from "@/components/PixelwaysInlineAd";
 import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
 const page = () => {
@@ -173,6 +174,35 @@ const page = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
+          </div>
+          
+          {/* Contact Related Inline Ads */}
+          <div className="mt-80">
+            <div className="row">
+              <div className="col-lg-12">
+                <PixelwaysInlineAd 
+                  category="consultancy" 
+                  priority="high" 
+                  style="banner"
+                />
+              </div>
+            </div>
+            <div className="row mt-40">
+              <div className="col-lg-6">
+                <PixelwaysInlineAd 
+                  category="hosting" 
+                  priority="medium" 
+                  style="card"
+                />
+              </div>
+              <div className="col-lg-6">
+                <PixelwaysInlineAd 
+                  category="development" 
+                  priority="medium" 
+                  style="card"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>

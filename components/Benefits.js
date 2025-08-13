@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
 import { Accordion } from "react-bootstrap";
+import Link from "next/link";
 import { ProgressBar2 } from "./ProgressBar";
+import PixelwaysInlineAd from "./PixelwaysInlineAd";
 
 const Benefits = () => {
   const [toggle, setToggle] = useState(1);
@@ -176,6 +178,23 @@ const Benefits = () => {
                   </Accordion.Collapse>
                 </div>
               </Accordion>
+              <div className="benefits-actions mt-35">
+                <Link href="/services" className="theme-btn style-two">
+                  Explore Security Services
+                </Link>
+                <Link href="/hosting" className="theme-btn style-three ml-15">
+                  View Hosting Solutions
+                </Link>
+              </div>
+              
+              {/* Inline Hosting Ad */}
+              <div className="mt-40">
+                <PixelwaysInlineAd 
+                  category="hosting" 
+                  priority="high" 
+                  style="banner"
+                />
+              </div>
             </div>
           </div>
         </div>

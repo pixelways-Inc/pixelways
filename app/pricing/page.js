@@ -1,6 +1,8 @@
 import { FAQs2 } from "@/components/FAQs";
 import PageBanner from "@/components/PageBanner";
 import Pricing from "@/components/Pricing";
+import PixelwaysAdModal from "@/components/PixelwaysAdModal";
+import PixelwaysInlineAd from "@/components/PixelwaysInlineAd";
 import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
 import WebsiteCostCalculator from "@/components/WebsiteCostCalculator";
@@ -24,6 +26,18 @@ const page = () => {
           </div>
         </div>
       </div>
+      
+      {/* Strategic Hosting Ad Between Cost Calculators and Pricing */}
+      <section className="py-60 bg-light">
+        <div className="container">
+          <PixelwaysInlineAd 
+            category="hosting" 
+            priority="high" 
+            style="banner"
+          />
+        </div>
+      </section>
+      
       <Pricing
         containerClass="pricing-area pt-130 rpt-100 pb-100 rpb-70 rel z-1"
         pricingClass=""
@@ -67,6 +81,14 @@ const page = () => {
           </div>
         </div>
       </section>
+      
+      {/* Pixelways Ad Modal */}
+      <PixelwaysAdModal 
+        currentPage="pricing" 
+        showOnMount={true} 
+        delay={12000}
+        frequency={240000}
+      />
     </TekprofLayout>
   );
 };

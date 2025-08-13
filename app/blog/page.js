@@ -1,5 +1,6 @@
 "use client"
 import PageBanner from "@/components/PageBanner";
+import PixelwaysAdModal from "@/components/PixelwaysAdModal";
 import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
 const page = () => {
@@ -378,6 +379,14 @@ const page = () => {
           </div>
         </div>
       </section>
+      
+      {/* Pixelways Ad Modal */}
+      <PixelwaysAdModal 
+        currentPage="blog" 
+        showOnMount={true} 
+        delay={25000}
+        frequency={180000}
+      />
     </TekprofLayout>
   );
 };

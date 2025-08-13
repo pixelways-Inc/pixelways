@@ -226,6 +226,11 @@ const Footer1 = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/hosting">
+                    <i className="far fa-angle-right" /> Hosting
+                  </Link>
+                </li>
+                <li>
                   <Link href="services">
                     <i className="far fa-angle-right" /> Why Choose Us
                   </Link>
@@ -507,6 +512,11 @@ const Footer2 = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/hosting">
+                    <i className="far fa-angle-right" /> Hosting
+                  </Link>
+                </li>
+                <li>
                   <Link href="services">
                     <i className="far fa-angle-right" /> Why Choose Us
                   </Link>
@@ -748,6 +758,11 @@ const Footer3 = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/hosting">
+                    <i className="far fa-angle-right" /> Hosting
+                  </Link>
+                </li>
+                <li>
                   <Link href="services">
                     <i className="far fa-angle-right" /> Why Choose Us
                   </Link>
@@ -973,6 +988,9 @@ const Footer4 = () => {
                   <ul>
                     <li>
                       <Link href="services">Features</Link>
+                    </li>
+                    <li>
+                      <Link href="/hosting">Hosting</Link>
                     </li>
                     <li>
                       <Link href="pricing">Pricing Plan</Link>
@@ -1421,6 +1439,9 @@ const Footer6 = () => {
                     </li>
                     <li>
                       <Link href="services">Latest Services</Link>
+                    </li>
+                    <li>
+                      <Link href="/hosting">Hosting</Link>
                     </li>
                     <li>
                       <Link href="project-grid">Popular Works</Link>

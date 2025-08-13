@@ -2,6 +2,8 @@ import ClientLogo from "@/components/ClientLogo";
 import PageBanner from "@/components/PageBanner";
 import Service from "@/components/Service";
 import { Testimonials2 } from "@/components/testimonials/Testimonials2";
+import PixelwaysAdModal from "@/components/PixelwaysAdModal";
+import PixelwaysInlineAd from "@/components/PixelwaysInlineAd";
 import TekprofLayout from "@/layout/TekprofLayout";
 import Link from "next/link";
 const page = () => {
@@ -122,8 +124,39 @@ const page = () => {
       <div id="agile-services">
         <Service style="style-two" />
       </div>
+      
+      {/* Strategic Inline Ads */}
+      <section className="py-60">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6">
+              <PixelwaysInlineAd 
+                category="hosting" 
+                priority="high" 
+                style="card"
+              />
+            </div>
+            <div className="col-lg-6">
+              <PixelwaysInlineAd 
+                category="development" 
+                priority="medium" 
+                style="card"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      
       <Testimonials2 bgClass="none" />
       <ClientLogo containerClass="client-logo-area style-two for-border-top" />
+      
+      {/* Pixelways Ad Modal */}
+      <PixelwaysAdModal 
+        currentPage="services" 
+        showOnMount={true} 
+        delay={20000}
+        frequency={240000}
+      />
     </TekprofLayout>
   );
 };
