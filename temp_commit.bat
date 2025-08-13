@@ -1,1 +1,1 @@
-git commit -m "FIX: Pixelways Solution to Pixelways Solutions across codebase"
+git commit -m "FEAT: Add client intake page"
