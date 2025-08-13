@@ -134,24 +134,40 @@ const PixelwaysInlineAd = ({
           }
 
           .ad-cta-btn {
-            background: #FC5546;
-            color: white;
-            text-decoration: none;
-            padding: 10px 16px;
+            background: linear-gradient(135deg, #FC5546 0%, #ff6b5b 100%);
+            color: white !important;
+            text-decoration: none !important;
+            padding: 12px 18px;
             border-radius: 6px;
-            font-weight: 600;
-            font-size: 13px;
+            font-weight: 700;
+            font-size: 14px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             transition: all 0.2s ease;
+            box-shadow: 0 3px 10px rgba(252, 85, 70, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-width: 120px;
+            justify-content: center;
           }
 
           .ad-cta-btn:hover {
-            background: #e94435;
-            color: white;
-            text-decoration: none;
-            transform: translateY(-1px);
+            background: linear-gradient(135deg, #e94435 0%, #FC5546 100%);
+            color: white !important;
+            text-decoration: none !important;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(252, 85, 70, 0.4);
+          }
+
+          .ad-cta-btn:focus {
+            outline: none;
+            box-shadow: 0 3px 10px rgba(252, 85, 70, 0.3), 0 0 0 3px rgba(252, 85, 70, 0.2);
+            color: white !important;
+          }
+
+          .ad-cta-btn:visited {
+            color: white !important;
           }
 
           @media (max-width: 768px) {
@@ -252,24 +268,38 @@ const PixelwaysInlineAd = ({
           }
 
           .ad-cta-btn {
-            background: #FC5546;
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
+            background: linear-gradient(135deg, #FC5546 0%, #ff6b5b 100%);
+            color: white !important;
+            text-decoration: none !important;
+            padding: 10px 18px;
             border-radius: 6px;
-            font-weight: 600;
-            font-size: 12px;
+            font-weight: 700;
+            font-size: 13px;
             display: inline-block;
             transition: all 0.2s ease;
             text-align: center;
             width: 100%;
+            box-shadow: 0 3px 10px rgba(252, 85, 70, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
           }
 
           .ad-cta-btn:hover {
-            background: #e94435;
-            color: white;
-            text-decoration: none;
-            transform: translateY(-1px);
+            background: linear-gradient(135deg, #e94435 0%, #FC5546 100%);
+            color: white !important;
+            text-decoration: none !important;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(252, 85, 70, 0.4);
+          }
+
+          .ad-cta-btn:focus {
+            outline: none;
+            box-shadow: 0 3px 10px rgba(252, 85, 70, 0.3), 0 0 0 3px rgba(252, 85, 70, 0.2);
+            color: white !important;
+          }
+
+          .ad-cta-btn:visited {
+            color: white !important;
           }
         `}</style>
       </div>
@@ -327,21 +357,36 @@ const PixelwaysInlineAd = ({
         }
 
         .ad-minimal-btn {
-          background: #FC5546;
-          color: white;
-          text-decoration: none;
-          padding: 8px 16px;
+          background: linear-gradient(135deg, #FC5546 0%, #ff6b5b 100%);
+          color: white !important;
+          text-decoration: none !important;
+          padding: 10px 18px;
           border-radius: 5px;
-          font-weight: 600;
-          font-size: 12px;
+          font-weight: 700;
+          font-size: 13px;
           white-space: nowrap;
           transition: all 0.2s ease;
+          box-shadow: 0 3px 10px rgba(252, 85, 70, 0.3);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
 
         .ad-minimal-btn:hover {
-          background: #e94435;
-          color: white;
-          text-decoration: none;
+          background: linear-gradient(135deg, #e94435 0%, #FC5546 100%);
+          color: white !important;
+          text-decoration: none !important;
+          transform: translateY(-1px);
+          box-shadow: 0 5px 15px rgba(252, 85, 70, 0.4);
+        }
+
+        .ad-minimal-btn:focus {
+          outline: none;
+          box-shadow: 0 3px 10px rgba(252, 85, 70, 0.3), 0 0 0 3px rgba(252, 85, 70, 0.2);
+          color: white !important;
+        }
+
+        .ad-minimal-btn:visited {
+          color: white !important;
         }
 
         @media (max-width: 768px) {

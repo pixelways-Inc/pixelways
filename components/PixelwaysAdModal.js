@@ -274,37 +274,58 @@ const PixelwaysAdModal = ({
 
         .pixelways-ad-cta {
           background: linear-gradient(135deg, #FC5546 0%, #ff6b5b 100%);
-          color: white;
-          text-decoration: none;
-          padding: 12px 20px;
+          color: white !important;
+          text-decoration: none !important;
+          padding: 14px 24px;
           border-radius: 8px;
-          font-weight: 600;
-          font-size: 14px;
+          font-weight: 700;
+          font-size: 15px;
           transition: all 0.2s ease;
           display: inline-flex;
           align-items: center;
-          box-shadow: 0 4px 12px rgba(252, 85, 70, 0.3);
+          box-shadow: 0 4px 15px rgba(252, 85, 70, 0.4);
+          border: 2px solid transparent;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          min-width: 140px;
+          justify-content: center;
         }
 
         .pixelways-ad-cta:hover {
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(252, 85, 70, 0.4);
-          color: white;
-          text-decoration: none;
+          box-shadow: 0 8px 25px rgba(252, 85, 70, 0.5);
+          color: white !important;
+          text-decoration: none !important;
+          background: linear-gradient(135deg, #ff6b5b 0%, #FC5546 100%);
+        }
+
+        .pixelways-ad-cta:focus {
+          outline: none;
+          box-shadow: 0 4px 15px rgba(252, 85, 70, 0.4), 0 0 0 3px rgba(252, 85, 70, 0.2);
+          color: white !important;
+        }
+
+        .pixelways-ad-cta:visited {
+          color: white !important;
         }
 
         .pixelways-ad-dismiss {
-          background: transparent;
+          background: rgba(255, 255, 255, 0.1);
           color: #666;
-          border: none;
-          padding: 12px 16px;
+          border: 2px solid #e1e5e9;
+          padding: 12px 20px;
           font-size: 14px;
           cursor: pointer;
-          transition: color 0.2s ease;
+          transition: all 0.2s ease;
+          border-radius: 8px;
+          font-weight: 500;
+          min-width: 100px;
         }
 
         .pixelways-ad-dismiss:hover {
           color: #333;
+          background: rgba(255, 255, 255, 0.2);
+          border-color: #ccc;
         }
 
         .ml-2 {
