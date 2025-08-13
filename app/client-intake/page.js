@@ -80,7 +80,7 @@ const ClientIntakePage = () => {
 
       if (insertError) throw insertError;
 
-      setMessage('Client intake form submitted successfully!');
+  setMessage('🎉 Congratulations! Your service request has been received and our team will contact you soon.\nIf you need immediate assistance, feel free to reach out to us at hello@pixelways.co. 🚀');
       setFormData({
         business_name: '',
         business_email: '',
