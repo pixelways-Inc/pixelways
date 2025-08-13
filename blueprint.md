@@ -17,3 +17,4 @@
     -   Added conditional input fields for 'Other' options, allowing users to manually specify types or colors not listed in the dropdowns.
     -   Integrated the `react-phone-number-input` library for the 'Phone Number' field, providing country code selection and auto-detection capabilities.
     -   Updated state management (`useState`) and form handling logic (`handleChange`, `handleSubmit`) to accommodate the new input types and their associated data.
+    -   Modified data submission to map 'Business Type' to the 'industry' column in the database for schema compatibility.
