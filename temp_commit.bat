@@ -1,1 +1,1 @@
-git commit -m "FEAT: Apply contact page design to client intake page"
+git commit -m "FEAT: Implement CTAs and links for client intake page"
