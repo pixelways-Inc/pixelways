@@ -240,280 +240,9 @@ const Footer1 = () => {
                     <i className="far fa-angle-right" /> Contact Us
                   </Link>
                 </li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-xl-3 col-md-3 col-6">
-            <div
-              className="footer-widget footer-links ps-xl-5"
-              data-aos="fade-up"
-              data-aos-delay={100}
-              data-aos-duration={1500}
-              data-aos-offset={50}
-            >
-              <h5 className="footer-title">Services</h5>
-              <ul>
-                {servicesData.map((service) => (
-                  <li key={service.id}>
-                    <Link href={`/services?service=${service.id}`} scroll={false}>
-                      <i className="far fa-angle-right" /> {service.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="col-xl-3 col-sm-6">
-            <div
-              className="footer-widget newsletter-widget"
-              data-aos="fade-up"
-              data-aos-delay={150}
-              data-aos-duration={1500}
-              data-aos-offset={50}
-            >
-              <h5 className="footer-title">Newsletter</h5>
-              <p>
-                We deliver fresh content straight to your inbox join our
-                community.
-              </p>
-              <form className="newsletter-form mt-30" action="#">
-                <input type="email" placeholder="Email here" required />
-                <button type="submit">
-                  <i className="far fa-paper-plane" />
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="container">
-        <div className="footer-bottom pt-30 pb-15">
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="copyright-text">
-                <p>
-                  Made with ❤️ by Hans Ade FT Pixelways Team
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-6 text-lg-end">
-              <p>Copyright © 2025 All Rights Reserved</p>
-              <ul className="footer-bottom-nav">
                 <li>
-                  <Link href="/privacy-policy">Privacy Policy</Link>
-                </li>
-                <li>
-                  <Link href="/terms-and-conditions">Terms and Conditions</Link>
-                </li>
-                <li>
-                  <Link href="/support">Support</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          {/* Scroll Top Button */}
-          <button className="scroll-top scroll-to-target" data-target="html">
-            <i className="far fa-arrow-up" />
-          </button>
-        </div>
-      </div>
-    </footer>
-  );
-};
-const Footer2 = () => {
-  return (
-    <footer className="main-footer bgc-blue rel z-1">
-      <div className="container">
-        <div className="support-join-area mb-80">
-          <div className="row">
-            <div
-              className="col-lg-6"
-              data-aos="fade-left"
-              data-aos-duration={1500}
-              data-aos-offset={50}
-            >
-              <div className="footer-top-item">
-                <div className="content text-white">
-                  <h3>Need Any Support ?</h3>
-                  <p>
-                    We're here to help! Whether you have questions about our
-                    services, need assistance?
-                  </p>
-                </div>
-                <Link href="contact" className="icon">
-                  <i className="far fa-arrow-right" />
-                </Link>
-              </div>
-            </div>
-            <div
-              className="col-lg-6"
-              data-aos="fade-right"
-              data-aos-duration={1500}
-              data-aos-offset={50}
-            >
-              <div className="footer-top-item ms-lg-auto">
-                <div className="content text-white">
-                  <h3>Join Our Team</h3>
-                  <p>
-                    Are you passionate about innovation and eager to make an
-                    impact? we’re always looking.
-                  </p>
-                </div>
-                <Link href="contact" className="icon">
-                  <i className="far fa-arrow-right" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row pb-25 justify-content-between">
-          <div className="col-xl-3 col-sm-6">
-            <div
-              className="footer-widget footer-info"
-              data-aos="fade-up"
-              data-aos-duration={1500}
-              data-aos-offset={50}
-            >
-              <div className="footer-logo mb-30 text-start">
-                 <div className="logo text-start">
-                <Link href="/">
-                  <img
-                    src="/logo.png"
-                    alt="Logo"
-                    title="Logo"
-                    style={{ maxWidth: '140px' }}
-                  /> <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
-                    Pixelways
-                    <span
-                      style={{
-                        position: 'absolute',
-                        top: '-0.35em',
-                        right: '-1.1em',
-                        width: '1.1em',
-                        height: '1.1em',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        background: 'linear-gradient(135deg, #2563eb 80%, #3b82f6 100%)',
-                        borderRadius: '50%',
-                        boxShadow: '0 0 0.15em #2563eb, 0 0 0.3em #3b82f6',
-                        zIndex: 2,
-                      }}
-                    >
-                      <svg
-                        width="1em"
-                        height="1em"
-                        viewBox="0 0 32 32"
-                        fill="none"
-                        style={{ display: 'block' }}
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g>
-                          {/* Sun rays */}
-                          {[...Array(8)].map((_, i) => {
-                            const angle = (i * 45) * (Math.PI / 180);
-                            const x1 = 16 + Math.cos(angle) * 13;
-                            const y1 = 16 + Math.sin(angle) * 13;
-                            const x2 = 16 + Math.cos(angle) * 15.5;
-                            const y2 = 16 + Math.sin(angle) * 15.5;
-                            return (
-                              <line
-                                key={i}
-                                x1={x1}
-                                y1={y1}
-                                x2={x2}
-                                y2={y2}
-                                stroke="#2563eb"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                              />
-                            );
-                          })}
-                          {/* Badge circle */}
-                          <circle cx="16" cy="16" r="10" fill="#2563eb" stroke="#fff" strokeWidth="2" />
-                          {/* Tick */}
-                          <polyline
-                            points="12,17 15,20 21,13"
-                            fill="none"
-                            stroke="#fff"
-                            strokeWidth="2.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </g>
-                      </svg>
-                    </span>
-                  </span>
-                </Link>
-                
-                
-              </div>
-              </div>
-              <div className="text mb-25">
-                <p>
-                  Our IT solutions are designed to empower businesses with the
-                  tools technology they need today.
-                </p>
-              </div>
-              <div className="info-item">
-                <div className="icon">
-                  <i className="far fa-phone-rotary" />
-                </div>
-                <div className="content">
-                  Phone: <a href={`tel:${contactInfo.phone1}`}>{contactInfo.phone1}</a> / <a href={`tel:${contactInfo.phone2}`}>{contactInfo.phone2}</a>
-                </div>
-              </div>
-              <div className="info-item">
-                <div className="icon">
-                  <i className="fal fa-map-marker-alt" />
-                </div>
-                <div className="content">
-                  Office Location: {contactInfo.officeLocation}
-                </div>
-              </div>
-              <div className="info-item">
-                <div className="icon">
-                  <i className="far fa-envelope" />
-                </div>
-                <div className="content">
-                  Email Address: <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-xl-3 col-md-3 col-6">
-            <div
-              className="footer-widget footer-links ps-xl-5"
-              data-aos="fade-up"
-              data-aos-delay={100}
-              data-aos-duration={1500}
-              data-aos-offset={50}
-            >
-              <h5 className="footer-title">Quick Link</h5>
-              <ul>
-                <li>
-                  <Link href="about">
-                    <i className="far fa-angle-right" /> About Company
-                  </Link>
-                </li>
-                <li>
-                  <Link href="services">
-                    <i className="far fa-angle-right" /> Our Services
-                  </Link>
-                </li>
-                <li>
-                  <Link href="services">
-                    <i className="far fa-angle-right" /> Why Choose Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="blog">
-                    <i className="far fa-angle-right" /> Blog &amp; News
-                  </Link>
-                </li>
-                <li>
-                  <Link href="contact">
-                    <i className="far fa-angle-right" /> Contact Us
+                  <Link href="/client-intake">
+                    <i className="far fa-angle-right" /> Client Intake
                   </Link>
                 </li>
               </ul>
@@ -752,6 +481,11 @@ const Footer3 = () => {
                     <i className="far fa-angle-right" /> Contact Us
                   </Link>
                 </li>
+                <li>
+                  <Link href="/client-intake">
+                    <i className="far fa-angle-right" /> Client Intake
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -967,6 +701,11 @@ const Footer4 = () => {
                     </li>
                     <li>
                       <Link href="contact">Press Kit</Link>
+                    </li>
+                    <li>
+                      <Link href="/client-intake">
+                        <i className="far fa-angle-right" /> Client Intake
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -1418,6 +1157,11 @@ const Footer6 = () => {
                     </li>
                     <li>
                       <Link href="contact">Contact us</Link>
+                    </li>
+                    <li>
+                      <Link href="/client-intake">
+                        <i className="far fa-angle-right" /> Client Intake
+                      </Link>
                     </li>
                   </ul>
                 </div>

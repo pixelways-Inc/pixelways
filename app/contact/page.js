@@ -1,5 +1,6 @@
 import PageBanner from "@/components/PageBanner";
 import TekprofLayout from "@/layout/TekprofLayout";
+import Link from "next/link";
 const page = () => {
   return (
     <TekprofLayout>
@@ -59,6 +60,9 @@ const page = () => {
                     </div>
                   </div>
                 </div>
+                <Link href="/client-intake" className="theme-btn mt-35 rmt-20">
+                  Start Your Project Intake
+                </Link>
               </div>
             </div>
             <div className="col-xl-5 col-lg-6 col-md-9">

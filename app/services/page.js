@@ -30,6 +30,9 @@ const page = () => {
                 <a href="#agile-services" className="theme-btn mt-35 rmt-20">
                   Explore Our Services
                 </a>
+                <Link href="/client-intake" className="theme-btn mt-35 rmt-20 ml-15">
+                  Start Your Project
+                </Link>
               </div>
             </div>
             <div className="col-xl-8">

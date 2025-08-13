@@ -1,12 +1,10 @@
+## Implement CTAs and Links for Client Intake Page (August 13, 2025)
 
-## Apply Contact Page Design to Client Intake Page (August 13, 2025)
-
-**Objective:** Align the design and layout of the client intake page with that of the existing contact page for visual consistency.
+**Objective:** Integrate calls-to-action (CTAs) and direct links to the new client intake page across key areas of the website to enhance user navigation and conversion.
 
 **Summary of Changes:**
 
--   **`app/client-intake/page.js`:**
-    -   Integrated `TekprofLayout` and `PageBanner` components to match the overall page structure.
-    -   Wrapped the form content within a `section` using `contact-form-area` classes for consistent padding and responsiveness.
-    -   Applied `col-sm-6` and `col-sm-12` classes to form fields to mimic the two-column and full-width layouts seen on the contact form, improving visual organization.
-    -   Removed inline styles and adopted existing CSS classes (`form-group`, `form-control`, `theme-btn`) for form elements to ensure consistent styling with the rest of the application.
+-   **`app/page.js` (Home Page):** Added a new CTA section card with a prominent link to the client intake page, encouraging users to start their projects.
+-   **`app/services/page.js` (Services Page):** Added a new "Start Your Project" button, providing a direct path to the client intake form for users exploring services.
+-   **`app/contact/page.js` (Contact Page):** Added a "Start Your Project Intake" button within the contact information section, offering an alternative and direct way for users to initiate project discussions.
+-   **`layout/Footer.js` (All Footers):** Added a "Client Intake" link to the "Quick Link" or similar navigation sections within all `Footer` components (Footer1 through Footer6) to ensure consistent discoverability across the site.

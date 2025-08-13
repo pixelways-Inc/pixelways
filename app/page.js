@@ -484,6 +484,35 @@ const page = () => {
         `}</style>
       </section>
       {/* Achievement Area end */}
+
+      {/* CTA Section Start */}
+      <section className="call-to-action-area rel z-1 pt-130 rpt-100 pb-100 rpb-70">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-xl-8 col-lg-10">
+              <div
+                className="section-title text-center mb-50"
+                data-aos="fade-up"
+                data-aos-duration={1500}
+                data-aos-offset={50}
+              >
+                <span className="sub-title color-primary mb-10">
+                  Ready to Start Your Project?
+                </span>
+                <h2>Let's Build Something Amazing Together</h2>
+                <p>
+                  Tell us about your vision, and let our experts help you bring it to life. Fill out our client intake form to get started.
+                </p>
+                <Link href="/client-intake" className="theme-btn mt-20">
+                  Start Your Project Intake
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* CTA Section End */}
+
       {/* Team Area start */}
       <section className="team-area py-130 rpy-100 rel z-1">
         <div className="container">
