@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { supabase } from '../../utility/supabaseClient';
+import PageBanner from "@/components/PageBanner";
+import TekprofLayout from "@/layout/TekprofLayout";
 
 const ClientIntakePage = () => {
   const [formData, setFormData] = useState({
@@ -97,74 +99,129 @@ const ClientIntakePage = () => {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>
-      <h1>Client Intake Form</h1>
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '15px' }}>
-        <label>
-          Business Name:
-          <input type="text" name="business_name" value={formData.business_name} onChange={handleChange} required style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <label>
-          Business Email:
-          <input type="email" name="business_email" value={formData.business_email} onChange={handleChange} required style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <label>
-          Phone Number:
-          <input type="text" name="phone_number" value={formData.phone_number} onChange={handleChange} style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <label>
-          Website:
-          <input type="url" name="website" value={formData.website} onChange={handleChange} style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <label>
-          Industry:
-          <input type="text" name="industry" value={formData.industry} onChange={handleChange} style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <label>
-          Project Type:
-          <input type="text" name="project_type" value={formData.project_type} onChange={handleChange} style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <label>
-          Description:
-          <textarea name="description" value={formData.description} onChange={handleChange} style={{ width: '100%', padding: '8px', minHeight: '100px' }}></textarea>
-        </label>
-        <label>
-          Preferred Colors:
-          <input type="text" name="preferred_colors" value={formData.preferred_colors} onChange={handleChange} style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <label>
-          Target Audience:
-          <input type="text" name="target_audience" value={formData.target_audience} onChange={handleChange} style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <label>
-          Competitors:
-          <input type="text" name="competitors" value={formData.competitors} onChange={handleChange} style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <label>
-          Budget Range:
-          <input type="text" name="budget_range" value={formData.budget_range} onChange={handleChange} style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <label>
-          Deadline:
-          <input type="text" name="deadline" value={formData.deadline} onChange={handleChange} style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <label>
-          Special Requirements:
-          <textarea name="special_requirements" value={formData.special_requirements} onChange={handleChange} style={{ width: '100%', padding: '8px', minHeight: '100px' }}></textarea>
-        </label>
-        <label>
-          Upload Logo:
-          <input type="file" accept="image/*" onChange={handleLogoFileChange} style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <label>
-          Upload Other Files (e.g., images, documents):
-          <input type="file" multiple onChange={handleOtherFilesChange} style={{ width: '100%', padding: '8px' }} />
-        </label>
-        <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: 'white', border: 'none', cursor: 'pointer' }}>Submit</button>
-      </form>
-    </div>
+    <TekprofLayout>
+      <PageBanner pageName="Client Intake" />
+      <section className="contact-form-area pt-130 rpt-100 pb-120 rpb-90">
+        <div className="container">
+          <div className="row align-items-center justify-content-between">
+            <div className="col-xl-10 col-lg-12 col-md-12 mx-auto">
+              <div
+                className="contact-page-form z-1 rel"
+                data-aos="fade-up"
+                data-aos-duration={1500}
+                data-aos-offset={50}
+              >
+                <h4>Client Intake Form</h4>
+                <p>Please fill out the form below to provide details about your project.</p>
+                {message && <p style={{ color: 'green' }}>{message}</p>}
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <form onSubmit={handleSubmit} className="contactForm">
+                  <div className="row mt-20">
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="business_name">Business Name</label>
+                        <input type="text" id="business_name" name="business_name" value={formData.business_name} onChange={handleChange} required className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="business_email">Business Email</label>
+                        <input type="email" id="business_email" name="business_email" value={formData.business_email} onChange={handleChange} required className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="phone_number">Phone Number</label>
+                        <input type="text" id="phone_number" name="phone_number" value={formData.phone_number} onChange={handleChange} className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="website">Website</label>
+                        <input type="url" id="website" name="website" value={formData.website} onChange={handleChange} className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="industry">Industry</label>
+                        <input type="text" id="industry" name="industry" value={formData.industry} onChange={handleChange} className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="project_type">Project Type</label>
+                        <input type="text" id="project_type" name="project_type" value={formData.project_type} onChange={handleChange} className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-12">
+                      <div className="form-group mb-15">
+                        <label htmlFor="description">Description</label>
+                        <textarea id="description" name="description" value={formData.description} onChange={handleChange} className="form-control" rows={4}></textarea>
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="preferred_colors">Preferred Colors</label>
+                        <input type="text" id="preferred_colors" name="preferred_colors" value={formData.preferred_colors} onChange={handleChange} className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="target_audience">Target Audience</label>
+                        <input type="text" id="target_audience" name="target_audience" value={formData.target_audience} onChange={handleChange} className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="competitors">Competitors</label>
+                        <input type="text" id="competitors" name="competitors" value={formData.competitors} onChange={handleChange} className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="budget_range">Budget Range</label>
+                        <input type="text" id="budget_range" name="budget_range" value={formData.budget_range} onChange={handleChange} className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="deadline">Deadline</label>
+                        <input type="text" id="deadline" name="deadline" value={formData.deadline} onChange={handleChange} className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-12">
+                      <div className="form-group mb-25">
+                        <label htmlFor="special_requirements">Special Requirements</label>
+                        <textarea id="special_requirements" name="special_requirements" value={formData.special_requirements} onChange={handleChange} className="form-control" rows={4}></textarea>
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="logo_file">Upload Logo</label>
+                        <input type="file" id="logo_file" accept="image/*" onChange={handleLogoFileChange} className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-group mb-15">
+                        <label htmlFor="other_files">Upload Other Files</label>
+                        <input type="file" id="other_files" multiple onChange={handleOtherFilesChange} className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-sm-12">
+                      <div className="form-group mb-0">
+                        <button type="submit" className="theme-btn" data-hover="Submit Form">
+                          <span>Submit Form</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </TekprofLayout>
   );
 };
 

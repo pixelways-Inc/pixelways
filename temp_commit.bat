@@ -1,1 +1,1 @@
-git commit -m "FEAT: Add client intake page"
+git commit -m "FEAT: Implement client intake form with Supabase integration"

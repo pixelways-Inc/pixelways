@@ -1,12 +1,12 @@
-## Implement Client Intake Form with Supabase Integration (August 13, 2025)
 
-**Objective:** Implement the client intake form with file upload capabilities and integrate it with Supabase for data storage and file management.
+## Apply Contact Page Design to Client Intake Page (August 13, 2025)
+
+**Objective:** Align the design and layout of the client intake page with that of the existing contact page for visual consistency.
 
 **Summary of Changes:**
 
--   **`utility/supabaseClient.js`:** Created a new utility file to initialize and export the Supabase client. This file uses environment variables for Supabase URL and anonymous key.
 -   **`app/client-intake/page.js`:**
-    -   Updated the page to include a comprehensive client intake form with fields corresponding to the `client_intake` database table.
-    -   Added functionality for uploading a logo file and multiple other files to Supabase Storage, organizing them into unique folders based on the business name.
-    -   Implemented form submission logic to insert form data and file URLs into the `client_intake` table.
-    -   Included basic client-side validation and user feedback mechanisms.
+    -   Integrated `TekprofLayout` and `PageBanner` components to match the overall page structure.
+    -   Wrapped the form content within a `section` using `contact-form-area` classes for consistent padding and responsiveness.
+    -   Applied `col-sm-6` and `col-sm-12` classes to form fields to mimic the two-column and full-width layouts seen on the contact form, improving visual organization.
+    -   Removed inline styles and adopted existing CSS classes (`form-group`, `form-control`, `theme-btn`) for form elements to ensure consistent styling with the rest of the application.
