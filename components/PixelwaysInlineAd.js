@@ -56,7 +56,7 @@ const PixelwaysInlineAd = ({
             <p>{currentAd.description}</p>
             <Link 
               href={currentAd.ctaLink} 
-              className="ad-cta-btn"
+              className="ad-badge"
               onClick={handleClick}
             >
               {currentAd.ctaText}
