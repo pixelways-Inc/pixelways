@@ -1,1 +1,1 @@
-git commit -m "FIX: Adjust PhoneInput component for country flag and code display"
+git commit -m "FIX: Correct phone number state update in client intake form"
