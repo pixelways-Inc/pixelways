@@ -1,1 +1,1 @@
-git commit -m "FEAT: Implement CTAs and links for client intake page"
+git commit -m "FIX: Add 'use client' directive to client intake page"

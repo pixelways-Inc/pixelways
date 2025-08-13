@@ -240,7 +240,7 @@ const Footer1 = () => {
                     <i className="far fa-angle-right" /> Contact Us
                   </Link>
                 </li>
-                <li>
+                <li className="new-badge">
                   <Link href="/client-intake">
                     <i className="far fa-angle-right" /> Client Intake
                   </Link>
@@ -481,7 +481,7 @@ const Footer3 = () => {
                     <i className="far fa-angle-right" /> Contact Us
                   </Link>
                 </li>
-                <li>
+                <li className="new-badge">
                   <Link href="/client-intake">
                     <i className="far fa-angle-right" /> Client Intake
                   </Link>
@@ -702,7 +702,7 @@ const Footer4 = () => {
                     <li>
                       <Link href="contact">Press Kit</Link>
                     </li>
-                    <li>
+                    <li className="new-badge">
                       <Link href="/client-intake">
                         <i className="far fa-angle-right" /> Client Intake
                       </Link>
@@ -1158,7 +1158,7 @@ const Footer6 = () => {
                     <li>
                       <Link href="contact">Contact us</Link>
                     </li>
-                    <li>
+                    <li className="new-badge">
                       <Link href="/client-intake">
                         <i className="far fa-angle-right" /> Client Intake
                       </Link>
