@@ -234,7 +234,7 @@ const ClientIntakePage = () => {
                           name="phone_number"
                           placeholder="Enter phone number"
                           value={formData.phone_number}
-                          onChange={(value) => setFormData({ ...formData.phone_number, phone_number: value })}
+                          onChange={(value) => setFormData({ ...formData, phone_number: value })}
                           defaultCountry="US" // You can set a default country
                           country={formData.phone_number ? undefined : 'US'} // Set country based on value or default
                         />
