@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.55.0",
     "aos": "^2.3.4",
     "framer-motion": "^12.23.12",
     "isotope-layout": "^3.0.6",
@@ -21,6 +22,7 @@
     "react-nice-select": "^1.0.6",
     "react-slick": "^0.30.3",
     "react-visibility-sensor": "^5.1.1",
+    "uuid": "^11.1.0",
     "vercel": "44.7.3"
   }
 }
