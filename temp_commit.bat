@@ -1,1 +1,1 @@
-git commit -m "CHORE: Update temp_commit.bat after previous commit"
+git commit -m "CHORE: Clean up temp_commit.bat"

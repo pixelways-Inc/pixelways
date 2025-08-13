@@ -3,115 +3,30 @@ import React, { useState } from 'react';
 import { supabase } from '../../utility/supabaseClient';
 import PageBanner from "@/components/PageBanner";
 import TekprofLayout from "@/layout/TekprofLayout";
-import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
 
 const ClientIntakePage = () => {
-  // Define options for dropdowns
-  const projectTypeOptions = [
-    'Website Design',
-    'Mobile App Development',
-    'Custom Software Development',
-    'E-commerce Solution',
-    'UI/UX Design',
-    'Digital Marketing',
-    'Branding & Identity',
-    'Consulting',
-    'Other',
-  ];
-
-  const businessTypeOptions = [
-    'Technology',
-    'Healthcare',
-    'Finance',
-    'Retail',
-    'Education',
-    'Manufacturing',
-    'Hospitality',
-    'Real Estate',
-    'Non-profit',
-    'Other',
-  ];
-
-  const colorOptions = [
-    'Red',
-    'Blue',
-    'Green',
-    'Yellow',
-    'Purple',
-    'Orange',
-    'Black',
-    'White',
-    'Gray',
-    'Other',
-  ];
-
   const [formData, setFormData] = useState({
     business_name: '',
     business_email: '',
-    phone_number: '', // Will be handled by PhoneInput
+    phone_number: '',
     website: '',
+    industry: '',
+    project_type: '',
     description: '',
+    preferred_colors: '',
     target_audience: '',
     competitors: '',
     budget_range: '',
     deadline: '',
     special_requirements: '',
   });
-
-  const [selectedProjectTypes, setSelectedProjectTypes] = useState([]);
-  const [otherProjectType, setOtherProjectType] = useState('');
-  const [selectedBusinessTypes, setSelectedBusinessTypes] = useState([]);
-  const [otherBusinessType, setOtherBusinessType] = useState('');
-  const [selectedColors, setSelectedColors] = useState([]);
-  const [otherColor, setOtherColor] = useState('');
-
   const [logoFile, setLogoFile] = useState(null);
   const [otherFiles, setOtherFiles] = useState([]);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
-    const { name, value, options } = e.target;
-
-    if (name === 'project_type') {
-      const selected = Array.from(options)
-        .filter(option => option.selected)
-        .map(option => option.value);
-      setSelectedProjectTypes(selected);
-      if (!selected.includes('Other')) {
-        setOtherProjectType('');
-      }
-    } else if (name === 'business_type') {
-      const selected = Array.from(options)
-        .filter(option => option.selected)
-        .map(option => option.value);
-      setSelectedBusinessTypes(selected);
-      if (!selected.includes('Other')) {
-        setOtherBusinessType('');
-      }
-    } else if (name === 'preferred_colors') {
-      const selected = Array.from(options)
-        .filter(option => option.selected)
-        .map(option => option.value);
-      setSelectedColors(selected);
-      if (!selected.includes('Other')) {
-        setOtherColor('');
-      }
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
-
-  const handleOtherInputChange = (e) => {
-    const { name, value } = e.target;
-    if (name === 'other_project_type') {
-      setOtherProjectType(value);
-    } else if (name === 'other_business_type') {
-      setOtherBusinessType(value);
-    } else if (name === 'other_color') {
-      setOtherColor(value);
-    }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleLogoFileChange = (e) => {
@@ -159,34 +74,28 @@ const ClientIntakePage = () => {
         .insert({
           client_id,
           ...formData,
-          project_type: selectedProjectTypes.includes('Other') ? `${selectedProjectTypes.filter(t => t !== 'Other').join(', ')}${otherProjectType ? `, Other: ${otherProjectType}` : ''}` : selectedProjectTypes.join(', '),
-          industry: selectedBusinessTypes.includes('Other') ? `${selectedBusinessTypes.filter(t => t !== 'Other').join(', ')}${otherBusinessType ? `, Other: ${otherBusinessType}` : ''}` : selectedBusinessTypes.join(', '),
-          preferred_colors: selectedColors.includes('Other') ? `${selectedColors.filter(c => c !== 'Other').join(', ')}${otherColor ? `, Other: ${otherColor}` : ''}` : selectedColors.join(', '),
           logo_url: logo_url || null,
           uploaded_files: uploadedFileUrls.length > 0 ? uploadedFileUrls : null,
         });
 
       if (insertError) throw insertError;
 
-      setMessage('🎉 Congratulations! Your service request has been received and our team will contact you soon.\nIf you need immediate assistance, feel free to reach out to us at hello@pixelways.co. 🚀');
+      setMessage('Client intake form submitted successfully!');
       setFormData({
         business_name: '',
         business_email: '',
         phone_number: '',
         website: '',
+        industry: '',
+        project_type: '',
         description: '',
+        preferred_colors: '',
         target_audience: '',
         competitors: '',
         budget_range: '',
         deadline: '',
         special_requirements: '',
       });
-      setSelectedProjectTypes([]);
-      setOtherProjectType('');
-      setSelectedBusinessTypes([]);
-      setOtherBusinessType('');
-      setSelectedColors([]);
-      setOtherColor('');
       setLogoFile(null);
       setOtherFiles([]);
     } catch (err) {
@@ -229,15 +138,7 @@ const ClientIntakePage = () => {
                     <div className="col-sm-6">
                       <div className="form-group mb-15">
                         <label htmlFor="phone_number">Phone Number</label>
-                        <PhoneInput
-                          id="phone_number"
-                          name="phone_number"
-                          placeholder="Enter phone number"
-                          value={formData.phone_number}
-                          onChange={(value) => setFormData({ ...formData, phone_number: value })}
-                          defaultCountry="US" // You can set a default country
-                          country={formData.phone_number ? undefined : 'US'} // Set country based on value or default
-                        />
+                        <input type="text" id="phone_number" name="phone_number" value={formData.phone_number} onChange={handleChange} className="form-control" />
                       </div>
                     </div>
                     <div className="col-sm-6">
@@ -248,35 +149,15 @@ const ClientIntakePage = () => {
                     </div>
                     <div className="col-sm-6">
                       <div className="form-group mb-15">
-                        <label htmlFor="business_type">Business Type</label>
-                        <select id="business_type" name="business_type" multiple value={selectedBusinessTypes} onChange={handleChange} className="form-control">
-                          {businessTypeOptions.map((option) => (
-                            <option key={option} value={option}>{option}</option>
-                          ))}
-                        </select>
+                        <label htmlFor="industry">Industry</label>
+                        <input type="text" id="industry" name="industry" value={formData.industry} onChange={handleChange} className="form-control" />
                       </div>
-                      {selectedBusinessTypes.includes('Other') && (
-                        <div className="form-group mb-15">
-                          <label htmlFor="other_business_type">Specify Other Business Type</label>
-                          <input type="text" id="other_business_type" name="other_business_type" value={otherBusinessType} onChange={handleOtherInputChange} className="form-control" />
-                        </div>
-                      )}
                     </div>
                     <div className="col-sm-6">
                       <div className="form-group mb-15">
                         <label htmlFor="project_type">Project Type</label>
-                        <select id="project_type" name="project_type" multiple value={selectedProjectTypes} onChange={handleChange} className="form-control">
-                          {projectTypeOptions.map((option) => (
-                            <option key={option} value={option}>{option}</option>
-                          ))}
-                        </select>
+                        <input type="text" id="project_type" name="project_type" value={formData.project_type} onChange={handleChange} className="form-control" />
                       </div>
-                      {selectedProjectTypes.includes('Other') && (
-                        <div className="form-group mb-15">
-                          <label htmlFor="other_project_type">Specify Other Project Type</label>
-                          <input type="text" id="other_project_type" name="other_project_type" value={otherProjectType} onChange={handleOtherInputChange} className="form-control" />
-                        </div>
-                      )}
                     </div>
                     <div className="col-sm-12">
                       <div className="form-group mb-15">
@@ -287,18 +168,8 @@ const ClientIntakePage = () => {
                     <div className="col-sm-6">
                       <div className="form-group mb-15">
                         <label htmlFor="preferred_colors">Preferred Colors</label>
-                        <select id="preferred_colors" name="preferred_colors" multiple value={selectedColors} onChange={handleChange} className="form-control">
-                          {colorOptions.map((option) => (
-                            <option key={option} value={option}>{option}</option>
-                          ))}
-                        </select>
+                        <input type="text" id="preferred_colors" name="preferred_colors" value={formData.preferred_colors} onChange={handleChange} className="form-control" />
                       </div>
-                      {selectedColors.includes('Other') && (
-                        <div className="form-group mb-15">
-                          <label htmlFor="other_color">Specify Other Color</label>
-                          <input type="text" id="other_color" name="other_color" value={otherColor} onChange={handleOtherInputChange} className="form-control" />
-                        </div>
-                      )}
                     </div>
                     <div className="col-sm-6">
                       <div className="form-group mb-15">
