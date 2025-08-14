@@ -52,6 +52,54 @@ const teamMembers = [
       { name: "Cybersecurity", percent: 70 }
     ]
   }
+  },
+  {
+    id: "hans-ade",
+    name: "Anye Happiness Ade",
+    position: "Software Engineer & AI Developer",
+    image: "/team/hans.png",
+    bio: [
+      "Anye Happiness Ade is a highly skilled Software Engineer & AI Developer with expertise in designing, developing, and deploying innovative digital solutions. Ade demonstrates strong proficiency in full-stack development, artificial intelligence integration, and modern software engineering practices. Known for exceptional problem-solving abilities and a results-driven mindset, Ade combines technical acumen with creativity to deliver scalable, high-performance applications. With a passion for emerging technologies and continuous learning, Ade consistently transforms complex ideas into impactful, user-friendly solutions."
+    ],
+    funFacts: [],
+    contact: {
+      email: "",
+      phone1: "",
+      phone2: "",
+      location: ""
+    },
+    social: {
+      facebook: "https://facebook.com/anye.happyness/",
+      twitter: "https://twitter.com/HansCadx",
+      instagram: "https://www.instagram.com/anye.happyness/",
+      linkedin: "https://www.linkedin.com/in/hans-ade/",
+      github: "https://github.com/Hansade2005",
+      youtube: "#"
+    },
+    qualifications: [
+      {
+        number: 1,
+        title: "Software Engineering & AI Development",
+        description: "Expertise in designing, developing, and deploying innovative digital solutions with strong proficiency in full-stack development and artificial intelligence integration."
+      },
+      {
+        number: 2,
+        title: "Problem-Solving & Technical Acumen",
+        description: "Known for exceptional problem-solving abilities and a results-driven mindset, combining technical acumen with creativity to deliver scalable, high-performance applications."
+      },
+      {
+        number: 3,
+        title: "Emerging Technologies & Continuous Learning",
+        description: "Passion for emerging technologies and continuous learning, consistently transforming complex ideas into impactful, user-friendly solutions."
+      }
+    ],
+    skills: [
+      { name: "Software Development", percent: 95 },
+      { name: "AI Development", percent: 90 },
+      { name: "Full-Stack Development", percent: 85 },
+      { name: "Problem Solving", percent: 92 }
+    ]
+  }
 ];
 
 export default teamMembers;

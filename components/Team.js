@@ -30,6 +30,11 @@ const Team = () => {
                 <a href={member.social.instagram}>
                   <i className="fab fa-instagram" />
                 </a>
+                {member.social.github && (
+                  <a href={member.social.github}>
+                    <i className="fab fa-github" />
+                  </a>
+                )}
               </div>
             </div>
           </div>

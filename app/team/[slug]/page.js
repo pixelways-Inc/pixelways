@@ -69,6 +69,11 @@ const TeamDetails = ({ params }) => {
                     <a href={member.social.youtube}>
                       <i className="fab fa-youtube" />
                     </a>
+                    {member.social.github && (
+                      <a href={member.social.github}>
+                        <i className="fab fa-github" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
