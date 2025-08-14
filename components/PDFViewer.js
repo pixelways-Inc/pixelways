@@ -5,20 +5,44 @@ import { useState, useEffect } from 'react';
 const PDFViewer = ({ pdfUrl, memberName }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
+    const handleKeyPress = (e) => {
+      if (e.key === 'Escape' && isModalOpen) {
+        if (isFullscreen) {
+          setIsFullscreen(false);
+        } else {
+          closeModal();
+        }
+      }
+      if (e.key === 'F11' && isModalOpen) {
+        e.preventDefault();
+        toggleFullscreen();
+      }
+    };
+
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
+    window.addEventListener('keydown', handleKeyPress);
 
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [isModalOpen, isFullscreen]);
 
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setIsFullscreen(false);
+  };
+  
+  const toggleFullscreen = () => setIsFullscreen(!isFullscreen);
 
   return (
     <>
@@ -45,34 +69,36 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
 
       {/* PDF Modal */}
       {isModalOpen && (
-        <div 
-          className="pdf-modal-overlay" 
+        <div
+          className="pdf-modal-overlay"
           style={{
             position: 'fixed',
             top: 0,
             left: 0,
             width: '100%',
             height: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            backgroundColor: isFullscreen ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 0, 0, 0.8)',
             zIndex: 9999,
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            transition: 'background-color 0.3s ease'
           }}
-          onClick={closeModal}
+          onClick={isFullscreen ? undefined : closeModal}
         >
           <div 
             className="pdf-modal-content" 
             style={{
               backgroundColor: 'white',
-              borderRadius: '10px',
-              padding: isMobile ? '15px' : '20px',
-              width: isMobile ? '95vw' : '85vw',
-              maxWidth: isMobile ? 'none' : '1200px',
-              height: isMobile ? '90vh' : '85vh',
-              maxHeight: '90vh',
+              borderRadius: isFullscreen ? '0' : '10px',
+              padding: isFullscreen ? '10px' : (isMobile ? '15px' : '20px'),
+              width: isFullscreen ? '100vw' : (isMobile ? '95vw' : '85vw'),
+              maxWidth: isFullscreen ? 'none' : (isMobile ? 'none' : '1200px'),
+              height: isFullscreen ? '100vh' : (isMobile ? '90vh' : '85vh'),
+              maxHeight: isFullscreen ? 'none' : '90vh',
               overflow: 'hidden',
-              position: 'relative'
+              position: 'relative',
+              transition: 'all 0.3s ease'
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -82,9 +108,9 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                marginBottom: isMobile ? '15px' : '20px',
+                marginBottom: isFullscreen ? '10px' : (isMobile ? '15px' : '20px'),
                 borderBottom: '1px solid #eee',
-                paddingBottom: isMobile ? '10px' : '15px',
+                paddingBottom: isFullscreen ? '8px' : (isMobile ? '10px' : '15px'),
                 flexWrap: 'wrap',
                 gap: '10px'
               }}
@@ -114,6 +140,24 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
                   <i className="fas fa-download" style={{ marginRight: '5px' }}></i>
                   {isMobile ? 'Download' : 'Download'}
                 </a>
+                
+                {/* Fullscreen Button */}
+                <button
+                  onClick={toggleFullscreen}
+                  style={{
+                    backgroundColor: '#007bff',
+                    color: 'white',
+                    border: 'none',
+                    padding: isMobile ? '6px 12px' : '8px 15px',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                    fontSize: isMobile ? '12px' : '14px'
+                  }}
+                >
+                  <i className={`fas ${isFullscreen ? 'fa-compress' : 'fa-expand'}`} style={{ marginRight: '5px' }}></i>
+                  {isFullscreen ? (isMobile ? 'Exit' : 'Exit Fullscreen') : (isMobile ? 'Full' : 'Fullscreen')}
+                </button>
+                
                 {/* Close Button */}
                 <button
                   onClick={closeModal}
@@ -137,7 +181,7 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
             <div 
               style={{
                 width: '100%',
-                height: isMobile ? '65vh' : '70vh',
+                height: isFullscreen ? 'calc(100vh - 80px)' : (isMobile ? '65vh' : '70vh'),
                 border: '1px solid #ddd',
                 borderRadius: '5px',
                 overflow: 'hidden'

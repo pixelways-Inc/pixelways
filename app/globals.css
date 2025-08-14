@@ -24,6 +24,13 @@
   z-index: 10;
 }
 
+/* Degree Verification Button */
+.degree-verify-btn:hover {
+  background-color: #e44a3a !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(252, 85, 70, 0.3);
+}
+
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }

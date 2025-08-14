@@ -62,6 +62,54 @@ const TeamDetails = ({ params }) => {
                     <PDFViewer pdfUrl={member.cv} memberName={member.name} />
                   </div>
                 )}
+
+                {/* Degree Verification Section - Only show if member has degree verification */}
+                {member.degreeVerification && (
+                  <div className="team-degree-verification" style={{ marginTop: '20px', marginBottom: '20px' }}>
+                    <h5 className="title" style={{ color: '#FC5546', marginBottom: '15px' }}>Academic Credentials</h5>
+                    <div style={{ 
+                      backgroundColor: '#f8f9fa', 
+                      padding: '15px', 
+                      borderRadius: '8px',
+                      border: '1px solid #e9ecef'
+                    }}>
+                      <p style={{ 
+                        color: '#2c3e50', 
+                        margin: '0 0 10px 0', 
+                        fontWeight: '600' 
+                      }}>
+                        {member.degreeVerification.degree}
+                      </p>
+                      <p style={{ 
+                        color: '#666', 
+                        margin: '0 0 15px 0', 
+                        fontSize: '14px' 
+                      }}>
+                        {member.degreeVerification.institution}
+                      </p>
+                      <a 
+                        href={member.degreeVerification.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'inline-block',
+                          backgroundColor: '#FC5546',
+                          color: '#ffffff',
+                          padding: '8px 16px',
+                          borderRadius: '5px',
+                          textDecoration: 'none',
+                          fontSize: '14px',
+                          fontWeight: '500',
+                          transition: 'background-color 0.3s ease'
+                        }}
+                        className="degree-verify-btn"
+                      >
+                        <i className="fas fa-external-link-alt" style={{ marginRight: '8px' }}></i>
+                        Verify Degree
+                      </a>
+                    </div>
+                  </div>
+                )}
                 
                 <hr className="my-40" />
                 <div className="team-contact-info social-icons">
