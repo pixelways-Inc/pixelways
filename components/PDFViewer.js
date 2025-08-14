@@ -6,6 +6,16 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  
+  // Drag and resize states
+  const [isDragging, setIsDragging] = useState(false);
+  const [isResizing, setIsResizing] = useState(false);
+  const [resizeDirection, setResizeDirection] = useState('');
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
+  const [modalSize, setModalSize] = useState({ width: 900, height: 700 });
+  const [initialMousePos, setInitialMousePos] = useState({ x: 0, y: 0 });
+  const [initialSize, setInitialSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -44,11 +54,98 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
   
   const toggleFullscreen = () => setIsFullscreen(!isFullscreen);
 
+  // Drag functionality
+  const handleMouseDown = (e) => {
+    if (isMobile || isFullscreen) return;
+    
+    setIsDragging(true);
+    setDragStart({
+      x: e.clientX - modalPosition.x,
+      y: e.clientY - modalPosition.y
+    });
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging && !isMobile && !isFullscreen) {
+      setModalPosition({
+        x: e.clientX - dragStart.x,
+        y: e.clientY - dragStart.y
+      });
+    }
+    
+    if (isResizing && !isMobile && !isFullscreen) {
+      const deltaX = e.clientX - initialMousePos.x;
+      const deltaY = e.clientY - initialMousePos.y;
+      
+      let newWidth = initialSize.width;
+      let newHeight = initialSize.height;
+      let newX = modalPosition.x;
+      let newY = modalPosition.y;
+
+      if (resizeDirection.includes('right')) {
+        newWidth = Math.max(400, initialSize.width + deltaX);
+      }
+      if (resizeDirection.includes('left')) {
+        newWidth = Math.max(400, initialSize.width - deltaX);
+        newX = modalPosition.x + (initialSize.width - newWidth);
+      }
+      if (resizeDirection.includes('bottom')) {
+        newHeight = Math.max(300, initialSize.height + deltaY);
+      }
+      if (resizeDirection.includes('top')) {
+        newHeight = Math.max(300, initialSize.height - deltaY);
+        newY = modalPosition.y + (initialSize.height - newHeight);
+      }
+
+      setModalSize({ width: newWidth, height: newHeight });
+      if (resizeDirection.includes('left') || resizeDirection.includes('top')) {
+        setModalPosition({ x: newX, y: newY });
+      }
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    setIsResizing(false);
+    setResizeDirection('');
+  };
+
+  // Resize functionality
+  const handleResizeMouseDown = (e, direction) => {
+    if (isMobile || isFullscreen) return;
+    
+    e.stopPropagation();
+    setIsResizing(true);
+    setResizeDirection(direction);
+    setInitialMousePos({ x: e.clientX, y: e.clientY });
+    setInitialSize({ ...modalSize });
+  };
+
+  // Add global mouse event listeners
+  useEffect(() => {
+    if (isDragging || isResizing) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isDragging, isResizing, dragStart, modalPosition, initialMousePos, initialSize, resizeDirection]);
+
+  // Reset position and size when opening modal
+  const openModalWithReset = () => {
+    setIsModalOpen(true);
+    setModalPosition({ x: 0, y: 0 });
+    setModalSize({ width: 900, height: 700 });
+  };
+
   return (
     <>
       {/* CV Button */}
       <button
-        onClick={openModal}
+        onClick={openModalWithReset}
         className="btn btn-primary mt-3"
         style={{
           backgroundColor: '#FC5546',
@@ -92,18 +189,25 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
               backgroundColor: 'white',
               borderRadius: isFullscreen ? '0' : '10px',
               padding: isFullscreen ? '10px' : (isMobile ? '15px' : '20px'),
-              width: isFullscreen ? '100vw' : (isMobile ? '95vw' : '85vw'),
-              maxWidth: isFullscreen ? 'none' : (isMobile ? 'none' : '1200px'),
-              height: isFullscreen ? '100vh' : (isMobile ? '90vh' : '85vh'),
-              maxHeight: isFullscreen ? 'none' : '90vh',
+              width: isFullscreen ? '100vw' : (isMobile ? '95vw' : `${modalSize.width}px`),
+              height: isFullscreen ? '100vh' : (isMobile ? '90vh' : `${modalSize.height}px`),
+              maxWidth: isFullscreen ? 'none' : (isMobile ? 'none' : 'none'),
+              maxHeight: isFullscreen ? 'none' : 'none',
               overflow: 'hidden',
-              position: 'relative',
-              transition: 'all 0.3s ease'
+              position: isFullscreen ? 'relative' : (isMobile ? 'relative' : 'fixed'),
+              top: isFullscreen || isMobile ? 'auto' : `calc(50vh + ${modalPosition.y}px)`,
+              left: isFullscreen || isMobile ? 'auto' : `calc(50vw + ${modalPosition.x}px)`,
+              transform: isFullscreen || isMobile ? 'none' : 'translate(-50%, -50%)',
+              transition: isDragging || isResizing ? 'none' : 'all 0.3s ease',
+              cursor: isDragging ? 'grabbing' : 'default',
+              minWidth: isMobile ? 'auto' : '400px',
+              minHeight: isMobile ? 'auto' : '300px'
             }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
             <div 
+              onMouseDown={handleMouseDown}
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -112,7 +216,9 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
                 borderBottom: '1px solid #eee',
                 paddingBottom: isFullscreen ? '8px' : (isMobile ? '10px' : '15px'),
                 flexWrap: 'wrap',
-                gap: '10px'
+                gap: '10px',
+                cursor: (isMobile || isFullscreen) ? 'default' : 'grab',
+                userSelect: 'none'
               }}
             >
               <h3 style={{ 
@@ -181,7 +287,11 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
             <div 
               style={{
                 width: '100%',
-                height: isFullscreen ? 'calc(100vh - 80px)' : (isMobile ? '65vh' : '70vh'),
+                height: isFullscreen 
+                  ? 'calc(100vh - 80px)' 
+                  : isMobile 
+                    ? '65vh' 
+                    : `${modalSize.height - 120}px`,
                 border: '1px solid #ddd',
                 borderRadius: '5px',
                 overflow: 'hidden'
@@ -226,6 +336,111 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
                 </a>.
               </p>
             </div>
+
+            {/* Resize Handles - Only show on desktop and not in fullscreen */}
+            {!isMobile && !isFullscreen && (
+              <>
+                {/* Corner resize handles */}
+                <div
+                  onMouseDown={(e) => handleResizeMouseDown(e, 'bottom-right')}
+                  style={{
+                    position: 'absolute',
+                    bottom: '0',
+                    right: '0',
+                    width: '20px',
+                    height: '20px',
+                    cursor: 'nw-resize',
+                    backgroundColor: 'transparent'
+                  }}
+                />
+                <div
+                  onMouseDown={(e) => handleResizeMouseDown(e, 'bottom-left')}
+                  style={{
+                    position: 'absolute',
+                    bottom: '0',
+                    left: '0',
+                    width: '20px',
+                    height: '20px',
+                    cursor: 'ne-resize',
+                    backgroundColor: 'transparent'
+                  }}
+                />
+                <div
+                  onMouseDown={(e) => handleResizeMouseDown(e, 'top-right')}
+                  style={{
+                    position: 'absolute',
+                    top: '0',
+                    right: '0',
+                    width: '20px',
+                    height: '20px',
+                    cursor: 'ne-resize',
+                    backgroundColor: 'transparent'
+                  }}
+                />
+                <div
+                  onMouseDown={(e) => handleResizeMouseDown(e, 'top-left')}
+                  style={{
+                    position: 'absolute',
+                    top: '0',
+                    left: '0',
+                    width: '20px',
+                    height: '20px',
+                    cursor: 'nw-resize',
+                    backgroundColor: 'transparent'
+                  }}
+                />
+                
+                {/* Edge resize handles */}
+                <div
+                  onMouseDown={(e) => handleResizeMouseDown(e, 'right')}
+                  style={{
+                    position: 'absolute',
+                    top: '20px',
+                    right: '0',
+                    width: '10px',
+                    height: 'calc(100% - 40px)',
+                    cursor: 'ew-resize',
+                    backgroundColor: 'transparent'
+                  }}
+                />
+                <div
+                  onMouseDown={(e) => handleResizeMouseDown(e, 'left')}
+                  style={{
+                    position: 'absolute',
+                    top: '20px',
+                    left: '0',
+                    width: '10px',
+                    height: 'calc(100% - 40px)',
+                    cursor: 'ew-resize',
+                    backgroundColor: 'transparent'
+                  }}
+                />
+                <div
+                  onMouseDown={(e) => handleResizeMouseDown(e, 'bottom')}
+                  style={{
+                    position: 'absolute',
+                    bottom: '0',
+                    left: '20px',
+                    width: 'calc(100% - 40px)',
+                    height: '10px',
+                    cursor: 'ns-resize',
+                    backgroundColor: 'transparent'
+                  }}
+                />
+                <div
+                  onMouseDown={(e) => handleResizeMouseDown(e, 'top')}
+                  style={{
+                    position: 'absolute',
+                    top: '0',
+                    left: '20px',
+                    width: 'calc(100% - 40px)',
+                    height: '10px',
+                    cursor: 'ns-resize',
+                    backgroundColor: 'transparent'
+                  }}
+                />
+              </>
+            )}
           </div>
         </div>
       )}
