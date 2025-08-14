@@ -56,7 +56,7 @@ const teamMembers = [
   {
     id: "hans-ade",
     name: "Anye Happiness Ade",
-    position: "Software Engineer & AI Developer",
+    position: "Co-Founder",
     image: "/team/hans.png",
     bio: [
       "Anye Happiness Ade is a highly skilled Software Engineer & AI Developer with expertise in designing, developing, and deploying innovative digital solutions. Ade demonstrates strong proficiency in full-stack development, artificial intelligence integration, and modern software engineering practices. Known for exceptional problem-solving abilities and a results-driven mindset, Ade combines technical acumen with creativity to deliver scalable, high-performance applications. With a passion for emerging technologies and continuous learning, Ade consistently transforms complex ideas into impactful, user-friendly solutions."

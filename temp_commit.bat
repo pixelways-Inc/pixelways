@@ -1,3 +1,3 @@
 git add .
-git commit -m "FEAT: Add Hans Ade to team and include GitHub handle"
+git commit -m "FIX: Correct Hans Ade's position to Co-Founder"
 git push
