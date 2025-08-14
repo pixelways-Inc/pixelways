@@ -25,7 +25,7 @@ const teamMembers = [
       facebook: "https://web.facebook.com/etienne.ayuk.ayuk.ndip",
       twitter: "#",
       instagram: "https://www.instagram.com/etienne.ayuk.ayuk.ndip",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/ayuk-ayuk-etienne-ndip-51b808a4",
       youtube: "#"
     },
     qualifications: [

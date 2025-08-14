@@ -5,7 +5,7 @@
 **Summary of Changes:**
 
 -   **`data/teamMembers.js`:** Created a new JavaScript file to store structured data for team members, including bio, contact information, social links, qualifications, and skills. Initialized with data for Etienne Ayuk Ayuk Ndip.
-    -   **Updated:** Added correct Facebook and Instagram handles for Etienne Ayuk Ayuk Ndip.
+    -   **Updated:** Added correct Facebook, Instagram, and LinkedIn handles for Etienne Ayuk Ayuk Ndip.
 -   **`components/Team.js`:**
     -   Modified to import team member data from `data/teamMembers.js`.
     -   **Corrected:** Replaced *all* hardcoded dummy team member entries with a dynamic mapping of `teamMembers` data.
