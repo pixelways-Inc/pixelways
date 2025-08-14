@@ -1,3 +1,3 @@
 git add .
-git commit -m "FEAT: Implement dynamic team section and member pages"
+git commit -m "FIX: Ensure all dummy team members are removed from Team.js"
 git push
