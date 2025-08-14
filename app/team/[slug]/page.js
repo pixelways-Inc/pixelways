@@ -38,81 +38,42 @@ const TeamDetails = ({ params }) => {
                 <h3>{member.name}</h3>
                 <p>{member.position}</p>
                 <hr className="mt-35 mb-40" />
-                <div className="team-social">
-                  <h4 style={{ color: '#FC5546', marginBottom: '20px' }}>Follow Us</h4>
-                  <div className="social-links" style={{ display: 'flex', gap: '15px' }}>
-                    <a 
-                      href="https://facebook.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      style={{ 
-                        color: '#FC5546', 
-                        fontSize: '20px', 
-                        textDecoration: 'none'
-                      }}
-                    >
-                      <i className="fab fa-facebook-f"></i>
-                    </a>
-                    <a 
-                      href="https://twitter.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      style={{ 
-                        color: '#FC5546', 
-                        fontSize: '20px', 
-                        textDecoration: 'none'
-                      }}
-                    >
-                      <i className="fab fa-twitter"></i>
-                    </a>
-                    <a 
-                      href="https://linkedin.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      style={{ 
-                        color: '#FC5546', 
-                        fontSize: '20px', 
-                        textDecoration: 'none'
-                      }}
-                    >
-                      <i className="fab fa-linkedin-in"></i>
-                    </a>
-                    <a 
-                      href="https://instagram.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      style={{ 
-                        color: '#FC5546', 
-                        fontSize: '20px', 
-                        textDecoration: 'none'
-                      }}
-                    >
-                      <i className="fab fa-instagram"></i>
-                    </a>
+                <div className="team-contact-info">
+                  <h5 className="title" style={{ color: '#FC5546' }}>Connect With Us</h5>
+                  <div className="team-info-item">
+                    <span style={{ color: '#ffffff' }}>Email Address</span>
+                    <a style={{ color: '#FF69B4', textDecoration: 'none' }} href={`mailto:${member.contact.email}`}>{member.contact.email}</a>
+                  </div>
+                  <div className="team-info-item">
+                    <span style={{ color: '#ffffff' }}>Need a Call</span>
+                    <a style={{ color: '#FF69B4', textDecoration: 'none' }} href={`tel:${member.contact.phone1}`}>{member.contact.phone1}</a> / <a style={{ color: '#FF69B4', textDecoration: 'none' }} href={`tel:${member.contact.phone2}`}>{member.contact.phone2}</a>
+                  </div>
+                  <div className="team-info-item">
+                    <span style={{ color: '#ffffff' }}>Location</span>
+                    <p style={{ color: '#ffffff' }}>{member.contact.location}</p>
+                  </div>
                 </div>
-                <div className="team-contact">
-                  <h4 style={{ color: '#FC5546', marginBottom: '20px' }}>Connect With Us</h4>
-                  <div className="team-info-item">
-                    <p style={{ color: '#FF69B4', margin: '5px 0' }}>Email:</p>
-                    <a 
-                      href="mailto:contact@pixelways.io" 
-                      style={{ color: '#FC5546', textDecoration: 'none' }}
-                    >
-                      contact@pixelways.io
+                <hr className="my-40" />
+                <div className="team-contact-info social-icons">
+                  <h5 className="title" style={{ color: '#FC5546' }}>Follow Us</h5>
+                  <div className="social-style-six">
+                    <a style={{ color: '#FC5546' }} href={member.social.facebook}>
+                      <i className="fab fa-facebook-f" />
                     </a>
-                  </div>
-                  <div className="team-info-item">
-                    <p style={{ color: '#FF69B4', margin: '5px 0' }}>Phone:</p>
-                    <a 
-                      href="tel:+1234567890" 
-                      style={{ color: '#FC5546', textDecoration: 'none' }}
-                    >
-                      +1 (234) 567-890
+                    <a style={{ color: '#FC5546' }} href={member.social.twitter}>
+                      <i className="fab fa-twitter" />
                     </a>
-                  </div>
-                  <div className="team-info-item">
-                    <p style={{ color: '#FF69B4', margin: '5px 0' }}>Office:</p>
-                    <p style={{ color: '#FF69B4', margin: '5px 0' }}>123 Tech Street, Digital City</p>
+                    <a style={{ color: '#FC5546' }} href={member.social.linkedin}>
+                      <i className="fab fa-linkedin-in" />
+                    </a>
+                    <a style={{ color: '#FC5546' }} href={member.social.youtube}>
+                      <i className="fab fa-youtube" />
+                    </a>
+                    {member.social.github && (
+                      <a style={{ color: '#FC5546' }} href={member.social.github}>
+                        <i className="fab fa-github" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -176,7 +137,7 @@ const TeamDetails = ({ params }) => {
               </div>
             </div>
           </div>
-        </div></div>
+        </div>
       </section>
     </TekprofLayout>
   );
