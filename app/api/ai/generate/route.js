@@ -1,10 +1,10 @@
-import { openaiCompatible } from '@ai-sdk/openai-compatible';
+import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
 import { generateObject } from 'ai';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 // Configure Mistral AI (Codestral) using OpenAI-compatible provider
-const mistral = openaiCompatible({
+const mistral = createOpenAICompatible({
   name: 'mistral',
   apiKey: 'Vtgwkhm6Tzj12tWhaemsNvHhteto826z',
   baseURL: 'https://codestral.mistral.ai/v1',
