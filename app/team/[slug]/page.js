@@ -42,35 +42,35 @@ const TeamDetails = ({ params }) => {
                   <h5 className="title">Connect With Us</h5>
                   <div className="team-info-item">
                     <span>Email Address</span>
-                    <a href={`mailto:${member.contact.email}`}>{member.contact.email}</a>
+                    <a className="team-info-item" href={`mailto:${member.contact.email}`}>{member.contact.email}</a>
                   </div>
                   <div className="team-info-item">
                     <span>Need a Call</span>
-                    <a href={`tel:${member.contact.phone1}`}>{member.contact.phone1}</a> / <a href={`tel:${member.contact.phone2}`}>{member.contact.phone2}</a>
+                    <a className="team-info-item" href={`tel:${member.contact.phone1}`}>{member.contact.phone1}</a> / <a className="team-info-item" href={`tel:${member.contact.phone2}`}>{member.contact.phone2}</a>
                   </div>
                   <div className="team-info-item">
-                    <span>Location</span>
-                    <p>{member.contact.location}</p>
+                    <span >Location</span>
+                    <p className="team-info-item">{member.contact.location}</p>
                   </div>
                 </div>
                 <hr className="my-40" />
                 <div className="team-contact-info social-icons">
                   <h5 className="title">Follow Us</h5>
                   <div className="social-style-six">
-                    <a href={member.social.facebook}>
+                    <a className="title" href={member.social.facebook}>
                       <i className="fab fa-facebook-f" />
                     </a>
-                    <a href={member.social.twitter}>
+                    <a className="title" href={member.social.twitter}>
                       <i className="fab fa-twitter" />
                     </a>
-                    <a href={member.social.linkedin}>
+                    <a className="title" href={member.social.linkedin}>
                       <i className="fab fa-linkedin-in" />
                     </a>
-                    <a href={member.social.youtube}>
+                    <a className="title" href={member.social.youtube}>
                       <i className="fab fa-youtube" />
                     </a>
                     {member.social.github && (
-                      <a href={member.social.github}>
+                      <a className="title" href={member.social.github}>
                         <i className="fab fa-github" />
                       </a>
                     )}
