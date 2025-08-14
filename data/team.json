@@ -16,9 +16,9 @@
       "Bilingual in English and French"
     ],
     "contact": {
-      "email": "hello@pixelways.co",
-      "phone1": "+237 679 719 353",
-      "phone2": "+1 (416) 407-1923",
+      "email": "ayukndipetienneayuk@gmail.com",
+      "phone1": "+1 (416) 407-1923",
+      "phone2": "",
       "location": "4030 Sheppard Ave E, Scarborough, ON, Canada"
     },
     "social": {
@@ -60,12 +60,19 @@
     "bio": [
       "Anye Happiness Ade is a highly skilled Software Engineer & AI Developer with expertise in designing, developing, and deploying innovative digital solutions. Ade demonstrates strong proficiency in full-stack development, artificial intelligence integration, and modern software engineering practices. Known for exceptional problem-solving abilities and a results-driven mindset, Ade combines technical acumen with creativity to deliver scalable, high-performance applications. With a passion for emerging technologies and continuous learning, Ade consistently transforms complex ideas into impactful, user-friendly solutions."
     ],
-    "funFacts": [],
+    "funFacts": [
+      "Anye is a tech enthusiast who loves exploring new technologies.",
+      "He enjoys solving complex problems and challenges.",
+      "Anye is passionate about mentoring aspiring developers.",
+      "He is a member of the Google Developers program.",
+      "He is a member of the GitHub Developer Student Club.",
+      "He is a member of the GitHub Developers program."
+    ],
     "contact": {
-      "email": "",
-      "phone1": "",
-      "phone2": "",
-      "location": ""
+      "email": "anyehappiness@gmail.com",
+      "phone1": "(+237) 67971-9353",
+      "phone2": "(+237) 65397-4914",
+      "location": "Bonaberi ,Douala, Cameroon"
     },
     "social": {
       "facebook": "https://facebook.com/anye.happyness/",
@@ -109,10 +116,10 @@
     ],
     "funFacts": [],
     "contact": {
-      "email": "",
-      "phone1": "",
+      "email": "elvisfolefac12@gmail.com",
+      "phone1": "+1 (647) 549-6706",
       "phone2": "",
-      "location": ""
+      "location": "Brampton, ON, Canada"
     },
     "social": {
       "facebook": "https://facebook.com/elvis.nquenya",
