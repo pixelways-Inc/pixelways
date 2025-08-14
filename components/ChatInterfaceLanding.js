@@ -1,47 +1,162 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import TextareaAutosize from 'react-textarea-autosize';
-import { Plus, Wrench, ChevronDown } from 'lucide-react';
+import { Send, Loader } from 'lucide-react';
 
 const ChatInterfaceLanding = () => {
+  const [prompt, setPrompt] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [projectType, setProjectType] = useState('static');
+  const router = useRouter();
+
+  const handleGenerate = async () => {
+    if (!prompt.trim() || isGenerating) return;
+
+    setIsGenerating(true);
+    
+    try {
+      const response = await fetch('/api/ai/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: prompt.trim(),
+          projectType: projectType
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (data.success && data.website) {
+        // Store the generated website data in sessionStorage
+        sessionStorage.setItem('generatedWebsite', JSON.stringify(data.website));
+        
+        // Navigate to workspace with the generated content
+        router.push('/workspace?generated=true');
+      } else {
+        console.error('Failed to generate website:', data.error);
+        alert('Failed to generate website. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error generating website:', error);
+      alert('Error generating website. Please try again.');
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+const handleKeyPress = (e) => {
+  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+    e.preventDefault();
+    handleGenerate();
+  }
+};
+
   return (
-    <div className="relative bg-gradient-to-br from-[#1e1e3f] to-[#2d2d5a] border border-[#4338ca] rounded-xl p-8 mb-8 overflow-hidden w-full max-w-3xl"> {/* container */}
-      {/* Background Effect */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle at 30% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
-        }}
-      ></div>
+    <div className="w-full max-w-4xl mx-auto px-4"> {/* container */}
+      {/* Main Heading */}
+      <div className="text-center mb-12">
+        <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 leading-tight">
+          What can I help you build?
+        </h1>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          Describe your project and I'll generate a complete website for you using AI.
+        </p>
+      </div>
 
-      <div className="relative z-10"> {/* inputSection */}
-        <label htmlFor="chat-input" className="block text-lg font-medium text-gray-200 mb-6"> {/* label */}
-          Tell the MGX team what you want to do
-        </label>
-
-        <div className="relative mb-6"> {/* inputContainer */}
+      {/* Chat Input Section */}
+      <div className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md focus-within:border-gray-300 focus-within:shadow-md transition-all duration-200 p-6 mb-8 max-w-3xl mx-auto"> {/* inputSection */}
+        <div className="relative"> {/* inputContainer */}
           <TextareaAutosize
             id="chat-input"
-            minRows={4}
-            placeholder="Describe your project, ask questions, or request help..."
-            className="w-full bg-[rgba(17,24,39,0.6)] border border-[#374151] rounded-lg p-4 text-base text-white placeholder-gray-500 resize-y backdrop-blur-md transition-all duration-200 focus:outline-none focus:border-[#4f46e5] focus:ring-1 focus:ring-[#4f46e5]" // textarea
+            minRows={3}
+            maxRows={6}
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            onKeyDown={handleKeyPress}
+            placeholder="Ask AI to build..."
+            className="w-full bg-transparent border-none text-lg text-gray-900 placeholder-gray-500 resize-none focus:outline-none leading-relaxed" // textarea
+            disabled={isGenerating}
           />
-          <button className="absolute bottom-4 left-4 bg-transparent border-none text-gray-400 cursor-pointer p-1 rounded-md hover:bg-[rgba(156,163,175,0.1)]"> {/* addButton */}
-            <Plus size={20} />
-          </button>
+          
+          {/* Bottom Actions */}
+          <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+            <div className="flex items-center gap-3">
+              {/* Agent Tag */}
+              <div className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-3 py-1 text-sm font-medium text-gray-700"> {/* engineerTag */}
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                Agent
+              </div>
+              
+              {/* Project Type Selector */}
+              <select 
+                value={projectType}
+                onChange={(e) => setProjectType(e.target.value)}
+                className="bg-transparent border-none text-sm text-gray-600 cursor-pointer focus:outline-none"
+                disabled={isGenerating}
+              >
+                <option value="static">Static Site</option>
+                <option value="react-vite">React App</option>
+              </select>
+            </div>
+
+            {/* Send Button */}
+            <button 
+              onClick={handleGenerate}
+              disabled={!prompt.trim() || isGenerating}
+              className="inline-flex items-center justify-center w-8 h-8 bg-gray-900 text-white rounded-full hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+            >
+              {isGenerating ? <Loader size={16} className="animate-spin" /> : <Send size={16} />}
+            </button>
+          </div>
         </div>
+      </div>
 
-        <div className="flex justify-between items-center">
-          <div className="inline-flex items-center gap-2 bg-[rgba(79,70,229,0.2)] border border-[#4f46e5] rounded-full px-4 py-2 text-sm font-medium text-[#a5b4fc]"> {/* engineerTag */}
-            <Wrench size={16} />
-            Engineer
-          </div>
-
-          <div className="flex items-center gap-2 bg-[rgba(17,24,39,0.8)] border border-[#374151] rounded-md px-4 py-2 text-sm text-gray-400 backdrop-blur-md cursor-pointer"> {/* modelSelector */}
-            <span>Model: GPT-4o</span>
-            <ChevronDown size={16} />
-          </div>
+      {/* Quick Action Buttons */}
+      <div className="max-w-3xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <button 
+            onClick={() => setPrompt("Create a beautiful landing page for my startup")}
+            className="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 hover:shadow-sm transition-all duration-200 text-left group"
+          >
+            <div className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center group-hover:bg-gray-200 transition-colors">
+              �
+            </div>
+            <span className="text-sm font-medium text-gray-900">Landing Page</span>
+          </button>
+          
+          <button 
+            onClick={() => setPrompt("Build a modern portfolio website")}
+            className="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 hover:shadow-sm transition-all duration-200 text-left group"
+          >
+            <div className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center group-hover:bg-gray-200 transition-colors">
+              🎨
+            </div>
+            <span className="text-sm font-medium text-gray-900">Portfolio</span>
+          </button>
+          
+          <button 
+            onClick={() => setPrompt("Create a business website with contact forms")}
+            className="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 hover:shadow-sm transition-all duration-200 text-left group"
+          >
+            <div className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center group-hover:bg-gray-200 transition-colors">
+              💼
+            </div>
+            <span className="text-sm font-medium text-gray-900">Business</span>
+          </button>
+          
+          <button 
+            onClick={() => setPrompt("Build a blog website with modern design")}
+            className="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 hover:shadow-sm transition-all duration-200 text-left group"
+          >
+            <div className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center group-hover:bg-gray-200 transition-colors">
+              📝
+            </div>
+            <span className="text-sm font-medium text-gray-900">Blog</span>
+          </button>
         </div>
       </div>
     </div>

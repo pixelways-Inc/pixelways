@@ -1,12 +1,12 @@
 "use client";
 
 import React from 'react';
-import { Globe, PresentationChart, FileText, BookOpen, BarChart3, Link, CreditCard, FolderOpen } from 'lucide-react';
+import { Globe, Presentation, FileText, BookOpen, BarChart3, Link, CreditCard, FolderOpen } from 'lucide-react';
 
 const ActionButtons = () => {
   const buttons = [
     { icon: Globe, text: "Web", category: "primary" },
-    { icon: PresentationChart, text: "Slidev", category: "primary" },
+    { icon: Presentation, text: "Slidev", category: "primary" },
     { icon: FileText, text: "Doc", category: "primary" },
     { icon: BookOpen, text: "Blog", category: "primary" },
     { icon: BarChart3, text: "Dashboard", category: "primary" },
