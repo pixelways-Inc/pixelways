@@ -302,7 +302,7 @@ const Footer1 = () => {
             <div className="col-lg-6">
               <div className="copyright-text">
                 <p>
-                  Made with ❤️ by Hans Ade FT Pixelways Team
+                  Made with ❤️ by <Link href="/team-details/hans-ade" className="text-decoration-none">Hans Ade</Link> FT Pixelways Team
                 </p>
               </div>
             </div>
@@ -588,7 +588,7 @@ const Footer2 = () => {
             <div className="col-lg-6">
               <div className="copyright-text">
                 <p>
-                  Made with ❤️ by Hans Ade FT Pixelways Team
+                  Made with ❤️ by <Link href="/team-details/hans-ade" className="text-decoration-none">Hans Ade</Link> FT Pixelways Team
                 </p>
               </div>
             </div>
@@ -834,7 +834,7 @@ const Footer3 = () => {
             <div className="col-lg-6">
               <div className="copyright-text">
                 <p>
-                  Made with ❤️ by Hans Ade FT Pixelways Team
+                  Made with ❤️ by <Link href="/team-details/hans-ade" className="text-decoration-none">Hans Ade</Link> FT Pixelways Team
                 </p>
               </div>
             </div>
@@ -1042,7 +1042,7 @@ const Footer4 = () => {
                 data-aos-offset={50}
               >
                 <p>
-                  Made with ❤️ by Hans Ade FT Pixelways Team
+                  Made with ❤️ by <Link href="/team-details/hans-ade" className="text-decoration-none">Hans Ade</Link> FT Pixelways Team
                 </p>
               </div>
             </div>
@@ -1229,7 +1229,7 @@ const Footer5 = () => {
             <div className="col-md-9 text-center text-lg-end">
               <div className="copyright-text text-center text-md-end">
                 <p>
-                  Made with ❤️ by Hans Ade FT Pixelways Team
+                  Made with ❤️ by <Link href="/team-details/hans-ade" className="text-decoration-none">Hans Ade</Link> FT Pixelways Team
                 </p>
               </div>
             </div>
@@ -1532,7 +1532,7 @@ const Footer6 = () => {
             </div>
             <div className="col-lg-4">
               <div className="copyright-text text-lg-end wow fadeInLeft delay-0-2s">
-                <p>Made with ❤️ by Hans Ade FT Pixelways Team</p>
+                <p>Made with ❤️ by <Link href="/team-details/hans-ade" className="text-decoration-none">Hans Ade</Link> FT Pixelways Team</p>
               </div>
             </div>
           </div>

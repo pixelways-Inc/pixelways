@@ -69,11 +69,10 @@ const HostingPage = () => {
                                 </div>
 
                                 {/* Main Heading */}
-                                <h1 className="mb-25">
-                                    Welcome to <span className="color-primary">Pixelways Host</span>
-                                </h1>
-                                
-                                <div className="subtitle-container mb-40">
+                                <h3 className="mb-25">
+                                    Welcome to <span className="color-primary">Pixelways Solutions Web hosting</span>
+                                </h3>
+                                                                <div className="subtitle-container mb-40">
                                     <span className="subtitle-one">
                                         <i className="fas fa-server" /> Professional Web Hosting Solutions
                                     </span>
