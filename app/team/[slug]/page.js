@@ -38,44 +38,71 @@ const TeamDetails = ({ params }) => {
                 <h3>{member.name}</h3>
                 <p>{member.position}</p>
                 <hr className="mt-35 mb-40" />
-                <div className="team-contact-info">
-                  <h5 className="title">Connect With Us</h5>
-                  <div className="team-info-item">
-                    <span>Email Address</span>
-                    <a className="team-info-item" href={`mailto:${member.contact.email}`}>{member.contact.email}</a>
-                  </div>
-                  <div className="team-info-item">
-                    <span>Need a Call</span>
-                    <a className="team-info-item" href={`tel:${member.contact.phone1}`}>{member.contact.phone1}</a> / <a className="team-info-item" href={`tel:${member.contact.phone2}`}>{member.contact.phone2}</a>
-                  </div>
-                  <div className="team-info-item">
-                    <span >Location</span>
-                    <p className="team-info-item">{member.contact.location}</p>
-                  </div>
-                </div>
-                <hr className="my-40" />
-                <div className="team-contact-info social-icons">
-                  <h5 className="title">Follow Us</h5>
-                  <div className="social-style-six">
-                    <a className="title" href={member.social.facebook}>
-                      <i className="fab fa-facebook-f" />
-                    </a>
-                    <a className="title" href={member.social.twitter}>
-                      <i className="fab fa-twitter" />
-                    </a>
-                    <a className="title" href={member.social.linkedin}>
-                      <i className="fab fa-linkedin-in" />
-                    </a>
-                    <a className="title" href={member.social.youtube}>
-                      <i className="fab fa-youtube" />
-                    </a>
-                    {member.social.github && (
-                      <a className="title" href={member.social.github}>
-                        <i className="fab fa-github" />
+                                                    <div className="team-social">
+                    <h4 style={{ color: '#FC5546', marginBottom: '20px' }}>Follow Us</h4>
+                    <div className="social-links" style={{ display: 'flex', gap: '15px' }}>
+                      <a 
+                        href="https://facebook.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{ 
+                          color: '#FC5546', 
+                          fontSize: '20px', 
+                          transition: 'transform 0.3s ease',
+                          textDecoration: 'none'
+                        }}
+                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
+                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                      >
+                        <i className="fab fa-facebook-f"></i>
                       </a>
-                    )}
+                      <a 
+                        href="https://twitter.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{ 
+                          color: '#FC5546', 
+                          fontSize: '20px', 
+                          transition: 'transform 0.3s ease',
+                          textDecoration: 'none'
+                        }}
+                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
+                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                      >
+                        <i className="fab fa-twitter"></i>
+                      </a>
+                      <a 
+                        href="https://linkedin.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{ 
+                          color: '#FC5546', 
+                          fontSize: '20px', 
+                          transition: 'transform 0.3s ease',
+                          textDecoration: 'none'
+                        }}
+                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
+                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                      >
+                        <i className="fab fa-linkedin-in"></i>
+                      </a>
+                      <a 
+                        href="https://instagram.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{ 
+                          color: '#FC5546', 
+                          fontSize: '20px', 
+                          transition: 'transform 0.3s ease',
+                          textDecoration: 'none'
+                        }}
+                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
+                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                      >
+                        <i className="fab fa-instagram"></i>
+                      </a>
+                    </div>
                   </div>
-                </div>
               </div>
             </div>
             <div className="col-lg-8">
