@@ -1,9 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const PDFViewer = ({ pdfUrl, memberName }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -17,12 +29,14 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
         style={{
           backgroundColor: '#FC5546',
           border: 'none',
-          padding: '10px 20px',
+          padding: isMobile ? '8px 16px' : '10px 20px',
           borderRadius: '5px',
           color: 'white',
           textDecoration: 'none',
           display: 'inline-block',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          fontSize: isMobile ? '14px' : '16px',
+          width: isMobile ? '100%' : 'auto'
         }}
       >
         <i className="fas fa-file-pdf" style={{ marginRight: '8px' }}></i>
@@ -52,8 +66,10 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
             style={{
               backgroundColor: 'white',
               borderRadius: '10px',
-              padding: '20px',
-              maxWidth: '90vw',
+              padding: isMobile ? '15px' : '20px',
+              width: isMobile ? '95vw' : '85vw',
+              maxWidth: isMobile ? 'none' : '1200px',
+              height: isMobile ? '90vh' : '85vh',
               maxHeight: '90vh',
               overflow: 'hidden',
               position: 'relative'
@@ -66,15 +82,22 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                marginBottom: '20px',
+                marginBottom: isMobile ? '15px' : '20px',
                 borderBottom: '1px solid #eee',
-                paddingBottom: '15px'
+                paddingBottom: isMobile ? '10px' : '15px',
+                flexWrap: 'wrap',
+                gap: '10px'
               }}
             >
-              <h3 style={{ margin: 0, color: '#333' }}>
+              <h3 style={{ 
+                margin: 0, 
+                color: '#333', 
+                fontSize: isMobile ? '18px' : '22px',
+                flex: '1 1 auto'
+              }}>
                 {memberName}'s CV
               </h3>
-              <div style={{ display: 'flex', gap: '10px' }}>
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                 {/* Download Button */}
                 <a
                   href={pdfUrl}
@@ -82,14 +105,14 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
                   style={{
                     backgroundColor: '#28a745',
                     color: 'white',
-                    padding: '8px 15px',
+                    padding: isMobile ? '6px 12px' : '8px 15px',
                     borderRadius: '5px',
                     textDecoration: 'none',
-                    fontSize: '14px'
+                    fontSize: isMobile ? '12px' : '14px'
                   }}
                 >
                   <i className="fas fa-download" style={{ marginRight: '5px' }}></i>
-                  Download
+                  {isMobile ? 'Download' : 'Download'}
                 </a>
                 {/* Close Button */}
                 <button
@@ -98,10 +121,10 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
                     backgroundColor: '#dc3545',
                     color: 'white',
                     border: 'none',
-                    padding: '8px 15px',
+                    padding: isMobile ? '6px 12px' : '8px 15px',
                     borderRadius: '5px',
                     cursor: 'pointer',
-                    fontSize: '14px'
+                    fontSize: isMobile ? '12px' : '14px'
                   }}
                 >
                   <i className="fas fa-times" style={{ marginRight: '5px' }}></i>
@@ -113,10 +136,8 @@ const PDFViewer = ({ pdfUrl, memberName }) => {
             {/* PDF Embed */}
             <div 
               style={{
-                width: '80vw',
-                height: '75vh',
-                maxWidth: '95vw',
-                maxHeight: '80vh',
+                width: '100%',
+                height: isMobile ? '65vh' : '70vh',
                 border: '1px solid #ddd',
                 borderRadius: '5px',
                 overflow: 'hidden'
