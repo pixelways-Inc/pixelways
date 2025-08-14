@@ -58,8 +58,11 @@
     "position": "Co-Founder & Software Engineer & AI Developer",
     "image": "/team/hans.png",
     "bio": [
-      "Anye Happiness Ade is a highly skilled Software Engineer & AI Developer with expertise in designing, developing, and deploying innovative digital solutions. Ade demonstrates strong proficiency in full-stack development, artificial intelligence integration, and modern software engineering practices. Known for exceptional problem-solving abilities and a results-driven mindset, Ade combines technical acumen with creativity to deliver scalable, high-performance applications. With a passion for emerging technologies and continuous learning, Ade consistently transforms complex ideas into impactful, user-friendly solutions."
-    ],
+    "Anye Happiness Ade is a highly skilled Software Engineer & AI Developer with a Bachelor's Degree in Software Engineering from SwissLink Higher Institute of Business and Technology and Atlantic International University, currently pursuing a Master's in Science and Engineering at Stanford University online (2023-present) with a focus on machine learning, natural language processing, and computer vision.",
+    "Ade demonstrates strong proficiency in full-stack development, artificial intelligence integration, and modern software engineering practices. Known for exceptional problem-solving abilities and a results-driven mindset, Ade combines technical acumen with creativity to deliver scalable, high-performance applications.",
+    "With a passion for emerging technologies and continuous learning, Ade consistently transforms complex ideas into impactful, user-friendly solutions, leveraging advanced AI techniques and cutting-edge research in machine learning and computer vision."
+    ]
+    ,
     "funFacts": [
       "Anye is a tech enthusiast who loves exploring new technologies.",
       "He enjoys solving complex problems and challenges.",
@@ -74,6 +77,7 @@
       "phone2": "(+237) 65397-4914",
       "location": "Bonaberi ,Douala, Cameroon"
     },
+    "cv": "/anyecv.pdf",
     "social": {
       "facebook": "https://facebook.com/anye.happyness/",
       "twitter": "https://twitter.com/HansCadx",
