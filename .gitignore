@@ -2,3 +2,16 @@ node_modules
 .next
 out
 package-lock.json
+
+# Gemini-related temporary files
+geministart.bat
+plan.md
+projectpixelai.txt
+
+# Design files (not part of the deployed application)
+mgx_ui_design.json
+mgx_workspace_ui_design.json
+pixelaidesignmodeui.png
+pixelaidonepreviewshowsui.png
+pixelailandingpageui.png
+pixelaiworkspaceui.png
