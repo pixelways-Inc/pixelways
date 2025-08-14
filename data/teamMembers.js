@@ -1,0 +1,56 @@
+const teamMembers = [
+  {
+    id: "etienne-ayuk-ayuk-ndip",
+    name: "Etienne Ayuk Ayuk Ndip",
+    position: "Founder & CEO, Pixelways Solutions Inc.",
+    image: "/team/etienne.jpg",
+    bio: [
+      "Etienne Ayuk Ayuk Ndip is a dynamic technology leader and cybersecurity specialist whose diverse career spans IT administration, operations, and strategic management across multiple industries. A graduate of St. Joseph’s College Sasse, Buea, where he completed his secondary and high school education, Etienne’s passion for technology and innovation was further shaped during his tenure at SWECOM PLC, where he gained hands-on experience in ICT operations, product development, and business growth strategies.",
+      "Etienne holds a BSc in Management from the University of Buea, a Master’s in Administration and Business Management from the University of Yaoundé II, and a Cybersecurity Specialist Diploma from CDI College in Toronto. He is committed to continuous professional development and is actively pursuing industry-recognized certifications to remain at the forefront of the cybersecurity field.",
+      "His career journey includes impactful roles with organizations such as United Steelworkers where he currently works as Administrative Support Staff, Georgetown University, Dallas International Ltd., and SWECOM PLC, where he consistently delivered operational improvements, security enhancements, and strategic initiatives.",
+      "Today, as the Founder & CEO of Pixelways Solutions Inc., Etienne leverages his cross-disciplinary expertise, leadership skills, and entrepreneurial spirit to drive innovative digital solutions, empowering businesses to achieve efficiency, security, and sustainable growth."
+    ],
+    funFacts: [
+      "Etienne plays soccer",
+      "Was the Clubs prefect in St Joseph’s College Sasse",
+      "Bilingual in English and French"
+    ],
+    contact: {
+      email: "hello@pixelways.co",
+      phone1: "+237 679 719 353",
+      phone2: "+1 (416) 407-1923",
+      location: "4030 Sheppard Ave E, Scarborough, ON, Canada"
+    },
+    social: {
+      facebook: "#",
+      twitter: "#",
+      linkedin: "#",
+      youtube: "#"
+    },
+    qualifications: [
+      {
+        number: 1,
+        title: "Technology Landscape Analysis & Strategic Planning",
+        description: "We provide in-depth analysis of the current technology landscape and competitor strategies to identify opportunities and develop robust IT roadmaps."
+      },
+      {
+        number: 2,
+        title: "Digital Solution Architecture & Design",
+        description: "Our experts design scalable and secure digital architectures, ensuring your solutions are built on a strong foundation for future growth."
+      },
+      {
+        number: 3,
+        title: "Implementation & Optimization of Digital Solutions",
+        description: "We specialize in the seamless implementation of new technologies and continuous optimization to ensure maximum performance and ROI."
+      }
+    ],
+    skills: [
+      { name: "IT Consulting", percent: 89 },
+      { name: "Software Development", percent: 67 },
+      { name: "UI/UX Design", percent: 83 },
+      { name: "Cybersecurity", percent: 70 }
+    ]
+  }
+];
+
+export default teamMembers;

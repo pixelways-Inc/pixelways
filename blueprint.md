@@ -1,29 +1,18 @@
-## Add 'new-badge' Class to Client Intake Link in Footers (August 13, 2025)
+## Team Section and Dynamic Team Slug Page Implementation (August 14, 2025)
 
-**Objective:** Apply a specific CSS class to the 'Client Intake' link in all footer components for styling purposes.
-
-**Summary of Changes:**
-
--   **`layout/Footer.js`:** Added `className="new-badge"` to the `<li>` element wrapping the 'Client Intake' link in all `Footer` components (Footer1, Footer3, Footer4, and Footer6) to ensure consistent styling as requested.
-
-## Client Intake Form Enhancements (August 13, 2025)
-
-**Objective:** Enhance the client intake form (`app/client-intake/page.js`) to provide more flexible input options for project type, business type, preferred colors, and to improve the phone number input with country code and auto-detection.
+**Objective:** Refactor the team section to use a centralized data source, remove dummy data, and implement dynamic team member pages with detailed profiles.
 
 **Summary of Changes:**
 
--   **`app/client-intake/page.js`:**
-    -   Implemented multi-select dropdowns for 'Project Type', 'Business Type', and 'Preferred Colors'.
-    -   Added conditional input fields for 'Other' options, allowing users to manually specify types or colors not listed in the dropdowns.
-    -   Integrated the `react-phone-number-input` library for the 'Phone Number' field, providing country code selection and auto-detection capabilities.
-    -   Updated state management (`useState`) and form handling logic (`handleChange`, `handleSubmit`) to accommodate the new input types and their associated data.
-    -   Modified data submission to map 'Business Type' to the 'industry' column in the database for schema compatibility.
-    -   Adjusted `PhoneInput` component by removing `className="form-control"` and adding a dynamic `country` prop to improve country flag and code display.
-
-## FIX: Client Intake Form Phone Number Update (August 13, 2025)
-
-**Objective:** Correct the state update logic for the phone number input in the client intake form to prevent incorrect data submission to Supabase.
-
-**Summary of Changes:**
-
--   **`app/client-intake/page.js`:** Modified the `onChange` handler for the `PhoneInput` component to correctly spread the `formData` object, ensuring that the `phone_number` field is updated without corrupting the state with numeric keys.
+-   **`data/teamMembers.js`:** Created a new JavaScript file to store structured data for team members, including bio, contact information, social links, qualifications, and skills. Initialized with data for Etienne Ayuk Ayuk Ndip.
+-   **`components/Team.js`:**
+    -   Modified to import team member data from `data/teamMembers.js`.
+    -   Replaced hardcoded dummy team member entries with a dynamic mapping of `teamMembers` data.
+    -   Updated `Link` components to point to dynamic team slug pages (e.g., `/team/[slug]`) instead of a generic `team-details` page.
+    -   Ensured only the team member's name and position are displayed on the main team card.
+-   **`app/team/[slug]/page.js`:**
+    -   Created a new dynamic route page to display individual team member profiles.
+    -   Copied and adapted the layout and styling from `app/team-details/page.js`.
+    -   Implemented logic to fetch specific team member data based on the `slug` parameter.
+    -   Populated the page with detailed information from `teamMembers.js`, including bio, contact details, social links, qualifications, and skill progress bars.
+    -   Configured to use `public/team/etienne.jpg` for Etienne's profile picture and the image API for other generic images.

@@ -2,6 +2,7 @@
 import { sliderProps } from "@/utility/sliderProps";
 import Link from "next/link";
 import Slider from "react-slick";
+import teamMembers from "@/data/teamMembers";
 
 const Team = () => {
   return (

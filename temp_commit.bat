@@ -1,1 +1,3 @@
-git commit -m "CHORE: Clean up temp_commit.bat"
+git add .
+git commit -m "FEAT: Implement dynamic team section and member pages"
+git push
