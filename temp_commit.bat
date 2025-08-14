@@ -1,3 +1,3 @@
 git add .
-git commit -m "FIX: Ensure all dummy team members are removed from Team.js"
+git commit -m "FEAT: Update Etienne Ayuk Ayuk Ndip's social media handles"
 git push

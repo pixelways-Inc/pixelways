@@ -22,8 +22,9 @@ const teamMembers = [
       location: "4030 Sheppard Ave E, Scarborough, ON, Canada"
     },
     social: {
-      facebook: "#",
+      facebook: "https://web.facebook.com/etienne.ayuk.ayuk.ndip",
       twitter: "#",
+      instagram: "https://www.instagram.com/etienne.ayuk.ayuk.ndip",
       linkedin: "#",
       youtube: "#"
     },
