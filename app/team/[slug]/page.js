@@ -1,7 +1,6 @@
 import PageBanner from "@/components/PageBanner";
 import TekprofLayout from "@/layout/TekprofLayout";
 import allTeamMembers from "@/data/team.json";
-import PDFViewer from "@/components/PDFViewer";
 
 export async function generateStaticParams() {
   return allTeamMembers.map((member) => ({
@@ -55,11 +54,31 @@ const TeamDetails = ({ params }) => {
                   </div>
                 </div>
                 
-                {/* CV Section - Only show if member has CV */}
+                {/* CV Download Section - Only show if member has CV */}
                 {member.cv && (
                   <div className="team-cv-section" style={{ marginTop: '20px', marginBottom: '20px' }}>
                     <h5 className="title" style={{ color: '#FC5546', marginBottom: '15px' }}>Professional CV</h5>
-                    <PDFViewer pdfUrl={member.cv} memberName={member.name} />
+                    <a 
+                      href={member.cv}
+                      download
+                      style={{
+                        display: 'inline-block',
+                        backgroundColor: '#FC5546',
+                        color: '#ffffff',
+                        padding: '12px 24px',
+                        borderRadius: '5px',
+                        textDecoration: 'none',
+                        fontSize: '14px',
+                        fontWeight: '600',
+                        transition: 'background-color 0.3s ease',
+                        border: 'none',
+                        cursor: 'pointer'
+                      }}
+                      className="download-cv-btn"
+                    >
+                      <i className="fas fa-download" style={{ marginRight: '8px' }}></i>
+                      Download CV
+                    </a>
                   </div>
                 )}
 
