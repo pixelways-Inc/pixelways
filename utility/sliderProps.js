@@ -7,8 +7,8 @@ function Arrow({ className, extraClass, onClick, icon }) {
 }
 export const sliderProps = {
   teamSlider: {
-    slidesToShow: 4,
-    slidesToScroll: 2,
+    slidesToShow: 3,
+    slidesToScroll: 1,
     infinite: true,
     speed: 400,
     arrows: false,
@@ -16,6 +16,8 @@ export const sliderProps = {
     focusOnSelect: true,
     autoplay: true,
     autoplaySpeed: 5000,
+    vertical: false,
+    verticalSwiping: false,
     responsive: [
       {
         breakpoint: 1200,

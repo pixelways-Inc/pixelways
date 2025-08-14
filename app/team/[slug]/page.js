@@ -1,16 +1,16 @@
 import PageBanner from "@/components/PageBanner";
 import TekprofLayout from "@/layout/TekprofLayout";
-import teamMembers from "@/data/teamMembers";
+import allTeamMembers from "@/data/team.json";
 
 export async function generateStaticParams() {
-  return teamMembers.map((member) => ({
+  return allTeamMembers.map((member) => ({
     slug: member.id,
   }));
 }
 
 const TeamDetails = ({ params }) => {
   const { slug } = params;
-  const member = teamMembers.find((m) => m.id === slug);
+  const member = allTeamMembers.find((m) => m.id === slug);
 
   if (!member) {
     return <div>Team member not found</div>;

@@ -140,7 +140,7 @@ const page = () => {
               <div className="cta-content">
                 <h3 className="mb-4">Meet Our Expert Team</h3>
                 <p className="mb-4">Discover the professionals driving Pixelways Solutions's success. Learn more about our team's expertise and commitment to your business growth.</p>
-                <Team />
+                <Team mode="slide" />
                 <Link href="/team" className="theme-btn btn-large">
                   View Team
                 </Link>

@@ -532,7 +532,7 @@ const page = () => {
               </div>
             </div>
           </div>
-          <Team />
+          <Team mode="slide" standalone={false} />
         </div>
       </section>
       {/* Team Area end */}
