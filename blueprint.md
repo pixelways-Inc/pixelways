@@ -9,6 +9,7 @@
     -   **Added:** New team member, Anye Happiness Ade (Hans Ade), with all provided details, including a GitHub handle.
     -   **Corrected:** Updated Anye Happiness Ade's position to "Co-Founder & Software Engineer & AI Developer".
     -   **Added:** New team member, Elvis Nquenya, with his position and social media handles.
+    -   **Corrected:** Fixed syntax errors in the array structure to ensure all team members are correctly loaded.
 -   **`components/Team.js`:**
     -   Modified to import team member data from `data/teamMembers.js`.
     -   **Corrected:** Replaced *all* hardcoded dummy team member entries with a dynamic mapping of `teamMembers` data.
@@ -22,3 +23,5 @@
     -   Populated the page with detailed information from `teamMembers.js`, including bio, contact details, social links, qualifications, and skill progress bars.
     -   Configured to use `public/team/etienne.jpg` for Etienne's profile picture and the image API for other generic images.
     -   **Updated:** Added conditional rendering for GitHub social media link.
+-   **`app/layout.js`:**
+    -   **Updated:** Added `import "@css/slick-theme.min.css";` to include the necessary theme CSS for `react-slick` to ensure proper horizontal slider layout.

@@ -51,7 +51,6 @@ const teamMembers = [
       { name: "UI/UX Design", percent: 83 },
       { name: "Cybersecurity", percent: 70 }
     ]
-  }
   },
   {
     id: "hans-ade",
@@ -99,8 +98,6 @@ const teamMembers = [
       { name: "Full-Stack Development", percent: 85 },
       { name: "Problem Solving", percent: 92 }
     ]
-  }
-  }
   },
   {
     id: "elvis-nquenya",
