@@ -1,0 +1,85 @@
+name: Preview Build and Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo_name:
+        description: 'Name of the temporary repository'
+        required: true
+      commit_sha:
+        description: 'SHA of the commit to build'
+        required: true
+      project_type:
+        description: 'Type of project (e.g., react-vite, static)'
+        required: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ github.event.inputs.repo_name }}
+        ref: ${{ github.event.inputs.commit_sha }}
+        token: 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
+
+    - name: Setup Node.js (if needed)
+      if: github.event.inputs.project_type == 'react-vite'
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies and build (React + Vite)
+      if: github.event.inputs.project_type == 'react-vite'
+      run: |
+        npm install
+        npm run build
+
+    - name: Upload to Supabase Storage
+      run: |
+        # Install Supabase CLI
+        npm install -g supabase
+
+        # Determine the directory to upload
+        BUILD_DIR="."
+        if [ "${{ github.event.inputs.project_type }}" == "react-vite" ]; then
+          BUILD_DIR="dist"
+        fi
+
+        # Upload to Supabase Storage
+        supabase storage cp --recursive $BUILD_DIR supabase://sites/${{ github.event.inputs.repo_name }}/
+      env:
+        POSTGRES_URL: "postgres://postgres.dlunpilhklsgvkegnnlp:D0UtLOTffNkpDwSY@aws-0-us-east-1.pooler.supabase.com:6543/postgres?sslmode=require&supa=base-pooler.x"
+        POSTGRES_USER: "postgres"
+        POSTGRES_HOST: "db.dlunpilhklsgvkegnnlp.supabase.co"
+        SUPABASE_JWT_SECRET: "mZcBlvGgxbMd0OByt4iNTCFRHBaH4dcUt1QEcWItBvjzu2qQB0crGyoXgDrW5TFm7iJQve6jMoDbuWTgYxPoMw=="
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdW5waWxoa2xzZ3ZrZWdubmxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUwNTA0MTksImV4cCI6MjA3MDYyNjQxOX0.rhLN_bhvH9IWPkyHiohrOQbY9D34RSeSLzURhAyZPds"
+        POSTGRES_PRISMA_URL: "postgres://postgres.dlunpilhklsgvkegnnlp:D0UtLOTffNkpDwSY@aws-0-us-east-1.pooler.supabase.com:6543/postgres?sslmode=require&pgbouncer=true"
+        POSTGRES_PASSWORD: "D0UtLOTffNkpDwSY"
+        POSTGRES_DATABASE: "postgres"
+        SUPABASE_URL: "https://dlunpilhklsgvkegnnlp.supabase.co"
+        NEXT_PUBLIC_SUPABASE_URL: "https://dlunpilhklsgvkegnnlp.supabase.co"
+        SUPABASE_SERVICE_ROLE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdW5waWxoa2xzZ3ZrZWdubmxwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NTA1MDQxOSwiZXhwIjoyMDcwNjI2NDE5fQ.k-2OJ4p3hr9feR4ks54OQM2HhOhaVJ3pUK-20tGJwpo"
+        POSTGRES_URL_NON_POOLING: "postgres://postgres.dlunpilhklsgvkegnnlp:D0UtLOTffNkpDwSY@aws-0-us-east-1.pooler.supabase.com:5432/postgres?sslmode=require"
+
+    - name: Notify Vercel API
+      run: |
+        BUILD_STATUS="success"
+        if ${{ job.status == 'failure' }}; then
+          BUILD_STATUS="failed"
+        fi
+
+        curl -X POST \
+             -H "Content-Type: application/json" \
+             -d "{\"status\": \"${BUILD_STATUS}\", \"site\": \"${{ github.event.inputs.repo_name }}\"}" \
+             https://pixelways.co/api/build-complete # Replace with your actual Vercel app URL
+
+    - name: Cleanup temporary repository
+      if: always() # Ensure cleanup runs even if previous steps fail
+      run: |
+        curl -X DELETE \
+             -H "Authorization: token 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" \
+             -H "Accept: application/vnd.github.v3+json" \
+             "https://api.github.com/repos/${{ github.repository_owner }}/${{ github.event.inputs.repo_name }}"

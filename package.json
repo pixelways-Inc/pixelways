@@ -23,6 +23,7 @@
     "react-nice-select": "^1.0.6",
     "react-phone-number-input": "^3.4.12",
     "react-slick": "^0.30.3",
+    "react-textarea-autosize": "^8.5.9",
     "react-visibility-sensor": "^5.1.1",
     "uuid": "^11.1.0",
     "vercel": "44.7.3"
