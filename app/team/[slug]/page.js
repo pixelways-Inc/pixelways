@@ -38,71 +38,83 @@ const TeamDetails = ({ params }) => {
                 <h3>{member.name}</h3>
                 <p>{member.position}</p>
                 <hr className="mt-35 mb-40" />
-                                                    <div className="team-social">
-                    <h4 style={{ color: '#FC5546', marginBottom: '20px' }}>Follow Us</h4>
-                    <div className="social-links" style={{ display: 'flex', gap: '15px' }}>
-                      <a 
-                        href="https://facebook.com" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        style={{ 
-                          color: '#FC5546', 
-                          fontSize: '20px', 
-                          transition: 'transform 0.3s ease',
-                          textDecoration: 'none'
-                        }}
-                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
-                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </a>
-                      <a 
-                        href="https://twitter.com" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        style={{ 
-                          color: '#FC5546', 
-                          fontSize: '20px', 
-                          transition: 'transform 0.3s ease',
-                          textDecoration: 'none'
-                        }}
-                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
-                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </a>
-                      <a 
-                        href="https://linkedin.com" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        style={{ 
-                          color: '#FC5546', 
-                          fontSize: '20px', 
-                          transition: 'transform 0.3s ease',
-                          textDecoration: 'none'
-                        }}
-                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
-                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                      >
-                        <i className="fab fa-linkedin-in"></i>
-                      </a>
-                      <a 
-                        href="https://instagram.com" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        style={{ 
-                          color: '#FC5546', 
-                          fontSize: '20px', 
-                          transition: 'transform 0.3s ease',
-                          textDecoration: 'none'
-                        }}
-                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
-                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                      >
-                        <i className="fab fa-instagram"></i>
-                      </a>
-                    </div>
+                <div className="team-social">
+                  <h4 style={{ color: '#FC5546', marginBottom: '20px' }}>Follow Us</h4>
+                  <div className="social-links" style={{ display: 'flex', gap: '15px' }}>
+                    <a 
+                      href="https://facebook.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ 
+                        color: '#FC5546', 
+                        fontSize: '20px', 
+                        textDecoration: 'none'
+                      }}
+                    >
+                      <i className="fab fa-facebook-f"></i>
+                    </a>
+                    <a 
+                      href="https://twitter.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ 
+                        color: '#FC5546', 
+                        fontSize: '20px', 
+                        textDecoration: 'none'
+                      }}
+                    >
+                      <i className="fab fa-twitter"></i>
+                    </a>
+                    <a 
+                      href="https://linkedin.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ 
+                        color: '#FC5546', 
+                        fontSize: '20px', 
+                        textDecoration: 'none'
+                      }}
+                    >
+                      <i className="fab fa-linkedin-in"></i>
+                    </a>
+                    <a 
+                      href="https://instagram.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ 
+                        color: '#FC5546', 
+                        fontSize: '20px', 
+                        textDecoration: 'none'
+                      }}
+                    >
+                      <i className="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <div className="team-contact">
+                  <h4 style={{ color: '#FC5546', marginBottom: '20px' }}>Connect With Us</h4>
+                  <div className="team-info-item">
+                    <p style={{ color: '#FF69B4', margin: '5px 0' }}>Email:</p>
+                    <a 
+                      href="mailto:contact@pixelways.io" 
+                      style={{ color: '#FC5546', textDecoration: 'none' }}
+                    >
+                      contact@pixelways.io
+                    </a>
                   </div>
+                  <div className="team-info-item">
+                    <p style={{ color: '#FF69B4', margin: '5px 0' }}>Phone:</p>
+                    <a 
+                      href="tel:+1234567890" 
+                      style={{ color: '#FC5546', textDecoration: 'none' }}
+                    >
+                      +1 (234) 567-890
+                    </a>
+                  </div>
+                  <div className="team-info-item">
+                    <p style={{ color: '#FF69B4', margin: '5px 0' }}>Office:</p>
+                    <p style={{ color: '#FF69B4', margin: '5px 0' }}>123 Tech Street, Digital City</p>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="col-lg-8">
@@ -164,7 +176,7 @@ const TeamDetails = ({ params }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div></div>
       </section>
     </TekprofLayout>
   );
