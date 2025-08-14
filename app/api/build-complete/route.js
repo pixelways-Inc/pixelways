@@ -6,11 +6,10 @@ export async function POST(request) {
     console.log('Received build complete notification:', { status, site });
 
     if (status === 'success') {
-      // Placeholder for actual logic:
       // Construct the Supabase-hosted URL
-      const previewUrl = `https://pixelways.co/sites/${site}/index.html`; // Assuming index.html for static sites
+      const previewUrl = `https://pixelways.co/sites/${site}/index.html`;
 
-      return NextResponse.json({ preview_url: previewUrl, message: 'Preview URL generated (placeholder).' });
+      return NextResponse.json({ preview_url: previewUrl, message: 'Preview URL generated successfully.' });
     } else {
       return NextResponse.json({ error: 'Build failed.', site }, { status: 500 });
     }

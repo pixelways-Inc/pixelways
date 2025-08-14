@@ -10,8 +10,13 @@ on:
         description: 'SHA of the commit to build'
         required: true
       project_type:
-        description: 'Type of project (e.g., react-vite, static)'
+        description: 'Type of project (react-vite, next, static)'
         required: true
+        type: choice
+        options:
+          - react-vite
+          - next
+          - static
 
 jobs:
   build-and-deploy:
@@ -19,67 +24,85 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: ${{ github.event.inputs.repo_name }}
         ref: ${{ github.event.inputs.commit_sha }}
-        token: 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
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Setup Node.js (if needed)
-      if: github.event.inputs.project_type == 'react-vite'
-      uses: actions/setup-node@v3
+    - name: Setup Node.js (for build projects)
+      if: contains(fromJSON('["react-vite", "next", "node"]'), github.event.inputs.project_type)
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
+        cache: 'npm'
 
     - name: Install dependencies and build (React + Vite)
       if: github.event.inputs.project_type == 'react-vite'
       run: |
-        npm install
+        npm ci
         npm run build
+
+    - name: Install dependencies and build (Next.js)
+      if: github.event.inputs.project_type == 'next'
+      run: |
+        npm ci
+        npm run build
+        npm run export
 
     - name: Upload to Supabase Storage
       run: |
         # Install Supabase CLI
-        npm install -g supabase
+        npm install -g @supabase/cli
 
-        # Determine the directory to upload
+        # Determine the directory to upload based on project type
         BUILD_DIR="."
         if [ "${{ github.event.inputs.project_type }}" == "react-vite" ]; then
           BUILD_DIR="dist"
+        elif [ "${{ github.event.inputs.project_type }}" == "next" ]; then
+          BUILD_DIR="out"
         fi
 
-        # Upload to Supabase Storage
-        supabase storage cp --recursive $BUILD_DIR supabase://sites/${{ github.event.inputs.repo_name }}/
-      env:
-        POSTGRES_URL: "postgres://postgres.dlunpilhklsgvkegnnlp:D0UtLOTffNkpDwSY@aws-0-us-east-1.pooler.supabase.com:6543/postgres?sslmode=require&supa=base-pooler.x"
-        POSTGRES_USER: "postgres"
-        POSTGRES_HOST: "db.dlunpilhklsgvkegnnlp.supabase.co"
-        SUPABASE_JWT_SECRET: "mZcBlvGgxbMd0OByt4iNTCFRHBaH4dcUt1QEcWItBvjzu2qQB0crGyoXgDrW5TFm7iJQve6jMoDbuWTgYxPoMw=="
-        NEXT_PUBLIC_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdW5waWxoa2xzZ3ZrZWdubmxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUwNTA0MTksImV4cCI6MjA3MDYyNjQxOX0.rhLN_bhvH9IWPkyHiohrOQbY9D34RSeSLzURhAyZPds"
-        POSTGRES_PRISMA_URL: "postgres://postgres.dlunpilhklsgvkegnnlp:D0UtLOTffNkpDwSY@aws-0-us-east-1.pooler.supabase.com:6543/postgres?sslmode=require&pgbouncer=true"
-        POSTGRES_PASSWORD: "D0UtLOTffNkpDwSY"
-        POSTGRES_DATABASE: "postgres"
-        SUPABASE_URL: "https://dlunpilhklsgvkegnnlp.supabase.co"
-        NEXT_PUBLIC_SUPABASE_URL: "https://dlunpilhklsgvkegnnlp.supabase.co"
-        SUPABASE_SERVICE_ROLE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdW5waWxoa2xzZ3ZrZWdubmxwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NTA1MDQxOSwiZXhwIjoyMDcwNjI2NDE5fQ.k-2OJ4p3hr9feR4ks54OQM2HhOhaVJ3pUK-20tGJwpo"
-        POSTGRES_URL_NON_POOLING: "postgres://postgres.dlunpilhklsgvkegnnlp:D0UtLOTffNkpDwSY@aws-0-us-east-1.pooler.supabase.com:5432/postgres?sslmode=require"
+        # Validate build directory exists
+        if [ ! -d "$BUILD_DIR" ]; then
+          echo "Error: Build directory '$BUILD_DIR' does not exist"
+          exit 1
+        fi
 
-    - name: Notify Vercel API
+        # Authenticate with Supabase
+        echo "$SUPABASE_ACCESS_TOKEN" | supabase login --token
+
+        # Upload to Supabase Storage
+        echo "Uploading $BUILD_DIR to supabase://sites/${{ github.event.inputs.repo_name }}/"
+        supabase storage cp --recursive $BUILD_DIR supabase://sites/${{ github.event.inputs.repo_name }}/
+        
+        if [ $? -eq 0 ]; then
+          echo "Upload completed successfully"
+        else
+          echo "Upload failed"
+          exit 1
+        fi
+      env:
+        SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+
+    - name: Notify Build Status
+      if: always()
       run: |
         BUILD_STATUS="success"
-        if ${{ job.status == 'failure' }}; then
+        if [ "${{ job.status }}" == "failure" ]; then
           BUILD_STATUS="failed"
         fi
 
         curl -X POST \
              -H "Content-Type: application/json" \
              -d "{\"status\": \"${BUILD_STATUS}\", \"site\": \"${{ github.event.inputs.repo_name }}\"}" \
-             https://pixelways.co/api/build-complete # Replace with your actual Vercel app URL
+             ${{ secrets.BUILD_WEBHOOK_URL }}
 
     - name: Cleanup temporary repository
-      if: always() # Ensure cleanup runs even if previous steps fail
+      if: always()
       run: |
         curl -X DELETE \
-             -H "Authorization: token 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" \
+             -H "Authorization: token ${{ secrets.REPO_CLEANUP_TOKEN }}" \
              -H "Accept: application/vnd.github.v3+json" \
              "https://api.github.com/repos/${{ github.repository_owner }}/${{ github.event.inputs.repo_name }}"
