@@ -100,6 +100,55 @@ const teamMembers = [
       { name: "Problem Solving", percent: 92 }
     ]
   }
+  }
+  },
+  {
+    id: "elvis-nquenya",
+    name: "Elvis Nquenya",
+    position: "Co-Founder & Business Representative",
+    image: "/team/elvis.jpg",
+    bio: [
+      "Elvis Nquenya is a dynamic Co-Founder and Business Representative at Pixelways Solutions Inc. With a strong background in business development and client relations, Elvis plays a crucial role in expanding the company's reach and fostering strong partnerships. His expertise lies in identifying market opportunities, negotiating strategic alliances, and ensuring client satisfaction. Elvis is committed to driving growth and delivering exceptional value to Pixelways Solutions' clients."
+    ],
+    funFacts: [],
+    contact: {
+      email: "",
+      phone1: "",
+      phone2: "",
+      location: ""
+    },
+    social: {
+      facebook: "https://facebook.com/elvis.nquenya",
+      twitter: "#",
+      instagram: "https://www.instagram.com/nquefacinc",
+      linkedin: "https://ca.linkedin.com/in/elvis-nquenya-3052a2261",
+      github: "#",
+      youtube: "#"
+    },
+    qualifications: [
+      {
+        number: 1,
+        title: "Business Development & Client Relations",
+        description: "Strong background in business development and client relations, crucial for expanding the company's reach and fostering strong partnerships."
+      },
+      {
+        number: 2,
+        title: "Market Opportunity Identification",
+        description: "Expertise in identifying market opportunities and negotiating strategic alliances."
+      },
+      {
+        number: 3,
+        title: "Client Satisfaction & Growth Driving",
+        description: "Committed to driving growth and delivering exceptional value to Pixelways Solutions' clients, ensuring client satisfaction."
+      }
+    ],
+    skills: [
+      { name: "Business Development", percent: 90 },
+      { name: "Client Relations", percent: 95 },
+      { name: "Strategic Partnerships", percent: 85 },
+      { name: "Market Analysis", percent: 80 }
+    ]
+  }
 ];
 
 export default teamMembers;

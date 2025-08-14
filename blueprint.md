@@ -8,6 +8,7 @@
     -   **Updated:** Added correct Facebook, Instagram, and LinkedIn handles for Etienne Ayuk Ayuk Ndip.
     -   **Added:** New team member, Anye Happiness Ade (Hans Ade), with all provided details, including a GitHub handle.
     -   **Corrected:** Updated Anye Happiness Ade's position to "Co-Founder & Software Engineer & AI Developer".
+    -   **Added:** New team member, Elvis Nquenya, with his position and social media handles.
 -   **`components/Team.js`:**
     -   Modified to import team member data from `data/teamMembers.js`.
     -   **Corrected:** Replaced *all* hardcoded dummy team member entries with a dynamic mapping of `teamMembers` data.

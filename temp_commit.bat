@@ -1,3 +1,3 @@
 git add .
-git commit -m "FIX: Correct Hans Ade's position to Co-Founder & Software Engineer & AI Developer"
+git commit -m "FEAT: Add Elvis Nquenya to team"
 git push
