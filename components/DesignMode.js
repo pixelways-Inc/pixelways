@@ -5,10 +5,9 @@ import { ChevronRight, ChevronDown, File, Folder, FileText, Code, Play, Download
 import dynamic from 'next/dynamic';
 const MonacoCodeViewer = dynamic(() => import('./MonacoCodeViewer'), { ssr: false });
 
-const DesignMode = ({ website, onSelectFile }) => {
+const DesignMode = ({ website, onSelectFile, onDeploy, isDeploying }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [expandedFolders, setExpandedFolders] = useState({});
-  const [isDeploying, setIsDeploying] = useState(false);
 
   if (!website) {
     return (
@@ -37,34 +36,9 @@ const DesignMode = ({ website, onSelectFile }) => {
   };
 
   const handleDeploy = async () => {
-    if (!website || !Array.isArray(website.files)) return;
-    setIsDeploying(true);
-    try {
-      const response = await fetch('/api/preview', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          files: website.files,
-          project_type: website.projectType,
-        }),
-      });
-      
-      const result = await response.json();
-      if (result.preview_url) {
-        const url = result.preview_url;
-        window.open(url, '_blank', 'noopener');
-      } else if (result.success && result.url) {
-        window.open(result.url, '_blank', 'noopener');
-      } else {
-        alert('Deployment failed: ' + (result.error || 'Unknown error'));
-      }
-    } catch (error) {
-      console.error('Deploy error:', error);
-      alert('Deployment failed: ' + error.message);
-    } finally {
-      setIsDeploying(false);
+    if (onDeploy) {
+      // Use the parent's deploy function which sets preview URL state
+      await onDeploy();
     }
   };
 

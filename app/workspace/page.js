@@ -47,10 +47,15 @@ const WorkspacePage = () => {
         }),
       });
       const data = await response.json();
-      if (data.preview_url) setPreviewUrl(data.preview_url);
+      if (data.preview_url) {
+        setPreviewUrl(data.preview_url);
+        // Switch to preview view to show the result
+        setActiveView('preview');
+      }
       if (data.site) setSiteName(data.site);
     } catch (e) {
       console.error('Preview error', e);
+      alert('Deployment failed: ' + e.message);
     } finally {
       setIsDeploying(false);
     }
@@ -112,7 +117,12 @@ const WorkspacePage = () => {
               // Code View - File Explorer + Monaco Editor
               <div className="h-100">
                 {generatedWebsite ? (
-                  <DesignMode website={generatedWebsite} onSelectFile={setSelectedFile} />
+                  <DesignMode 
+                    website={generatedWebsite} 
+                    onSelectFile={setSelectedFile}
+                    onDeploy={triggerPreview}
+                    isDeploying={isDeploying}
+                  />
                 ) : (
                   <div className="h-100 d-flex align-items-center justify-content-center text-muted">
                     <div className="text-center">
