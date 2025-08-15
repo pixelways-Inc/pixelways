@@ -329,19 +329,25 @@ jobs:
     const repo = repoName;
     const defaultBranch = 'main';
 
-    // 1. Get the latest commit SHA of the default branch
+    // 1. Check if the repository has any commits (try to get the default branch)
+    let latestCommitSha = null;
+    let hasExistingCommits = false;
+    
     const refResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${defaultBranch}`, {
       headers: { 
         Authorization: `Bearer ${authToken}`,
         'Accept': 'application/vnd.github.v3+json'
       },
     });
-    if (!refResponse.ok) {
-      const errorData = await refResponse.json();
-      throw new Error(`Failed to get ref: ${refResponse.statusText} - ${JSON.stringify(errorData)}`);
+    
+    if (refResponse.ok) {
+      const refData = await refResponse.json();
+      latestCommitSha = refData.object.sha;
+      hasExistingCommits = true;
+    } else {
+      // Repository is empty, no existing commits
+      console.log('Repository is empty, creating initial commit');
     }
-    const refData = await refResponse.json();
-    const latestCommitSha = refData.object.sha;
 
     // 2. Create a new Git tree object
     const tree = files.map(file => ({
@@ -351,6 +357,15 @@ jobs:
       content: file.content,
     }));
 
+    const treeRequestBody = {
+      tree: tree,
+    };
+    
+    // Only include base_tree if there are existing commits
+    if (hasExistingCommits && latestCommitSha) {
+      treeRequestBody.base_tree = latestCommitSha;
+    }
+
     const treeResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/trees`, {
       method: 'POST',
       headers: {
@@ -358,10 +373,7 @@ jobs:
         'Accept': 'application/vnd.github.v3+json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        base_tree: latestCommitSha,
-        tree: tree,
-      }),
+      body: JSON.stringify(treeRequestBody),
     });
     if (!treeResponse.ok) {
       const errorData = await treeResponse.json();
@@ -371,6 +383,16 @@ jobs:
     const newTreeSha = treeData.sha;
 
     // 3. Create a new Git commit object
+    const commitRequestBody = {
+      message: 'Initial commit from PixelAI Builder',
+      tree: newTreeSha,
+    };
+    
+    // Only include parents if there are existing commits
+    if (hasExistingCommits && latestCommitSha) {
+      commitRequestBody.parents = [latestCommitSha];
+    }
+
     const commitResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/commits`, {
       method: 'POST',
       headers: {
@@ -378,11 +400,7 @@ jobs:
         'Accept': 'application/vnd.github.v3+json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        message: 'Initial commit from PixelAI Builder',
-        tree: newTreeSha,
-        parents: [latestCommitSha],
-      }),
+      body: JSON.stringify(commitRequestBody),
     });
     if (!commitResponse.ok) {
       const errorData = await commitResponse.json();
@@ -391,22 +409,42 @@ jobs:
     const commitData = await commitResponse.json();
     const newCommitSha = commitData.sha;
 
-    // 4. Update the branch reference
-    const updateRefResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs/heads/${defaultBranch}`, {
-      method: 'PATCH',
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        sha: newCommitSha,
-        force: true,
-      }),
-    });
+    // 4. Create or update the branch reference
+    let updateRefResponse;
+    
+    if (hasExistingCommits) {
+      // Update existing branch
+      updateRefResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs/heads/${defaultBranch}`, {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sha: newCommitSha,
+          force: true,
+        }),
+      });
+    } else {
+      // Create new branch reference
+      updateRefResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ref: `refs/heads/${defaultBranch}`,
+          sha: newCommitSha,
+        }),
+      });
+    }
+    
     if (!updateRefResponse.ok) {
       const errorData = await updateRefResponse.json();
-      throw new Error(`Failed to update ref: ${updateRefResponse.statusText} - ${JSON.stringify(errorData)}`);
+      throw new Error(`Failed to ${hasExistingCommits ? 'update' : 'create'} ref: ${updateRefResponse.statusText} - ${JSON.stringify(errorData)}`);
     }
     console.log('Files pushed successfully. New commit SHA:', newCommitSha);
 

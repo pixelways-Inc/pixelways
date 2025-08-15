@@ -20,7 +20,7 @@ export async function GET(request) {
         headers: { 'Content-Type': 'text/html' }
       });
     }
-    return NextResponse.redirect('/?error=invalid_state');
+    return NextResponse.redirect(new URL('/?error=invalid_state', request.url));
   }
 
   if (!code) {
@@ -30,7 +30,7 @@ export async function GET(request) {
         headers: { 'Content-Type': 'text/html' }
       });
     }
-    return NextResponse.redirect('/?error=no_code');
+    return NextResponse.redirect(new URL('/?error=no_code', request.url));
   }
 
   try {
@@ -57,7 +57,7 @@ export async function GET(request) {
           headers: { 'Content-Type': 'text/html' }
         });
       }
-      return NextResponse.redirect('/?error=oauth_failed');
+      return NextResponse.redirect(new URL('/?error=oauth_failed', request.url));
     }
 
     const accessToken = tokenData.access_token;
@@ -79,7 +79,7 @@ export async function GET(request) {
           headers: { 'Content-Type': 'text/html' }
         });
       }
-      return NextResponse.redirect('/?error=user_fetch_failed');
+      return NextResponse.redirect(new URL('/?error=user_fetch_failed', request.url));
     }
 
     const user = {
@@ -140,7 +140,7 @@ export async function GET(request) {
         headers: { 'Content-Type': 'text/html' }
       });
     }
-    return NextResponse.redirect('/?error=callback_failed');
+    return NextResponse.redirect(new URL('/?error=callback_failed', request.url));
   }
 }
 
