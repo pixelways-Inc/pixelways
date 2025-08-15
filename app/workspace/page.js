@@ -60,34 +60,34 @@ const WorkspacePage = () => {
   return (
     <ThemeProvider>
       <WorkspaceLayout siteName={siteName}>
-      <div className="h-full flex">
+      <div className="h-100 d-flex">
         {/* Left Panel */}
-        <div className="w-1/2 border-r border-gray-200 flex flex-col">
+        <div className="w-50 border-end d-flex flex-column">
           {/* Navigation Bar */}
-          <div className="h-12 border-b border-gray-200 flex items-center justify-between px-4">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-sm font-medium">Connected</span>
+          <div className="border-bottom d-flex align-items-center justify-content-between px-3 py-2" style={{height: '48px'}}>
+            <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center me-3">
+                <div className="bg-success rounded-circle me-2" style={{width: '8px', height: '8px'}}></div>
+                <span className="small fw-medium">Connected</span>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="d-flex align-items-center gap-2">
               <button
                 onClick={() => setActiveTab('chat')}
-                className={`px-3 py-1 text-sm rounded ${
+                className={`btn btn-sm px-3 ${
                   activeTab === 'chat' 
-                    ? 'bg-gray-100 text-gray-900' 
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'btn-light text-dark' 
+                    : 'btn-outline-secondary'
                 }`}
               >
                 Chat
               </button>
               <button
                 onClick={() => setActiveTab('design')}
-                className={`px-3 py-1 text-sm rounded ${
+                className={`btn btn-sm px-3 ${
                   activeTab === 'design' 
-                    ? 'bg-gray-100 text-gray-900' 
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'btn-light text-dark' 
+                    : 'btn-outline-secondary'
                 }`}
               >
                 Design
@@ -96,7 +96,7 @@ const WorkspacePage = () => {
           </div>
 
           {/* Tab Content */}
-          <div className="flex-1">
+          <div className="flex-fill">
             {activeTab === 'chat' && (
               <WorkspaceChat 
                 generatedWebsite={generatedWebsite}
@@ -109,7 +109,7 @@ const WorkspacePage = () => {
             )}
             
             {activeTab === 'design' && !generatedWebsite && (
-              <div className="h-full flex items-center justify-center text-gray-500">
+              <div className="h-100 d-flex align-items-center justify-content-center text-muted">
                 <p>Generate a website to see design files</p>
               </div>
             )}
@@ -117,39 +117,40 @@ const WorkspacePage = () => {
         </div>
 
         {/* Right Panel - Preview */}
-        <div className="w-1/2 flex flex-col">
-          <div className="h-12 border-b border-gray-200 flex items-center justify-between px-4">
-            <div className="flex items-center gap-2">
+        <div className="w-50 d-flex flex-column">
+          <div className="border-bottom d-flex align-items-center justify-content-between px-3 py-2" style={{height: '48px'}}>
+            <div className="d-flex align-items-center gap-2">
               <button
                 onClick={() => setRightTab('preview')}
-                className={`px-3 py-1 text-sm rounded ${rightTab === 'preview' ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}
+                className={`btn btn-sm px-3 ${rightTab === 'preview' ? 'btn-light text-dark' : 'btn-outline-secondary'}`}
               >
                 Preview
               </button>
               <button
                 onClick={() => setRightTab('code')}
-                className={`px-3 py-1 text-sm rounded ${rightTab === 'code' ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}
+                className={`btn btn-sm px-3 ${rightTab === 'code' ? 'btn-light text-dark' : 'btn-outline-secondary'}`}
               >
                 Code
               </button>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="d-flex align-items-center">
               <button
                 onClick={triggerPreview}
                 disabled={!generatedWebsite || isDeploying}
-                className="px-3 py-1 text-sm rounded bg-gray-900 text-white disabled:opacity-50"
+                className="btn btn-dark btn-sm px-3"
+                style={{opacity: (!generatedWebsite || isDeploying) ? '0.5' : '1'}}
               >
                 {isDeploying ? 'Deploying…' : 'Preview'}
               </button>
             </div>
           </div>
-          <div className="flex-1">
+          <div className="flex-fill">
             {!generatedWebsite ? (
-              <div className="h-full flex items-center justify-center text-gray-500"><p>Generate a website to see preview</p></div>
+              <div className="h-100 d-flex align-items-center justify-content-center text-muted"><p>Generate a website to see preview</p></div>
             ) : rightTab === 'preview' ? (
               <PreviewFrame previewUrl={previewUrl} isDeploying={isDeploying} />
             ) : (
-              <div className="h-full">
+              <div className="h-100">
                 {selectedFile ? (
                   <MonacoCodeViewer
                     value={selectedFile.content}
@@ -164,7 +165,7 @@ const WorkspacePage = () => {
                     height={'100%'}
                   />
                 ) : (
-                  <div className="h-full flex items-center justify-center text-gray-500"><p>Select a file in Design to view code</p></div>
+                  <div className="h-100 d-flex align-items-center justify-content-center text-muted"><p>Select a file in Design to view code</p></div>
                 )}
               </div>
             )}

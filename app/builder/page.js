@@ -7,9 +7,13 @@ import { ThemeProvider } from '@/context/ThemeContext';
 const BuilderPage = () => {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-white dark:bg-gray-900 flex flex-col items-center justify-center p-4 transition-colors">
-        <div className="w-full max-w-4xl mx-auto py-12">
-          <ChatInterfaceLanding />
+      <div className="min-vh-100 bg-light d-flex flex-column align-items-center justify-content-center">
+        <div className="container-fluid py-5">
+          <div className="row justify-content-center">
+            <div className="col-12">
+              <ChatInterfaceLanding />
+            </div>
+          </div>
         </div>
       </div>
     </ThemeProvider>

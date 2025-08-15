@@ -100,79 +100,199 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Messages */}
-      <div className="flex-1 overflow-auto p-4 space-y-4">
-        {messages.map((message) => (
-          <div key={message.id} className="flex flex-col space-y-2">
-            {message.type === 'ai' && (
-              <div className="flex items-center space-x-2 text-xs text-gray-500">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span>Thought for 3s</span>
-              </div>
-            )}
-            <div className={`${message.type === 'user' ? 'ml-8' : ''}`}>
-              <div className={`inline-block max-w-full ${
-                message.type === 'user' 
-                  ? 'bg-gray-100 text-gray-900 rounded-lg px-4 py-2'
-                  : 'text-gray-700'
-              }`}>
-                {message.isThinking ? (
-                  <div className="flex items-center space-x-2">
-                    <Loader size={16} className="animate-spin" />
-                    <span>Thinking...</span>
-                  </div>
-                ) : (
-                  message.content
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Input */}
-      <div className="border-t border-gray-200 p-4">
-        <div className="flex items-end space-x-2">
-          <div className="flex-1">
-            <textarea
-              value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
-              onKeyDown={handleKeyPress}
-              placeholder="Ask a follow-up..."
-              className="w-full resize-none border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-gray-300 min-h-[40px]"
-              rows={1}
-              disabled={isGenerating}
-            />
-          </div>
-          <div className="flex items-center space-x-2">
-            <div className="flex items-center space-x-1 text-xs text-gray-500">
-              <div className="w-4 h-4 flex items-center justify-center">
-                <span className="text-xs">⚡</span>
-              </div>
-              <span>Agent</span>
-            </div>
-            <button
-              onClick={handleSendMessage}
-              disabled={!newMessage.trim() || isGenerating}
-              className="p-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              {isGenerating ? (
-                <Loader size={16} className="animate-spin" />
-              ) : (
-                <Send size={16} />
+    <>
+      <style jsx>{`
+        .chat-container {
+          height: 100%;
+        }
+        .messages-area {
+          flex: 1;
+          overflow-y: auto;
+          padding: 1rem;
+        }
+        .message-item {
+          margin-bottom: 1rem;
+        }
+        .ai-indicator {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.75rem;
+          color: #6b7280;
+          margin-bottom: 0.5rem;
+        }
+        .ai-dot {
+          width: 8px;
+          height: 8px;
+          background: #3b82f6;
+          border-radius: 50%;
+        }
+        .user-message {
+          margin-left: 2rem;
+        }
+        .user-bubble {
+          display: inline-block;
+          max-width: 100%;
+          background: #f3f4f6;
+          color: #1f2937;
+          border-radius: 0.5rem;
+          padding: 0.5rem 1rem;
+        }
+        .ai-message {
+          color: #374151;
+        }
+        .thinking-message {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .input-area {
+          border-top: 1px solid #e5e7eb;
+          padding: 1rem;
+        }
+        .input-group {
+          display: flex;
+          align-items: end;
+          gap: 0.5rem;
+        }
+        .input-wrapper {
+          flex: 1;
+        }
+        .message-input {
+          width: 100%;
+          resize: none;
+          border: 1px solid #d1d5db;
+          border-radius: 0.5rem;
+          padding: 0.5rem 0.75rem;
+          font-size: 0.875rem;
+          min-height: 40px;
+        }
+        .message-input:focus {
+          outline: none;
+          border-color: #9ca3af;
+        }
+        .controls-area {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .agent-indicator {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+          font-size: 0.75rem;
+          color: #6b7280;
+        }
+        .agent-icon {
+          width: 1rem;
+          height: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .send-button {
+          padding: 0.5rem;
+          background: #1f2937;
+          color: white;
+          border: none;
+          border-radius: 0.5rem;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+        .send-button:hover:not(:disabled) {
+          background: #374151;
+        }
+        .send-button:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+        .stop-button {
+          padding: 0.5rem 0.75rem;
+          background: #1f2937;
+          color: white;
+          border: none;
+          border-radius: 0.5rem;
+          font-size: 0.875rem;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+        .stop-button:hover:not(:disabled) {
+          background: #374151;
+        }
+        .stop-button:disabled {
+          opacity: 0.5;
+        }
+      `}</style>
+      <div className="chat-container d-flex flex-column">
+        {/* Messages */}
+        <div className="messages-area">
+          {messages.map((message) => (
+            <div key={message.id} className="message-item">
+              {message.type === 'ai' && (
+                <div className="ai-indicator">
+                  <div className="ai-dot"></div>
+                  <span>Thought for 3s</span>
+                </div>
               )}
-            </button>
-            <button
-              disabled={isGenerating}
-              className="px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 disabled:opacity-50 transition-colors"
-            >
-              Stop
-            </button>
+              <div className={message.type === 'user' ? 'user-message' : ''}>
+                <div className={message.type === 'user' ? 'user-bubble' : 'ai-message'}>
+                  {message.isThinking ? (
+                    <div className="thinking-message">
+                      <Loader size={16} className="spinner-border spinner-border-sm" />
+                      <span>Thinking...</span>
+                    </div>
+                  ) : (
+                    message.content
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Input */}
+        <div className="input-area">
+          <div className="input-group">
+            <div className="input-wrapper">
+              <textarea
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                onKeyDown={handleKeyPress}
+                placeholder="Ask a follow-up..."
+                className="message-input"
+                rows={1}
+                disabled={isGenerating}
+              />
+            </div>
+            <div className="controls-area">
+              <div className="agent-indicator">
+                <div className="agent-icon">
+                  <span style={{fontSize: '0.75rem'}}>⚡</span>
+                </div>
+                <span>Agent</span>
+              </div>
+              <button
+                onClick={handleSendMessage}
+                disabled={!newMessage.trim() || isGenerating}
+                className="send-button"
+              >
+                {isGenerating ? (
+                  <Loader size={16} className="spinner-border spinner-border-sm" />
+                ) : (
+                  <Send size={16} />
+                )}
+              </button>
+              <button
+                disabled={isGenerating}
+                className="stop-button"
+              >
+                Stop
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

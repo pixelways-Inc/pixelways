@@ -12,9 +12,20 @@ const DesignMode = ({ website, onSelectFile }) => {
 
   if (!website) {
     return (
-      <div className="h-full flex items-center justify-center text-gray-500">
-        <p>No website generated yet</p>
-      </div>
+      <>
+        <style jsx>{`
+          .no-website {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+          }
+        `}</style>
+        <div className="no-website">
+          <p>No website generated yet</p>
+        </div>
+      </>
     );
   }
 
@@ -60,171 +71,300 @@ const DesignMode = ({ website, onSelectFile }) => {
   const getFileIcon = (filename) => {
     const ext = filename.split('.').pop();
     switch (ext) {
-      case 'html':
-        return <FileText size={16} className="text-orange-500" />;
-      case 'css':
-        return <Code size={16} className="text-blue-500" />;
-      case 'js':
-        return <Code size={16} className="text-yellow-500" />;
-      case 'json':
-        return <FileText size={16} className="text-green-500" />;
-      default:
-        return <File size={16} className="text-gray-500" />;
+      case 'html': return <FileText size={16} style={{color: '#e34c26'}} />;
+      case 'css': return <FileText size={16} style={{color: '#1572b6'}} />;
+      case 'js': case 'jsx': return <FileText size={16} style={{color: '#f7df1e'}} />;
+      case 'ts': case 'tsx': return <FileText size={16} style={{color: '#3178c6'}} />;
+      case 'json': return <FileText size={16} style={{color: '#000000'}} />;
+      case 'md': return <FileText size={16} style={{color: '#083fa1'}} />;
+      default: return <File size={16} style={{color: '#6b7280'}} />;
     }
   };
 
-  const FileTreeNode = ({ name, path, isFile, content, children, level = 0 }) => {
-    const isExpanded = expandedFolders[path];
+  const FileTreeNode = ({ name, type, content, children, path = '' }) => {
+    const fullPath = path ? `${path}/${name}` : name;
+    const isExpanded = expandedFolders[fullPath];
     
-    if (isFile) {
+    if (type === 'file') {
       return (
-        <div 
-          className={`flex items-center py-1 px-2 hover:bg-gray-100 cursor-pointer ${
-            selectedFile?.path === path ? 'bg-blue-50 border-r-2 border-blue-500' : ''
-          }`}
-          style={{ paddingLeft: `${level * 16 + 8}px` }}
-          onClick={() => {
-            const file = { name, path, content };
-            setSelectedFile(file);
-            if (onSelectFile) onSelectFile(file);
-          }}
-        >
-          {getFileIcon(name)}
-          <span className="ml-2 text-sm">{name}</span>
-        </div>
+        <>
+          <style jsx>{`
+            .file-item {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              padding: 0.25rem 0.75rem;
+              cursor: pointer;
+              font-size: 0.875rem;
+              transition: background-color 0.2s;
+            }
+            .file-item:hover {
+              background: #f3f4f6;
+            }
+            .file-item.selected {
+              background: #dbeafe;
+              color: #1d4ed8;
+            }
+          `}</style>
+          <div
+            className={`file-item ${selectedFile?.name === name ? 'selected' : ''}`}
+            onClick={() => {
+              const file = { name, content, path: fullPath };
+              setSelectedFile(file);
+              if (onSelectFile) onSelectFile(file);
+            }}
+          >
+            {getFileIcon(name)}
+            <span>{name}</span>
+          </div>
+        </>
       );
     }
 
     return (
-      <div>
-        <div 
-          className="flex items-center py-1 px-2 hover:bg-gray-100 cursor-pointer"
-          style={{ paddingLeft: `${level * 16 + 8}px` }}
-          onClick={() => toggleFolder(path)}
-        >
-          {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-          <Folder size={16} className="text-blue-500 ml-1" />
-          <span className="ml-2 text-sm">{name}</span>
-        </div>
-        {isExpanded && children && (
-          <div>
-            {children.map((child, index) => (
-              <FileTreeNode key={index} {...child} level={level + 1} />
-            ))}
+      <>
+        <style jsx>{`
+          .folder-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background-color 0.2s;
+          }
+          .folder-item:hover {
+            background: #f3f4f6;
+          }
+          .folder-children {
+            padding-left: 1rem;
+          }
+        `}</style>
+        <div>
+          <div className="folder-item" onClick={() => toggleFolder(fullPath)}>
+            {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+            <Folder size={16} style={{color: '#f59e0b'}} />
+            <span>{name}</span>
           </div>
-        )}
-      </div>
+          {isExpanded && children && (
+            <div className="folder-children">
+              {children.map((child, index) => (
+                <FileTreeNode key={index} {...child} path={fullPath} />
+              ))}
+            </div>
+          )}
+        </div>
+      </>
     );
   };
 
   const generateFileTree = () => {
-    const files = [];
-    const fileArray = Array.isArray(website.files) ? website.files : [];
+    if (!website.files || !Array.isArray(website.files)) return [];
 
-    // Helper to get content by path
-    const contentByPath = (path) => fileArray.find((f) => f.path === path)?.content || '';
-
-    if (website.projectType === 'static') {
-      const staticPaths = ['index.html', 'style.css', 'script.js'];
-      for (const p of staticPaths) {
-        const content = contentByPath(p);
-        if (content) {
-          files.push({ name: p, path: p, isFile: true, content });
+    const tree = {};
+    
+    website.files.forEach(file => {
+      const parts = file.name.split('/');
+      let current = tree;
+      
+      for (let i = 0; i < parts.length; i++) {
+        const part = parts[i];
+        
+        if (i === parts.length - 1) {
+          // This is a file
+          current[part] = {
+            name: part,
+            type: 'file',
+            content: file.content
+          };
+        } else {
+          // This is a directory
+          if (!current[part]) {
+            current[part] = {
+              name: part,
+              type: 'folder',
+              children: {}
+            };
+          }
+          current = current[part].children;
         }
       }
-    } else if (website.projectType === 'react-vite') {
-      const srcChildren = [];
-      const srcFiles = ['src/App.jsx', 'src/index.css', 'src/main.jsx'];
-      for (const p of srcFiles) {
-        const name = p.split('/').pop();
-        const content = contentByPath(p);
-        if (content) srcChildren.push({ name, path: p, isFile: true, content });
-      }
-      if (srcChildren.length > 0) {
-        files.push({ name: 'src', path: 'src', isFile: false, children: srcChildren });
-      }
-      const rootFiles = ['package.json', 'index.html', 'vite.config.js'];
-      for (const p of rootFiles) {
-        const content = contentByPath(p);
-        if (content) files.push({ name: p, path: p, isFile: true, content });
-      }
-    }
+    });
 
-    // Generic fallback: list any remaining files at root level
-    if (files.length === 0 && fileArray.length > 0) {
-      for (const f of fileArray) {
-        const name = f.path.split('/').pop();
-        files.push({ name, path: f.path, isFile: true, content: f.content });
-      }
-    }
+    const convertToArray = (obj) => {
+      return Object.values(obj).map(item => {
+        if (item.type === 'folder') {
+          return {
+            ...item,
+            children: convertToArray(item.children)
+          };
+        }
+        return item;
+      });
+    };
 
-    return files;
+    return convertToArray(tree);
   };
 
   const fileTree = generateFileTree();
 
   return (
-    <div className="h-full flex">
-      {/* File Explorer */}
-      <div className="w-80 border-r border-gray-200 bg-gray-50">
-        <div className="h-10 border-b border-gray-200 flex items-center justify-between px-3">
-          <span className="text-sm font-medium">Files</span>
-          <div className="flex items-center space-x-1">
-            <button
-              onClick={handleDeploy}
-              disabled={isDeploying}
-              className="px-2 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700 disabled:opacity-50 flex items-center space-x-1"
-            >
-              <Play size={12} />
-              <span>{isDeploying ? 'Deploying...' : 'Deploy'}</span>
-            </button>
-            <button className="p-1 text-gray-500 hover:text-gray-700">
-              <Download size={14} />
-            </button>
+    <>
+      <style jsx>{`
+        .design-container {
+          height: 100%;
+        }
+        .file-explorer {
+          width: 320px;
+          background: #f9fafb;
+          border-right: 1px solid #e5e7eb;
+        }
+        .file-explorer-header {
+          height: 40px;
+          border-bottom: 1px solid #e5e7eb;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 0.75rem;
+        }
+        .header-title {
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
+        .header-actions {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+        }
+        .deploy-button {
+          padding: 0.25rem 0.5rem;
+          background: #16a34a;
+          color: white;
+          border: none;
+          border-radius: 0.25rem;
+          font-size: 0.75rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+          transition: background-color 0.2s;
+        }
+        .deploy-button:hover:not(:disabled) {
+          background: #15803d;
+        }
+        .deploy-button:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+        .download-button {
+          padding: 0.25rem;
+          background: transparent;
+          border: none;
+          color: #6b7280;
+          cursor: pointer;
+          transition: color 0.2s;
+        }
+        .download-button:hover {
+          color: #374151;
+        }
+        .file-tree {
+          overflow: auto;
+          height: calc(100% - 40px);
+        }
+        .code-editor {
+          flex: 1;
+        }
+        .editor-header {
+          height: 40px;
+          border-bottom: 1px solid #e5e7eb;
+          display: flex;
+          align-items: center;
+          padding: 0 1rem;
+        }
+        .editor-file-info {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .editor-filename {
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
+        .editor-content {
+          flex: 1;
+          background: white;
+        }
+        .no-file-selected {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #6b7280;
+          text-align: center;
+        }
+      `}</style>
+      <div className="design-container d-flex">
+        {/* File Explorer */}
+        <div className="file-explorer">
+          <div className="file-explorer-header">
+            <span className="header-title">Files</span>
+            <div className="header-actions">
+              <button
+                onClick={handleDeploy}
+                disabled={isDeploying}
+                className="deploy-button"
+              >
+                <Play size={12} />
+                <span>{isDeploying ? 'Deploying...' : 'Deploy'}</span>
+              </button>
+              <button className="download-button">
+                <Download size={14} />
+              </button>
+            </div>
+          </div>
+          <div className="file-tree">
+            {fileTree.map((node, index) => (
+              <FileTreeNode key={index} {...node} />
+            ))}
           </div>
         </div>
-        <div className="overflow-auto" style={{ height: 'calc(100% - 40px)' }}>
-          {fileTree.map((node, index) => (
-            <FileTreeNode key={index} {...node} />
-          ))}
-        </div>
-      </div>
 
-      {/* Code Editor */}
-      <div className="flex-1 flex flex-col">
-        {selectedFile ? (
-          <>
-            <div className="h-10 border-b border-gray-200 flex items-center px-4">
-              <div className="flex items-center space-x-2">
-                {getFileIcon(selectedFile.name)}
-                <span className="text-sm font-medium">{selectedFile.name}</span>
+        {/* Code Editor */}
+        <div className="code-editor d-flex flex-column">
+          {selectedFile ? (
+            <>
+              <div className="editor-header">
+                <div className="editor-file-info">
+                  {getFileIcon(selectedFile.name)}
+                  <span className="editor-filename">{selectedFile.name}</span>
+                </div>
+              </div>
+              <div className="editor-content">
+                <MonacoCodeViewer
+                  value={selectedFile.content}
+                  language={(() => {
+                    const ext = selectedFile.name.split('.').pop();
+                    if (ext === 'html') return 'html';
+                    if (ext === 'css') return 'css';
+                    if (ext === 'js' || ext === 'jsx' || ext === 'ts' || ext === 'tsx') return 'javascript';
+                    if (ext === 'json') return 'json';
+                    return 'plaintext';
+                  })()}
+                  height={'100%'}
+                />
+              </div>
+            </>
+          ) : (
+            <div className="no-file-selected">
+              <div>
+                <Code size={48} style={{color: '#9ca3af', margin: '0 auto 1rem'}} />
+                <p>Select a file to view its contents</p>
               </div>
             </div>
-            <div className="flex-1 bg-white">
-              <MonacoCodeViewer
-                value={selectedFile.content}
-                language={(() => {
-                  const ext = selectedFile.name.split('.').pop();
-                  if (ext === 'html') return 'html';
-                  if (ext === 'css') return 'css';
-                  if (ext === 'js' || ext === 'jsx' || ext === 'ts' || ext === 'tsx') return 'javascript';
-                  if (ext === 'json') return 'json';
-                  return 'plaintext';
-                })()}
-                height={'100%'}
-              />
-            </div>
-          </>
-        ) : (
-          <div className="h-full flex items-center justify-center text-gray-500">
-            <div className="text-center">
-              <Code size={48} className="mx-auto mb-4 text-gray-400" />
-              <p>Select a file to view its contents</p>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

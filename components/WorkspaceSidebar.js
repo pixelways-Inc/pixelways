@@ -1,47 +1,163 @@
 "use client";
 
 import React from 'react';
-import { Menu, Wrench, ChevronDown, MessageSquare } from 'lucide-react'; // Assuming lucide-react is installed
+import { Menu, Wrench, ChevronDown, MessageSquare } from 'lucide-react';
 import ProjectExplorer from './ProjectExplorer';
 
 const WorkspaceSidebar = ({ siteName }) => {
   return (
-    <div className="w-70 bg-[#16213e] border-r border-[#374151] flex flex-col"> {/* sidebar */}
-      {/* Sidebar Header */}
-      <div className="p-4 border-b border-[#374151] flex items-center gap-3"> {/* sidebarHeader container */}
-        <div className="flex items-center gap-2"> {/* logo */}
-          <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-lg font-bold text-black">
-            P
+    <>
+      <style jsx>{`
+        .sidebar {
+          width: 280px;
+          background: #16213e;
+          border-right: 1px solid #374151;
+          height: 100vh;
+        }
+        .sidebar-header {
+          padding: 1rem;
+          border-bottom: 1px solid #374151;
+        }
+        .logo-container {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .logo-icon {
+          width: 32px;
+          height: 32px;
+          background: white;
+          border-radius: 6px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.125rem;
+          font-weight: bold;
+          color: black;
+        }
+        .logo-text {
+          font-size: 1.25rem;
+          font-weight: bold;
+          color: white;
+        }
+        .beta-badge {
+          background: #f59e0b;
+          color: white;
+          font-size: 0.75rem;
+          font-weight: 500;
+          padding: 0.125rem 0.5rem;
+          border-radius: 50px;
+          margin-left: 0.25rem;
+        }
+        .toggle-button {
+          margin-left: auto;
+          background: transparent;
+          border: 1px solid #374151;
+          border-radius: 6px;
+          padding: 0.25rem;
+          color: #9ca3af;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+        .toggle-button:hover {
+          background: #1e2951;
+        }
+        .sidebar-content {
+          flex: 1;
+          padding: 1rem;
+          overflow-y: auto;
+        }
+        .sidebar-bottom {
+          padding: 1rem;
+          border-top: 1px solid #374151;
+        }
+        .chat-prompt {
+          background: rgba(17, 24, 39, 0.8);
+          border: 1px solid #374151;
+          border-radius: 6px;
+          padding: 0.75rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+        .chat-prompt:hover {
+          background: #1e2951;
+        }
+        .chat-prompt-text {
+          font-size: 0.875rem;
+          color: #9ca3af;
+          font-style: italic;
+        }
+        .engineer-tag {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-top: 0.75rem;
+          padding: 0.5rem;
+          background: rgba(79, 70, 229, 0.2);
+          border: 1px solid #4f46e5;
+          border-radius: 6px;
+        }
+        .engineer-text {
+          font-size: 0.875rem;
+          font-weight: 500;
+          color: #a5b4fc;
+        }
+        .model-selector {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 0.5rem;
+          padding: 0.5rem;
+          background: rgba(17, 24, 39, 0.6);
+          border: 1px solid #374151;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+        .model-text {
+          font-size: 0.875rem;
+          color: #e5e7eb;
+        }
+      `}</style>
+      <div className="sidebar d-flex flex-column">
+        {/* Sidebar Header */}
+        <div className="sidebar-header d-flex align-items-center">
+          <div className="logo-container">
+            <div className="logo-icon">
+              P
+            </div>
+            <span className="logo-text">PixelAI</span>
+            <span className="beta-badge">Beta</span>
           </div>
-          <span className="text-xl font-bold text-white">PixelAI</span>
-          <span className="bg-[#f59e0b] text-white text-xs font-medium px-2 py-0.5 rounded-full ml-1">Beta</span> {/* betaBadge */}
+          <button className="toggle-button">
+            <Menu size={16} />
+          </button>
         </div>
-        <button className="ml-auto bg-transparent border border-[#374151] rounded-md p-1 text-gray-400 cursor-pointer hover:bg-[#1e2951]"> {/* toggleButton */}
-          <Menu size={16} />
-        </button>
-      </div>
 
-      {/* Sidebar Content */}
-      <div className="flex-1 p-4 overflow-y-auto"> {/* sidebarContent container */}
-        <ProjectExplorer siteName={siteName} />
-      </div>
+        {/* Sidebar Content */}
+        <div className="sidebar-content">
+          <ProjectExplorer siteName={siteName} />
+        </div>
 
-      {/* Sidebar Bottom */}
-      <div className="p-4 border-t border-[#374151]"> {/* sidebarBottom container */}
-        <div className="bg-[rgba(17,24,39,0.8)] border border-[#374151] rounded-md p-3 flex items-center gap-2 cursor-pointer hover:bg-[#1e2951]"> {/* chatPrompt */}
-          <MessageSquare size={16} className="text-gray-400" />
-          <span className="text-sm text-gray-400 italic">Ask a follow-up...</span>
-        </div>
-        <div className="flex items-center gap-2 mt-3 p-2 bg-[rgba(79,70,229,0.2)] border border-[#4f46e5] rounded-md"> {/* engineerTag */}
-          <Wrench size={16} className="text-[#a5b4fc]" />
-          <span className="text-sm font-medium text-[#a5b4fc]">Engineer</span>
-        </div>
-        <div className="flex items-center justify-between mt-2 p-2 bg-[rgba(17,24,39,0.6)] border border-[#374151] rounded-md cursor-pointer"> {/* modelSelector */}
-          <span className="text-sm text-gray-200">Model: GPT-4o</span>
-          <ChevronDown size={16} className="text-gray-400" />
+        {/* Sidebar Bottom */}
+        <div className="sidebar-bottom">
+          <div className="chat-prompt">
+            <MessageSquare size={16} style={{color: '#9ca3af'}} />
+            <span className="chat-prompt-text">Ask a follow-up...</span>
+          </div>
+          <div className="engineer-tag">
+            <Wrench size={16} style={{color: '#a5b4fc'}} />
+            <span className="engineer-text">Engineer</span>
+          </div>
+          <div className="model-selector">
+            <span className="model-text">Model: GPT-4o</span>
+            <ChevronDown size={16} style={{color: '#9ca3af'}} />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

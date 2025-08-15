@@ -6,15 +6,27 @@ import WorkspaceTopBar from './WorkspaceTopBar';
 
 const WorkspaceLayout = ({ children, siteName }) => {
   return (
-    <div className="flex h-screen bg-white"> {/* workspace container */}
-      <WorkspaceSidebar siteName={siteName} />
-      <div className="flex-1 flex flex-col">
-        <WorkspaceTopBar />
-        <div className="flex-1 overflow-hidden">
-          {children}
+    <>
+      <style jsx>{`
+        .workspace-container {
+          height: 100vh;
+          background: white;
+        }
+        .main-content {
+          flex: 1;
+          overflow: hidden;
+        }
+      `}</style>
+      <div className="d-flex workspace-container">
+        <WorkspaceSidebar siteName={siteName} />
+        <div className="d-flex flex-column flex-fill">
+          <WorkspaceTopBar />
+          <div className="main-content">
+            {children}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
