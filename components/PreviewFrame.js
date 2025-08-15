@@ -6,13 +6,13 @@ import { Loader, Globe, AlertCircle } from 'lucide-react';
 const PreviewFrame = ({ previewUrl, isDeploying }) => {
   if (isDeploying) {
     return (
-      <div className="flex items-center justify-center h-full bg-gray-50">
+      <div className="h-100 d-flex align-items-center justify-content-center bg-light">
         <div className="text-center">
-          <Loader size={48} className="mx-auto mb-4 text-blue-500 animate-spin" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Deploying Your Website</h3>
-          <p className="text-sm text-gray-500">Building and uploading files to the cloud...</p>
-          <div className="mt-4 w-64 bg-gray-200 rounded-full h-2 mx-auto">
-            <div className="bg-blue-500 h-2 rounded-full animate-pulse" style={{ width: '60%' }}></div>
+          <Loader size={48} className="mb-4 text-primary" style={{animation: 'spin 1s linear infinite'}} />
+          <h3 className="h5 fw-medium text-dark mb-2">Deploying Your Website</h3>
+          <p className="small text-muted">Building and uploading files to the cloud...</p>
+          <div className="mt-4 mx-auto bg-secondary rounded-pill" style={{width: '256px', height: '8px'}}>
+            <div className="bg-primary rounded-pill" style={{ width: '60%', height: '8px', animation: 'pulse 2s infinite' }}></div>
           </div>
         </div>
       </div>
@@ -21,29 +21,29 @@ const PreviewFrame = ({ previewUrl, isDeploying }) => {
 
   if (!previewUrl) {
     return (
-      <div className="flex items-center justify-center h-full bg-gray-50">
+      <div className="h-100 d-flex align-items-center justify-content-center bg-light">
         <div className="text-center">
-          <Globe size={48} className="mx-auto mb-4 text-gray-300" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No Preview Available</h3>
-          <p className="text-sm text-gray-500">Generate a website and deploy it to see the preview here.</p>
+          <Globe size={48} className="mb-4 text-muted" />
+          <h3 className="h5 fw-medium text-dark mb-2">No Preview Available</h3>
+          <p className="small text-muted">Generate a website and deploy it to see the preview here.</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="relative w-full h-full">
-      <div className="absolute top-0 left-0 right-0 bg-white border-b border-gray-200 p-2 z-10">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Globe size={16} className="text-green-500" />
-            <span className="text-sm text-gray-600 truncate">{previewUrl}</span>
+    <div className="position-relative w-100 h-100">
+      <div className="position-absolute top-0 start-0 end-0 bg-white border-bottom p-2" style={{zIndex: 10}}>
+        <div className="d-flex align-items-center justify-content-between">
+          <div className="d-flex align-items-center gap-2">
+            <Globe size={16} className="text-success" />
+            <span className="small text-muted text-truncate">{previewUrl}</span>
           </div>
           <a 
             href={previewUrl} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-xs text-blue-600 hover:text-blue-800"
+            className="small text-primary text-decoration-none"
           >
             Open in new tab
           </a>
@@ -51,7 +51,7 @@ const PreviewFrame = ({ previewUrl, isDeploying }) => {
       </div>
       <iframe
         src={previewUrl}
-        className="w-full h-full border-none"
+        className="w-100 border-0"
         style={{ marginTop: '48px', height: 'calc(100% - 48px)' }}
         title="Website Preview"
         onError={() => {

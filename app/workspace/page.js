@@ -6,14 +6,14 @@ import WorkspaceLayout from '../../components/WorkspaceLayout';
 import WorkspaceChat from '../../components/WorkspaceChat';
 import DesignMode from '../../components/DesignMode';
 import PreviewFrame from '../../components/PreviewFrame';
-import { Loader } from 'lucide-react';
+import { Loader, Code, Eye } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { ThemeProvider } from '../../context/ThemeContext';
 const MonacoCodeViewer = dynamic(() => import('../../components/MonacoCodeViewer'), { ssr: false });
 
 const WorkspacePage = () => {
   const [generatedWebsite, setGeneratedWebsite] = useState(null);
-  const [activeTab, setActiveTab] = useState('chat');
+  const [activeView, setActiveView] = useState('code'); // 'code' | 'preview'
   const [previewUrl, setPreviewUrl] = useState('');
   const [isDeploying, setIsDeploying] = useState(false);
   const [siteName, setSiteName] = useState('');
@@ -24,14 +24,14 @@ const WorkspacePage = () => {
     const website = sessionStorage.getItem('generatedWebsite');
     if (website) {
       setGeneratedWebsite(JSON.parse(website));
-      setActiveTab('design');
+      setActiveView('code');
     }
   }, []);
 
   const handleWebsiteGenerated = (website) => {
     setGeneratedWebsite(website);
     sessionStorage.setItem('generatedWebsite', JSON.stringify(website));
-    setActiveTab('design');
+    setActiveView('code');
   };
 
   const triggerPreview = async () => {
@@ -59,10 +59,8 @@ const WorkspacePage = () => {
   return (
     <ThemeProvider>
       <WorkspaceLayout siteName={siteName}>
-      <div className="h-100 d-flex">
-        {/* Left Panel */}
-        <div className="w-50 border-end d-flex flex-column">
-          {/* Navigation Bar */}
+        <div className="h-100 d-flex flex-column">
+          {/* Top Navigation Bar */}
           <div className="border-bottom d-flex align-items-center justify-content-between px-3 py-2" style={{height: '48px'}}>
             <div className="d-flex align-items-center">
               <div className="d-flex align-items-center me-3">
@@ -70,55 +68,77 @@ const WorkspacePage = () => {
                 <span className="small fw-medium">Connected</span>
               </div>
             </div>
+            
+            {/* View Toggle Icons */}
+            <div className="d-flex align-items-center gap-2">
+              <button
+                onClick={() => setActiveView('code')}
+                className={`btn btn-sm px-3 d-flex align-items-center gap-2 ${
+                  activeView === 'code' 
+                    ? 'btn-primary text-white' 
+                    : 'btn-outline-secondary'
+                }`}
+              >
+                <Code size={16} />
+                <span>Code</span>
+              </button>
+              <button
+                onClick={() => setActiveView('preview')}
+                className={`btn btn-sm px-3 d-flex align-items-center gap-2 ${
+                  activeView === 'preview' 
+                    ? 'btn-primary text-white' 
+                    : 'btn-outline-secondary'
+                }`}
+              >
+                <Eye size={16} />
+                <span>Preview</span>
+              </button>
+              {activeView === 'preview' && (
+                <button
+                  onClick={triggerPreview}
+                  disabled={!generatedWebsite || isDeploying}
+                  className="btn btn-success btn-sm px-3 ms-2"
+                  style={{opacity: (!generatedWebsite || isDeploying) ? '0.5' : '1'}}
+                >
+                  {isDeploying ? 'Deploying…' : 'Deploy'}
+                </button>
+              )}
+            </div>
           </div>
 
-          {/* Tab Content */}
+          {/* Main Content Area */}
           <div className="flex-fill">
-            {activeTab === 'chat' && (
-              <WorkspaceChat 
-                generatedWebsite={generatedWebsite}
-                onWebsiteGenerated={handleWebsiteGenerated}
-              />
-            )}
-            
-            {activeTab === 'design' && generatedWebsite && (
-              <DesignMode website={generatedWebsite} onSelectFile={setSelectedFile} />
-            )}
-            
-            {activeTab === 'design' && !generatedWebsite && (
-              <div className="h-100 d-flex align-items-center justify-content-center text-muted">
-                <p>Generate a website to see design files</p>
+            {activeView === 'code' ? (
+              // Code View - File Explorer + Monaco Editor
+              <div className="h-100">
+                {generatedWebsite ? (
+                  <DesignMode website={generatedWebsite} onSelectFile={setSelectedFile} />
+                ) : (
+                  <div className="h-100 d-flex align-items-center justify-content-center text-muted">
+                    <div className="text-center">
+                      <Code size={48} className="mb-3 text-muted" />
+                      <p>Generate a website to view code files</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              // Preview View - Full Screen Preview
+              <div className="h-100">
+                {!generatedWebsite ? (
+                  <div className="h-100 d-flex align-items-center justify-content-center text-muted">
+                    <div className="text-center">
+                      <Eye size={48} className="mb-3 text-muted" />
+                      <p>Generate a website to see preview</p>
+                    </div>
+                  </div>
+                ) : (
+                  <PreviewFrame previewUrl={previewUrl} isDeploying={isDeploying} />
+                )}
               </div>
             )}
           </div>
         </div>
-
-        {/* Right Panel - Preview */}
-        <div className="w-50 d-flex flex-column">
-          <div className="border-bottom d-flex align-items-center justify-content-between px-3 py-2" style={{height: '48px'}}>
-            <div className="d-flex align-items-center">
-              <span className="small fw-medium">Preview</span>
-            </div>
-            <div className="d-flex align-items-center">
-              <button
-                onClick={triggerPreview}
-                disabled={!generatedWebsite || isDeploying}
-                className="btn btn-dark btn-sm px-3"
-                style={{opacity: (!generatedWebsite || isDeploying) ? '0.5' : '1'}}
-              >
-                {isDeploying ? 'Deploying…' : 'Preview'}
-              </button>
-            </div>
-          </div>
-          <div className="flex-fill">
-            {!generatedWebsite ? (
-              <div className="h-100 d-flex align-items-center justify-content-center text-muted"><p>Generate a website to see preview</p></div>
-            ) : (
-              <PreviewFrame previewUrl={previewUrl} isDeploying={isDeploying} />
-            )}
-          </div>
-        </div>
-      </div>
       </WorkspaceLayout>
     </ThemeProvider>
   );
