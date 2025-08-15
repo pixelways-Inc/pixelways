@@ -325,7 +325,7 @@ jobs:
       console.log('Added GitHub Actions workflow file to deployment');
     }
 
-    const owner = githubUsername;
+    const owner = githubUser;
     const repo = repoName;
     const defaultBranch = 'main';
 
@@ -450,7 +450,7 @@ jobs:
 
     // --- Step 3: Trigger GitHub Actions Workflow ---
     console.log(`Triggering GitHub Actions workflow for ${repoName}...`);
-    const workflowDispatchResponse = await fetch(`https://api.github.com/repos/${githubUsername}/${repoName}/actions/workflows/preview-build.yml/dispatches`, {
+    const workflowDispatchResponse = await fetch(`https://api.github.com/repos/${githubUser}/${repoName}/actions/workflows/preview-build.yml/dispatches`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${authToken}`,
