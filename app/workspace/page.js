@@ -6,7 +6,7 @@ import WorkspaceLayout from '../../components/WorkspaceLayout';
 import WorkspaceChat from '../../components/WorkspaceChat';
 import DesignMode from '../../components/DesignMode';
 import PreviewFrame from '../../components/PreviewFrame';
-import { Loader, Code, Eye } from 'lucide-react';
+import { Loader, Code, Eye, Rocket } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { ThemeProvider } from '../../context/ThemeContext';
 const MonacoCodeViewer = dynamic(() => import('../../components/MonacoCodeViewer'), { ssr: false });
@@ -102,9 +102,10 @@ const WorkspacePage = () => {
                 <button
                   onClick={triggerPreview}
                   disabled={!generatedWebsite || isDeploying}
-                  className="btn btn-success btn-sm px-3 ms-2"
+                  className="btn btn-success btn-sm px-3 ms-2 d-flex align-items-center gap-2"
                   style={{opacity: (!generatedWebsite || isDeploying) ? '0.5' : '1'}}
                 >
+                  <Rocket size={16} />
                   {isDeploying ? 'Deploying…' : 'Deploy'}
                 </button>
               )}

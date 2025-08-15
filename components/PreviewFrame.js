@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Loader, Globe, AlertCircle } from 'lucide-react';
+import { Loader, Globe, AlertCircle, ExternalLink } from 'lucide-react';
 
 const PreviewFrame = ({ previewUrl, isDeploying }) => {
   if (isDeploying) {
@@ -39,14 +39,13 @@ const PreviewFrame = ({ previewUrl, isDeploying }) => {
             <Globe size={16} className="text-success" />
             <span className="small text-muted text-truncate">{previewUrl}</span>
           </div>
-          <a 
-            href={previewUrl} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="small text-primary text-decoration-none"
+          <button
+            onClick={() => window.open(previewUrl, '_blank', 'noopener noreferrer')}
+            className="btn btn-outline-primary btn-sm p-1"
+            title="Open in new tab"
           >
-            Open in new tab
-          </a>
+            <ExternalLink size={14} />
+          </button>
         </div>
       </div>
       <iframe
