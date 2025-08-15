@@ -114,7 +114,7 @@ export async function POST(request) {
       body: JSON.stringify({
         name: repoName,
         private: true,
-        auto_init: true,
+        auto_init: false, // We'll create our own initial commit
       }),
     });
     if (!createRepoResponse.ok) {
@@ -329,24 +329,40 @@ jobs:
     const repo = repoName;
     const defaultBranch = 'main';
 
-    // 1. Check if the repository has any commits (try to get the default branch)
+    // 1. Check if the repository has any commits (try to get the default branch with retry)
     let latestCommitSha = null;
     let hasExistingCommits = false;
     
-    const refResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${defaultBranch}`, {
-      headers: { 
-        Authorization: `Bearer ${authToken}`,
-        'Accept': 'application/vnd.github.v3+json'
-      },
-    });
+    // Add retry logic since the repository was just created
+    let retryCount = 0;
+    const maxRetries = 3;
     
-    if (refResponse.ok) {
-      const refData = await refResponse.json();
-      latestCommitSha = refData.object.sha;
-      hasExistingCommits = true;
-    } else {
-      // Repository is empty, no existing commits
-      console.log('Repository is empty, creating initial commit');
+    while (retryCount < maxRetries) {
+    const refResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${defaultBranch}`, {
+        headers: { 
+          Authorization: `Bearer ${authToken}`,
+          'Accept': 'application/vnd.github.v3+json'
+        },
+      });
+      
+      if (refResponse.ok) {
+        const refData = await refResponse.json();
+        latestCommitSha = refData.object.sha;
+        hasExistingCommits = true;
+        console.log(`Found existing commit SHA: ${latestCommitSha}`);
+        break;
+      } else {
+        retryCount++;
+        console.log(`Attempt ${retryCount}: Branch not found yet (status: ${refResponse.status})`);
+        
+        if (retryCount < maxRetries) {
+          // Wait a bit before retrying (GitHub needs time to initialize the repo)
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        } else {
+          // Repository is empty or branch doesn't exist
+          console.log('Repository appears to be empty or branch not found, creating initial commit');
+        }
+      }
     }
 
     // 2. Create a new Git tree object
@@ -364,7 +380,12 @@ jobs:
     // Only include base_tree if there are existing commits
     if (hasExistingCommits && latestCommitSha) {
       treeRequestBody.base_tree = latestCommitSha;
+      console.log(`Creating tree with base_tree: ${latestCommitSha}`);
+    } else {
+      console.log('Creating tree without base_tree (empty repository)');
     }
+
+    console.log(`Tree creation request for ${owner}/${repo} with ${tree.length} files`);
 
     const treeResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/trees`, {
       method: 'POST',
@@ -375,8 +396,12 @@ jobs:
       },
       body: JSON.stringify(treeRequestBody),
     });
+    
+    console.log(`Tree creation response status: ${treeResponse.status}`);
+    
     if (!treeResponse.ok) {
       const errorData = await treeResponse.json();
+      console.error(`Tree creation failed for ${owner}/${repo}:`, errorData);
       throw new Error(`Failed to create tree: ${treeResponse.statusText} - ${JSON.stringify(errorData)}`);
     }
     const treeData = await treeResponse.json();
@@ -409,11 +434,13 @@ jobs:
     const commitData = await commitResponse.json();
     const newCommitSha = commitData.sha;
 
-    // 4. Create or update the branch reference
+        // 4. Create or update the branch reference
+    console.log(`Creating/updating branch reference for ${defaultBranch}`);
     let updateRefResponse;
     
     if (hasExistingCommits) {
       // Update existing branch
+      console.log(`Updating existing branch ${defaultBranch} with commit ${newCommitSha}`);
       updateRefResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs/heads/${defaultBranch}`, {
         method: 'PATCH',
         headers: {
@@ -428,6 +455,7 @@ jobs:
       });
     } else {
       // Create new branch reference
+      console.log(`Creating new branch ${defaultBranch} with commit ${newCommitSha}`);
       updateRefResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs`, {
         method: 'POST',
         headers: {
