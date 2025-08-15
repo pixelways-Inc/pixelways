@@ -2,18 +2,16 @@
 
 import React, { useEffect, useState } from 'react';
 import { Folder, FileText, ChevronDown, ChevronRight } from 'lucide-react';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabase } from '../utility/supabaseClient';
 
 const ProjectExplorer = ({ siteName }) => {
   const [entries, setEntries] = useState([]);
   const [expanded, setExpanded] = useState({});
 
   useEffect(() => {
-    const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
-    const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
-    if (!siteName || !SUPABASE_URL || !SUPABASE_ANON_KEY) return;
-
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    if (!siteName) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
 
     const list = async () => {
       const { data, error } = await supabase.storage.from('sites').list(siteName, { limit: 1000, search: '' });
@@ -65,10 +63,9 @@ const SubFolder = ({ siteName, folder, depth }) => {
   const [expanded, setExpanded] = useState({});
 
   useEffect(() => {
-    const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
-    const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
-    if (!siteName || !SUPABASE_URL || !SUPABASE_ANON_KEY) return;
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    if (!siteName) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
     const list = async () => {
       const { data, error } = await supabase.storage.from('sites').list(`${siteName}/${folder}`, { limit: 1000, search: '' });
       if (error) {
