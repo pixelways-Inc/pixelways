@@ -329,41 +329,81 @@ jobs:
     const repo = repoName;
     const defaultBranch = 'main';
 
-    // 1. Check if the repository has any commits (try to get the default branch with retry)
-    let latestCommitSha = null;
-    let hasExistingCommits = false;
+        // 1. Create an initial empty commit to establish the repository
+    console.log('Creating initial empty commit to establish repository...');
     
-    // Add retry logic since the repository was just created
-    let retryCount = 0;
-    const maxRetries = 3;
+    // Create an empty tree (no files)
+    const emptyTreeResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/trees`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        tree: [], // Empty tree
+      }),
+    });
     
-    while (retryCount < maxRetries) {
-    const refResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${defaultBranch}`, {
-        headers: { 
-          Authorization: `Bearer ${authToken}`,
-          'Accept': 'application/vnd.github.v3+json'
-        },
-      });
-      
-      if (refResponse.ok) {
-        const refData = await refResponse.json();
-        latestCommitSha = refData.object.sha;
-        hasExistingCommits = true;
-        console.log(`Found existing commit SHA: ${latestCommitSha}`);
-        break;
-      } else {
-        retryCount++;
-        console.log(`Attempt ${retryCount}: Branch not found yet (status: ${refResponse.status})`);
-        
-        if (retryCount < maxRetries) {
-          // Wait a bit before retrying (GitHub needs time to initialize the repo)
-          await new Promise(resolve => setTimeout(resolve, 1000));
-        } else {
-          // Repository is empty or branch doesn't exist
-          console.log('Repository appears to be empty or branch not found, creating initial commit');
-        }
-      }
+    if (!emptyTreeResponse.ok) {
+      const errorData = await emptyTreeResponse.json();
+      console.error('Failed to create empty tree:', errorData);
+      throw new Error(`Failed to create empty tree: ${emptyTreeResponse.statusText} - ${JSON.stringify(errorData)}`);
     }
+    
+    const emptyTreeData = await emptyTreeResponse.json();
+    const emptyTreeSha = emptyTreeData.sha;
+    console.log('Empty tree created with SHA:', emptyTreeSha);
+    
+    // Create initial commit with empty tree
+    const initialCommitResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/commits`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        message: 'Initial empty commit',
+        tree: emptyTreeSha,
+      }),
+    });
+    
+    if (!initialCommitResponse.ok) {
+      const errorData = await initialCommitResponse.json();
+      console.error('Failed to create initial commit:', errorData);
+      throw new Error(`Failed to create initial commit: ${initialCommitResponse.statusText} - ${JSON.stringify(errorData)}`);
+    }
+    
+    const initialCommitData = await initialCommitResponse.json();
+    const initialCommitSha = initialCommitData.sha;
+    console.log('Initial commit created with SHA:', initialCommitSha);
+    
+    // Create the main branch reference
+    const createBranchResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ref: `refs/heads/${defaultBranch}`,
+        sha: initialCommitSha,
+      }),
+    });
+    
+    if (!createBranchResponse.ok) {
+      const errorData = await createBranchResponse.json();
+      console.error('Failed to create branch:', errorData);
+      throw new Error(`Failed to create branch: ${createBranchResponse.statusText} - ${JSON.stringify(errorData)}`);
+    }
+    
+    console.log(`Branch ${defaultBranch} created successfully`);
+    
+    // Now we have a base to work with
+    const latestCommitSha = initialCommitSha;
+    const hasExistingCommits = true;
 
     // 2. Create a new Git tree object
     const tree = files.map(file => ({
@@ -375,15 +415,10 @@ jobs:
 
     const treeRequestBody = {
       tree: tree,
+      base_tree: latestCommitSha, // Always use our initial commit as base
     };
     
-    // Only include base_tree if there are existing commits
-    if (hasExistingCommits && latestCommitSha) {
-      treeRequestBody.base_tree = latestCommitSha;
-      console.log(`Creating tree with base_tree: ${latestCommitSha}`);
-    } else {
-      console.log('Creating tree without base_tree (empty repository)');
-    }
+    console.log(`Creating tree with base_tree: ${latestCommitSha}`);
 
     console.log(`Tree creation request for ${owner}/${repo} with ${tree.length} files`);
 
@@ -411,12 +446,8 @@ jobs:
     const commitRequestBody = {
       message: 'Initial commit from PixelAI Builder',
       tree: newTreeSha,
+      parents: [latestCommitSha], // Always use our initial commit as parent
     };
-    
-    // Only include parents if there are existing commits
-    if (hasExistingCommits && latestCommitSha) {
-      commitRequestBody.parents = [latestCommitSha];
-    }
 
     const commitResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/commits`, {
       method: 'POST',
@@ -434,45 +465,25 @@ jobs:
     const commitData = await commitResponse.json();
     const newCommitSha = commitData.sha;
 
-        // 4. Create or update the branch reference
-    console.log(`Creating/updating branch reference for ${defaultBranch}`);
-    let updateRefResponse;
+        // 4. Update the branch reference with our new commit
+    console.log(`Updating branch ${defaultBranch} with commit ${newCommitSha}`);
     
-    if (hasExistingCommits) {
-      // Update existing branch
-      console.log(`Updating existing branch ${defaultBranch} with commit ${newCommitSha}`);
-      updateRefResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs/heads/${defaultBranch}`, {
-        method: 'PATCH',
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          sha: newCommitSha,
-          force: true,
-        }),
-      });
-    } else {
-      // Create new branch reference
-      console.log(`Creating new branch ${defaultBranch} with commit ${newCommitSha}`);
-      updateRefResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ref: `refs/heads/${defaultBranch}`,
-          sha: newCommitSha,
-        }),
-      });
-    }
+    const updateRefResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs/heads/${defaultBranch}`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        sha: newCommitSha,
+        force: true,
+      }),
+    });
     
     if (!updateRefResponse.ok) {
       const errorData = await updateRefResponse.json();
-      throw new Error(`Failed to ${hasExistingCommits ? 'update' : 'create'} ref: ${updateRefResponse.statusText} - ${JSON.stringify(errorData)}`);
+      throw new Error(`Failed to update ref: ${updateRefResponse.statusText} - ${JSON.stringify(errorData)}`);
     }
     console.log('Files pushed successfully. New commit SHA:', newCommitSha);
 
