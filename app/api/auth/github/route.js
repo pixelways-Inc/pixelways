@@ -8,14 +8,14 @@ const REDIRECT_URI = 'https://pixelways.co/api/auth/github/callback';
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const action = searchParams.get('action');
+  const origin = searchParams.get('origin'); // Get the origin URL for callback
 
   if (action === 'authorize') {
     // Redirect to GitHub OAuth authorization
     const scopes = 'repo user:email delete_repo'; // Request repo access, user email, and delete permissions
     const state = crypto.randomUUID(); // Generate random state for security
     
-    // Store state in a secure way (you might want to use a database or session)
-    // For now, we'll use a cookie
+    // Store state and origin in cookies for the callback
     const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${encodeURIComponent(scopes)}&state=${state}`;
     
     const response = NextResponse.redirect(authUrl);
@@ -24,6 +24,15 @@ export async function GET(request) {
       secure: process.env.NODE_ENV === 'production',
       maxAge: 600 // 10 minutes
     });
+    
+    // Store the origin URL for callback
+    if (origin) {
+      response.cookies.set('github_oauth_origin', origin, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 600 // 10 minutes
+      });
+    }
     
     return response;
   }

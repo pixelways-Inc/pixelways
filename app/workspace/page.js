@@ -100,6 +100,35 @@ const WorkspacePage = () => {
             setGeneratedWebsite(JSON.parse(website));
             setActiveView('code');
           }
+          
+          // Load GitHub auth from localStorage on initial load (persistent across sessions)
+          const savedToken = localStorage.getItem('github_access_token');
+          const savedUser = localStorage.getItem('github_user');
+          
+          if (savedToken && savedUser) {
+            // Copy to session storage for current session
+            sessionStorage.setItem('github_access_token', savedToken);
+            sessionStorage.setItem('github_user', savedUser);
+            console.log('GitHub authentication loaded from localStorage');
+          }
+          
+          // Check for pending deployment after auth
+          const pendingDeployment = sessionStorage.getItem('pending_deployment');
+          if (pendingDeployment) {
+            try {
+              const deployment = JSON.parse(pendingDeployment);
+              // Check if deployment is not too old (within 10 minutes)
+              if (Date.now() - deployment.timestamp < 10 * 60 * 1000) {
+                console.log('Found pending deployment after auth, will deploy automatically');
+              } else {
+                // Remove stale deployment
+                sessionStorage.removeItem('pending_deployment');
+              }
+            } catch (e) {
+              console.error('Error parsing pending deployment:', e);
+              sessionStorage.removeItem('pending_deployment');
+            }
+          }
         }
         
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -152,6 +181,79 @@ const WorkspacePage = () => {
       return;
     }
     
+    // Check if this is a React/Vite project that requires GitHub auth
+    const requiresGitHubAuth = generatedWebsite.projectType && generatedWebsite.projectType !== 'static';
+    
+    if (requiresGitHubAuth) {
+      // Check if user is authenticated with GitHub
+      const githubToken = typeof window !== 'undefined' ? sessionStorage.getItem('github_access_token') : null;
+      const githubUserData = typeof window !== 'undefined' ? sessionStorage.getItem('github_user') : null;
+      
+      if (!githubToken || !githubUserData) {
+        // User not authenticated - trigger OAuth in new tab
+        const confirmAuth = window.confirm(
+          `GitHub authentication required for ${generatedWebsite.projectType.toUpperCase()} projects.\n\n` +
+          `Benefits:\n` +
+          `• Deploy to your own GitHub repositories\n` +
+          `• Full control over your projects\n` +
+          `• No repository limits\n` +
+          `• Private repositories supported\n\n` +
+          `Click OK to connect your GitHub account in a new tab.`
+        );
+        
+        if (!confirmAuth) {
+          return;
+        }
+        
+        // Store the current state for after auth
+        sessionStorage.setItem('pending_deployment', JSON.stringify({
+          siteName: customSiteName.trim(),
+          projectType: generatedWebsite.projectType,
+          files: generatedWebsite.files,
+          timestamp: Date.now()
+        }));
+        
+        // Open GitHub OAuth in new tab
+        const authUrl = `/api/auth/github?action=authorize&origin=${encodeURIComponent(window.location.href)}`;
+        window.open(authUrl, 'github-auth', 'width=600,height=700,scrollbars=yes,resizable=yes');
+        
+        // Listen for auth completion
+        window.addEventListener('message', handleAuthMessage, false);
+        return;
+      }
+    }
+    
+    // Proceed with deployment
+    await performDeployment();
+  };
+
+  const handleAuthMessage = (event) => {
+    if (event.origin !== window.location.origin) return;
+    
+    if (event.data.type === 'GITHUB_AUTH_SUCCESS') {
+      // Remove the event listener
+      window.removeEventListener('message', handleAuthMessage, false);
+      
+      // Auth successful, proceed with deployment
+      const { token, user } = event.data;
+      
+      // Store tokens in session storage and localStorage
+      sessionStorage.setItem('github_access_token', token);
+      sessionStorage.setItem('github_user', JSON.stringify(user));
+      localStorage.setItem('github_access_token', token);
+      localStorage.setItem('github_user', JSON.stringify(user));
+      
+      console.log('GitHub authentication successful, proceeding with deployment');
+      
+      // Proceed with deployment
+      performDeployment();
+    } else if (event.data.type === 'GITHUB_AUTH_ERROR') {
+      window.removeEventListener('message', handleAuthMessage, false);
+      alert('GitHub authentication failed. Please try again.');
+    }
+  };
+
+  const performDeployment = async () => {
     setIsDeploying(true);
     try {
       // Get GitHub credentials from session storage
@@ -159,18 +261,42 @@ const WorkspacePage = () => {
       const githubUserData = typeof window !== 'undefined' ? sessionStorage.getItem('github_user') : null;
       const githubUser = githubUserData ? JSON.parse(githubUserData) : null;
 
+      // Get deployment details (either from current state or pending deployment)
+      const pendingDeployment = sessionStorage.getItem('pending_deployment');
+      let siteName, files, projectType;
+      
+      if (pendingDeployment) {
+        // Use stored deployment details from before auth
+        const deployment = JSON.parse(pendingDeployment);
+        siteName = deployment.siteName;
+        files = deployment.files;
+        projectType = deployment.projectType;
+        // Clear pending deployment
+        sessionStorage.removeItem('pending_deployment');
+      } else {
+        // Use current state
+        siteName = customSiteName.trim();
+        files = generatedWebsite.files;
+        projectType = generatedWebsite.projectType;
+      }
+
       const response = await fetch('/api/preview', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          files: generatedWebsite.files,
-          project_type: generatedWebsite.projectType,
-          site_name: customSiteName.trim(), // Use custom site name
+          files: files,
+          project_type: projectType,
+          site_name: siteName,
           github_token: githubToken,
           github_username: githubUser?.login
         }),
       });
       const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Deployment failed');
+      }
+      
       if (data.preview_url) {
         setPreviewUrl(data.preview_url);
         // Switch to preview view to show the result

@@ -77,10 +77,28 @@ export async function POST(request) {
 
     // Check if user provided GitHub token (from request or cookies)
     const useUserToken = finalGithubToken && finalGithubUsername;
-    const authToken = useUserToken ? finalGithubToken : GITHUB_CONFIG.PAT;
-    const githubUser = useUserToken ? finalGithubUsername : GITHUB_CONFIG.USERNAME;
+    
+    // For React/Vite projects, encourage user authentication for better experience
+    if (!useUserToken) {
+      console.log('No user GitHub token found - encouraging user authentication');
+      return NextResponse.json({
+        error: 'GitHub authentication required',
+        message: 'Please connect your GitHub account to deploy React/Vite projects to your own repositories.',
+        requiresAuth: true,
+        authUrl: '/api/auth/github?action=authorize',
+        benefits: [
+          'Deploy to your own GitHub repositories',
+          'Full control over your projects',
+          'No repository limits',
+          'Private repositories supported'
+        ]
+      }, { status: 401 });
+    }
+    
+    const authToken = finalGithubToken;
+    const githubUser = finalGithubUsername;
 
-    console.log(`Using ${useUserToken ? 'user' : 'app'} GitHub token for deployment`);
+    console.log(`Using user GitHub token for deployment to ${githubUser}'s account`);
 
     const repoName = site_name ? `${site_name}-${Date.now()}` : `pixelai-preview-${Date.now()}`;
 
@@ -89,7 +107,8 @@ export async function POST(request) {
     const createRepoResponse = await fetch(`https://api.github.com/user/repos`, {
       method: 'POST',
       headers: {
-        Authorization: `token ${authToken}`,
+        Authorization: `Bearer ${authToken}`,
+        'Accept': 'application/vnd.github.v3+json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -293,7 +312,7 @@ jobs:
         # Delete the temporary repository
         echo "🗑️ Cleaning up temporary repository: \${{ inputs.repo_name }}"
         curl -X DELETE "https://api.github.com/repos/\${{ github.repository_owner }}/\${{ inputs.repo_name }}" \\
-          -H "Authorization: token \$REPO_CLEANUP_TOKEN"
+          -H "Authorization: Bearer \$REPO_CLEANUP_TOKEN"
         
         echo "✅ Repository cleanup completed"`;
 
@@ -312,7 +331,10 @@ jobs:
 
     // 1. Get the latest commit SHA of the default branch
     const refResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${defaultBranch}`, {
-      headers: { Authorization: `token ${GITHUB_CONFIG.PAT}` },
+      headers: { 
+        Authorization: `Bearer ${authToken}`,
+        'Accept': 'application/vnd.github.v3+json'
+      },
     });
     if (!refResponse.ok) {
       const errorData = await refResponse.json();
@@ -332,7 +354,8 @@ jobs:
     const treeResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/trees`, {
       method: 'POST',
       headers: {
-        Authorization: `token ${authToken}`,
+        Authorization: `Bearer ${authToken}`,
+        'Accept': 'application/vnd.github.v3+json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -351,7 +374,8 @@ jobs:
     const commitResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/commits`, {
       method: 'POST',
       headers: {
-        Authorization: `token ${authToken}`,
+        Authorization: `Bearer ${authToken}`,
+        'Accept': 'application/vnd.github.v3+json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -371,7 +395,8 @@ jobs:
     const updateRefResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs/heads/${defaultBranch}`, {
       method: 'PATCH',
       headers: {
-        Authorization: `token ${authToken}`,
+        Authorization: `Bearer ${authToken}`,
+        'Accept': 'application/vnd.github.v3+json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -390,7 +415,8 @@ jobs:
     const workflowDispatchResponse = await fetch(`https://api.github.com/repos/${GITHUB_CONFIG.USERNAME}/${repoName}/actions/workflows/preview-build.yml/dispatches`, {
       method: 'POST',
       headers: {
-        Authorization: `token ${authToken}`,
+        Authorization: `Bearer ${authToken}`,
+        'Accept': 'application/vnd.github.v3+json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
