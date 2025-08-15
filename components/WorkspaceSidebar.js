@@ -1,9 +1,10 @@
 "use client";
 
 import React from 'react';
-import { Menu, Wrench, ChevronDown } from 'lucide-react'; // Assuming lucide-react is installed
+import { Menu, Wrench, ChevronDown, MessageSquare } from 'lucide-react'; // Assuming lucide-react is installed
+import ProjectExplorer from './ProjectExplorer';
 
-const WorkspaceSidebar = () => {
+const WorkspaceSidebar = ({ siteName }) => {
   return (
     <div className="w-70 bg-[#16213e] border-r border-[#374151] flex flex-col"> {/* sidebar */}
       {/* Sidebar Header */}
@@ -22,7 +23,7 @@ const WorkspaceSidebar = () => {
 
       {/* Sidebar Content */}
       <div className="flex-1 p-4 overflow-y-auto"> {/* sidebarContent container */}
-        <ProjectExplorer />
+        <ProjectExplorer siteName={siteName} />
       </div>
 
       {/* Sidebar Bottom */}

@@ -2,8 +2,10 @@
 
 import React, { useState } from 'react';
 import { ChevronRight, ChevronDown, File, Folder, FileText, Code, Play, Download } from 'lucide-react';
+import dynamic from 'next/dynamic';
+const MonacoCodeViewer = dynamic(() => import('./MonacoCodeViewer'), { ssr: false });
 
-const DesignMode = ({ website }) => {
+const DesignMode = ({ website, onSelectFile }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [expandedFolders, setExpandedFolders] = useState({});
   const [isDeploying, setIsDeploying] = useState(false);
@@ -24,21 +26,28 @@ const DesignMode = ({ website }) => {
   };
 
   const handleDeploy = async () => {
+    if (!website || !Array.isArray(website.files)) return;
     setIsDeploying(true);
     try {
-      const response = await fetch('/api/deploy', {
+      const response = await fetch('/api/preview', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(website),
+        body: JSON.stringify({
+          files: website.files,
+          project_type: website.projectType,
+        }),
       });
       
       const result = await response.json();
-      if (result.success) {
-        alert(`Deployed successfully! URL: ${result.url}`);
+      if (result.preview_url) {
+        const url = result.preview_url;
+        window.open(url, '_blank', 'noopener');
+      } else if (result.success && result.url) {
+        window.open(result.url, '_blank', 'noopener');
       } else {
-        alert('Deployment failed: ' + result.error);
+        alert('Deployment failed: ' + (result.error || 'Unknown error'));
       }
     } catch (error) {
       console.error('Deploy error:', error);
@@ -74,7 +83,11 @@ const DesignMode = ({ website }) => {
             selectedFile?.path === path ? 'bg-blue-50 border-r-2 border-blue-500' : ''
           }`}
           style={{ paddingLeft: `${level * 16 + 8}px` }}
-          onClick={() => setSelectedFile({ name, path, content })}
+          onClick={() => {
+            const file = { name, path, content };
+            setSelectedFile(file);
+            if (onSelectFile) onSelectFile(file);
+          }}
         >
           {getFileIcon(name)}
           <span className="ml-2 text-sm">{name}</span>
@@ -106,68 +119,45 @@ const DesignMode = ({ website }) => {
 
   const generateFileTree = () => {
     const files = [];
-    
+    const fileArray = Array.isArray(website.files) ? website.files : [];
+
+    // Helper to get content by path
+    const contentByPath = (path) => fileArray.find((f) => f.path === path)?.content || '';
+
     if (website.projectType === 'static') {
-      files.push({
-        name: 'index.html',
-        path: 'index.html',
-        isFile: true,
-        content: website.files['index.html']
-      });
-      files.push({
-        name: 'style.css',
-        path: 'style.css',
-        isFile: true,
-        content: website.files['style.css']
-      });
-      if (website.files['script.js']) {
-        files.push({
-          name: 'script.js',
-          path: 'script.js',
-          isFile: true,
-          content: website.files['script.js']
-        });
+      const staticPaths = ['index.html', 'style.css', 'script.js'];
+      for (const p of staticPaths) {
+        const content = contentByPath(p);
+        if (content) {
+          files.push({ name: p, path: p, isFile: true, content });
+        }
       }
     } else if (website.projectType === 'react-vite') {
-      files.push({
-        name: 'src',
-        path: 'src',
-        isFile: false,
-        children: [
-          {
-            name: 'App.jsx',
-            path: 'src/App.jsx',
-            isFile: true,
-            content: website.files['src/App.jsx']
-          },
-          {
-            name: 'index.css',
-            path: 'src/index.css',
-            isFile: true,
-            content: website.files['src/index.css']
-          },
-          {
-            name: 'main.jsx',
-            path: 'src/main.jsx',
-            isFile: true,
-            content: website.files['src/main.jsx']
-          }
-        ]
-      });
-      files.push({
-        name: 'package.json',
-        path: 'package.json',
-        isFile: true,
-        content: website.files['package.json']
-      });
-      files.push({
-        name: 'index.html',
-        path: 'index.html',
-        isFile: true,
-        content: website.files['index.html']
-      });
+      const srcChildren = [];
+      const srcFiles = ['src/App.jsx', 'src/index.css', 'src/main.jsx'];
+      for (const p of srcFiles) {
+        const name = p.split('/').pop();
+        const content = contentByPath(p);
+        if (content) srcChildren.push({ name, path: p, isFile: true, content });
+      }
+      if (srcChildren.length > 0) {
+        files.push({ name: 'src', path: 'src', isFile: false, children: srcChildren });
+      }
+      const rootFiles = ['package.json', 'index.html', 'vite.config.js'];
+      for (const p of rootFiles) {
+        const content = contentByPath(p);
+        if (content) files.push({ name: p, path: p, isFile: true, content });
+      }
     }
-    
+
+    // Generic fallback: list any remaining files at root level
+    if (files.length === 0 && fileArray.length > 0) {
+      for (const f of fileArray) {
+        const name = f.path.split('/').pop();
+        files.push({ name, path: f.path, isFile: true, content: f.content });
+      }
+    }
+
     return files;
   };
 
@@ -211,9 +201,18 @@ const DesignMode = ({ website }) => {
               </div>
             </div>
             <div className="flex-1 bg-white">
-              <pre className="h-full overflow-auto p-4 text-sm font-mono leading-relaxed">
-                <code>{selectedFile.content}</code>
-              </pre>
+              <MonacoCodeViewer
+                value={selectedFile.content}
+                language={(() => {
+                  const ext = selectedFile.name.split('.').pop();
+                  if (ext === 'html') return 'html';
+                  if (ext === 'css') return 'css';
+                  if (ext === 'js' || ext === 'jsx' || ext === 'ts' || ext === 'tsx') return 'javascript';
+                  if (ext === 'json') return 'json';
+                  return 'plaintext';
+                })()}
+                height={'100%'}
+              />
             </div>
           </>
         ) : (

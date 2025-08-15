@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
 
 const GITHUB_PAT = process.env.GH_PAT;
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME; // Assuming user's GitHub username is also available
@@ -8,8 +9,64 @@ export async function POST(request) {
     const { files, project_type } = await request.json(); // Assuming files and project_type are sent
     console.log('Received preview request:', { files: files.length, project_type });
 
+    // If GitHub is not configured, fall back to direct Supabase upload for immediate previews
     if (!GITHUB_PAT || !GITHUB_USERNAME) {
-      return NextResponse.json({ error: 'GitHub PAT or Username not configured.' }, { status: 500 });
+      console.log('GitHub not configured. Falling back to direct Supabase upload.');
+
+      const SUPABASE_URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const SUPABASE_SERVICE_ROLE =
+        process.env.SUPABASE_SERVICE_ROLE ||
+        process.env.SUPABASE_SERVICE_ROLE_KEY ||
+        process.env.SUPABASE_ANON_KEY ||
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+      if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE) {
+        return NextResponse.json({ error: 'Supabase credentials are not configured.' }, { status: 500 });
+      }
+
+      const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE);
+
+      const siteName = `site-${Date.now()}`;
+      const bucket = 'sites';
+
+      // Ensure bucket exists (best-effort; ignore error if it already exists)
+      try {
+        // @ts-ignore - admin API not typed here; if unavailable, uploads will still work if bucket already exists
+        // Some Supabase setups may not allow bucket creation with service key; ignore failures
+        await supabase.storage.createBucket(bucket, { public: true });
+      } catch (e) {
+        console.log('Bucket create attempt result:', e?.message || 'skip');
+      }
+
+      // Upload files
+      const contentTypeFromPath = (path) => {
+        const lower = path.toLowerCase();
+        if (lower.endsWith('.html')) return 'text/html; charset=utf-8';
+        if (lower.endsWith('.css')) return 'text/css; charset=utf-8';
+        if (lower.endsWith('.js')) return 'application/javascript; charset=utf-8';
+        if (lower.endsWith('.json')) return 'application/json; charset=utf-8';
+        if (lower.endsWith('.svg')) return 'image/svg+xml';
+        if (lower.endsWith('.png')) return 'image/png';
+        if (lower.endsWith('.jpg') || lower.endsWith('.jpeg')) return 'image/jpeg';
+        if (lower.endsWith('.webp')) return 'image/webp';
+        return 'text/plain; charset=utf-8';
+      };
+
+      for (const file of files) {
+        const storagePath = `${siteName}/${file.path}`.replace(/\\/g, '/');
+        const { error: uploadError } = await supabase.storage
+          .from(bucket)
+          .upload(storagePath, Buffer.from(file.content, 'utf-8'), {
+            contentType: contentTypeFromPath(file.path),
+            upsert: true,
+          });
+        if (uploadError) {
+          console.error('Supabase upload error:', uploadError);
+          return NextResponse.json({ error: `Failed to upload ${file.path}: ${uploadError.message}` }, { status: 500 });
+        }
+      }
+
+      const previewUrl = `https://pixelways.co/sites/${siteName}/index.html`;
+      return NextResponse.json({ preview_url: previewUrl, site: siteName, project_type, message: 'Preview uploaded to Supabase successfully.' });
     }
 
     const repoName = `pixelai-preview-${Date.now()}`; // Unique repository name
