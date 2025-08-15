@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Send, Loader, Plus, Moon, Sun } from 'lucide-react';
+import { Send, Loader, Plus, Moon, Sun, Paperclip, Home, Briefcase, PenTool, Building2 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const ChatInterfaceLanding = () => {
@@ -83,7 +83,7 @@ const ChatInterfaceLanding = () => {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               onKeyDown={handleKeyPress}
-              placeholder="Ask Pixel AI"
+              placeholder="Ask Pixel AI to build"
               className="w-full bg-transparent border-none text-base text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 resize-none focus:outline-none leading-relaxed min-h-[60px] max-h-[150px]"
               disabled={isGenerating}
               rows={2}
@@ -94,6 +94,11 @@ const ChatInterfaceLanding = () => {
         {/* Bottom Actions */}
         <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100 dark:border-gray-700">
           <div className="flex items-center gap-2">
+            {/* Attach Icon */}
+            <button className="flex items-center justify-center w-7 h-7 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-all duration-200">
+              <Paperclip size={16} />
+            </button>
+
             {/* Plus Icon */}
             <button className="flex items-center justify-center w-7 h-7 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-all duration-200">
               <Plus size={16} />
@@ -158,7 +163,7 @@ const ChatInterfaceLanding = () => {
             className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm transition-all duration-200 text-left group"
           >
             <div className="w-6 h-6 bg-gray-100 dark:bg-gray-700 rounded flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-gray-600 transition-colors">
-              🏠
+              <Home size={14} className="text-gray-600 dark:text-gray-300" />
             </div>
             <span className="text-sm font-medium text-gray-900 dark:text-white">Landing Page</span>
           </button>
@@ -168,7 +173,7 @@ const ChatInterfaceLanding = () => {
             className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm transition-all duration-200 text-left group"
           >
             <div className="w-6 h-6 bg-gray-100 dark:bg-gray-700 rounded flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-gray-600 transition-colors">
-              💼
+              <Briefcase size={14} className="text-gray-600 dark:text-gray-300" />
             </div>
             <span className="text-sm font-medium text-gray-900 dark:text-white">Portfolio</span>
           </button>
@@ -178,7 +183,7 @@ const ChatInterfaceLanding = () => {
             className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm transition-all duration-200 text-left group"
           >
             <div className="w-6 h-6 bg-gray-100 dark:bg-gray-700 rounded flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-gray-600 transition-colors">
-              📝
+              <PenTool size={14} className="text-gray-600 dark:text-gray-300" />
             </div>
             <span className="text-sm font-medium text-gray-900 dark:text-white">Blog</span>
           </button>
@@ -188,7 +193,7 @@ const ChatInterfaceLanding = () => {
             className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm transition-all duration-200 text-left group"
           >
             <div className="w-6 h-6 bg-gray-100 dark:bg-gray-700 rounded flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-gray-600 transition-colors">
-              🏢
+              <Building2 size={14} className="text-gray-600 dark:text-gray-300" />
             </div>
             <span className="text-sm font-medium text-gray-900 dark:text-white">Business</span>
           </button>

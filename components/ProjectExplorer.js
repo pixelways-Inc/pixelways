@@ -94,7 +94,7 @@ const SubFolder = ({ siteName, folder, depth }) => {
               <button onClick={() => toggle(item.name)} className="w-full flex items-center gap-2 p-2 rounded-md hover:bg-[#1e2951] text-left">
                 {expanded[item.name] ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
                 <Folder size={16} className="text-gray-400" />
-                <span>{item.name}</span>
+          <span>{item.name}</span>
               </button>
               {expanded[item.name] && (
                 <SubFolder siteName={siteName} folder={`${folder}/${item.name}`} depth={depth + 1} />

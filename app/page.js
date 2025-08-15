@@ -5,9 +5,11 @@ import Counter from "@/components/Counter";
 import Team from "@/components/Team";
 import Testimonials from "@/components/testimonials/Testimonials1";
 import PixelwaysAdModal from "@/components/PixelwaysAdModal";
+import ChatInterfaceLanding from "@/components/ChatInterfaceLanding";
 
 import { WorkingProcess2 } from "@/components/WorkingProcess";
 import TekprofLayout from "@/layout/TekprofLayout";
+import { ThemeProvider } from "@/context/ThemeContext";
 import Link from "next/link";
 
 const page = () => {
@@ -22,43 +24,19 @@ const page = () => {
       }}
     >
       {/*End Hidden Sidebar */}
-      {/* Hero Section Start */}
-      <section
-        className="hero-area pt-100 rpt-70 pb-130 rpb-100 rel z-1"
-      >
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-7 align-self-center">
-              <div
-                className="hero-content rmb-55"
-                data-aos="fade-left"
-                data-aos-duration={1500}
-                data-aos-offset={50}
-              >
-                <span className="sub-title mb-15">Future-Ready Digital Solutions</span>
-                <h1>Empowering Your Business with Innovative Digital Solutions</h1>
-                <p>
-                  Pixelways Solutions is your trusted partner in navigating the complexities of the digital landscape. We deliver innovative, scalable, and secure technology solutions tailored to your unique business needs.
-                </p>
-                <Link href="services" className="theme-btn mt-15">
-                  Explore Our Services
-                </Link>
+      {/* AI Hero Section Start */}
+      <section className="ai-hero-area pt-100 rpt-70 pb-130 rpb-100 rel z-1">
+        <div className="container-fluid">
+          <ThemeProvider>
+            <div className="min-h-screen bg-white dark:bg-gray-900 flex flex-col items-center justify-center p-4 transition-colors">
+              <div className="w-full max-w-4xl mx-auto py-12">
+                <ChatInterfaceLanding />
               </div>
             </div>
-            <div className="col-lg-5">
-              <div
-                className="hero-image radius-animation"
-                data-aos="fade-right"
-                data-aos-duration={1500}
-                data-aos-offset={50}
-              >
-                <img src="https://api.a0.dev/assets/image?text=A bustling high-tech corporate campus at golden hour, with sleek glass office towers reflecting the warm sunlight. In the foreground, diverse teams of smiling young professionals collaborate outdoors—some gathered around laptops, others walking and discussing ideas while holding tablets and smartphones. Large interactive digital displays showcase the company’s cutting-edge software solutions, glowing with futuristic UI designs. The background features lush landscaped gardens, autonomous delivery robots, and transparent skybridges connecting the buildings. The atmosphere is innovative, welcoming, and inspiring, with cinematic lighting, ultra-sharp textures, and realistic details. 8K resolution, image size: 600x600px.&aspect=1:1&seed=123" alt="Hero" width={600} height={600} />
-              </div>
-            </div>
-          </div>
+          </ThemeProvider>
         </div>
       </section>
-      {/* Hero Section End */}
+      {/* AI Hero Section End */}
       {/* Features Area start */}
       <section className="features-area rel z-1">
         <div className="container pt-130 rpt-100 pb-100 rpb-70">
