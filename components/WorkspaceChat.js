@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Send, Loader } from 'lucide-react';
 
 const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
@@ -14,6 +14,18 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
   ]);
   const [newMessage, setNewMessage] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleSendMessage = async () => {
     if (!newMessage.trim() || isGenerating) return;
@@ -108,16 +120,16 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
         .messages-area {
           flex: 1;
           overflow-y: auto;
-          padding: 1rem;
+          padding: ${isMobile ? '1rem' : '1rem'};
         }
         .message-item {
-          margin-bottom: 1rem;
+          margin-bottom: ${isMobile ? '1.5rem' : '1rem'};
         }
         .ai-indicator {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          font-size: 0.75rem;
+          font-size: ${isMobile ? '0.875rem' : '0.75rem'};
           color: #6b7280;
           margin-bottom: 0.5rem;
         }
@@ -128,32 +140,46 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
           border-radius: 50%;
         }
         .user-message {
-          margin-left: 2rem;
+          margin-left: ${isMobile ? '0' : '2rem'};
+          text-align: ${isMobile ? 'right' : 'left'};
         }
         .user-bubble {
           display: inline-block;
-          max-width: 100%;
-          background: #f3f4f6;
-          color: #1f2937;
-          border-radius: 0.5rem;
-          padding: 0.5rem 1rem;
+          max-width: ${isMobile ? '85%' : '100%'};
+          background: ${isMobile ? '#2563eb' : '#f3f4f6'};
+          color: ${isMobile ? 'white' : '#1f2937'};
+          border-radius: ${isMobile ? '1rem 1rem 0.25rem 1rem' : '0.5rem'};
+          padding: ${isMobile ? '0.75rem 1rem' : '0.5rem 1rem'};
+          font-size: ${isMobile ? '0.9rem' : '0.875rem'};
         }
         .ai-message {
           color: #374151;
+          background: ${isMobile ? '#f8f9fa' : 'transparent'};
+          padding: ${isMobile ? '0.75rem 1rem' : '0'};
+          border-radius: ${isMobile ? '1rem 1rem 1rem 0.25rem' : '0'};
+          max-width: ${isMobile ? '85%' : 'none'};
+          display: ${isMobile ? 'inline-block' : 'block'};
+          font-size: ${isMobile ? '0.9rem' : '0.875rem'};
+          line-height: 1.5;
         }
         .thinking-message {
           display: flex;
           align-items: center;
           gap: 0.5rem;
+          background: ${isMobile ? '#f8f9fa' : 'transparent'};
+          padding: ${isMobile ? '0.75rem 1rem' : '0'};
+          border-radius: ${isMobile ? '1rem 1rem 1rem 0.25rem' : '0'};
+          max-width: ${isMobile ? '85%' : 'none'};
         }
         .input-area {
           border-top: 1px solid #e5e7eb;
-          padding: 1rem;
+          padding: ${isMobile ? '1rem' : '1rem'};
+          background: ${isMobile ? 'white' : 'transparent'};
         }
         .input-group {
           display: flex;
           align-items: end;
-          gap: 0.5rem;
+          gap: ${isMobile ? '0.75rem' : '0.5rem'};
         }
         .input-wrapper {
           flex: 1;
@@ -162,22 +188,25 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
           width: 100%;
           resize: none;
           border: 1px solid #d1d5db;
-          border-radius: 0.5rem;
-          padding: 0.5rem 0.75rem;
-          font-size: 0.875rem;
-          min-height: 40px;
+          border-radius: ${isMobile ? '1rem' : '0.5rem'};
+          padding: ${isMobile ? '0.75rem 1rem' : '0.5rem 0.75rem'};
+          font-size: ${isMobile ? '1rem' : '0.875rem'};
+          min-height: ${isMobile ? '48px' : '40px'};
+          background: ${isMobile ? '#f8f9fa' : 'white'};
         }
         .message-input:focus {
           outline: none;
-          border-color: #9ca3af;
+          border-color: #2563eb;
+          background: white;
         }
         .controls-area {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: ${isMobile ? '0.75rem' : '0.5rem'};
+          ${isMobile ? 'flex-direction: column; align-items: end;' : ''}
         }
         .agent-indicator {
-          display: flex;
+          display: ${isMobile ? 'none' : 'flex'};
           align-items: center;
           gap: 0.25rem;
           font-size: 0.75rem;
@@ -191,22 +220,24 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
           justify-content: center;
         }
         .send-button {
-          padding: 0.5rem;
-          background: #1f2937;
+          padding: ${isMobile ? '0.75rem' : '0.5rem'};
+          background: #2563eb;
           color: white;
           border: none;
-          border-radius: 0.5rem;
+          border-radius: ${isMobile ? '50%' : '0.5rem'};
           cursor: pointer;
           transition: background-color 0.2s;
+          ${isMobile ? 'width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;' : ''}
         }
         .send-button:hover:not(:disabled) {
-          background: #374151;
+          background: #1d4ed8;
         }
         .send-button:disabled {
           opacity: 0.5;
           cursor: not-allowed;
         }
         .stop-button {
+          display: ${isMobile ? 'none' : 'block'};
           padding: 0.5rem 0.75rem;
           background: #1f2937;
           color: white;

@@ -3,22 +3,34 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import WorkspaceLayout from '../../components/WorkspaceLayout';
-import WorkspaceChat from '../../components/WorkspaceChat';
-import DesignMode from '../../components/DesignMode';
-import PreviewFrame from '../../components/PreviewFrame';
-import { Loader, Code, Eye, Rocket } from 'lucide-react';
 import dynamic from 'next/dynamic';
+const WorkspaceChat = dynamic(() => import('../../components/WorkspaceChat'), { ssr: false });
+const DesignMode = dynamic(() => import('../../components/DesignMode'), { ssr: false });
+const PreviewFrame = dynamic(() => import('../../components/PreviewFrame'), { ssr: false });
+import { Loader, Code, Eye, Rocket, MessageSquare } from 'lucide-react';
 import { ThemeProvider } from '../../context/ThemeContext';
 const MonacoCodeViewer = dynamic(() => import('../../components/MonacoCodeViewer'), { ssr: false });
 
 const WorkspacePage = () => {
   const [generatedWebsite, setGeneratedWebsite] = useState(null);
-  const [activeView, setActiveView] = useState('code'); // 'code' | 'preview'
+  const [activeView, setActiveView] = useState('chat'); // 'chat' | 'code' | 'preview'
   const [previewUrl, setPreviewUrl] = useState('');
   const [isDeploying, setIsDeploying] = useState(false);
   const [siteName, setSiteName] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const website = sessionStorage.getItem('generatedWebsite');
@@ -61,6 +73,207 @@ const WorkspacePage = () => {
     }
   };
 
+  // Mobile Layout
+  if (isMobile) {
+    return (
+      <ThemeProvider>
+        <style jsx>{`
+          .mobile-workspace {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #f8f9fa;
+          }
+          .mobile-header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 56px;
+          }
+          .mobile-header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+          .mobile-status-dot {
+            width: 8px;
+            height: 8px;
+            background: #16a34a;
+            border-radius: 50%;
+          }
+          .mobile-status-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+          }
+          .mobile-deploy-button {
+            background: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+          }
+          .mobile-deploy-button:hover:not(:disabled) {
+            background: #15803d;
+          }
+          .mobile-deploy-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+          .mobile-content {
+            flex: 1;
+            overflow: hidden;
+          }
+          .mobile-bottom-nav {
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            padding: 8px 0;
+            display: flex;
+            justify-content: space-around;
+            min-height: 64px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+          }
+          .mobile-nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #6b7280;
+          }
+          .mobile-nav-item.active {
+            color: #2563eb;
+            background: #eff6ff;
+            border-radius: 8px;
+            margin: 0 4px;
+          }
+          .mobile-nav-label {
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 4px;
+          }
+          .mobile-empty-state {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #6b7280;
+            text-align: center;
+            padding: 2rem;
+          }
+          .mobile-empty-icon {
+            margin-bottom: 16px;
+            color: #9ca3af;
+          }
+          .mobile-empty-text {
+            font-size: 16px;
+            margin-bottom: 8px;
+          }
+          .mobile-empty-subtitle {
+            font-size: 14px;
+            color: #9ca3af;
+          }
+        `}</style>
+        <div className="mobile-workspace">
+          {/* Mobile Header */}
+          <div className="mobile-header">
+            <div className="mobile-header-left">
+              <div className="mobile-status-dot"></div>
+              <span className="mobile-status-text">PixelAI Workspace</span>
+            </div>
+            {activeView === 'preview' && generatedWebsite && (
+              <button
+                onClick={triggerPreview}
+                disabled={isDeploying}
+                className="mobile-deploy-button"
+              >
+                <Rocket size={16} />
+                <span>{isDeploying ? 'Deploying...' : 'Deploy'}</span>
+              </button>
+            )}
+          </div>
+
+          {/* Mobile Content */}
+          <div className="mobile-content">
+            {activeView === 'chat' ? (
+              <WorkspaceChat 
+                generatedWebsite={generatedWebsite}
+                onWebsiteGenerated={handleWebsiteGenerated}
+              />
+            ) : activeView === 'code' ? (
+              generatedWebsite ? (
+                <DesignMode 
+                  website={generatedWebsite} 
+                  onSelectFile={setSelectedFile}
+                  onDeploy={triggerPreview}
+                  isDeploying={isDeploying}
+                />
+              ) : (
+                <div className="mobile-empty-state">
+                  <Code size={48} className="mobile-empty-icon" />
+                  <div className="mobile-empty-text">No Code Yet</div>
+                  <div className="mobile-empty-subtitle">Generate a website to view code files</div>
+                </div>
+              )
+            ) : (
+              !generatedWebsite ? (
+                <div className="mobile-empty-state">
+                  <Eye size={48} className="mobile-empty-icon" />
+                  <div className="mobile-empty-text">No Preview Yet</div>
+                  <div className="mobile-empty-subtitle">Generate a website to see preview</div>
+                </div>
+              ) : (
+                <PreviewFrame previewUrl={previewUrl} isDeploying={isDeploying} />
+              )
+            )}
+          </div>
+
+          {/* Mobile Bottom Navigation */}
+          <div className="mobile-bottom-nav">
+            <button
+              onClick={() => setActiveView('chat')}
+              className={`mobile-nav-item ${activeView === 'chat' ? 'active' : ''}`}
+            >
+              <MessageSquare size={20} />
+              <span className="mobile-nav-label">Chat</span>
+            </button>
+            <button
+              onClick={() => setActiveView('code')}
+              className={`mobile-nav-item ${activeView === 'code' ? 'active' : ''}`}
+            >
+              <Code size={20} />
+              <span className="mobile-nav-label">Code</span>
+            </button>
+            <button
+              onClick={() => setActiveView('preview')}
+              className={`mobile-nav-item ${activeView === 'preview' ? 'active' : ''}`}
+            >
+              <Eye size={20} />
+              <span className="mobile-nav-label">Preview</span>
+            </button>
+          </div>
+        </div>
+      </ThemeProvider>
+    );
+  }
+
+  // Desktop Layout (existing)
   return (
     <ThemeProvider>
       <WorkspaceLayout siteName={siteName}>
@@ -76,6 +289,17 @@ const WorkspacePage = () => {
             
             {/* View Toggle Icons */}
             <div className="d-flex align-items-center gap-2">
+              <button
+                onClick={() => setActiveView('chat')}
+                className={`btn btn-sm px-3 d-flex align-items-center gap-2 ${
+                  activeView === 'chat' 
+                    ? 'btn-primary text-white' 
+                    : 'btn-outline-secondary'
+                }`}
+              >
+                <MessageSquare size={16} />
+                <span>Chat</span>
+              </button>
               <button
                 onClick={() => setActiveView('code')}
                 className={`btn btn-sm px-3 d-flex align-items-center gap-2 ${
@@ -114,7 +338,15 @@ const WorkspacePage = () => {
 
           {/* Main Content Area */}
           <div className="flex-fill">
-            {activeView === 'code' ? (
+            {activeView === 'chat' ? (
+              // Chat View - AI Chat Interface
+              <div className="h-100">
+                <WorkspaceChat 
+                  generatedWebsite={generatedWebsite}
+                  onWebsiteGenerated={handleWebsiteGenerated}
+                />
+              </div>
+            ) : activeView === 'code' ? (
               // Code View - File Explorer + Monaco Editor
               <div className="h-100">
                 {generatedWebsite ? (
