@@ -4,9 +4,18 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import WorkspaceLayout from '../../components/WorkspaceLayout';
 import dynamic from 'next/dynamic';
-const WorkspaceChat = dynamic(() => import('../../components/WorkspaceChat'), { ssr: false });
-const DesignMode = dynamic(() => import('../../components/DesignMode'), { ssr: false });
-const PreviewFrame = dynamic(() => import('../../components/PreviewFrame'), { ssr: false });
+const WorkspaceChat = dynamic(() => import('../../components/WorkspaceChat'), { 
+  ssr: false,
+  loading: () => <div className="h-100 d-flex align-items-center justify-content-center"><Loader size={24} /></div>
+});
+const DesignMode = dynamic(() => import('../../components/DesignMode'), { 
+  ssr: false,
+  loading: () => <div className="h-100 d-flex align-items-center justify-content-center"><Loader size={24} /></div>
+});
+const PreviewFrame = dynamic(() => import('../../components/PreviewFrame'), { 
+  ssr: false,
+  loading: () => <div className="h-100 d-flex align-items-center justify-content-center"><Loader size={24} /></div>
+});
 import { Loader, Code, Eye, Rocket, MessageSquare } from 'lucide-react';
 import { ThemeProvider } from '../../context/ThemeContext';
 const MonacoCodeViewer = dynamic(() => import('../../components/MonacoCodeViewer'), { ssr: false });
@@ -19,10 +28,12 @@ const WorkspacePage = () => {
   const [siteName, setSiteName] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
-  // Detect mobile screen size
+  // Client-side initialization
   useEffect(() => {
+    setIsClient(true);
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -33,12 +44,14 @@ const WorkspacePage = () => {
   }, []);
 
   useEffect(() => {
-    const website = sessionStorage.getItem('generatedWebsite');
-    if (website) {
-      setGeneratedWebsite(JSON.parse(website));
-      setActiveView('code');
+    if (typeof window !== 'undefined') {
+      const website = sessionStorage.getItem('generatedWebsite');
+      if (website) {
+        setGeneratedWebsite(JSON.parse(website));
+        setActiveView('code');
+      }
     }
-  }, []);
+  }, [isClient]);
 
   const handleWebsiteGenerated = (website) => {
     setGeneratedWebsite(website);
@@ -72,6 +85,17 @@ const WorkspacePage = () => {
       setIsDeploying(false);
     }
   };
+
+  // Show loading until client-side hydration is complete
+  if (!isClient) {
+    return (
+      <ThemeProvider>
+        <div className="h-100 d-flex align-items-center justify-content-center">
+          <Loader size={48} className="text-primary" style={{animation: 'spin 1s linear infinite'}} />
+        </div>
+      </ThemeProvider>
+    );
+  }
 
   // Mobile Layout
   if (isMobile) {
