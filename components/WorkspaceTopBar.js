@@ -102,6 +102,7 @@ const WorkspaceTopBar = () => {
           padding: 0.5rem;
         }
       `}</style>
+         {/* 
       <div className="top-bar d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center gap-4">
           <div className="app-viewer">
@@ -140,6 +141,7 @@ const WorkspaceTopBar = () => {
           </button>
         </div>
       </div>
+      */}
     </>
   );
 };
