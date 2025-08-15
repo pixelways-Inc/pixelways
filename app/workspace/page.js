@@ -17,7 +17,6 @@ const WorkspacePage = () => {
   const [previewUrl, setPreviewUrl] = useState('');
   const [isDeploying, setIsDeploying] = useState(false);
   const [siteName, setSiteName] = useState('');
-  const [rightTab, setRightTab] = useState('preview'); // 'preview' | 'code'
   const [selectedFile, setSelectedFile] = useState(null);
   const router = useRouter();
 
@@ -71,28 +70,6 @@ const WorkspacePage = () => {
                 <span className="small fw-medium">Connected</span>
               </div>
             </div>
-            <div className="d-flex align-items-center gap-2">
-              <button
-                onClick={() => setActiveTab('chat')}
-                className={`btn btn-sm px-3 ${
-                  activeTab === 'chat' 
-                    ? 'btn-light text-dark' 
-                    : 'btn-outline-secondary'
-                }`}
-              >
-                Chat
-              </button>
-              <button
-                onClick={() => setActiveTab('design')}
-                className={`btn btn-sm px-3 ${
-                  activeTab === 'design' 
-                    ? 'btn-light text-dark' 
-                    : 'btn-outline-secondary'
-                }`}
-              >
-                Design
-              </button>
-            </div>
           </div>
 
           {/* Tab Content */}
@@ -105,7 +82,7 @@ const WorkspacePage = () => {
             )}
             
             {activeTab === 'design' && generatedWebsite && (
-              <DesignMode website={generatedWebsite} onSelectFile={(f) => { setSelectedFile(f); setRightTab('code'); }} />
+              <DesignMode website={generatedWebsite} onSelectFile={setSelectedFile} />
             )}
             
             {activeTab === 'design' && !generatedWebsite && (
@@ -119,19 +96,8 @@ const WorkspacePage = () => {
         {/* Right Panel - Preview */}
         <div className="w-50 d-flex flex-column">
           <div className="border-bottom d-flex align-items-center justify-content-between px-3 py-2" style={{height: '48px'}}>
-            <div className="d-flex align-items-center gap-2">
-              <button
-                onClick={() => setRightTab('preview')}
-                className={`btn btn-sm px-3 ${rightTab === 'preview' ? 'btn-light text-dark' : 'btn-outline-secondary'}`}
-              >
-                Preview
-              </button>
-              <button
-                onClick={() => setRightTab('code')}
-                className={`btn btn-sm px-3 ${rightTab === 'code' ? 'btn-light text-dark' : 'btn-outline-secondary'}`}
-              >
-                Code
-              </button>
+            <div className="d-flex align-items-center">
+              <span className="small fw-medium">Preview</span>
             </div>
             <div className="d-flex align-items-center">
               <button
@@ -147,28 +113,8 @@ const WorkspacePage = () => {
           <div className="flex-fill">
             {!generatedWebsite ? (
               <div className="h-100 d-flex align-items-center justify-content-center text-muted"><p>Generate a website to see preview</p></div>
-            ) : rightTab === 'preview' ? (
-              <PreviewFrame previewUrl={previewUrl} isDeploying={isDeploying} />
             ) : (
-              <div className="h-100">
-                {selectedFile ? (
-                  <MonacoCodeViewer
-                    value={selectedFile.content}
-                    language={(() => {
-                      const filePath = selectedFile.path || selectedFile.name || '';
-                      const ext = filePath.split('.').pop()?.toLowerCase();
-                      if (ext === 'html') return 'html';
-                      if (ext === 'css') return 'css';
-                      if (ext === 'js' || ext === 'jsx' || ext === 'ts' || ext === 'tsx') return 'javascript';
-                      if (ext === 'json') return 'json';
-                      return 'plaintext';
-                    })()}
-                    height={'100%'}
-                  />
-                ) : (
-                  <div className="h-100 d-flex align-items-center justify-content-center text-muted"><p>Select a file in Design to view code</p></div>
-                )}
-              </div>
+              <PreviewFrame previewUrl={previewUrl} isDeploying={isDeploying} />
             )}
           </div>
         </div>
