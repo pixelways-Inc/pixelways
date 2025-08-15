@@ -22,8 +22,8 @@ const DesignMode = ({ website, onSelectFile, onDeploy, isDeploying }) => {
           }
         `}</style>
         <div className="no-website">
-          <p>No website generated yet</p>
-        </div>
+        <p>No website generated yet</p>
+      </div>
       </>
     );
   }
@@ -87,10 +87,10 @@ const DesignMode = ({ website, onSelectFile, onDeploy, isDeploying }) => {
               setSelectedFile(file);
               if (onSelectFile) onSelectFile(file);
             }}
-          >
-            {getFileIcon(name)}
+        >
+          {getFileIcon(name)}
             <span>{name}</span>
-          </div>
+        </div>
         </>
       );
     }
@@ -114,20 +114,20 @@ const DesignMode = ({ website, onSelectFile, onDeploy, isDeploying }) => {
             padding-left: 1rem;
           }
         `}</style>
-        <div>
+      <div>
           <div className="folder-item" onClick={() => toggleFolder(fullPath)}>
-            {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+          {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
             <Folder size={16} style={{color: '#f59e0b'}} />
             <span>{name}</span>
-          </div>
-          {isExpanded && children && (
-            <div className="folder-children">
-              {children.map((child, index) => (
-                <FileTreeNode key={index} {...child} path={fullPath} />
-              ))}
-            </div>
-          )}
         </div>
+        {isExpanded && children && (
+            <div className="folder-children">
+            {children.map((child, index) => (
+                <FileTreeNode key={index} {...child} path={fullPath} />
+            ))}
+          </div>
+        )}
+      </div>
       </>
     );
   };
@@ -279,38 +279,38 @@ const DesignMode = ({ website, onSelectFile, onDeploy, isDeploying }) => {
         }
       `}</style>
       <div className="design-container d-flex">
-        {/* File Explorer */}
+      {/* File Explorer */}
         <div className="file-explorer">
           <div className="file-explorer-header">
             <span className="header-title">Files</span>
             <div className="header-actions">
-              <button
-                onClick={handleDeploy}
-                disabled={isDeploying}
+            <button
+              onClick={handleDeploy}
+              disabled={isDeploying}
                 className="deploy-button"
-              >
-                <Play size={12} />
-                <span>{isDeploying ? 'Deploying...' : 'Deploy'}</span>
-              </button>
+            >
+              <Play size={12} />
+              <span>{isDeploying ? 'Deploying...' : 'Deploy'}</span>
+            </button>
               <button className="download-button">
-                <Download size={14} />
-              </button>
-            </div>
-          </div>
-          <div className="file-tree">
-            {fileTree.map((node, index) => (
-              <FileTreeNode key={index} {...node} />
-            ))}
+              <Download size={14} />
+            </button>
           </div>
         </div>
+          <div className="file-tree">
+          {fileTree.map((node, index) => (
+            <FileTreeNode key={index} {...node} />
+          ))}
+        </div>
+      </div>
 
-        {/* Code Editor */}
+      {/* Code Editor */}
         <div className="code-editor d-flex flex-column">
-          {selectedFile ? (
-            <>
+        {selectedFile ? (
+          <>
               <div className="editor-header">
                 <div className="editor-file-info">
-                  {getFileIcon(selectedFile.name)}
+                {getFileIcon(selectedFile.name)}
                   <span className="editor-filename">{selectedFile.name}</span>
                 </div>
               </div>
@@ -327,18 +327,18 @@ const DesignMode = ({ website, onSelectFile, onDeploy, isDeploying }) => {
                   })()}
                   height={'100%'}
                 />
-              </div>
-            </>
-          ) : (
+            </div>
+          </>
+        ) : (
             <div className="no-file-selected">
               <div>
                 <Code size={48} style={{color: '#9ca3af', margin: '0 auto 1rem'}} />
-                <p>Select a file to view its contents</p>
-              </div>
+              <p>Select a file to view its contents</p>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
+    </div>
     </>
   );
 };

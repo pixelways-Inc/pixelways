@@ -254,14 +254,14 @@ const ChatInterfaceLanding = () => {
           {isDark ? <Sun size={20} /> : <Moon size={20} />}
         </button>
 
-        {/* Main Heading */}
+      {/* Main Heading */}
         <div className="text-center mb-5">
           <h3 className={`display-4 fw-bold mb-4 ${isDark ? 'text-white' : 'gradient-text'}`}>
-            What can I help you build?
+          What can I help you build?
           </h3>
           <p className={`lead ${isDark ? 'text-light' : 'text-muted'} mb-4`}>
-            Describe your project and I'll generate a complete website for you using AI.
-          </p>
+          Describe your project and I'll generate a complete website for you using AI.
+        </p>
           <div className="d-flex justify-content-center">
             <div style={{
               width: '80px',
@@ -270,9 +270,9 @@ const ChatInterfaceLanding = () => {
               borderRadius: '2px'
             }}></div>
           </div>
-        </div>
+      </div>
 
-        {/* Chat Input Section */}
+      {/* Chat Input Section */}
         <div className="row justify-content-center mb-5">
           <div className="col-lg-8 col-xl-6">
             <div className="card border-0 shadow-sm">
@@ -290,10 +290,10 @@ const ChatInterfaceLanding = () => {
 
                   {/* Textarea Container */}
                   <div className="flex-fill position-relative">
-                    <textarea
-                      value={prompt}
-                      onChange={(e) => setPrompt(e.target.value)}
-                      onKeyDown={handleKeyPress}
+            <textarea
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              onKeyDown={handleKeyPress}
                       placeholder="Ask Pixel AI to build"
                       className="form-control border-0 resize-none"
                       style={{
@@ -303,7 +303,7 @@ const ChatInterfaceLanding = () => {
                         lineHeight: '1.5',
                         paddingRight: '50px'
                       }}
-                      disabled={isGenerating}
+              disabled={isGenerating}
                       rows={1}
                     />
                     
@@ -315,24 +315,24 @@ const ChatInterfaceLanding = () => {
                             <span className="visually-hidden">Generating...</span>
                           </div>
                           <span className="small fw-medium text-primary">Generating...</span>
-                        </div>
-                      </div>
+          </div>
+        </div>
                     )}
-                  </div>
+          </div>
 
-                  {/* Send Button */}
-                  <button
-                    onClick={handleGenerate}
-                    disabled={!prompt.trim() || isGenerating}
+          {/* Send Button */}
+          <button
+            onClick={handleGenerate}
+            disabled={!prompt.trim() || isGenerating}
                     className="btn btn-dark rounded-circle d-flex align-items-center justify-content-center"
                     style={{ width: '40px', height: '40px', minWidth: '40px' }}
-                  >
-                    {isGenerating ? (
+          >
+            {isGenerating ? (
                       <Loader size={16} className="spinner-border spinner-border-sm text-light" />
-                    ) : (
+            ) : (
                       <Send size={16} className="text-light" />
-                    )}
-                  </button>
+            )}
+          </button>
                 </div>
               </div>
             </div>
@@ -409,8 +409,8 @@ const ChatInterfaceLanding = () => {
               <p className={`small text-center mb-0 ${isDark ? 'text-muted' : 'text-secondary'}`}>
                 Share your thoughts
               </p>
-            </div>
-          </div>
+        </div>
+      </div>
 
           <div className="col-6 col-md-3">
             <div
@@ -426,8 +426,8 @@ const ChatInterfaceLanding = () => {
               </p>
             </div>
           </div>
-        </div>
       </div>
+    </div>
     </>
   );
 };

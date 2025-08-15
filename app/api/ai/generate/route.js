@@ -51,11 +51,23 @@ IMPORTANT: You must return a JSON object with this EXACT structure:
 For ${projectType} projects:
 
 ${projectType === 'static' ? `
-- Generate files array with at least index.html
-- Include embedded CSS in <style> tags in HTML OR separate CSS files
-- Add JavaScript functionality if needed
-- Use modern, responsive design
-- Include proper meta tags and SEO
+- Generate a complete multi-page website with multiple HTML files
+- Create at least 3-5 pages: for  instance index.html, about.html, services.html, contact.html, etc.
+- Include separate CSS files (style.css, components.css) for better organization
+- Add interactive JavaScript files (script.js, animations.js) for functionality
+- Create a consistent navigation structure across all pages
+- Use modern, responsive design with CSS Grid/Flexbox
+- Include proper meta tags, SEO, and accessibility features
+- Add images directory references (images/logo.png, images/hero.jpg, etc.)
+- Create a complete website structure like:
+  * index.html (homepage)
+  * about.html (about page)
+  * services.html or products.html (services/products)
+  * contact.html (contact form)
+  * style.css (main styles)
+  * script.js (interactive features)
+- Ensure proper internal linking between pages
+- Make each page unique with relevant content
 ` : projectType === 'react-vite' ? `
 - Generate files array with package.json, index.html, src/App.jsx, src/main.jsx, etc.
 - Include proper dependencies in package.json
@@ -97,10 +109,10 @@ Return ONLY the JSON object with the files array format.`;
   } catch (error) {
     console.error('Error generating website:', error);
     
-    // Fallback to a simple static website if AI fails
+    // Fallback to a multi-page static website if AI fails
     const fallbackWebsite = {
       projectType: 'static',
-      description: `A simple website based on your request`,
+      description: `A complete multi-page website based on your request`,
       files: [
         {
           path: 'index.html',

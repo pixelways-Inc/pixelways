@@ -122,7 +122,7 @@ const WorkspaceSidebar = ({ siteName }) => {
         }
       `}</style>
       <div className="sidebar d-flex flex-column">
-        {/* Sidebar Header */}
+      {/* Sidebar Header */}
         <div className="sidebar-header d-flex align-items-center">
           <div className="logo-container">
             <div className="logo-icon">
@@ -132,16 +132,16 @@ const WorkspaceSidebar = ({ siteName }) => {
             <span className="beta-badge">Beta</span>
           </div>
           <button className="toggle-button">
-            <Menu size={16} />
-          </button>
-        </div>
+          <Menu size={16} />
+        </button>
+      </div>
 
-        {/* Sidebar Content */}
+      {/* Sidebar Content */}
         <div className="sidebar-content">
           <ProjectExplorer siteName={siteName} />
-        </div>
+      </div>
 
-        {/* Sidebar Bottom */}
+      {/* Sidebar Bottom */}
         <div className="sidebar-bottom">
           <div className="chat-prompt">
             <MessageSquare size={16} style={{color: '#9ca3af'}} />
@@ -150,11 +150,11 @@ const WorkspaceSidebar = ({ siteName }) => {
           <div className="engineer-tag">
             <Wrench size={16} style={{color: '#a5b4fc'}} />
             <span className="engineer-text">Engineer</span>
-          </div>
+        </div>
           <div className="model-selector">
             <span className="model-text">Model: GPT-4o</span>
             <ChevronDown size={16} style={{color: '#9ca3af'}} />
-          </div>
+        </div>
         </div>
       </div>
     </>
