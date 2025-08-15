@@ -8,7 +8,7 @@ export const SUPABASE_CONFIG = {
 
 // GitHub configuration constants
 export const GITHUB_CONFIG = {
-  PAT: "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",
+  PAT: "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",
   USERNAME: "pixelways-Inc"
 };
 
