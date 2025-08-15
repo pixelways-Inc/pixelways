@@ -422,6 +422,10 @@ const WorkspacePage = () => {
                   generatedWebsite={generatedWebsite}
                   onWebsiteGenerated={handleWebsiteGenerated}
                   onSwitchToCodeView={() => setActiveView('code')}
+                  onWebsiteUpdate={setGeneratedWebsite}
+                  onFileAction={(action, fileName, result) => {
+                    console.log('File action:', action, fileName, result);
+                  }}
                 />
               </ErrorBoundary>
             ) : activeView === 'code' ? (
@@ -432,6 +436,7 @@ const WorkspacePage = () => {
                     onSelectFile={setSelectedFile}
                     onDeploy={triggerPreview}
                     isDeploying={isDeploying}
+                    onWebsiteUpdate={setGeneratedWebsite}
                   />
                 </ErrorBoundary>
               ) : (
@@ -584,6 +589,10 @@ const WorkspacePage = () => {
                     generatedWebsite={generatedWebsite}
                     onWebsiteGenerated={handleWebsiteGenerated}
                     onSwitchToCodeView={() => setActiveView('code')}
+                    onWebsiteUpdate={setGeneratedWebsite}
+                    onFileAction={(action, fileName, result) => {
+                      console.log('File action:', action, fileName, result);
+                    }}
                   />
                 </ErrorBoundary>
               </div>
@@ -597,6 +606,7 @@ const WorkspacePage = () => {
                       onSelectFile={setSelectedFile}
                       onDeploy={triggerPreview}
                       isDeploying={isDeploying}
+                      onWebsiteUpdate={setGeneratedWebsite}
                     />
                   </ErrorBoundary>
                 ) : (

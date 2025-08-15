@@ -1,15 +1,21 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Send, Loader } from 'lucide-react';
+import { Send, Loader, Edit3, CheckCircle, AlertCircle, FileText, Folder, Plus, Trash2 } from 'lucide-react';
 import GitHubAuth from './GitHubAuth';
 
-const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeView }) => {
+const WorkspaceChat = ({ 
+  generatedWebsite, 
+  onWebsiteGenerated, 
+  onSwitchToCodeView,
+  onWebsiteUpdate,
+  onFileAction
+}) => {
   const [messages, setMessages] = useState([
     {
       id: 1,
       type: 'ai',
-      content: "I'll create a modern, responsive landing page for StreamLine. Let me first generate a detailed design brief to ensure we create something visually compelling and professional.",
+      content: "Hi! I'm PixelAI, your website builder assistant. I can help you create websites, edit existing files, add new pages, or manage your project files. What would you like to build today?",
       timestamp: new Date()
     }
   ]);
@@ -18,6 +24,7 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeVie
   const [isMobile, setIsMobile] = useState(false);
   const [githubToken, setGithubToken] = useState(null);
   const [githubUser, setGithubUser] = useState(null);
+  const [actionPills, setActionPills] = useState([]); // Track ongoing actions
 
   // Detect mobile screen size and check for GitHub auth
   useEffect(() => {
@@ -42,6 +49,64 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeVie
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Action pill management
+  const addActionPill = (type, fileName, status = 'processing') => {
+    const pillId = Date.now();
+    const pill = {
+      id: pillId,
+      type, // 'edit', 'create', 'delete', 'folder'
+      fileName,
+      status, // 'processing', 'completed', 'failed'
+      timestamp: new Date()
+    };
+    setActionPills(prev => [...prev, pill]);
+    return pillId;
+  };
+
+  const updateActionPill = (pillId, status, result = null) => {
+    setActionPills(prev => prev.map(pill => 
+      pill.id === pillId 
+        ? { ...pill, status, result, updatedAt: new Date() }
+        : pill
+    ));
+  };
+
+  const removeActionPill = (pillId) => {
+    setActionPills(prev => prev.filter(pill => pill.id !== pillId));
+  };
+
+  // Extract filename from user message
+  const extractFileName = (message) => {
+    const filePattern = /[\w-]+\.(html|css|js|json|txt|md)/gi;
+    const matches = message.match(filePattern);
+    return matches ? matches[0] : null;
+  };
+
+  // Detect if message is an edit request
+  const detectEditRequest = (message) => {
+    const editKeywords = ['edit', 'change', 'modify', 'update', 'fix', 'alter'];
+    const fileExtensions = ['.html', '.css', '.js', '.json'];
+    
+    const hasEditKeyword = editKeywords.some(keyword => 
+      message.toLowerCase().includes(keyword)
+    );
+    
+    const mentionedFile = fileExtensions.find(ext => 
+      message.toLowerCase().includes(ext)
+    );
+    
+    return hasEditKeyword || mentionedFile;
+  };
+
+  // Detect if message is a file creation request
+  const detectFileRequest = (message) => {
+    const createKeywords = ['create', 'add', 'new', 'make'];
+    const fileKeywords = ['file', 'page', 'component', 'folder'];
+    
+    return createKeywords.some(ck => message.toLowerCase().includes(ck)) &&
+           fileKeywords.some(fk => message.toLowerCase().includes(fk));
+  };
+
   const handleSendMessage = async () => {
     if (!newMessage.trim() || isGenerating) return;
 
@@ -53,6 +118,17 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeVie
     };
 
     setMessages(prev => [...prev, userMessage]);
+    
+    // Detect action type and add appropriate pill
+    let pillId = null;
+    if (detectEditRequest(newMessage.trim())) {
+      const fileName = extractFileName(newMessage.trim()) || 'file';
+      pillId = addActionPill('edit', fileName, 'processing');
+    } else if (detectFileRequest(newMessage.trim())) {
+      const fileName = extractFileName(newMessage.trim()) || 'new file';
+      pillId = addActionPill('create', fileName, 'processing');
+    }
+
     setNewMessage('');
     setIsGenerating(true);
 
@@ -101,6 +177,14 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeVie
           onWebsiteGenerated(data.website);
         }
         
+        // Update action pill to completed
+        if (pillId) {
+          updateActionPill(pillId, 'completed', { 
+            filesCreated: data.website.files.length,
+            projectType: data.website.projectType
+          });
+        }
+        
         // Auto-switch to code view after generation/update
         setTimeout(() => {
           if (onSwitchToCodeView) {
@@ -108,6 +192,11 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeVie
           }
         }, 1000);
       } else {
+        // Update action pill to failed
+        if (pillId) {
+          updateActionPill(pillId, 'failed', { error: data.error });
+        }
+        
         const errorMessage = {
           id: Date.now() + 2,
           type: 'ai',
@@ -153,6 +242,65 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeVie
       <style jsx>{`
         .chat-container {
           height: 100%;
+        }
+        .action-pills-area {
+          padding: 0.75rem 1rem 0;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+        .action-pill {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.5rem 0.75rem;
+          border-radius: 1rem;
+          font-size: 0.75rem;
+          font-weight: 500;
+          transition: all 0.2s;
+          border: 1px solid transparent;
+        }
+        .action-pill.processing {
+          background: #dbeafe;
+          color: #1d4ed8;
+          border-color: #3b82f6;
+        }
+        .action-pill.completed {
+          background: #dcfce7;
+          color: #166534;
+          border-color: #22c55e;
+        }
+        .action-pill.failed {
+          background: #fee2e2;
+          color: #dc2626;
+          border-color: #ef4444;
+        }
+        .pill-icon {
+          display: flex;
+          align-items: center;
+        }
+        .pill-content {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+        }
+        .pill-action {
+          font-weight: 600;
+        }
+        .pill-file {
+          font-weight: 400;
+          opacity: 0.8;
+        }
+        .pill-status {
+          display: flex;
+          align-items: center;
+        }
+        .spin {
+          animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
         .messages-area {
           flex: 1;
@@ -303,6 +451,35 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeVie
             onAuthError={handleGitHubAuthError}
           />
         </div>
+
+        {/* Action Pills */}
+        {actionPills.length > 0 && (
+          <div className="action-pills-area">
+            {actionPills.map((pill) => (
+              <div key={pill.id} className={`action-pill ${pill.status}`}>
+                <div className="pill-icon">
+                  {pill.type === 'edit' && <Edit3 size={14} />}
+                  {pill.type === 'create' && <Plus size={14} />}
+                  {pill.type === 'delete' && <Trash2 size={14} />}
+                  {pill.type === 'folder' && <Folder size={14} />}
+                </div>
+                <div className="pill-content">
+                  <span className="pill-action">
+                    {pill.status === 'processing' && `Pixel ${pill.type === 'edit' ? 'editing' : 'creating'}`}
+                    {pill.status === 'completed' && `Pixel ${pill.type === 'edit' ? 'edited' : 'created'}`}
+                    {pill.status === 'failed' && `Pixel ${pill.type} failed`}
+                  </span>
+                  <span className="pill-file">{pill.fileName}</span>
+                </div>
+                <div className="pill-status">
+                  {pill.status === 'processing' && <Loader size={12} className="spin" />}
+                  {pill.status === 'completed' && <CheckCircle size={12} />}
+                  {pill.status === 'failed' && <AlertCircle size={12} />}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Messages */}
         <div className="messages-area">
