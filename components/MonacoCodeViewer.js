@@ -28,18 +28,30 @@ const MonacoCodeViewer = ({ value = '', language = 'html', height = '100%', them
     };
 
     const init = () => {
-      if (!containerRef.current || disposed || !containerRef.current.style) return;
+      if (!containerRef.current || disposed) return;
+      
+      // Additional safety checks
+      if (!containerRef.current.style || !containerRef.current.offsetParent) {
+        // Container not ready or not visible, retry later
+        setTimeout(init, 100);
+        return;
+      }
+
       try {
-        const editor = window.monaco.editor.create(containerRef.current, {
-          value: value || '',
-          language: language || 'plaintext',
-          theme: theme || 'vs-dark',
-          readOnly: true,
-          automaticLayout: true,
-          minimap: { enabled: false },
-          scrollBeyondLastLine: false,
-        });
-        editorRef.current = editor;
+        if (window.monaco && window.monaco.editor) {
+          const editor = window.monaco.editor.create(containerRef.current, {
+            value: value || '',
+            language: language || 'plaintext',
+            theme: theme || 'vs-dark',
+            readOnly: true,
+            automaticLayout: true,
+            minimap: { enabled: false },
+            scrollBeyondLastLine: false,
+            wordWrap: 'on',
+            fontSize: 14,
+          });
+          editorRef.current = editor;
+        }
       } catch (error) {
         console.warn('Monaco editor initialization failed:', error);
       }
@@ -65,9 +77,16 @@ const MonacoCodeViewer = ({ value = '', language = 'html', height = '100%', them
 
   return (
     <div 
-      style={{ width: '100%', height, position: 'relative' }} 
+      style={{ 
+        width: '100%', 
+        height, 
+        position: 'relative',
+        minHeight: '200px',
+        overflow: 'hidden'
+      }} 
       ref={containerRef}
       onError={(e) => console.warn('Monaco container error:', e)}
+      data-testid="monaco-container"
     />
   );
 };

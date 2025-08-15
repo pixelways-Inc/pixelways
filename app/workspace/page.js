@@ -6,6 +6,7 @@ import WorkspaceLayout from '../../components/WorkspaceLayout';
 import WorkspaceChat from '../../components/WorkspaceChat';
 import DesignMode from '../../components/DesignMode';
 import PreviewFrame from '../../components/PreviewFrame';
+import ErrorBoundary from '../../components/ErrorBoundary';
 import { Loader, Code, Eye, Rocket, MessageSquare } from 'lucide-react';
 import { ThemeProvider } from '../../context/ThemeContext';
 
@@ -22,14 +23,28 @@ const WorkspacePage = () => {
 
   // Client-side initialization
   useEffect(() => {
-    setIsClient(true);
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+    const initializeClient = () => {
+      try {
+        setIsClient(true);
+        const checkMobile = () => {
+          if (typeof window !== 'undefined') {
+            setIsMobile(window.innerWidth < 768);
+          }
+        };
+        
+        checkMobile();
+        if (typeof window !== 'undefined') {
+          window.addEventListener('resize', checkMobile);
+          return () => window.removeEventListener('resize', checkMobile);
+        }
+      } catch (error) {
+        console.warn('Client initialization error:', error);
+        setIsClient(true); // Still set to true to prevent infinite loading
+      }
     };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+
+    const cleanup = initializeClient();
+    return cleanup || (() => {});
   }, []);
 
   useEffect(() => {
@@ -231,19 +246,23 @@ const WorkspacePage = () => {
           {/* Mobile Content */}
           <div className="mobile-content">
             {activeView === 'chat' ? (
-              <WorkspaceChat 
-                generatedWebsite={generatedWebsite}
-                onWebsiteGenerated={handleWebsiteGenerated}
-                onSwitchToCodeView={() => setActiveView('code')}
-              />
+              <ErrorBoundary fallbackMessage="Chat interface failed to load">
+                <WorkspaceChat 
+                  generatedWebsite={generatedWebsite}
+                  onWebsiteGenerated={handleWebsiteGenerated}
+                  onSwitchToCodeView={() => setActiveView('code')}
+                />
+              </ErrorBoundary>
             ) : activeView === 'code' ? (
               generatedWebsite ? (
-                <DesignMode 
-                  website={generatedWebsite} 
-                  onSelectFile={setSelectedFile}
-                  onDeploy={triggerPreview}
-                  isDeploying={isDeploying}
-                />
+                <ErrorBoundary fallbackMessage="Code editor failed to load">
+                  <DesignMode 
+                    website={generatedWebsite} 
+                    onSelectFile={setSelectedFile}
+                    onDeploy={triggerPreview}
+                    isDeploying={isDeploying}
+                  />
+                </ErrorBoundary>
               ) : (
                 <div className="mobile-empty-state">
                   <Code size={48} className="mobile-empty-icon" />
@@ -259,7 +278,9 @@ const WorkspacePage = () => {
                   <div className="mobile-empty-subtitle">Generate a website to see preview</div>
                 </div>
               ) : (
-                <PreviewFrame previewUrl={previewUrl} isDeploying={isDeploying} />
+                <ErrorBoundary fallbackMessage="Preview failed to load">
+                  <PreviewFrame previewUrl={previewUrl} isDeploying={isDeploying} />
+                </ErrorBoundary>
               )
             )}
           </div>
@@ -361,22 +382,26 @@ const WorkspacePage = () => {
             {activeView === 'chat' ? (
               // Chat View - AI Chat Interface
               <div className="h-100">
-                <WorkspaceChat 
-                  generatedWebsite={generatedWebsite}
-                  onWebsiteGenerated={handleWebsiteGenerated}
-                  onSwitchToCodeView={() => setActiveView('code')}
-                />
+                <ErrorBoundary fallbackMessage="Chat interface failed to load">
+                  <WorkspaceChat 
+                    generatedWebsite={generatedWebsite}
+                    onWebsiteGenerated={handleWebsiteGenerated}
+                    onSwitchToCodeView={() => setActiveView('code')}
+                  />
+                </ErrorBoundary>
               </div>
             ) : activeView === 'code' ? (
               // Code View - File Explorer + Monaco Editor
               <div className="h-100">
                 {generatedWebsite ? (
-                  <DesignMode 
-                    website={generatedWebsite} 
-                    onSelectFile={setSelectedFile}
-                    onDeploy={triggerPreview}
-                    isDeploying={isDeploying}
-                  />
+                  <ErrorBoundary fallbackMessage="Code editor failed to load">
+                    <DesignMode 
+                      website={generatedWebsite} 
+                      onSelectFile={setSelectedFile}
+                      onDeploy={triggerPreview}
+                      isDeploying={isDeploying}
+                    />
+                  </ErrorBoundary>
                 ) : (
                   <div className="h-100 d-flex align-items-center justify-content-center text-muted">
                     <div className="text-center">
@@ -397,7 +422,9 @@ const WorkspacePage = () => {
                     </div>
                   </div>
                 ) : (
-                  <PreviewFrame previewUrl={previewUrl} isDeploying={isDeploying} />
+                  <ErrorBoundary fallbackMessage="Preview failed to load">
+                    <PreviewFrame previewUrl={previewUrl} isDeploying={isDeploying} />
+                  </ErrorBoundary>
                 )}
               </div>
             )}
