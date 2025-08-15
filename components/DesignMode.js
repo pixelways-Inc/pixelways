@@ -260,86 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
 
-  const FileTreeNode = ({ name, type, content, children, path = '' }) => {
-    const fullPath = path ? `${path}/${name}` : name;
-    const isExpanded = expandedFolders[fullPath];
-    
-    if (type === 'file') {
-      return (
-        <>
-          <style jsx>{`
-            .file-item {
-              display: flex;
-              align-items: center;
-              gap: 0.5rem;
-              padding: 0.25rem 0.75rem;
-              cursor: pointer;
-              font-size: 0.875rem;
-              transition: background-color 0.2s;
-            }
-            .file-item:hover {
-              background: #f3f4f6;
-            }
-            .file-item.selected {
-              background: #dbeafe;
-              color: #1d4ed8;
-            }
-          `}</style>
-          <div
-            className={`file-item ${selectedFile?.name === name ? 'selected' : ''}`}
-            onClick={() => {
-              const file = { name, content, path: fullPath };
-              setSelectedFile(file);
-              if (onSelectFile) onSelectFile(file);
-              // Auto-switch to editor tab on mobile when file is selected
-              if (isMobile) {
-                setMobileTab('editor');
-              }
-            }}
-        >
-          {getFileIcon(name)}
-            <span>{name}</span>
-        </div>
-        </>
-      );
-    }
 
-    return (
-      <>
-        <style jsx>{`
-          .folder-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.25rem 0.75rem;
-            cursor: pointer;
-            font-size: 0.875rem;
-            transition: background-color 0.2s;
-          }
-          .folder-item:hover {
-            background: #f3f4f6;
-          }
-          .folder-children {
-            padding-left: 1rem;
-          }
-        `}</style>
-      <div>
-          <div className="folder-item" onClick={() => toggleFolder(fullPath)}>
-          {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-            <Folder size={16} style={{color: '#f59e0b'}} />
-            <span>{name}</span>
-        </div>
-        {isExpanded && children && (
-            <div className="folder-children">
-            {children.map((child, index) => (
-                <FileTreeNode key={index} {...child} path={fullPath} />
-            ))}
-          </div>
-        )}
-      </div>
-      </>
-    );
-  };
 
   const generateFileTree = () => {
     if (!website.files || !Array.isArray(website.files)) return [];
@@ -424,6 +345,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (fileObj) {
               setSelectedFile({ ...fileObj, name: name });
               if (onSelectFile) onSelectFile(fileObj);
+              // Auto-switch to editor tab on mobile when file is selected
+              if (isMobile) {
+                setMobileTab('editor');
+              }
             }
           }}
         >
