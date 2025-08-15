@@ -3,12 +3,47 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import WorkspaceLayout from '../../components/WorkspaceLayout';
-import WorkspaceChat from '../../components/WorkspaceChat';
-import DesignMode from '../../components/DesignMode';
-import PreviewFrame from '../../components/PreviewFrame';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import { Loader, Code, Eye, Rocket, MessageSquare } from 'lucide-react';
 import { ThemeProvider } from '../../context/ThemeContext';
+import dynamic from 'next/dynamic';
+
+// Dynamic imports to prevent SSR issues and resolve circular dependencies
+const WorkspaceChat = dynamic(() => import('../../components/WorkspaceChat'), { 
+  ssr: false,
+  loading: () => (
+    <div className="h-100 d-flex align-items-center justify-content-center">
+      <div className="text-center">
+        <Loader size={24} className="spinner-border spinner-border-sm mb-2" />
+        <div className="small text-muted">Loading Chat...</div>
+      </div>
+    </div>
+  )
+});
+
+const DesignMode = dynamic(() => import('../../components/DesignMode'), { 
+  ssr: false,
+  loading: () => (
+    <div className="h-100 d-flex align-items-center justify-content-center">
+      <div className="text-center">
+        <Loader size={24} className="spinner-border spinner-border-sm mb-2" />
+        <div className="small text-muted">Loading Code Editor...</div>
+      </div>
+    </div>
+  )
+});
+
+const PreviewFrame = dynamic(() => import('../../components/PreviewFrame'), { 
+  ssr: false,
+  loading: () => (
+    <div className="h-100 d-flex align-items-center justify-content-center">
+      <div className="text-center">
+        <Loader size={24} className="spinner-border spinner-border-sm mb-2" />
+        <div className="small text-muted">Loading Preview...</div>
+      </div>
+    </div>
+  )
+});
 
 const WorkspacePage = () => {
   const [generatedWebsite, setGeneratedWebsite] = useState(null);

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import WorkspaceSidebar from './WorkspaceChat';
+import WorkspaceSidebar from './WorkspaceSidebar';
 import WorkspaceTopBar from './WorkspaceTopBar';
 
 const WorkspaceLayout = ({ children, siteName }) => {
@@ -18,7 +18,7 @@ const WorkspaceLayout = ({ children, siteName }) => {
         }
       `}</style>
       <div className="d-flex workspace-container">
-        <WorkspaceChat />
+        <WorkspaceSidebar />
         <div className="d-flex flex-column flex-fill">
           <WorkspaceTopBar />
           <div className="main-content">
