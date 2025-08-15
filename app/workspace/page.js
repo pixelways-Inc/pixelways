@@ -146,15 +146,21 @@ const WorkspacePage = () => {
           .mobile-content {
             flex: 1;
             overflow: hidden;
+            padding-bottom: 64px; /* Account for fixed bottom nav */
           }
           .mobile-bottom-nav {
             background: white;
             border-top: 1px solid #e5e7eb;
-            padding: 8px 0;
+            padding: 8px 0 env(safe-area-inset-bottom, 8px);
             display: flex;
             justify-content: space-around;
             min-height: 64px;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
           }
           .mobile-nav-item {
             flex: 1;
@@ -228,6 +234,7 @@ const WorkspacePage = () => {
               <WorkspaceChat 
                 generatedWebsite={generatedWebsite}
                 onWebsiteGenerated={handleWebsiteGenerated}
+                onSwitchToCodeView={() => setActiveView('code')}
               />
             ) : activeView === 'code' ? (
               generatedWebsite ? (
@@ -357,6 +364,7 @@ const WorkspacePage = () => {
                 <WorkspaceChat 
                   generatedWebsite={generatedWebsite}
                   onWebsiteGenerated={handleWebsiteGenerated}
+                  onSwitchToCodeView={() => setActiveView('code')}
                 />
               </div>
             ) : activeView === 'code' ? (

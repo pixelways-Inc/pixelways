@@ -22,17 +22,44 @@ const WebsiteSchema = z.object({
 
 export async function POST(request) {
   try {
-    const { prompt, projectType = 'static' } = await request.json();
+    const { prompt, projectType = 'static', isFollowup = false, existingWebsite = null } = await request.json();
     
     if (!prompt) {
       return NextResponse.json({ error: 'Prompt is required' }, { status: 400 });
     }
 
-    console.log('Generating website with Mistral AI:', { prompt, projectType });
+    console.log('Generating website with Mistral AI:', { prompt, projectType, isFollowup, hasExistingWebsite: !!existingWebsite });
+
+    // Build context-aware system prompt
+    let contextInfo = '';
+    if (isFollowup && existingWebsite) {
+      contextInfo = `
+🔄 FOLLOWUP MODE: You are modifying an existing website project.
+
+📁 EXISTING WEBSITE CONTEXT:
+Project Type: ${existingWebsite.projectType}
+Description: ${existingWebsite.description}
+
+Current Files:
+${existingWebsite.files.map(file => `- ${file.path} (${Math.round(file.content.length / 100)} lines)`).join('\n')}
+
+🎯 MODIFICATION TASK: Based on the user's request, intelligently modify, enhance, or rebuild the existing website while maintaining quality and consistency.
+
+IMPORTANT RULES FOR MODIFICATIONS:
+- Keep the same project structure and file organization
+- Maintain the overall design language and branding
+- Preserve any good existing functionality
+- Only change what the user specifically requests
+- If adding new pages/components, follow the existing patterns
+- Ensure all modifications are cohesive with the existing design
+`;
+    }
 
     const systemPrompt = `You are a world-class web developer and UI/UX designer who creates STUNNING, PROFESSIONAL, and MODERN websites that rival the best designs on the internet.
 
-🎯 MISSION: Create breathtaking, pixel-perfect websites that users will absolutely love.
+${contextInfo}
+
+🎯 MISSION: ${isFollowup ? 'Intelligently modify and enhance the existing website based on the user\'s feedback.' : 'Create breathtaking, pixel-perfect websites that users will absolutely love.'}
 
 IMPORTANT: You must return a JSON object with this EXACT structure:
 {
@@ -203,11 +230,28 @@ ${projectType === 'static' ? `
 
 Return ONLY the JSON object with the files array format. Make this website absolutely STUNNING! 🚀`;
 
+    // Build context-aware prompt
+    let fullPrompt = '';
+    if (isFollowup && existingWebsite) {
+      fullPrompt = `EXISTING WEBSITE CODEBASE:
+
+${existingWebsite.files.map(file => `=== ${file.path} ===
+${file.content}
+
+`).join('\n')}
+
+USER REQUEST: ${prompt}
+
+Please modify the above website according to the user's request. Return the complete updated website with all files.`;
+    } else {
+      fullPrompt = `Create a complete ${projectType} website: ${prompt}`;
+    }
+
     const result = await generateObject({
       model: mistral('codestral-latest'),
       schema: WebsiteSchema,
       system: systemPrompt,
-      prompt: `Create a complete ${projectType} website: ${prompt}`,
+      prompt: fullPrompt,
       temperature: 0.7,
     });
 

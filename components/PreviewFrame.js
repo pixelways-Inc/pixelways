@@ -49,8 +49,7 @@ const PreviewFrame = ({ previewUrl, isDeploying }) => {
     if (isMobile) {
       return {
         width: '100%',
-        height: 'calc(100% - 48px)', // Adjusted for header bar
-        marginTop: '48px', // Adjusted for header bar
+        height: '100%', // Full height, no header bar on mobile
         border: 'none'
       };
     }
@@ -99,24 +98,27 @@ const PreviewFrame = ({ previewUrl, isDeploying }) => {
 
   return (
     <div className="position-relative w-100 h-100">
-      {/* Header Bar */}
-      <div className="position-absolute top-0 start-0 end-0 bg-white border-bottom p-2" style={{zIndex: 10}}>
-        <div className="d-flex align-items-center justify-content-between">
-          <div className="d-flex align-items-center gap-2">
-            <Globe size={16} className="text-success" />
-            <span className="small text-muted text-truncate">{previewUrl}</span>
-          </div>
-          <div className="d-flex align-items-center gap-2">
-            <button
-              onClick={() => window.open(previewUrl, '_blank', 'noopener noreferrer')}
-              className="btn btn-outline-primary btn-sm p-1"
-              title="Open in new tab"
-            >
-              <ExternalLink size={14} />
-            </button>
+      {/* Header Bar - Hide on mobile */}
+      {!isMobile && (
+        <div className="position-absolute top-0 start-0 end-0 bg-white border-bottom p-2" style={{zIndex: 10}}>
+          <div className="d-flex align-items-center justify-content-between">
+            <div className="d-flex align-items-center gap-2 flex-grow-1 me-2">
+              <Globe size={16} className="text-success" />
+              <span className="small text-muted text-truncate" style={{maxWidth: 'calc(100% - 24px)'}}>{previewUrl}</span>
+            </div>
+            <div className="d-flex align-items-center gap-2 flex-shrink-0">
+              <button
+                onClick={() => window.open(previewUrl, '_blank', 'noopener noreferrer')}
+                className="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center"
+                style={{width: '32px', height: '32px'}}
+                title="Open in new tab"
+              >
+                <ExternalLink size={14} />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Main Preview Area */}
       <div style={getContainerStyles()}>

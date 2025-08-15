@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Send, Loader } from 'lucide-react';
 
-const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
+const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeView }) => {
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -59,7 +59,9 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
         },
         body: JSON.stringify({
           prompt: newMessage.trim(),
-          projectType: 'static'
+          projectType: generatedWebsite?.projectType || 'static',
+          isFollowup: !!generatedWebsite,
+          existingWebsite: generatedWebsite
         }),
       });
 
@@ -69,10 +71,13 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
       setMessages(prev => prev.filter(msg => !msg.isThinking));
       
       if (data.success && data.website) {
+        const isUpdate = !!generatedWebsite;
         const aiResponse = {
           id: Date.now() + 2,
           type: 'ai',
-          content: `I've generated a ${data.website.projectType} website: ${data.website.description}`,
+          content: isUpdate 
+            ? `I've updated your ${data.website.projectType} website: ${data.website.description}. Switching to code view to show the changes.`
+            : `I've generated a ${data.website.projectType} website: ${data.website.description}. Switching to code view to explore the files.`,
           timestamp: new Date()
         };
         setMessages(prev => [...prev, aiResponse]);
@@ -80,6 +85,13 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
         if (onWebsiteGenerated) {
           onWebsiteGenerated(data.website);
         }
+        
+        // Auto-switch to code view after generation/update
+        setTimeout(() => {
+          if (onSwitchToCodeView) {
+            onSwitchToCodeView();
+          }
+        }, 1000);
       } else {
         const errorMessage = {
           id: Date.now() + 2,
@@ -289,7 +301,7 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
                 onKeyDown={handleKeyPress}
-                placeholder="Ask a follow-up..."
+                placeholder={generatedWebsite ? "Ask for changes to your website..." : "Ask a follow-up..."}
                 className="message-input"
                 rows={1}
                 disabled={isGenerating}
