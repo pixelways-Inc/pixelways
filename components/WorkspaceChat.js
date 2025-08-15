@@ -140,22 +140,22 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
               onChange={(e) => setNewMessage(e.target.value)}
               onKeyDown={handleKeyPress}
               placeholder="Ask a follow-up..."
-              className="w-full resize-none border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-gray-300"
+              className="w-full resize-none border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-gray-300 min-h-[40px]"
               rows={1}
               disabled={isGenerating}
             />
           </div>
           <div className="flex items-center space-x-2">
             <div className="flex items-center space-x-1 text-xs text-gray-500">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
-              </svg>
+              <div className="w-4 h-4 flex items-center justify-center">
+                <span className="text-xs">⚡</span>
+              </div>
               <span>Agent</span>
             </div>
             <button
               onClick={handleSendMessage}
               disabled={!newMessage.trim() || isGenerating}
-              className="p-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {isGenerating ? (
                 <Loader size={16} className="animate-spin" />
@@ -165,7 +165,7 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
             </button>
             <button
               disabled={isGenerating}
-              className="px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 disabled:opacity-50"
+              className="px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 disabled:opacity-50 transition-colors"
             >
               Stop
             </button>
