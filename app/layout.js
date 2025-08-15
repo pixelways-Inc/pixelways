@@ -1,6 +1,5 @@
 import Preloader from "@/layout/Preloader";
 import Script from "next/script";
-
 import "./globals.css";
 
 import "@css/aos.css";

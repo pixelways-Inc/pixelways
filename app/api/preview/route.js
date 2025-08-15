@@ -1,37 +1,23 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-
-const GITHUB_PAT = process.env.GH_PAT;
-const GITHUB_USERNAME = process.env.GITHUB_USERNAME; // Assuming user's GitHub username is also available
+import { SUPABASE_CONFIG, GITHUB_CONFIG } from '../../../utility/supabaseConstants';
 
 export async function POST(request) {
   try {
     const { files, project_type } = await request.json(); // Assuming files and project_type are sent
     console.log('Received preview request:', { files: files.length, project_type });
 
-    // If GitHub is not configured, fall back to direct Supabase upload for immediate previews
-    if (!GITHUB_PAT || !GITHUB_USERNAME) {
-      console.log('GitHub not configured. Falling back to direct Supabase upload.');
+    // Check if this needs building (React/Vite) or can be directly uploaded (static)
+    if (project_type === 'static') {
+      // Direct Supabase upload for static sites
+      console.log('Static site detected - using direct Supabase upload.');
 
-      const SUPABASE_URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-      const SUPABASE_SERVICE_ROLE =
-        process.env.SUPABASE_SERVICE_ROLE ||
-        process.env.SUPABASE_SERVICE_ROLE_KEY ||
-        process.env.SUPABASE_ANON_KEY ||
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-      if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE) {
-        return NextResponse.json({ error: 'Supabase credentials are not configured.' }, { status: 500 });
-      }
-
-      const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE);
-
+      const supabase = createClient(SUPABASE_CONFIG.URL, SUPABASE_CONFIG.SERVICE_ROLE_KEY);
       const siteName = `site-${Date.now()}`;
       const bucket = 'sites';
 
       // Ensure bucket exists (best-effort; ignore error if it already exists)
       try {
-        // @ts-ignore - admin API not typed here; if unavailable, uploads will still work if bucket already exists
-        // Some Supabase setups may not allow bucket creation with service key; ignore failures
         await supabase.storage.createBucket(bucket, { public: true });
       } catch (e) {
         console.log('Bucket create attempt result:', e?.message || 'skip');
@@ -66,23 +52,26 @@ export async function POST(request) {
       }
 
       const previewUrl = `https://pixelways.co/sites/${siteName}/index.html`;
-      return NextResponse.json({ preview_url: previewUrl, site: siteName, project_type, message: 'Preview uploaded to Supabase successfully.' });
+      return NextResponse.json({ preview_url: previewUrl, site: siteName, project_type, message: 'Static site uploaded to Supabase successfully.' });
     }
 
-    const repoName = `pixelai-preview-${Date.now()}`; // Unique repository name
+    // React/Vite sites need GitHub Actions to build before deployment
+    console.log(`${project_type} site detected - using GitHub Actions workflow for build process.`);
+
+    const repoName = `pixelai-preview-${Date.now()}`;
 
     // --- Step 1: Create GitHub Repository ---
-    console.log(`Attempting to create GitHub repository: ${repoName}`);
+    console.log(`Creating GitHub repository: ${repoName}`);
     const createRepoResponse = await fetch(`https://api.github.com/user/repos`, {
       method: 'POST',
       headers: {
-        Authorization: `token ${GITHUB_PAT}`,
+        Authorization: `token ${GITHUB_CONFIG.PAT}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         name: repoName,
-        private: true, // Set to true for private repositories
-        auto_init: true, // Initialize with a README
+        private: true,
+        auto_init: true,
       }),
     });
     if (!createRepoResponse.ok) {
@@ -95,13 +84,13 @@ export async function POST(request) {
     // --- Step 2: Push Project Files ---
     console.log('Pushing files to repository...');
 
-    const owner = GITHUB_USERNAME;
+    const owner = GITHUB_CONFIG.USERNAME;
     const repo = repoName;
-    const defaultBranch = 'main'; // Assuming 'main' as the default branch
+    const defaultBranch = 'main';
 
     // 1. Get the latest commit SHA of the default branch
     const refResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${defaultBranch}`, {
-      headers: { Authorization: `token ${GITHUB_PAT}` },
+      headers: { Authorization: `token ${GITHUB_CONFIG.PAT}` },
     });
     if (!refResponse.ok) {
       const errorData = await refResponse.json();
@@ -113,7 +102,7 @@ export async function POST(request) {
     // 2. Create a new Git tree object
     const tree = files.map(file => ({
       path: file.path,
-      mode: '100644', // Blob (file)
+      mode: '100644',
       type: 'blob',
       content: file.content,
     }));
@@ -121,11 +110,11 @@ export async function POST(request) {
     const treeResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/trees`, {
       method: 'POST',
       headers: {
-        Authorization: `token ${GITHUB_PAT}`,
+        Authorization: `token ${GITHUB_CONFIG.PAT}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        base_tree: latestCommitSha, // Base the new tree on the latest commit's tree
+        base_tree: latestCommitSha,
         tree: tree,
       }),
     });
@@ -140,7 +129,7 @@ export async function POST(request) {
     const commitResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/commits`, {
       method: 'POST',
       headers: {
-        Authorization: `token ${GITHUB_PAT}`,
+        Authorization: `token ${GITHUB_CONFIG.PAT}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -160,12 +149,12 @@ export async function POST(request) {
     const updateRefResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs/heads/${defaultBranch}`, {
       method: 'PATCH',
       headers: {
-        Authorization: `token ${GITHUB_PAT}`,
+        Authorization: `token ${GITHUB_CONFIG.PAT}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         sha: newCommitSha,
-        force: true, // Force update in case of non-fast-forward (e.g., initial auto_init commit)
+        force: true,
       }),
     });
     if (!updateRefResponse.ok) {
@@ -176,17 +165,17 @@ export async function POST(request) {
 
     // --- Step 3: Trigger GitHub Actions Workflow ---
     console.log(`Triggering GitHub Actions workflow for ${repoName}...`);
-    const workflowDispatchResponse = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}/actions/workflows/preview-build.yml/dispatches`, {
+    const workflowDispatchResponse = await fetch(`https://api.github.com/repos/${GITHUB_CONFIG.USERNAME}/${repoName}/actions/workflows/preview-build.yml/dispatches`, {
       method: 'POST',
       headers: {
-        Authorization: `token ${GITHUB_PAT}`,
+        Authorization: `token ${GITHUB_CONFIG.PAT}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        ref: 'main', // The branch the workflow is on
+        ref: 'main',
         inputs: {
           repo_name: repoName,
-          commit_sha: newCommitSha, // Use the commit SHA from the push step
+          commit_sha: newCommitSha,
           project_type: project_type,
         },
       }),
@@ -197,7 +186,12 @@ export async function POST(request) {
     }
     console.log('GitHub Actions workflow dispatched.');
 
-    return NextResponse.json({ preview_build_started: true, repo_name: repoName, message: 'Preview build initiated (GitHub integration placeholders).' });
+    return NextResponse.json({ 
+      preview_build_started: true, 
+      repo_name: repoName, 
+      site: repoName, 
+      message: `${project_type} build initiated via GitHub Actions.` 
+    });
   } catch (error) {
     console.error('Error in /api/preview:', error);
     return NextResponse.json({ error: `Failed to initiate preview build: ${error.message}` }, { status: 500 });

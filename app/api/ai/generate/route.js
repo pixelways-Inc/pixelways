@@ -32,24 +32,38 @@ export async function POST(request) {
 
     const systemPrompt = `You are an expert web developer who generates complete, functional websites based on user descriptions.
 
-IMPORTANT: Generate a complete, working website with all necessary files. For ${projectType} projects:
+IMPORTANT: You must return a JSON object with this EXACT structure:
+{
+  "projectType": "${projectType}",
+  "description": "Brief description of the website",
+  "files": [
+    {
+      "path": "index.html",
+      "content": "full HTML content here"
+    },
+    {
+      "path": "style.css", 
+      "content": "CSS content here (optional)"
+    }
+  ]
+}
+
+For ${projectType} projects:
 
 ${projectType === 'static' ? `
-- Create index.html with complete HTML structure
-- Include embedded CSS in <style> tags or separate CSS files
+- Generate files array with at least index.html
+- Include embedded CSS in <style> tags in HTML OR separate CSS files
 - Add JavaScript functionality if needed
 - Use modern, responsive design
 - Include proper meta tags and SEO
 ` : projectType === 'react-vite' ? `
-- Create a complete React + Vite project structure
-- Include package.json with proper dependencies
-- Generate App.jsx, main.jsx, and necessary components
+- Generate files array with package.json, index.html, src/App.jsx, src/main.jsx, etc.
+- Include proper dependencies in package.json
 - Use modern React hooks and best practices
-- Include index.html and vite.config.js
+- Include vite.config.js if needed
 ` : `
-- Create a complete Next.js project structure
-- Include package.json with Next.js dependencies
-- Generate pages, components, and necessary files
+- Generate files array with package.json, app/layout.tsx, app/page.tsx, etc.
+- Include Next.js dependencies in package.json
 - Use App Router structure
 - Include proper layout and page components
 `}
@@ -62,7 +76,7 @@ Make it visually appealing with:
 - Clean, semantic HTML/JSX
 - Accessibility features
 
-Return ONLY valid JSON with the exact schema requested.`;
+Return ONLY the JSON object with the files array format.`;
 
     const result = await generateObject({
       model: mistral('codestral-latest'),
@@ -86,7 +100,7 @@ Return ONLY valid JSON with the exact schema requested.`;
     // Fallback to a simple static website if AI fails
     const fallbackWebsite = {
       projectType: 'static',
-      description: `A simple website based on: ${prompt || 'user request'}`,
+      description: `A simple website based on your request`,
       files: [
         {
           path: 'index.html',

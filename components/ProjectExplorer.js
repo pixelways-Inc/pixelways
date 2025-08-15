@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { Folder, FileText, ChevronDown, ChevronRight } from 'lucide-react';
-import { getSupabase } from '../utility/supabaseClient';
+import { createClient } from '@supabase/supabase-js';
+import { SUPABASE_CONFIG } from '../utility/supabaseConstants';
 
 const ProjectExplorer = ({ siteName }) => {
   const [entries, setEntries] = useState([]);
@@ -10,8 +11,7 @@ const ProjectExplorer = ({ siteName }) => {
 
   useEffect(() => {
     if (!siteName) return;
-    const supabase = getSupabase();
-    if (!supabase) return;
+    const supabase = createClient(SUPABASE_CONFIG.URL, SUPABASE_CONFIG.ANON_KEY);
 
     const list = async () => {
       const { data, error } = await supabase.storage.from('sites').list(siteName, { limit: 1000, search: '' });
@@ -64,8 +64,7 @@ const SubFolder = ({ siteName, folder, depth }) => {
 
   useEffect(() => {
     if (!siteName) return;
-    const supabase = getSupabase();
-    if (!supabase) return;
+    const supabase = createClient(SUPABASE_CONFIG.URL, SUPABASE_CONFIG.ANON_KEY);
     const list = async () => {
       const { data, error } = await supabase.storage.from('sites').list(`${siteName}/${folder}`, { limit: 1000, search: '' });
       if (error) {

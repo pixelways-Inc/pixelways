@@ -8,6 +8,7 @@ import DesignMode from '../../components/DesignMode';
 import PreviewFrame from '../../components/PreviewFrame';
 import { Loader } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import { ThemeProvider } from '../../context/ThemeContext';
 const MonacoCodeViewer = dynamic(() => import('../../components/MonacoCodeViewer'), { ssr: false });
 
 const WorkspacePage = () => {
@@ -57,7 +58,8 @@ const WorkspacePage = () => {
   };
 
   return (
-    <WorkspaceLayout siteName={siteName}>
+    <ThemeProvider>
+      <WorkspaceLayout siteName={siteName}>
       <div className="h-full flex">
         {/* Left Panel */}
         <div className="w-1/2 border-r border-gray-200 flex flex-col">
@@ -169,7 +171,8 @@ const WorkspacePage = () => {
           </div>
         </div>
       </div>
-    </WorkspaceLayout>
+      </WorkspaceLayout>
+    </ThemeProvider>
   );
 };
 

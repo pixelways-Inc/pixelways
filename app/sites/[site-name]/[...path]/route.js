@@ -1,18 +1,12 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { SUPABASE_CONFIG } from '../../../../utility/supabaseConstants';
 
 // Serves files from Supabase Storage bucket "sites" with SPA fallback
 export async function GET(request, { params }) {
   try {
     const { 'site-name': siteName, path = [] } = params;
-    const SUPABASE_URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-      return new NextResponse('Supabase not configured', { status: 500 });
-    }
-
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabase = createClient(SUPABASE_CONFIG.URL, SUPABASE_CONFIG.ANON_KEY);
     const joinedPath = Array.isArray(path) && path.length > 0 ? path.join('/') : 'index.html';
 
     const storagePath = `${siteName}/${joinedPath}`;
