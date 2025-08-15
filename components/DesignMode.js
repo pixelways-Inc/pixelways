@@ -164,7 +164,8 @@ const DesignMode = ({ website, onSelectFile }) => {
     const tree = {};
     
     website.files.forEach(file => {
-      const parts = file.name.split('/');
+      const filePath = file.path || file.name || '';
+      const parts = filePath.split('/');
       let current = tree;
       
       for (let i = 0; i < parts.length; i++) {

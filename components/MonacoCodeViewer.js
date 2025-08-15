@@ -28,17 +28,21 @@ const MonacoCodeViewer = ({ value = '', language = 'html', height = '100%', them
     };
 
     const init = () => {
-      if (!containerRef.current || disposed) return;
-      const editor = window.monaco.editor.create(containerRef.current, {
-        value,
-        language,
-        theme,
-        readOnly: true,
-        automaticLayout: true,
-        minimap: { enabled: false },
-        scrollBeyondLastLine: false,
-      });
-      editorRef.current = editor;
+      if (!containerRef.current || disposed || !containerRef.current.style) return;
+      try {
+        const editor = window.monaco.editor.create(containerRef.current, {
+          value: value || '',
+          language: language || 'plaintext',
+          theme: theme || 'vs-dark',
+          readOnly: true,
+          automaticLayout: true,
+          minimap: { enabled: false },
+          scrollBeyondLastLine: false,
+        });
+        editorRef.current = editor;
+      } catch (error) {
+        console.warn('Monaco editor initialization failed:', error);
+      }
     };
 
     load();
@@ -60,7 +64,11 @@ const MonacoCodeViewer = ({ value = '', language = 'html', height = '100%', them
   }, [value]);
 
   return (
-    <div style={{ width: '100%', height }} ref={containerRef} />
+    <div 
+      style={{ width: '100%', height, position: 'relative' }} 
+      ref={containerRef}
+      onError={(e) => console.warn('Monaco container error:', e)}
+    />
   );
 };
 

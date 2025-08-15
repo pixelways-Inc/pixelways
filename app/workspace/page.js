@@ -155,7 +155,8 @@ const WorkspacePage = () => {
                   <MonacoCodeViewer
                     value={selectedFile.content}
                     language={(() => {
-                      const ext = selectedFile.name.split('.').pop();
+                      const filePath = selectedFile.path || selectedFile.name || '';
+                      const ext = filePath.split('.').pop()?.toLowerCase();
                       if (ext === 'html') return 'html';
                       if (ext === 'css') return 'css';
                       if (ext === 'js' || ext === 'jsx' || ext === 'ts' || ext === 'tsx') return 'javascript';
