@@ -3,22 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import WorkspaceLayout from '../../components/WorkspaceLayout';
-import dynamic from 'next/dynamic';
-const WorkspaceChat = dynamic(() => import('../../components/WorkspaceChat'), { 
-  ssr: false,
-  loading: () => <div className="h-100 d-flex align-items-center justify-content-center"><Loader size={24} /></div>
-});
-const DesignMode = dynamic(() => import('../../components/DesignMode'), { 
-  ssr: false,
-  loading: () => <div className="h-100 d-flex align-items-center justify-content-center"><Loader size={24} /></div>
-});
-const PreviewFrame = dynamic(() => import('../../components/PreviewFrame'), { 
-  ssr: false,
-  loading: () => <div className="h-100 d-flex align-items-center justify-content-center"><Loader size={24} /></div>
-});
+import WorkspaceChat from '../../components/WorkspaceChat';
+import DesignMode from '../../components/DesignMode';
+import PreviewFrame from '../../components/PreviewFrame';
 import { Loader, Code, Eye, Rocket, MessageSquare } from 'lucide-react';
 import { ThemeProvider } from '../../context/ThemeContext';
-const MonacoCodeViewer = dynamic(() => import('../../components/MonacoCodeViewer'), { ssr: false });
 
 const WorkspacePage = () => {
   const [generatedWebsite, setGeneratedWebsite] = useState(null);
