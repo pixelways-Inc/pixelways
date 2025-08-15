@@ -25,16 +25,35 @@ export async function POST(request) {
       console.log('✅ Build completed successfully!');
       console.log(`🌐 Site available at: ${body.preview_url}`);
       
-      // Here you could:
-      // 1. Update a database with the build status
-      // 2. Send notifications to users
-      // 3. Trigger additional processes
-      // 4. Update UI state via WebSocket/SSE
+      // Cleanup temporary GitHub repository
+      if (body.cleanup_token && body.github_user && body.repo_name) {
+        try {
+          console.log(`🧹 Cleaning up temporary repository: ${body.repo_name}`);
+          
+          const deleteResponse = await fetch(`https://api.github.com/repos/${body.github_user}/${body.repo_name}`, {
+            method: 'DELETE',
+            headers: {
+              'Authorization': `token ${body.cleanup_token}`,
+              'Accept': 'application/vnd.github.v3+json',
+            },
+          });
+
+          if (deleteResponse.ok) {
+            console.log(`✅ Repository ${body.repo_name} deleted successfully`);
+          } else {
+            console.warn(`⚠️ Failed to delete repository ${body.repo_name}: ${deleteResponse.status}`);
+          }
+        } catch (cleanupError) {
+          console.error('🔥 Repository cleanup error:', cleanupError);
+          // Don't fail the webhook if cleanup fails
+        }
+      }
       
       return NextResponse.json({
         success: true,
         message: 'Build completion processed successfully',
         preview_url: body.preview_url,
+        repo_cleaned: !!body.cleanup_token,
         timestamp: new Date().toISOString()
       });
     }

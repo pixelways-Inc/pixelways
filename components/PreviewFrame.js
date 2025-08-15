@@ -1,13 +1,16 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { Loader, Globe, AlertCircle, ExternalLink, Monitor, Smartphone } from 'lucide-react';
+import { Loader, Globe, AlertCircle, ExternalLink, Monitor, Smartphone, Github } from 'lucide-react';
+import { getGitHubAuthStatus } from './GitHubAuth';
 
-const PreviewFrame = ({ previewUrl, isDeploying }) => {
+const PreviewFrame = ({ previewUrl, isDeploying, generatedWebsite, onGitHubExport }) => {
   const [viewMode, setViewMode] = React.useState('desktop'); // 'desktop' | 'mobile'
   const [isMobile, setIsMobile] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
+  const [githubAuth, setGithubAuth] = useState(null);
 
-  // Detect mobile screen size
+  // Detect mobile screen size and check GitHub auth
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -15,8 +18,26 @@ const PreviewFrame = ({ previewUrl, isDeploying }) => {
     
     checkMobile();
     window.addEventListener('resize', checkMobile);
+    
+    // Check GitHub authentication status
+    const authStatus = getGitHubAuthStatus();
+    setGithubAuth(authStatus);
+    
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  const handleGitHubExport = async () => {
+    if (!generatedWebsite || !githubAuth.isAuthenticated || !onGitHubExport) return;
+    
+    setIsExporting(true);
+    try {
+      await onGitHubExport(generatedWebsite, githubAuth);
+    } catch (error) {
+      console.error('GitHub export failed:', error);
+    } finally {
+      setIsExporting(false);
+    }
+  };
   if (isDeploying) {
     return (
       <div className="h-100 d-flex align-items-center justify-content-center bg-light">
@@ -97,7 +118,17 @@ const PreviewFrame = ({ previewUrl, isDeploying }) => {
   };
 
   return (
-    <div className="position-relative w-100 h-100">
+    <>
+      <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        .spin {
+          animation: spin 1s linear infinite;
+        }
+      `}</style>
+      <div className="position-relative w-100 h-100">
       {/* Header Bar - Hide on mobile */}
       {!isMobile && (
         <div className="position-absolute top-0 start-0 end-0 bg-white border-bottom p-2" style={{zIndex: 10}}>
@@ -107,6 +138,24 @@ const PreviewFrame = ({ previewUrl, isDeploying }) => {
               <span className="small text-muted text-truncate" style={{maxWidth: 'calc(100% - 24px)'}}>{previewUrl}</span>
             </div>
             <div className="d-flex align-items-center gap-2 flex-shrink-0">
+              {/* GitHub Export Button */}
+              {generatedWebsite && githubAuth?.isAuthenticated && (
+                <button
+                  onClick={handleGitHubExport}
+                  disabled={isExporting}
+                  className="btn btn-outline-dark btn-sm d-flex align-items-center justify-content-center"
+                  style={{width: '32px', height: '32px'}}
+                  title={isExporting ? 'Exporting to GitHub...' : 'Export to GitHub Repository'}
+                >
+                  {isExporting ? (
+                    <Loader size={14} className="spin" />
+                  ) : (
+                    <Github size={14} />
+                  )}
+                </button>
+              )}
+              
+              {/* Open in New Tab Button */}
               <button
                 onClick={() => window.open(previewUrl, '_blank', 'noopener noreferrer')}
                 className="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center"
@@ -167,7 +216,8 @@ const PreviewFrame = ({ previewUrl, isDeploying }) => {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 };
 

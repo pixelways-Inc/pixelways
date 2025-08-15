@@ -157,6 +157,8 @@ jobs:
           -d "{
             \"status\": \"completed\",
             \"repo_name\": \"${{ inputs.repo_name }}\",
+            \"github_user\": \"${{ github.repository_owner }}\",
+            \"cleanup_token\": \"${{ secrets.REPO_CLEANUP_TOKEN || env.REPO_CLEANUP_TOKEN }}\",
             \"project_type\": \"${{ inputs.project_type }}\",
             \"commit_sha\": \"${{ inputs.commit_sha }}\",
             \"preview_url\": \"$PREVIEW_URL\",

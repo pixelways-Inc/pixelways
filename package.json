@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ai-sdk/openai-compatible": "^1.0.7",
+    "@octokit/rest": "^22.0.0",
     "@supabase/supabase-js": "^2.55.0",
     "ai": "^5.0.14",
     "aos": "^2.3.4",

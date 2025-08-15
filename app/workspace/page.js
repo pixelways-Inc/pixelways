@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import WorkspaceLayout from '../../components/WorkspaceLayout';
 import ErrorBoundary from '../../components/ErrorBoundary';
+import WorkspaceLoader from '../../components/WorkspaceLoader';
 import { Loader, Code, Eye, Rocket, MessageSquare } from 'lucide-react';
 import { ThemeProvider } from '../../context/ThemeContext';
 import dynamic from 'next/dynamic';
@@ -51,15 +52,26 @@ const WorkspacePage = () => {
   const [previewUrl, setPreviewUrl] = useState('');
   const [isDeploying, setIsDeploying] = useState(false);
   const [siteName, setSiteName] = useState('');
+  const [customSiteName, setCustomSiteName] = useState('');
+  const [exportStatus, setExportStatus] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const [isWorkspaceLoading, setIsWorkspaceLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingStep, setLoadingStep] = useState('init');
   const router = useRouter();
 
-  // Client-side initialization
+  // Client-side initialization with loading progress
   useEffect(() => {
-    const initializeClient = () => {
+    const initializeWorkspace = async () => {
       try {
+        // Step 1: Initialize client
+        setLoadingStep('init');
+        setLoadingProgress(10);
+        
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
         setIsClient(true);
         const checkMobile = () => {
           if (typeof window !== 'undefined') {
@@ -70,27 +82,53 @@ const WorkspacePage = () => {
         checkMobile();
         if (typeof window !== 'undefined') {
           window.addEventListener('resize', checkMobile);
-          return () => window.removeEventListener('resize', checkMobile);
         }
+        
+        // Step 2: Load components
+        setLoadingStep('generate');
+        setLoadingProgress(40);
+        
+        await new Promise(resolve => setTimeout(resolve, 800));
+        
+        // Step 3: Check for existing website
+        setLoadingStep('process');
+        setLoadingProgress(70);
+        
+        if (typeof window !== 'undefined') {
+          const website = sessionStorage.getItem('generatedWebsite');
+          if (website) {
+            setGeneratedWebsite(JSON.parse(website));
+            setActiveView('code');
+          }
+        }
+        
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Step 4: Complete
+        setLoadingStep('complete');
+        setLoadingProgress(100);
+        
+        await new Promise(resolve => setTimeout(resolve, 800));
+        
+        setIsWorkspaceLoading(false);
+        
       } catch (error) {
-        console.warn('Client initialization error:', error);
-        setIsClient(true); // Still set to true to prevent infinite loading
+        console.warn('Workspace initialization error:', error);
+        setIsClient(true);
+        setIsWorkspaceLoading(false);
       }
     };
 
-    const cleanup = initializeClient();
-    return cleanup || (() => {});
+    initializeWorkspace();
+    
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', () => {});
+      }
+    };
   }, []);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const website = sessionStorage.getItem('generatedWebsite');
-      if (website) {
-        setGeneratedWebsite(JSON.parse(website));
-        setActiveView('code');
-      }
-    }
-  }, [isClient]);
+  // This is now handled in the initialization above
 
   const handleWebsiteGenerated = (website) => {
     setGeneratedWebsite(website);
@@ -100,14 +138,36 @@ const WorkspacePage = () => {
 
   const triggerPreview = async () => {
     if (!generatedWebsite || !Array.isArray(generatedWebsite.files)) return;
+    
+    // Validate custom site name
+    if (!customSiteName.trim()) {
+      alert('Please enter a site name before deploying.');
+      return;
+    }
+    
+    // Validate site name format (no spaces, alphanumeric and hyphens only)
+    const siteNameRegex = /^[a-zA-Z0-9-]+$/;
+    if (!siteNameRegex.test(customSiteName.trim())) {
+      alert('Site name can only contain letters, numbers, and hyphens (no spaces).');
+      return;
+    }
+    
     setIsDeploying(true);
     try {
+      // Get GitHub credentials from session storage
+      const githubToken = typeof window !== 'undefined' ? sessionStorage.getItem('github_access_token') : null;
+      const githubUserData = typeof window !== 'undefined' ? sessionStorage.getItem('github_user') : null;
+      const githubUser = githubUserData ? JSON.parse(githubUserData) : null;
+
       const response = await fetch('/api/preview', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           files: generatedWebsite.files,
           project_type: generatedWebsite.projectType,
+          site_name: customSiteName.trim(), // Use custom site name
+          github_token: githubToken,
+          github_username: githubUser?.login
         }),
       });
       const data = await response.json();
@@ -125,13 +185,55 @@ const WorkspacePage = () => {
     }
   };
 
-  // Show loading until client-side hydration is complete
-  if (!isClient) {
+  const handleGitHubExport = async (website, githubAuth) => {
+    try {
+      setExportStatus('exporting');
+      
+      // Use custom site name or generate one
+      const projectName = customSiteName.trim() || `pixelways-${website.projectType || 'website'}-${Date.now()}`;
+
+      const response = await fetch('/api/export-to-github', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          projectName,
+          files: website.files,
+          githubToken: githubAuth.token,
+          githubUsername: githubAuth.user.login
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setExportStatus('success');
+        // Show success message with repo link
+        if (window.confirm(`Successfully exported to GitHub!\n\nRepository: ${data.repoUrl}\n\nWould you like to open it?`)) {
+          window.open(data.repoUrl, '_blank');
+        }
+      } else {
+        throw new Error(data.error || 'Export failed');
+      }
+    } catch (error) {
+      console.error('GitHub export error:', error);
+      setExportStatus('error');
+      alert(`Export failed: ${error.message}`);
+    } finally {
+      // Clear status after 3 seconds
+      setTimeout(() => setExportStatus(null), 3000);
+    }
+  };
+
+  // Show workspace loader during initialization
+  if (isWorkspaceLoading || !isClient) {
     return (
       <ThemeProvider>
-        <div className="h-100 d-flex align-items-center justify-content-center">
-          <Loader size={48} className="text-primary" style={{animation: 'spin 1s linear infinite'}} />
-        </div>
+        <WorkspaceLoader
+          isLoading={true}
+          progress={loadingProgress}
+          currentStep={loadingStep}
+          onComplete={() => setIsWorkspaceLoading(false)}
+        />
       </ThemeProvider>
     );
   }
@@ -192,6 +294,27 @@ const WorkspacePage = () => {
           .mobile-deploy-button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+          }
+          .mobile-deploy-section {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+          }
+          .mobile-site-input {
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 140px;
+            outline: none;
+          }
+          .mobile-site-input:focus {
+            border-color: #16a34a;
+            box-shadow: 0 0 0 1px #16a34a;
+          }
+          .mobile-site-input:disabled {
+            background-color: #f3f4f6;
+            opacity: 0.5;
           }
           .mobile-content {
             flex: 1;
@@ -267,14 +390,27 @@ const WorkspacePage = () => {
               <span className="mobile-status-text">PixelAI Workspace</span>
             </div>
             {activeView === 'preview' && generatedWebsite && (
-              <button
-                onClick={triggerPreview}
-                disabled={isDeploying}
-                className="mobile-deploy-button"
-              >
-                <Rocket size={16} />
-                <span>{isDeploying ? 'Deploying...' : 'Deploy'}</span>
-              </button>
+              <div className="mobile-deploy-section">
+                <input
+                  type="text"
+                  value={customSiteName}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/[^a-zA-Z0-9-]/g, ''); // Remove invalid chars
+                    setCustomSiteName(value);
+                  }}
+                  placeholder="Enter site name"
+                  className="mobile-site-input"
+                  disabled={isDeploying}
+                />
+                <button
+                  onClick={triggerPreview}
+                  disabled={isDeploying || !customSiteName.trim()}
+                  className="mobile-deploy-button"
+                >
+                  <Rocket size={16} />
+                  <span>{isDeploying ? 'Deploying...' : 'Deploy'}</span>
+                </button>
+              </div>
             )}
           </div>
 
@@ -314,7 +450,12 @@ const WorkspacePage = () => {
                 </div>
               ) : (
                 <ErrorBoundary fallbackMessage="Preview failed to load">
-                  <PreviewFrame previewUrl={previewUrl} isDeploying={isDeploying} />
+                  <PreviewFrame 
+                    previewUrl={previewUrl} 
+                    isDeploying={isDeploying}
+                    generatedWebsite={generatedWebsite}
+                    onGitHubExport={handleGitHubExport}
+                  />
                 </ErrorBoundary>
               )
             )}
@@ -398,16 +539,37 @@ const WorkspacePage = () => {
                 <Eye size={16} />
                 <span>Preview</span>
               </button>
-              {activeView === 'preview' && (
-                <button
-                  onClick={triggerPreview}
-                  disabled={!generatedWebsite || isDeploying}
-                  className="btn btn-success btn-sm px-3 ms-2 d-flex align-items-center gap-2"
-                  style={{opacity: (!generatedWebsite || isDeploying) ? '0.5' : '1'}}
-                >
-                  <Rocket size={16} />
-                  {isDeploying ? 'Deploying…' : 'Deploy'}
-                </button>
+              {activeView === 'preview' && generatedWebsite && (
+                <>
+                  {/* Site Name Input */}
+                  <input
+                    type="text"
+                    value={customSiteName}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/[^a-zA-Z0-9-]/g, ''); // Remove invalid chars
+                      setCustomSiteName(value);
+                    }}
+                    placeholder="Enter site name (no spaces)"
+                    className="form-control form-control-sm ms-2"
+                    style={{
+                      width: '200px', 
+                      fontSize: '0.875rem',
+                      borderColor: customSiteName && !/^[a-zA-Z0-9-]+$/.test(customSiteName) ? '#dc3545' : ''
+                    }}
+                    disabled={isDeploying}
+                  />
+                  
+                  {/* Deploy Button */}
+                  <button
+                    onClick={triggerPreview}
+                    disabled={!generatedWebsite || isDeploying || !customSiteName.trim()}
+                    className="btn btn-success btn-sm px-3 ms-2 d-flex align-items-center gap-2"
+                    style={{opacity: (!generatedWebsite || isDeploying || !customSiteName.trim()) ? '0.5' : '1'}}
+                  >
+                    <Rocket size={16} />
+                    {isDeploying ? 'Deploying…' : 'Deploy'}
+                  </button>
+                </>
               )}
             </div>
           </div>
@@ -458,7 +620,12 @@ const WorkspacePage = () => {
                   </div>
                 ) : (
                   <ErrorBoundary fallbackMessage="Preview failed to load">
-                    <PreviewFrame previewUrl={previewUrl} isDeploying={isDeploying} />
+                    <PreviewFrame 
+                      previewUrl={previewUrl} 
+                      isDeploying={isDeploying}
+                      generatedWebsite={generatedWebsite}
+                      onGitHubExport={handleGitHubExport}
+                    />
                   </ErrorBoundary>
                 )}
               </div>

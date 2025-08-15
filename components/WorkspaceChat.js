@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Send, Loader } from 'lucide-react';
+import GitHubAuth from './GitHubAuth';
 
 const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeView }) => {
   const [messages, setMessages] = useState([
@@ -15,14 +16,28 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeVie
   const [newMessage, setNewMessage] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [githubToken, setGithubToken] = useState(null);
+  const [githubUser, setGithubUser] = useState(null);
 
-  // Detect mobile screen size
+  // Detect mobile screen size and check for GitHub auth
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
     
+    const checkGitHubAuth = () => {
+      if (typeof window !== 'undefined') {
+        const token = sessionStorage.getItem('github_access_token');
+        const user = sessionStorage.getItem('github_user');
+        if (token && user) {
+          setGithubToken(token);
+          setGithubUser(JSON.parse(user));
+        }
+      }
+    };
+    
     checkMobile();
+    checkGitHubAuth();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -121,6 +136,16 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeVie
       e.preventDefault();
       handleSendMessage();
     }
+  };
+
+  const handleGitHubAuthSuccess = (token, user) => {
+    setGithubToken(token);
+    setGithubUser(user);
+  };
+
+  const handleGitHubAuthError = (error) => {
+    console.error('GitHub auth error:', error);
+    // Could show an error message to user
   };
 
   return (
@@ -265,8 +290,20 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated, onSwitchToCodeVie
         .stop-button:disabled {
           opacity: 0.5;
         }
+        .github-auth-section {
+          padding: ${isMobile ? '1rem' : '1rem'};
+          border-bottom: 1px solid #e5e7eb;
+        }
       `}</style>
       <div className="chat-container d-flex flex-column">
+        {/* GitHub Auth Section */}
+        <div className="github-auth-section">
+          <GitHubAuth 
+            onAuthSuccess={handleGitHubAuthSuccess}
+            onAuthError={handleGitHubAuthError}
+          />
+        </div>
+
         {/* Messages */}
         <div className="messages-area">
           {messages.map((message) => (

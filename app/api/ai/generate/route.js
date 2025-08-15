@@ -114,11 +114,35 @@ For ${projectType} projects:
 ${projectType === 'static' ? `
 🌟 STATIC WEBSITE REQUIREMENTS:
 
-- Generate 4-6 stunning HTML pages with consistent design
-- MANDATORY PAGES: index.html, about.html, services.html, contact.html, portfolio.html
+- Generate EXACTLY 5 separate HTML files (NOT single page with sections)
+- MANDATORY FILES: index.html, about.html, services.html, contact.html, portfolio.html
+- Each file must be a complete standalone HTML page with full navigation
 - Use Tailwind CSS for ALL styling (no custom CSS files unless absolutely necessary)
-- Create a navigation that works seamlessly across all pages
+- ALL pages must include IDENTICAL navigation linking to other HTML files
 - Include interactive JavaScript for smooth user experience
+
+🔗 CRITICAL NAVIGATION REQUIREMENTS:
+- Navigation must use relative file links: href="about.html" NOT href="#about"
+- Each page must have IDENTICAL navigation structure in header AND footer
+- Navigation links must point to actual HTML files, not anchor sections
+- Footer must also contain links to all other pages
+
+📝 MANDATORY NAVIGATION STRUCTURE (include in ALL files):
+<nav class="navbar">
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+  </ul>
+</nav>
+
+🚫 STRICTLY FORBIDDEN:
+- Single-page applications with anchor links (#section)
+- Missing navigation between pages
+- Inconsistent navigation across files
+- Only generating one HTML file
 
 📱 MOBILE-RESPONSIVE STRUCTURE:
 - Hero sections with gradient backgrounds
@@ -135,13 +159,15 @@ ${projectType === 'static' ? `
 - Smooth scroll behavior
 - Loading animations
 
-📁 FILE STRUCTURE:
-* index.html - Stunning homepage with hero, features, CTA
-* about.html - Professional about page with team/story
-* services.html - Service cards with hover effects
-* portfolio.html - Project showcase with filters
-* contact.html - Beautiful contact form + info
-* script.js - Interactive features and animations
+📁 MANDATORY FILE STRUCTURE (must generate ALL files):
+* index.html - Stunning homepage with hero, features, CTA + navigation to all pages
+* about.html - Professional about page with team/story + navigation to all pages  
+* services.html - Service cards with hover effects + navigation to all pages
+* portfolio.html - Project showcase with filters + navigation to all pages
+* contact.html - Beautiful contact form + info + navigation to all pages
+* script.js - Interactive features and animations (shared across all pages)
+
+⚠️ VALIDATION: Your response must contain exactly 5 HTML files with proper cross-linking navigation
 
 🔧 TECHNICAL REQUIREMENTS:
 - SEO optimized with proper meta tags
@@ -149,6 +175,15 @@ ${projectType === 'static' ? `
 - Accessibility compliant (WCAG)
 - Cross-browser compatible
 - Clean, semantic HTML structure
+
+💡 EXAMPLE: If generating a business website, you MUST create:
+1. index.html (with <a href="about.html">About</a> links)
+2. about.html (with <a href="services.html">Services</a> links)  
+3. services.html (with <a href="contact.html">Contact</a> links)
+4. contact.html (with <a href="portfolio.html">Portfolio</a> links)
+5. portfolio.html (with <a href="index.html">Home</a> links)
+
+Each file must be complete with navigation to ALL other files.
 ` : projectType === 'react-vite' ? `
 ⚛️ REACT + VITE REQUIREMENTS:
 

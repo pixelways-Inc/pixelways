@@ -4,8 +4,25 @@ import { SUPABASE_CONFIG, GITHUB_CONFIG } from '../../../utility/supabaseConstan
 
 export async function POST(request) {
   try {
-    const { files, project_type } = await request.json(); // Assuming files and project_type are sent
+    const { files, project_type = 'static', site_name = null, github_token = null, github_username = null } = await request.json();
     console.log('Received preview request:', { files: files.length, project_type });
+
+    // Get GitHub token from request body or cookies (fallback)
+    const requestToken = github_token;
+    const requestUsername = github_username;
+    const cookieToken = request.cookies.get('github_token')?.value;
+    const cookieUsername = request.cookies.get('github_username')?.value;
+    
+    // Prefer request body, fallback to cookies
+    const finalGithubToken = requestToken || cookieToken;
+    const finalGithubUsername = requestUsername || cookieUsername;
+    
+    console.log('GitHub auth status:', {
+      hasRequestToken: !!requestToken,
+      hasCookieToken: !!cookieToken,
+      finalHasToken: !!finalGithubToken,
+      username: finalGithubUsername
+    });
 
     // Check if this needs building (React/Vite) or can be directly uploaded (static)
     if (project_type === 'static') {
@@ -13,7 +30,7 @@ export async function POST(request) {
       console.log('Static site detected - using direct Supabase upload.');
 
       const supabase = createClient(SUPABASE_CONFIG.URL, SUPABASE_CONFIG.SERVICE_ROLE_KEY);
-      const siteName = `site-${Date.now()}`;
+      const siteName = site_name || `site-${Date.now()}`;
       const bucket = 'sites';
 
       // Ensure bucket exists (best-effort; ignore error if it already exists)
@@ -58,14 +75,21 @@ export async function POST(request) {
     // React/Vite sites need GitHub Actions to build before deployment
     console.log(`${project_type} site detected - using GitHub Actions workflow for build process.`);
 
-    const repoName = `pixelai-preview-${Date.now()}`;
+    // Check if user provided GitHub token (from request or cookies)
+    const useUserToken = finalGithubToken && finalGithubUsername;
+    const authToken = useUserToken ? finalGithubToken : GITHUB_CONFIG.PAT;
+    const githubUser = useUserToken ? finalGithubUsername : GITHUB_CONFIG.USERNAME;
+
+    console.log(`Using ${useUserToken ? 'user' : 'app'} GitHub token for deployment`);
+
+    const repoName = site_name ? `${site_name}-${Date.now()}` : `pixelai-preview-${Date.now()}`;
 
     // --- Step 1: Create GitHub Repository ---
-    console.log(`Creating GitHub repository: ${repoName}`);
+    console.log(`Creating GitHub repository: ${repoName} under ${githubUser}`);
     const createRepoResponse = await fetch(`https://api.github.com/user/repos`, {
       method: 'POST',
       headers: {
-        Authorization: `token ${GITHUB_CONFIG.PAT}`,
+        Authorization: `token ${authToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -308,7 +332,7 @@ jobs:
     const treeResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/trees`, {
       method: 'POST',
       headers: {
-        Authorization: `token ${GITHUB_CONFIG.PAT}`,
+        Authorization: `token ${authToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -327,7 +351,7 @@ jobs:
     const commitResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/commits`, {
       method: 'POST',
       headers: {
-        Authorization: `token ${GITHUB_CONFIG.PAT}`,
+        Authorization: `token ${authToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -347,7 +371,7 @@ jobs:
     const updateRefResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs/heads/${defaultBranch}`, {
       method: 'PATCH',
       headers: {
-        Authorization: `token ${GITHUB_CONFIG.PAT}`,
+        Authorization: `token ${authToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -366,7 +390,7 @@ jobs:
     const workflowDispatchResponse = await fetch(`https://api.github.com/repos/${GITHUB_CONFIG.USERNAME}/${repoName}/actions/workflows/preview-build.yml/dispatches`, {
       method: 'POST',
       headers: {
-        Authorization: `token ${GITHUB_CONFIG.PAT}`,
+        Authorization: `token ${authToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -384,11 +408,13 @@ jobs:
     }
     console.log('GitHub Actions workflow dispatched.');
 
-    return NextResponse.json({ 
-      preview_build_started: true, 
-      repo_name: repoName, 
-      site: repoName, 
-      message: `${project_type} build initiated via GitHub Actions.` 
+        return NextResponse.json({
+      preview_build_started: true,
+      repo_name: repoName,
+      site: repoName,
+      github_user: githubUser,
+      cleanup_token: authToken,
+      message: `${project_type} build initiated via GitHub Actions. Repo will be cleaned up after deployment.`
     });
   } catch (error) {
     console.error('Error in /api/preview:', error);
