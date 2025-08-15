@@ -275,85 +275,64 @@ const ChatInterfaceLanding = () => {
         {/* Chat Input Section */}
         <div className="row justify-content-center mb-5">
           <div className="col-lg-8 col-xl-6">
-            <div className={`gradient-border hover-scale`}>
-              <div className={`gradient-border-inner ${isDark ? 'gradient-border-inner-dark' : ''}`}>
-                {/* Input Area with Embedded Send Button */}
-                <div className="p-4 position-relative">
-                  <textarea
-                    value={prompt}
-                    onChange={(e) => setPrompt(e.target.value)}
-                    onKeyDown={handleKeyPress}
-                    placeholder="Ask Pixel AI to build"
-                    className={`form-control border-0 ${isDark ? 'bg-transparent text-white' : ''}`}
-                    style={{
-                      resize: 'none',
-                      minHeight: '120px',
-                      fontSize: '1.1rem',
-                      background: 'transparent',
-                      paddingRight: '60px',
-                      paddingBottom: '60px'
-                    }}
+            <div className="card border-0 shadow-sm">
+              <div className="card-body p-0">
+                {/* Input Area */}
+                <div className="d-flex align-items-end p-3 gap-3">
+                  {/* Plus Icon */}
+                  <button 
+                    className="btn btn-light rounded-circle d-flex align-items-center justify-content-center"
+                    style={{ width: '40px', height: '40px', minWidth: '40px' }}
                     disabled={isGenerating}
-                    rows={4}
-                  />
-                  
-                  {/* Send Button - Positioned inside textarea */}
+                  >
+                    <Plus size={20} className="text-muted" />
+                  </button>
+
+                  {/* Textarea Container */}
+                  <div className="flex-fill position-relative">
+                    <textarea
+                      value={prompt}
+                      onChange={(e) => setPrompt(e.target.value)}
+                      onKeyDown={handleKeyPress}
+                      placeholder="Ask Pixel AI to build"
+                      className="form-control border-0 resize-none"
+                      style={{
+                        minHeight: '40px',
+                        maxHeight: '200px',
+                        fontSize: '16px',
+                        lineHeight: '1.5',
+                        paddingRight: '50px'
+                      }}
+                      disabled={isGenerating}
+                      rows={1}
+                    />
+                    
+                    {/* Generating State Overlay */}
+                    {isGenerating && (
+                      <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-light bg-opacity-90 rounded">
+                        <div className="d-flex align-items-center gap-2">
+                          <div className="spinner-border spinner-border-sm text-primary" role="status">
+                            <span className="visually-hidden">Generating...</span>
+                          </div>
+                          <span className="small fw-medium text-primary">Generating...</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Send Button */}
                   <button
                     onClick={handleGenerate}
                     disabled={!prompt.trim() || isGenerating}
-                    className="btn btn-gradient rounded-circle position-absolute"
-                    style={{ 
-                      width: '48px', 
-                      height: '48px',
-                      bottom: '20px',
-                      right: '20px',
-                      zIndex: 10
-                    }}
+                    className="btn btn-dark rounded-circle d-flex align-items-center justify-content-center"
+                    style={{ width: '40px', height: '40px', minWidth: '40px' }}
                   >
                     {isGenerating ? (
-                      <Loader size={18} className="spinner-border spinner-border-sm" />
+                      <Loader size={16} className="spinner-border spinner-border-sm text-light" />
                     ) : (
-                      <Send size={18} />
+                      <Send size={16} className="text-light" />
                     )}
                   </button>
-                  
-                  {/* Generating State Overlay */}
-                  {isGenerating && (
-                    <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-light bg-opacity-75 rounded" style={{zIndex: 5}}>
-                      <div className="d-flex align-items-center gap-3">
-                        <div className="spinner-border text-primary" role="status">
-                          <span className="visually-hidden">Generating...</span>
-                        </div>
-                        <span className="fw-medium text-primary">Generating your website...</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Bottom Actions */}
-                <div className={`d-flex justify-content-between align-items-center px-4 py-3 border-top ${isDark ? 'border-secondary bg-dark' : 'bg-light'}`}>
-                  <div className="d-flex align-items-center gap-3">
-                    {/* Attach Icon */}
-                    <button className="btn btn-outline-primary btn-sm rounded-3 hover-scale" disabled={isGenerating}>
-                      <Paperclip size={18} />
-                    </button>
-
-                    {/* Plus Icon */}
-                    <button className="btn btn-outline-secondary btn-sm rounded-3 hover-scale" disabled={isGenerating}>
-                      <Plus size={18} />
-                    </button>
-
-                    {/* Agent Tag */}
-                    <span className="badge bg-success rounded-pill px-3 py-2 d-flex align-items-center gap-2">
-                      <div className="pulse-dot" style={{width: '8px', height: '8px', background: '#10b981', borderRadius: '50%'}}></div>
-                      AI Agent
-                    </span>
-                  </div>
-
-                  {/* Status Text */}
-                  <div className="small text-muted">
-                    {isGenerating ? 'Generating...' : 'Press Ctrl+Enter to send'}
-                  </div>
                 </div>
               </div>
             </div>
