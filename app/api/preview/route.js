@@ -66,11 +66,17 @@ export async function POST(request) {
     try {
       // --- Step 1: Create E2B Node.js sandbox ---
       console.log('Creating E2B Node.js sandbox...');
-      const sandbox = await Sandbox.create('nodejs', {
-        apiKey: E2B_CONFIG.API_KEY
-      });
+      console.log('Using E2B API key:', E2B_CONFIG.API_KEY ? 'Configured' : 'Missing');
       
-      console.log('E2B sandbox created successfully');
+      try {
+        const sandbox = await Sandbox.create('node', {
+          apiKey: E2B_CONFIG.API_KEY
+        });
+        console.log('E2B sandbox created successfully');
+      } catch (sandboxError) {
+        console.error('E2B sandbox creation failed:', sandboxError);
+        throw new Error(`Failed to create E2B sandbox: ${sandboxError.message}. Please check E2B API key and quotas.`);
+      }
 
       // --- Step 2: Prepare project files with template and modifications ---
       console.log('Preparing project files with React-Vite template...');
@@ -84,24 +90,46 @@ export async function POST(request) {
 
       // --- Step 3: Install dependencies ---
       console.log('Installing dependencies...');
-      const installResult = await sandbox.commands.run('npm install');
-      if (installResult.exitCode !== 0) {
-        throw new Error(`npm install failed: ${installResult.stderr}`);
+      try {
+        const installResult = await sandbox.commands.run('npm install');
+        if (installResult.exitCode !== 0) {
+          throw new Error(`npm install failed: ${installResult.stderr}`);
+        }
+        console.log('Dependencies installed successfully');
+      } catch (installError) {
+        console.error('npm install failed:', installError);
+        throw new Error(`Dependency installation failed: ${installError.message}`);
       }
-      console.log('Dependencies installed successfully');
 
       // --- Step 4: Build project ---
       console.log('Building project...');
-      const buildResult = await sandbox.commands.run('npm run build');
-      if (buildResult.exitCode !== 0) {
-        throw new Error(`Build failed: ${buildResult.stderr}`);
+      try {
+        const buildResult = await sandbox.commands.run('npm run build');
+        if (buildResult.exitCode !== 0) {
+          throw new Error(`Build failed: ${buildResult.stderr}`);
+        }
+        console.log('Project built successfully');
+      } catch (buildError) {
+        console.error('Build failed:', buildError);
+        throw new Error(`Project build failed: ${buildError.message}`);
       }
-      console.log('Project built successfully');
 
       // --- Step 5: List build output files ---
       console.log('Scanning build output...');
-      const buildOutput = await sandbox.files.list('dist', { recursive: true });
-      console.log(`Found ${buildOutput.length} build files`);
+      try {
+        const buildOutput = await sandbox.files.list('dist', { recursive: true });
+        console.log(`Found ${buildOutput.length} build files`);
+        
+        if (buildOutput.length === 0) {
+          console.warn('No build files found in dist/ directory');
+          // List the root directory to see what's available
+          const rootFiles = await sandbox.files.list('.', { recursive: false });
+          console.log('Root directory contents:', rootFiles.map(f => f.name));
+        }
+      } catch (listError) {
+        console.error('Failed to list build output:', listError);
+        throw new Error(`Failed to scan build output: ${listError.message}`);
+      }
 
       // --- Step 6: Upload build files to Supabase Storage ---
       console.log('Uploading build files to Supabase...');
@@ -217,7 +245,7 @@ async function copyDirectoryRecursive(sandbox, localPath, relativePath) {
     const localItemPath = path.join(localPath, item);
     const sandboxItemPath = relativePath ? path.join(relativePath, item) : item;
     const stats = fs.statSync(localItemPath);
-    
+    console.log('Copying directory:', localItemPath, 'to', sandboxItemPath);
     if (stats.isDirectory()) {
       // Skip node_modules and other unnecessary directories
       if (item === 'node_modules' || item === '.git' || item === '.husky') {

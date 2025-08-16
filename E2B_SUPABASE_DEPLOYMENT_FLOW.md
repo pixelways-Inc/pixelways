@@ -78,7 +78,7 @@ flowchart TD
 ### **E2B Sandbox Operations**
 ```javascript
 // Create sandbox
-const sandbox = await Sandbox.create('nodejs');
+const sandbox = await Sandbox.create('node');
 
 // Upload files
 await sandbox.files.write(filePath, fileContent);
