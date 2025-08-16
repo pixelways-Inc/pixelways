@@ -320,10 +320,10 @@ const FileEditor = ({
           <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#374151'}}>
             What would you like to change?
           </label>
-          <textarea
+        <textarea
             className="edit-input"
-            value={editPrompt}
-            onChange={(e) => setEditPrompt(e.target.value)}
+          value={editPrompt}
+          onChange={(e) => setEditPrompt(e.target.value)}
             placeholder="Describe the changes you want (e.g., 'Change the header text to Welcome to My Site', 'Make the button background blue')"
           />
           <div style={{fontSize: '0.75rem', color: '#6b7280', marginTop: '0.5rem'}}>
@@ -378,7 +378,7 @@ const FileEditor = ({
                  error.includes('unavailable') ? 'Service Unavailable' : 'Edit Error'}
               </div>
               <div style={{fontSize: '0.875rem', opacity: 0.9}}>
-                {error}
+            {error}
               </div>
               {error.includes('could not be found') && (
                 <div style={{fontSize: '0.75rem', marginTop: '0.5rem', opacity: 0.8}}>
@@ -456,21 +456,21 @@ const FileEditor = ({
                   <div style={{fontWeight: '600', color: '#dc2626', marginBottom: '0.5rem'}}>
                     ⚠️ Some changes couldn't be applied automatically
                   </div>
-                  {editResult.failedEdits.map((edit, index) => (
+              {editResult.failedEdits.map((edit, index) => (
                     <div key={index} className="edit-diff" style={{marginBottom: '0.75rem'}}>
                       <div style={{fontWeight: '500', color: '#dc2626', marginBottom: '0.25rem'}}>
                         Change {index + 1}: {edit.reason || 'Content not found'}
-                      </div>
-                      <div className="diff-search">
+                  </div>
+                  <div className="diff-search">
                         <strong>Couldn't find this text:</strong><br />
-                        {edit.searchPreview}
-                      </div>
+                    {edit.searchPreview}
+                  </div>
                       <div style={{fontSize: '0.75rem', color: '#6b7280', marginTop: '0.25rem'}}>
                         💡 <strong>Why this failed:</strong> The exact text wasn't found in the file. 
                         Try copying the exact text you want to change from the file.
                       </div>
-                    </div>
-                  ))}
+                </div>
+              ))}
                 </div>
               )}
             </div>
