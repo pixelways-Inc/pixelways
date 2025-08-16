@@ -91,6 +91,7 @@ export async function POST(request) {
        console.log('Preparing project files with React-Vite template...');
        
        let results;
+       let buildOutput = [];
        try {
          // Verify sandbox is available
          if (!sandbox) {
@@ -118,6 +119,9 @@ export async function POST(request) {
       // --- Step 3: Install dependencies ---
       console.log('Installing dependencies...');
       try {
+        if (!sandbox) {
+          throw new Error('Sandbox is not available for dependency installation');
+        }
         const installResult = await sandbox.commands.run('npm install');
         if (installResult.exitCode !== 0) {
           throw new Error(`npm install failed: ${installResult.stderr}`);
@@ -131,6 +135,9 @@ export async function POST(request) {
       // --- Step 4: Build project ---
       console.log('Building project...');
       try {
+        if (!sandbox) {
+          throw new Error('Sandbox is not available for build process');
+        }
         const buildResult = await sandbox.commands.run('npm run build');
         if (buildResult.exitCode !== 0) {
           throw new Error(`Build failed: ${buildResult.stderr}`);
@@ -144,7 +151,10 @@ export async function POST(request) {
       // --- Step 5: List build output files ---
       console.log('Scanning build output...');
       try {
-        const buildOutput = await sandbox.files.list('dist', { recursive: true });
+        if (!sandbox) {
+          throw new Error('Sandbox is not available for listing build output');
+        }
+        buildOutput = await sandbox.files.list('dist', { recursive: true });
         console.log(`Found ${buildOutput.length} build files`);
         
         if (buildOutput.length === 0) {
@@ -171,6 +181,9 @@ export async function POST(request) {
       }
 
       // Upload each build file
+      if (!sandbox) {
+        throw new Error('Sandbox is not available for file upload');
+      }
       for (const fileInfo of buildOutput) {
         if (fileInfo.type === 'file') {
           const filePath = fileInfo.path;
@@ -207,6 +220,17 @@ export async function POST(request) {
       // Create user-friendly message
       let userMessage = `${project_type} app deployed successfully!`;
       
+      // Ensure results is properly initialized
+      if (!results) {
+        results = {
+          created: [],
+          modified: [],
+          deleted: [],
+          skipped: [],
+          errors: []
+        };
+      }
+      
       if (results.skipped.length > 0 || results.errors.length > 0) {
         userMessage += ` Some modifications couldn't be applied automatically.`;
         if (results.skipped.length > 0) {
@@ -224,7 +248,7 @@ export async function POST(request) {
         project_type,
         message: userMessage,
         deployment_method: 'e2b-supabase',
-        build_files_count: buildOutput.length,
+        build_files_count: buildOutput ? buildOutput.length : 0,
         modification_summary: {
           created: results.created.length,
           modified: results.modified.length,
