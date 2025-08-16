@@ -44,14 +44,27 @@ const FileEditor = ({
       const data = await response.json();
       
       if (!response.ok) {
-        throw new Error(data.error || 'Edit request failed');
+        // Create user-friendly error message
+        let userMessage = 'Edit request failed';
+        if (data.error) {
+          if (data.error.includes('could not find') || data.error.includes('matching')) {
+            userMessage = 'The requested changes could not be found in the file. Try being more specific about what you want to change.';
+          } else if (data.error.includes('timeout') || data.error.includes('timed out')) {
+            userMessage = 'The edit request took too long. Please try again with a simpler request.';
+          } else if (data.error.includes('AI') || data.error.includes('generation')) {
+            userMessage = 'The AI service is temporarily unavailable. Please try again in a moment.';
+          } else {
+            userMessage = data.error;
+          }
+        }
+        throw new Error(userMessage);
       }
 
       if (data.success) {
         setEditResult(data);
         setShowPreview(true);
       } else {
-        throw new Error('Edit processing failed');
+        throw new Error('Edit processing failed. Please try again.');
       }
       
     } catch (error) {
@@ -303,13 +316,25 @@ const FileEditor = ({
         )}
         
         {/* Edit Input */}
-        <textarea
-          value={editPrompt}
-          onChange={(e) => setEditPrompt(e.target.value)}
-          placeholder="Describe what you want to change..."
-          className="edit-input"
-          disabled={isEditing}
-        />
+        <div style={{marginBottom: '1rem'}}>
+          <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#374151'}}>
+            What would you like to change?
+          </label>
+          <textarea
+            className="edit-input"
+            value={editPrompt}
+            onChange={(e) => setEditPrompt(e.target.value)}
+            placeholder="Describe the changes you want (e.g., 'Change the header text to Welcome to My Site', 'Make the button background blue')"
+          />
+          <div style={{fontSize: '0.75rem', color: '#6b7280', marginTop: '0.5rem'}}>
+            💡 <strong>Tips for better results:</strong>
+            <ul style={{margin: '0.25rem 0 0 1rem', padding: 0}}>
+              <li>Be specific about what text to change</li>
+              <li>Use exact words from the file when possible</li>
+              <li>Describe the change clearly and simply</li>
+            </ul>
+          </div>
+        </div>
 
         {/* Action Buttons */}
         <div className="edit-actions">
@@ -346,7 +371,26 @@ const FileEditor = ({
         {error && (
           <div className="error-message">
             <AlertCircle size={16} />
-            {error}
+            <div>
+              <div style={{fontWeight: '600', marginBottom: '0.25rem'}}>
+                {error.includes('could not be found') ? 'Changes Not Found' : 
+                 error.includes('timeout') ? 'Request Timeout' :
+                 error.includes('unavailable') ? 'Service Unavailable' : 'Edit Error'}
+              </div>
+              <div style={{fontSize: '0.875rem', opacity: 0.9}}>
+                {error}
+              </div>
+              {error.includes('could not be found') && (
+                <div style={{fontSize: '0.75rem', marginTop: '0.5rem', opacity: 0.8}}>
+                  💡 <strong>Tip:</strong> Try being more specific about the text you want to change, or use the exact words from the file.
+                </div>
+              )}
+              {error.includes('timeout') && (
+                <div style={{fontSize: '0.75rem', marginTop: '0.5rem', opacity: 0.8}}>
+                  💡 <strong>Tip:</strong> Break your request into smaller, simpler changes.
+                </div>
+              )}
+            </div>
           </div>
         )}
 
@@ -407,17 +451,28 @@ const FileEditor = ({
               ))}
 
               {/* Failed Edits */}
-              {editResult.failedEdits.map((edit, index) => (
-                <div key={index} className="edit-diff">
-                  <div className="stat-error">
-                    <strong>Failed Change {index + 1}:</strong> {edit.reason}
+              {editResult.failedEdits && editResult.failedEdits.length > 0 && (
+                <div style={{marginTop: '1rem'}}>
+                  <div style={{fontWeight: '600', color: '#dc2626', marginBottom: '0.5rem'}}>
+                    ⚠️ Some changes couldn't be applied automatically
                   </div>
-                  <div className="diff-search">
-                    <strong>Couldn't find:</strong><br />
-                    {edit.searchPreview}
-                  </div>
+                  {editResult.failedEdits.map((edit, index) => (
+                    <div key={index} className="edit-diff" style={{marginBottom: '0.75rem'}}>
+                      <div style={{fontWeight: '500', color: '#dc2626', marginBottom: '0.25rem'}}>
+                        Change {index + 1}: {edit.reason || 'Content not found'}
+                      </div>
+                      <div className="diff-search">
+                        <strong>Couldn't find this text:</strong><br />
+                        {edit.searchPreview}
+                      </div>
+                      <div style={{fontSize: '0.75rem', color: '#6b7280', marginTop: '0.25rem'}}>
+                        💡 <strong>Why this failed:</strong> The exact text wasn't found in the file. 
+                        Try copying the exact text you want to change from the file.
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
           </div>
         )}

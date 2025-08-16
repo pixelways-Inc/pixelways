@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { ChevronRight, ChevronDown, File, Folder, FileText, Code, Play, Download, Edit3, Plus, Trash2 } from 'lucide-react';
+import { ChevronRight, ChevronDown, File, Folder, FileText, Code, Play, Download, Edit3, Plus, Trash2, CheckCircle, AlertCircle } from 'lucide-react';
 import dynamic from 'next/dynamic';
 const MonacoCodeViewer = dynamic(() => import('./MonacoCodeViewer'), { ssr: false });
 const FileEditor = dynamic(() => import('./FileEditor'), { ssr: false });
@@ -15,6 +15,13 @@ const DesignMode = ({ website, onSelectFile, onDeploy, isDeploying, onWebsiteUpd
   const [showCreateFolderModal, setShowCreateFolderModal] = useState(false);
   const [newFileName, setNewFileName] = useState('');
   const [newFolderName, setNewFolderName] = useState('');
+  const [notification, setNotification] = useState(null);
+
+  // Show notification helper
+  const showNotification = (message, type = 'success') => {
+    setNotification({ message, type });
+    setTimeout(() => setNotification(null), 3000);
+  };
 
   if (!website) {
     return (
@@ -49,11 +56,9 @@ const DesignMode = ({ website, onSelectFile, onDeploy, isDeploying, onWebsiteUpd
   };
 
   const handleFileUpdate = (filePath, newContent) => {
-    if (onWebsiteUpdate) {
+    if (onWebsiteUpdate && website) {
       const updatedFiles = website.files.map(file => 
-        file.path === filePath 
-          ? { ...file, content: newContent }
-          : file
+        file.path === filePath ? { ...file, content: newContent } : file
       );
       
       const updatedWebsite = {
@@ -63,60 +68,92 @@ const DesignMode = ({ website, onSelectFile, onDeploy, isDeploying, onWebsiteUpd
       
       onWebsiteUpdate(updatedWebsite);
       
-      if (selectedFile && selectedFile.path === filePath) {
-        setSelectedFile({ ...selectedFile, content: newContent });
-      }
-      
-      syncToSupabase(updatedWebsite);
+      // Show success feedback
+      showNotification(`File ${filePath} updated successfully!`);
+      console.log(`File ${filePath} updated successfully`);
     }
   };
 
   const handleCreateFile = () => {
     if (!newFileName.trim()) return;
     
-    const fileName = newFileName.trim();
-    const fileExtension = fileName.split('.').pop();
-    
-    let defaultContent = '';
-    if (fileExtension === 'html') {
-      defaultContent = `<!DOCTYPE html>
+    try {
+      // Validate file name
+      if (newFileName.includes('/') || newFileName.includes('\\')) {
+        alert('File names cannot contain slashes. Use a simple name like "style.css"');
+        return;
+      }
+      
+      if (!newFileName.includes('.')) {
+        alert('Please include a file extension (e.g., "style.css", "script.js")');
+        return;
+      }
+      
+      // Create new file with basic content
+      const fileExtension = newFileName.split('.').pop().toLowerCase();
+      let defaultContent = '';
+      
+      if (fileExtension === 'html') {
+        defaultContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${fileName.replace('.html', '')}</title>
+    <title>${newFileName}</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>Welcome to ${newFileName}</h1>
+    <p>This is a new HTML file.</p>
 </body>
 </html>`;
-    } else if (fileExtension === 'css') {
-      defaultContent = `/* ${fileName} */
+      } else if (fileExtension === 'css') {
+        defaultContent = `/* ${newFileName} */
 body {
-    margin: 0;
-    padding: 0;
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
 }`;
-    } else if (fileExtension === 'js') {
-      defaultContent = `// ${fileName}
-console.log('Hello from ${fileName}');`;
+      } else if (fileExtension === 'js') {
+        defaultContent = `// ${newFileName}
+console.log('Hello from ${newFileName}');`;
+      } else if (fileExtension === 'tsx' || fileExtension === 'ts') {
+        defaultContent = `import React from 'react';
+
+const ${newFileName.split('.')[0]} = () => {
+  return (
+    <div>
+      <h1>${newFileName.split('.')[0]}</h1>
+      <p>This is a new React component.</p>
+    </div>
+  );
+};
+
+export default ${newFileName.split('.')[0]};`;
+      } else {
+        defaultContent = `# ${newFileName}\n\nThis is a new ${fileExtension} file.`;
+      }
+      
+      const newFile = {
+        path: newFileName,
+        content: defaultContent
+      };
+      
+      if (onWebsiteUpdate && website) {
+        const updatedWebsite = {
+          ...website,
+          files: [...website.files, newFile]
+        };
+        onWebsiteUpdate(updatedWebsite);
+      }
+      
+      setNewFileName('');
+      setShowCreateFileModal(false);
+      showNotification(`File ${newFileName} created successfully!`);
+      
+    } catch (error) {
+      console.error('Error creating file:', error);
+      showNotification('Failed to create file. Please try again.', 'error');
     }
-    
-    const newFile = {
-      name: fileName,
-      path: fileName,
-      content: defaultContent
-    };
-    
-    const updatedWebsite = {
-      ...website,
-      files: [...website.files, newFile]
-    };
-    
-    onWebsiteUpdate(updatedWebsite);
-    setNewFileName('');
-    setShowCreateFileModal(false);
-    syncToSupabase(updatedWebsite);
   };
 
   const handleCreateFolder = () => {
@@ -598,6 +635,41 @@ console.log('Hello from ${fileName}');`;
         .modal-btn.secondary:hover {
           background: #e5e7eb;
         }
+
+        /* Notification Styles */
+        .notification-overlay {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          z-index: 10000;
+        }
+        .notification {
+          background: #f3f4f6;
+          border: 1px solid #e5e7eb;
+          border-radius: 0.5rem;
+          padding: 0.75rem 1rem;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          opacity: 0.95;
+          transition: opacity 0.3s ease-in-out;
+        }
+        .notification.success {
+          background: #d1fae5;
+          border-color: #a7f3d0;
+          color: #065f46;
+        }
+        .notification.error {
+          background: #fee2e2;
+          border-color: #fca5a5;
+          color: #991b1b;
+        }
+        .notification-content {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
       `}</style>
       
       <div className="design-container">
@@ -903,6 +975,22 @@ console.log('Hello from ${fileName}');`;
               >
                 Create
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Notification System */}
+      {notification && (
+        <div className="notification-overlay">
+          <div className={`notification ${notification.type}`}>
+            <div className="notification-content">
+              {notification.type === 'success' ? (
+                <CheckCircle size={16} style={{color: '#10b981'}} />
+              ) : (
+                <AlertCircle size={16} style={{color: '#ef4444'}} />
+              )}
+              <span>{notification.message}</span>
             </div>
           </div>
         </div>

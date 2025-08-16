@@ -1,28 +1,14 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { SUPABASE_CONFIG, GITHUB_CONFIG } from '../../../utility/supabaseConstants';
+import { SUPABASE_CONFIG, E2B_CONFIG } from '../../../utility/supabaseConstants';
+import { Sandbox } from 'e2b';
+import fs from 'fs';
+import path from 'path';
 
 export async function POST(request) {
   try {
-    const { files, project_type = 'static', site_name = null, github_token = null, github_username = null } = await request.json();
+    const { files, project_type = 'static', site_name = null } = await request.json();
     console.log('Received preview request:', { files: files.length, project_type });
-
-    // Get GitHub token from request body or cookies (fallback)
-    const requestToken = github_token;
-    const requestUsername = github_username;
-    const cookieToken = request.cookies.get('github_token')?.value;
-    const cookieUsername = request.cookies.get('github_username')?.value;
-    
-    // Prefer request body, fallback to cookies
-    const finalGithubToken = requestToken || cookieToken;
-    const finalGithubUsername = requestUsername || cookieUsername;
-    
-    console.log('GitHub auth status:', {
-      hasRequestToken: !!requestToken,
-      hasCookieToken: !!cookieToken,
-      finalHasToken: !!finalGithubToken,
-      username: finalGithubUsername
-    });
 
     // Check if this needs building (React/Vite) or can be directly uploaded (static)
     if (project_type === 'static') {
@@ -72,455 +58,407 @@ export async function POST(request) {
       return NextResponse.json({ preview_url: previewUrl, site: siteName, project_type, message: 'Static site uploaded to Supabase successfully.' });
     }
 
-    // React/Vite sites need GitHub Actions to build before deployment
-    console.log(`${project_type} site detected - using GitHub Actions workflow for build process.`);
-
-    // Check if user provided GitHub token (from request or cookies)
-    const useUserToken = finalGithubToken && finalGithubUsername;
+    // React/Vite sites use E2B + Supabase deployment flow
+    console.log(`${project_type} site detected - using E2B + Supabase deployment flow.`);
     
-    // For React/Vite projects, encourage user authentication for better experience
-    if (!useUserToken) {
-      console.log('No user GitHub token found - encouraging user authentication');
-      return NextResponse.json({
-        error: 'GitHub authentication required',
-        message: 'Please connect your GitHub account to deploy React/Vite projects to your own repositories.',
-        requiresAuth: true,
-        authUrl: '/api/auth/github?action=authorize',
-        benefits: [
-          'Deploy to your own GitHub repositories',
-          'Full control over your projects',
-          'No repository limits',
-          'Private repositories supported'
-        ]
-      }, { status: 401 });
-    }
+    const siteName = site_name || `react-app-${Date.now()}`;
     
-    const authToken = finalGithubToken;
-    const githubUser = finalGithubUsername;
+    try {
+      // --- Step 1: Create E2B Node.js sandbox ---
+      console.log('Creating E2B Node.js sandbox...');
+      const sandbox = await Sandbox.create('nodejs', {
+        apiKey: E2B_CONFIG.API_KEY
+      });
+      
+      console.log('E2B sandbox created successfully');
 
-    console.log(`Using user GitHub token for deployment to ${githubUser}'s account`);
+      // --- Step 2: Prepare project files with template and modifications ---
+      console.log('Preparing project files with React-Vite template...');
+      
+      // First, copy the existing React-Vite template
+      const templatePath = path.join(process.cwd(), 'data', 'react-vite');
+      await copyTemplateToSandbox(sandbox, templatePath);
+      
+      // Then apply AI-generated modifications
+      const results = await applyAIModifications(sandbox, files);
 
-    const repoName = site_name ? `${site_name}-${Date.now()}` : `pixelai-preview-${Date.now()}`;
+      // --- Step 3: Install dependencies ---
+      console.log('Installing dependencies...');
+      const installResult = await sandbox.commands.run('npm install');
+      if (installResult.exitCode !== 0) {
+        throw new Error(`npm install failed: ${installResult.stderr}`);
+      }
+      console.log('Dependencies installed successfully');
 
-    // --- Step 1: Create GitHub Repository ---
-    console.log(`Creating GitHub repository: ${repoName} under ${githubUser}`);
-    const createRepoResponse = await fetch(`https://api.github.com/user/repos`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: repoName,
-        private: true,
-        auto_init: false, // We'll create our own initial commit
-      }),
-    });
-    if (!createRepoResponse.ok) {
-      const errorData = await createRepoResponse.json();
-      throw new Error(`Failed to create repository: ${createRepoResponse.statusText} - ${JSON.stringify(errorData)}`);
-    }
-    const repoData = await createRepoResponse.json();
-    console.log('Repository created:', repoData.html_url);
+      // --- Step 4: Build project ---
+      console.log('Building project...');
+      const buildResult = await sandbox.commands.run('npm run build');
+      if (buildResult.exitCode !== 0) {
+        throw new Error(`Build failed: ${buildResult.stderr}`);
+      }
+      console.log('Project built successfully');
 
-    // --- Step 2: Push Project Files ---
-    console.log('Pushing files to repository...');
+      // --- Step 5: List build output files ---
+      console.log('Scanning build output...');
+      const buildOutput = await sandbox.files.list('dist', { recursive: true });
+      console.log(`Found ${buildOutput.length} build files`);
 
-    // Add workflow file to the files array for React/Vite projects
-    if (project_type !== 'static') {
-      const workflowContent = `name: Preview Build and Deploy
+      // --- Step 6: Upload build files to Supabase Storage ---
+      console.log('Uploading build files to Supabase...');
+      const supabase = createClient(SUPABASE_CONFIG.URL, SUPABASE_CONFIG.SERVICE_ROLE_KEY);
+      const bucket = 'sites';
 
-on:
-  workflow_dispatch:
-    inputs:
-      repo_name:
-        description: 'Repository name'
-        required: true
-        type: string
-      commit_sha:
-        description: 'Commit SHA'
-        required: true
-        type: string
-      project_type:
-        description: 'Project type (react-vite, next, static)'
-        required: true
-        type: string
-        default: 'react-vite'
+      // Ensure bucket exists
+      try {
+        await supabase.storage.createBucket(bucket, { public: true });
+      } catch (e) {
+        console.log('Bucket exists or creation skipped');
+      }
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        repository: \${{ github.repository_owner }}/\${{ inputs.repo_name }}
-        token: \${{ secrets.GITHUB_TOKEN }}
-        ref: \${{ inputs.commit_sha }}
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Build project
-      run: |
-        if [ "\${{ inputs.project_type }}" == "react-vite" ]; then
-          npm run build
-        elif [ "\${{ inputs.project_type }}" == "next" ]; then
-          npm run build
-        else
-          echo "Static project - no build step needed"
-          mkdir -p dist
-          cp -r . dist/ || true
-        fi
-
-    - name: Upload to Supabase Storage
-      env:
-        SUPABASE_URL: https://dlunpilhklsgvkegnnlp.supabase.co
-        SUPABASE_SERVICE_ROLE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdW5waWxoa2xzZ3ZrZWdubmxwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NTA1MDQxOSwiZXhwIjoyMDcwNjI2NDE5fQ.k-2OJ4p3hr9feR4ks54OQM2HhOhaVJ3pUK-20tGJwpo
-        SUPABASE_ACCESS_TOKEN: sbp_b9d84ba60246e9e22db433a7cbc50be9669cb698
-        SUPABASE_PROJECT_REF: dlunpilhklsgvkegnnlp
-      run: |
-        # Install Supabase CLI
-        npm install -g @supabase/supabase-js
-        
-        # Create upload script
-        cat > upload.js << 'EOF'
-        const { createClient } = require('@supabase/supabase-js');
-        const fs = require('fs');
-        const path = require('path');
-        
-        const supabase = createClient(
-          process.env.SUPABASE_URL,
-          process.env.SUPABASE_SERVICE_ROLE_KEY
-        );
-        
-        async function uploadFiles() {
-          const buildDir = fs.existsSync('dist') ? 'dist' : '.';
-          const siteName = process.env.GITHUB_REPOSITORY.split('/')[1];
-          const bucket = 'sites';
+      // Upload each build file
+      for (const fileInfo of buildOutput) {
+        if (fileInfo.type === 'file') {
+          const filePath = fileInfo.path;
+          const fileContent = await sandbox.files.read(filePath);
           
-          console.log(\`Uploading from \${buildDir} to \${siteName}\`);
+          // Determine MIME type
+          const mimeType = getMimeType(filePath);
           
-          // Ensure bucket exists
-          try {
-            await supabase.storage.createBucket(bucket, { public: true });
-          } catch (e) {
-            console.log('Bucket exists or creation skipped');
+          // Upload to Supabase
+          const storagePath = `${siteName}/${filePath}`;
+          const { error: uploadError } = await supabase.storage
+            .from(bucket)
+            .upload(storagePath, fileContent, {
+              upsert: true,
+              contentType: mimeType
+            });
+            
+          if (uploadError) {
+            console.error(`Failed to upload ${filePath}:`, uploadError);
+            throw new Error(`Upload failed for ${filePath}: ${uploadError.message}`);
           }
           
-          // Upload files recursively
-          async function uploadDirectory(dirPath, prefix = '') {
-            const items = fs.readdirSync(dirPath);
+          console.log(`Uploaded: ${storagePath}`);
+        }
+      }
+
+      // --- Step 7: Close E2B sandbox ---
+      console.log('Closing E2B sandbox...');
+      await sandbox.close();
+
+      // --- Step 8: Return success response ---
+      const previewUrl = `https://pixelways.co/sites/${siteName}/index.html`;
+      console.log(`Deployment completed successfully! Preview URL: ${previewUrl}`);
+      
+      // Create user-friendly message
+      let userMessage = `${project_type} app deployed successfully!`;
+      
+      if (results.skipped.length > 0 || results.errors.length > 0) {
+        userMessage += ` Some modifications couldn't be applied automatically.`;
+        if (results.skipped.length > 0) {
+          userMessage += ` ${results.skipped.length} changes were skipped.`;
+        }
+        if (results.errors.length > 0) {
+          userMessage += ` ${results.errors.length} changes had issues.`;
+        }
+        userMessage += ` The website was deployed with available changes.`;
+      }
+      
+      return NextResponse.json({
+        preview_url: previewUrl,
+        site: siteName,
+        project_type,
+        message: userMessage,
+        deployment_method: 'e2b-supabase',
+        build_files_count: buildOutput.length,
+        modification_summary: {
+          created: results.created.length,
+          modified: results.modified.length,
+          deleted: results.deleted.length,
+          skipped: results.skipped.length,
+          errors: results.errors.length
+        },
+        status: results.errors.length > 0 ? 'partial_success' : 'success'
+      });
+
+    } catch (error) {
+      console.error('E2B + Supabase deployment error:', error);
+      return NextResponse.json({ 
+        error: `E2B + Supabase deployment failed: ${error.message}`,
+        deployment_method: 'e2b-supabase',
+        project_type
+      }, { status: 500 });
+    }
+  } catch (error) {
+    console.error('Error in /api/preview:', error);
+    return NextResponse.json({ error: `Failed to initiate preview: ${error.message}` }, { status: 500 });
+  }
+}
+
+// Helper function to copy React-Vite template to sandbox
+async function copyTemplateToSandbox(sandbox, templatePath) {
+  console.log('Copying React-Vite template to sandbox...');
+  
+  try {
+    // Copy all files recursively
+    await copyDirectoryRecursive(sandbox, templatePath, '');
+    console.log('Template copied successfully');
+  } catch (error) {
+    console.error('Error copying template:', error);
+    throw new Error(`Failed to copy template: ${error.message}`);
+  }
+}
+
+// Helper function to copy directory recursively
+async function copyDirectoryRecursive(sandbox, localPath, relativePath) {
+  const items = fs.readdirSync(localPath);
+  
+  for (const item of items) {
+    const localItemPath = path.join(localPath, item);
+    const sandboxItemPath = relativePath ? path.join(relativePath, item) : item;
+    const stats = fs.statSync(localItemPath);
+    
+    if (stats.isDirectory()) {
+      // Skip node_modules and other unnecessary directories
+      if (item === 'node_modules' || item === '.git' || item === '.husky') {
+        continue;
+      }
+      
+      // Create directory in sandbox
+      try {
+        await sandbox.files.mkdir(sandboxItemPath);
+      } catch (e) {
+        // Directory might already exist, continue
+      }
+      
+      // Recursively copy contents
+      await copyDirectoryRecursive(sandbox, localItemPath, sandboxItemPath);
+    } else {
+      // Copy file
+      const content = fs.readFileSync(localItemPath, 'utf-8');
+      await sandbox.files.write(sandboxItemPath, content);
+    }
+  }
+}
+
+// Helper function to apply AI-generated modifications
+async function applyAIModifications(sandbox, files) {
+  console.log('Applying AI-generated modifications...');
+  
+  const results = {
+    created: [],
+    modified: [],
+    deleted: [],
+    skipped: [],
+    errors: []
+  };
+  
+  for (const file of files) {
+    try {
+      if (file.action === 'create') {
+        // Create new file
+        console.log(`Creating new file: ${file.path}`);
+        await sandbox.files.write(file.path, file.content);
+        results.created.push(file.path);
+        
+      } else if (file.action === 'modify' && file.searchReplace) {
+        // Modify existing file using search and replace
+        const { filePath, oldString, newString, lineNumbers } = file.searchReplace;
+        console.log(`Modifying file: ${filePath}`);
+        
+        // Read existing file content
+        let existingContent;
+        try {
+          existingContent = await sandbox.files.read(filePath);
+        } catch (e) {
+          console.warn(`File ${filePath} not found, skipping modification`);
+          results.skipped.push({
+            file: filePath,
+            reason: 'File not found in project'
+          });
+          continue;
+        }
+        
+        // Perform search and replace
+        let newContent;
+        let modificationApplied = false;
+        
+        if (lineNumbers && lineNumbers.start && lineNumbers.end) {
+          // Replace specific lines
+          const lines = existingContent.split('\n');
+          const startLine = Math.max(0, lineNumbers.start - 1); // Convert to 0-based index
+          const endLine = Math.min(lines.length, lineNumbers.end);
+          
+          // Check if the specified lines contain the expected content
+          const targetLines = lines.slice(startLine, endLine).join('\n');
+          if (targetLines.trim() === oldString.trim()) {
+            const beforeLines = lines.slice(0, startLine);
+            const afterLines = lines.slice(endLine);
             
-            for (const item of items) {
-              const fullPath = path.join(dirPath, item);
-              const relativePath = path.join(prefix, item).replace(/\\\\/g, '/');
-              
-              if (fs.statSync(fullPath).isDirectory()) {
-                await uploadDirectory(fullPath, relativePath);
-              } else {
-                const fileContent = fs.readFileSync(fullPath);
-                const storagePath = \`\${siteName}/\${relativePath}\`;
-                
-                console.log(\`Uploading: \${storagePath}\`);
-                
-                const { error } = await supabase.storage
-                  .from(bucket)
-                  .upload(storagePath, fileContent, {
-                    contentType: getContentType(item),
-                    upsert: true,
-                  });
-                
-                if (error) {
-                  console.error(\`Error uploading \${storagePath}:\`, error);
-                  process.exit(1);
-                }
+            newContent = [...beforeLines, newString, ...afterLines].join('\n');
+            modificationApplied = true;
+          } else {
+            // Try to find the content elsewhere in the file
+            const contentIndex = existingContent.indexOf(oldString);
+            if (contentIndex !== -1) {
+              newContent = existingContent.replace(oldString, newString);
+              modificationApplied = true;
+            } else {
+              // Content not found, try fuzzy matching
+              const fuzzyMatch = findFuzzyMatch(existingContent, oldString);
+              if (fuzzyMatch) {
+                newContent = existingContent.replace(fuzzyMatch, newString);
+                modificationApplied = true;
+                console.log(`Applied fuzzy match for ${filePath}`);
               }
             }
           }
-          
-          function getContentType(filename) {
-            const ext = path.extname(filename).toLowerCase();
-            const contentTypes = {
-              '.html': 'text/html',
-              '.css': 'text/css',
-              '.js': 'application/javascript',
-              '.json': 'application/json',
-              '.png': 'image/png',
-              '.jpg': 'image/jpeg',
-              '.jpeg': 'image/jpeg',
-              '.gif': 'image/gif',
-              '.svg': 'image/svg+xml',
-              '.ico': 'image/x-icon'
-            };
-            return contentTypes[ext] || 'text/plain';
+        } else {
+          // Simple string replacement
+          if (existingContent.includes(oldString)) {
+            newContent = existingContent.replace(oldString, newString);
+            modificationApplied = true;
+          } else {
+            // Try fuzzy matching for string replacement
+            const fuzzyMatch = findFuzzyMatch(existingContent, oldString);
+            if (fuzzyMatch) {
+              newContent = existingContent.replace(fuzzyMatch, newString);
+              modificationApplied = true;
+              console.log(`Applied fuzzy match for ${filePath}`);
+            }
           }
-          
-          await uploadDirectory(buildDir);
-          console.log('✅ Upload completed successfully!');
-          console.log(\`🌐 Site available at: https://pixelways.co/sites/\${siteName}/index.html\`);
-          
-          return \`https://pixelways.co/sites/\${siteName}/index.html\`;
         }
         
-        uploadFiles().catch(console.error);
-        EOF
+        if (modificationApplied) {
+          // Write modified content back
+          await sandbox.files.write(filePath, newContent);
+          results.modified.push(filePath);
+        } else {
+          // Could not apply modification
+          results.skipped.push({
+            file: filePath,
+            reason: 'Content not found for modification'
+          });
+          console.log(`Could not apply modification to ${filePath} - content not found`);
+        }
         
-        # Run upload and capture the preview URL
-        PREVIEW_URL=\$(node upload.js | grep "Site available at:" | cut -d' ' -f4)
-        echo "PREVIEW_URL=\$PREVIEW_URL" >> \$GITHUB_ENV
-
-    - name: Notify build completion
-      env:
-        BUILD_WEBHOOK_URL: https://pixelways.co/api/build-complete
-      run: |
-        # Send webhook notification to PixelAI app
-        curl -X POST "\$BUILD_WEBHOOK_URL" \\
-          -H "Content-Type: application/json" \\
-          -d "{
-            \\"status\\": \\"completed\\",
-            \\"repo_name\\": \\"\${{ inputs.repo_name }}\\",
-            \\"project_type\\": \\"\${{ inputs.project_type }}\\",
-            \\"commit_sha\\": \\"\${{ inputs.commit_sha }}\\",
-            \\"preview_url\\": \\"\$PREVIEW_URL\\",
-            \\"build_time\\": \\"\$(date -u +%Y-%m-%dT%H:%M:%SZ)\\",
-            \\"success\\": true
-          }"
+      } else if (file.action === 'delete') {
+        // Delete file
+        console.log(`Deleting file: ${file.path}`);
+        try {
+          await sandbox.files.delete(file.path);
+          results.deleted.push(file.path);
+        } catch (e) {
+          results.skipped.push({
+            file: file.path,
+            reason: 'File not found for deletion'
+          });
+        }
         
-        echo "🎉 Build and deployment completed!"
-        echo "📊 Project type: \${{ inputs.project_type }}"
-        echo "📂 Repository: \${{ inputs.repo_name }}"
-        echo "🔗 Commit: \${{ inputs.commit_sha }}"
-        echo "🌐 Preview URL: \$PREVIEW_URL"
-
-    - name: Cleanup repository
-      if: always()
-      env:
-        REPO_CLEANUP_TOKEN: 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
-      run: |
-        # Wait a bit to ensure webhook is processed
-        sleep 10
-        
-        # Delete the temporary repository
-        echo "🗑️ Cleaning up temporary repository: \${{ inputs.repo_name }}"
-        curl -X DELETE "https://api.github.com/repos/\${{ github.repository_owner }}/\${{ inputs.repo_name }}" \\
-          -H "Authorization: Bearer \$REPO_CLEANUP_TOKEN"
-        
-        echo "✅ Repository cleanup completed"`;
-
-      // Add workflow file to the files array
-      files.push({
-        path: '.github/workflows/preview-build.yml',
-        content: workflowContent
-      });
+      } else {
+        // Default: treat as create/modify based on file path
+        console.log(`Processing file: ${file.path}`);
+        await sandbox.files.write(file.path, file.content);
+        results.created.push(file.path);
+      }
       
-      console.log('Added GitHub Actions workflow file to deployment');
+    } catch (error) {
+      console.error(`Error processing file ${file.path}:`, error);
+      results.errors.push({
+        file: file.path,
+        error: error.message
+      });
+      // Continue with other files
     }
-
-    const owner = githubUser;
-    const repo = repoName;
-    const defaultBranch = 'main';
-
-        // 1. Create an initial empty commit to establish the repository
-    console.log('Creating initial empty commit to establish repository...');
-    
-    // Create an empty tree (no files)
-    const emptyTreeResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/trees`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        tree: [], // Empty tree
-      }),
-    });
-    
-    if (!emptyTreeResponse.ok) {
-      const errorData = await emptyTreeResponse.json();
-      console.error('Failed to create empty tree:', errorData);
-      throw new Error(`Failed to create empty tree: ${emptyTreeResponse.statusText} - ${JSON.stringify(errorData)}`);
-    }
-    
-    const emptyTreeData = await emptyTreeResponse.json();
-    const emptyTreeSha = emptyTreeData.sha;
-    console.log('Empty tree created with SHA:', emptyTreeSha);
-    
-    // Create initial commit with empty tree
-    const initialCommitResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/commits`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        message: 'Initial empty commit',
-        tree: emptyTreeSha,
-      }),
-    });
-    
-    if (!initialCommitResponse.ok) {
-      const errorData = await initialCommitResponse.json();
-      console.error('Failed to create initial commit:', errorData);
-      throw new Error(`Failed to create initial commit: ${initialCommitResponse.statusText} - ${JSON.stringify(errorData)}`);
-    }
-    
-    const initialCommitData = await initialCommitResponse.json();
-    const initialCommitSha = initialCommitData.sha;
-    console.log('Initial commit created with SHA:', initialCommitSha);
-    
-    // Create the main branch reference
-    const createBranchResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ref: `refs/heads/${defaultBranch}`,
-        sha: initialCommitSha,
-      }),
-    });
-    
-    if (!createBranchResponse.ok) {
-      const errorData = await createBranchResponse.json();
-      console.error('Failed to create branch:', errorData);
-      throw new Error(`Failed to create branch: ${createBranchResponse.statusText} - ${JSON.stringify(errorData)}`);
-    }
-    
-    console.log(`Branch ${defaultBranch} created successfully`);
-    
-    // Now we have a base to work with
-    const latestCommitSha = initialCommitSha;
-    const hasExistingCommits = true;
-
-    // 2. Create a new Git tree object
-    const tree = files.map(file => ({
-      path: file.path,
-      mode: '100644',
-      type: 'blob',
-      content: file.content,
-    }));
-
-    const treeRequestBody = {
-      tree: tree,
-      base_tree: latestCommitSha, // Always use our initial commit as base
-    };
-    
-    console.log(`Creating tree with base_tree: ${latestCommitSha}`);
-
-    console.log(`Tree creation request for ${owner}/${repo} with ${tree.length} files`);
-
-    const treeResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/trees`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(treeRequestBody),
-    });
-    
-    console.log(`Tree creation response status: ${treeResponse.status}`);
-    
-    if (!treeResponse.ok) {
-      const errorData = await treeResponse.json();
-      console.error(`Tree creation failed for ${owner}/${repo}:`, errorData);
-      throw new Error(`Failed to create tree: ${treeResponse.statusText} - ${JSON.stringify(errorData)}`);
-    }
-    const treeData = await treeResponse.json();
-    const newTreeSha = treeData.sha;
-
-    // 3. Create a new Git commit object
-    const commitRequestBody = {
-      message: 'Initial commit from PixelAI Builder',
-      tree: newTreeSha,
-      parents: [latestCommitSha], // Always use our initial commit as parent
-    };
-
-    const commitResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/commits`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(commitRequestBody),
-    });
-    if (!commitResponse.ok) {
-      const errorData = await commitResponse.json();
-      throw new Error(`Failed to create commit: ${commitResponse.statusText} - ${JSON.stringify(errorData)}`);
-    }
-    const commitData = await commitResponse.json();
-    const newCommitSha = commitData.sha;
-
-        // 4. Update the branch reference with our new commit
-    console.log(`Updating branch ${defaultBranch} with commit ${newCommitSha}`);
-    
-    const updateRefResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs/heads/${defaultBranch}`, {
-      method: 'PATCH',
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        sha: newCommitSha,
-        force: true,
-      }),
-    });
-    
-    if (!updateRefResponse.ok) {
-      const errorData = await updateRefResponse.json();
-      throw new Error(`Failed to update ref: ${updateRefResponse.statusText} - ${JSON.stringify(errorData)}`);
-    }
-    console.log('Files pushed successfully. New commit SHA:', newCommitSha);
-
-    // --- Step 3: Trigger GitHub Actions Workflow ---
-    console.log(`Triggering GitHub Actions workflow for ${repoName}...`);
-    const workflowDispatchResponse = await fetch(`https://api.github.com/repos/${githubUser}/${repoName}/actions/workflows/preview-build.yml/dispatches`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ref: 'main',
-        inputs: {
-          repo_name: repoName,
-          commit_sha: newCommitSha,
-          project_type: project_type,
-        },
-      }),
-    });
-    if (!workflowDispatchResponse.ok) {
-      const errorData = await workflowDispatchResponse.json();
-      throw new Error(`Failed to dispatch workflow: ${workflowDispatchResponse.statusText} - ${JSON.stringify(errorData)}`);
-    }
-    console.log('GitHub Actions workflow dispatched.');
-
-        return NextResponse.json({
-      preview_build_started: true,
-      repo_name: repoName,
-      site: repoName,
-      github_user: githubUser,
-      cleanup_token: authToken,
-      message: `${project_type} build initiated via GitHub Actions. Repo will be cleaned up after deployment.`
-    });
-  } catch (error) {
-    console.error('Error in /api/preview:', error);
-    return NextResponse.json({ error: `Failed to initiate preview build: ${error.message}` }, { status: 500 });
   }
+  
+  // Log summary
+  console.log('\n📊 AI Modifications Summary:');
+  console.log(`✅ Created: ${results.created.length} files`);
+  console.log(`✏️  Modified: ${results.modified.length} files`);
+  console.log(`🗑️  Deleted: ${results.deleted.length} files`);
+  console.log(`⏭️  Skipped: ${results.skipped.length} files`);
+  console.log(`❌ Errors: ${results.errors.length} files`);
+  
+  if (results.skipped.length > 0) {
+    console.log('\n📝 Skipped Files:');
+    results.skipped.forEach(item => {
+      console.log(`  - ${item.file}: ${item.reason}`);
+    });
+  }
+  
+  if (results.errors.length > 0) {
+    console.log('\n⚠️  Errors:');
+    results.errors.forEach(item => {
+      console.log(`  - ${item.file}: ${item.error}`);
+    });
+  }
+  
+  console.log('AI modifications applied successfully');
+  return results;
+}
+
+// Helper function to find fuzzy matches when exact content isn't found
+function findFuzzyMatch(content, searchString) {
+  // Remove extra whitespace and normalize
+  const normalizedSearch = searchString.replace(/\s+/g, ' ').trim();
+  const normalizedContent = content.replace(/\s+/g, ' ');
+  
+  // Try to find the normalized search string
+  if (normalizedContent.includes(normalizedSearch)) {
+    // Find the original content that matches the normalized version
+    const lines = content.split('\n');
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (line.replace(/\s+/g, ' ').trim() === normalizedSearch) {
+        return line;
+      }
+    }
+  }
+  
+  // Try partial matching for longer strings
+  if (searchString.length > 20) {
+    const words = searchString.split(/\s+/).filter(word => word.length > 3);
+    for (const word of words) {
+      if (content.includes(word)) {
+        // Find the line containing this word
+        const lines = content.split('\n');
+        for (let i = 0; i < lines.length; i++) {
+          if (lines[i].includes(word)) {
+            return lines[i];
+          }
+        }
+      }
+    }
+  }
+  
+  return null;
+}
+
+// Helper function to determine MIME type
+function getMimeType(filename) {
+  const ext = filename.split('.').pop().toLowerCase();
+  const mimeTypes = {
+    'html': 'text/html',
+    'css': 'text/css',
+    'js': 'application/javascript',
+    'json': 'application/json',
+    'png': 'image/png',
+    'jpg': 'image/jpeg',
+    'jpeg': 'image/jpeg',
+    'gif': 'image/gif',
+    'svg': 'image/svg+xml',
+    'ico': 'image/x-icon',
+    'woff': 'font/woff',
+    'woff2': 'font/woff2',
+    'ttf': 'font/ttf',
+    'eot': 'application/vnd.ms-fontobject',
+    'webp': 'image/webp',
+    'mp4': 'video/mp4',
+    'webm': 'video/webm',
+    'ogg': 'video/ogg',
+    'mp3': 'audio/mpeg',
+    'wav': 'audio/wav'
+  };
+  return mimeTypes[ext] || 'application/octet-stream';
 }

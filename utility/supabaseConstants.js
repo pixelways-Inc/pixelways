@@ -6,6 +6,10 @@ export const SUPABASE_CONFIG = {
   JWT_SECRET: "mZcBlvGgxbMd0OByt4iNTCFRHBaH4dcUt1QEcWItBvjzu2qQB0crGyoXgDrW5TFm7iJQve6jMoDbuWTgYxPoMw=="
 };
 
+export const E2B_CONFIG = {
+  API_KEY: "e2b_b88c2a5e1aa907d21fd6ce687839121c4f361664"
+};
+
 // GitHub configuration constants
 export const GITHUB_CONFIG = {
   PAT: "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",
