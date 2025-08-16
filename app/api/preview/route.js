@@ -68,26 +68,52 @@ export async function POST(request) {
       console.log('Creating E2B sandbox...');
       console.log('Using E2B API key:', E2B_CONFIG.API_KEY ? 'Configured' : 'Missing');
       
-      try {
-        // Use 'base' template since 'node' is not available in this account
-        const sandbox = await Sandbox.create('base', {
-          apiKey: E2B_CONFIG.API_KEY
-        });
-        console.log('E2B sandbox created successfully using base template');
-      } catch (sandboxError) {
-        console.error('E2B sandbox creation failed:', sandboxError);
-        throw new Error(`Failed to create E2B sandbox: ${sandboxError.message}. Please check E2B API key and quotas.`);
-      }
+      let sandbox = null;
+             try {
+         // Use 'base' template since 'node' is not available in this account
+         sandbox = await Sandbox.create('base', {
+           apiKey: E2B_CONFIG.API_KEY
+         });
+         console.log('E2B sandbox created successfully using base template');
+         console.log('Sandbox object type:', typeof sandbox);
+         console.log('Sandbox has files property:', sandbox && typeof sandbox.files);
+         
+         // Verify sandbox is properly initialized
+         if (!sandbox || !sandbox.files) {
+           throw new Error('Sandbox was created but is not properly initialized');
+         }
+       } catch (sandboxError) {
+         console.error('E2B sandbox creation failed:', sandboxError);
+         throw new Error(`Failed to create E2B sandbox: ${sandboxError.message}. Please check E2B API key and quotas.`);
+       }
 
-      // --- Step 2: Prepare project files with template and modifications ---
-      console.log('Preparing project files with React-Vite template...');
-      
-      // First, copy the existing React-Vite template
-      const templatePath = path.join(process.cwd(), 'data', 'react-vite');
-      await copyTemplateToSandbox(sandbox, templatePath);
-      
-      // Then apply AI-generated modifications
-      const results = await applyAIModifications(sandbox, files);
+             // --- Step 2: Prepare project files with template and modifications ---
+       console.log('Preparing project files with React-Vite template...');
+       
+       let results;
+       try {
+         // Verify sandbox is available
+         if (!sandbox) {
+           throw new Error('Sandbox is not available for template operations');
+         }
+         
+         // First, copy the existing React-Vite template
+         const templatePath = path.join(process.cwd(), 'data', 'react-vite');
+         
+         // Check if template directory exists
+         if (!fs.existsSync(templatePath)) {
+           throw new Error(`React-Vite template not found at: ${templatePath}`);
+         }
+         
+         console.log('Template path exists:', templatePath);
+         await copyTemplateToSandbox(sandbox, templatePath);
+         
+         // Then apply AI-generated modifications
+         results = await applyAIModifications(sandbox, files);
+       } catch (templateError) {
+         console.error('Error preparing project files:', templateError);
+         throw new Error(`Failed to prepare project files: ${templateError.message}`);
+       }
 
       // --- Step 3: Install dependencies ---
       console.log('Installing dependencies...');
@@ -171,9 +197,8 @@ export async function POST(request) {
         }
       }
 
-      // --- Step 7: Close E2B sandbox ---
-      console.log('Closing E2B sandbox...');
-      await sandbox.close();
+             // --- Step 7: Sandbox cleanup handled in finally block ---
+       console.log('Deployment completed, sandbox will be cleaned up automatically');
 
       // --- Step 8: Return success response ---
       const previewUrl = `https://pixelways.co/sites/${siteName}/index.html`;
@@ -210,14 +235,25 @@ export async function POST(request) {
         status: results.errors.length > 0 ? 'partial_success' : 'success'
       });
 
-    } catch (error) {
-      console.error('E2B + Supabase deployment error:', error);
-      return NextResponse.json({ 
-        error: `E2B + Supabase deployment failed: ${error.message}`,
-        deployment_method: 'e2b-supabase',
-        project_type
-      }, { status: 500 });
-    }
+         } catch (error) {
+       console.error('E2B + Supabase deployment error:', error);
+       return NextResponse.json({ 
+         error: `E2B + Supabase deployment failed: ${error.message}`,
+         deployment_method: 'e2b-supabase',
+         project_type
+       }, { status: 500 });
+     } finally {
+       // Always ensure sandbox is closed, even if there was an error
+       if (sandbox) {
+         try {
+           console.log('Cleaning up E2B sandbox...');
+           await sandbox.close();
+           console.log('E2B sandbox closed successfully');
+         } catch (cleanupError) {
+           console.error('Error closing sandbox:', cleanupError);
+         }
+       }
+     }
   } catch (error) {
     console.error('Error in /api/preview:', error);
     return NextResponse.json({ error: `Failed to initiate preview: ${error.message}` }, { status: 500 });
@@ -240,33 +276,47 @@ async function copyTemplateToSandbox(sandbox, templatePath) {
 
 // Helper function to copy directory recursively
 async function copyDirectoryRecursive(sandbox, localPath, relativePath) {
-  const items = fs.readdirSync(localPath);
-  
-  for (const item of items) {
-    const localItemPath = path.join(localPath, item);
-    const sandboxItemPath = relativePath ? path.join(relativePath, item) : item;
-    const stats = fs.statSync(localItemPath);
-    console.log('Copying directory:', localItemPath, 'to', sandboxItemPath);
-    if (stats.isDirectory()) {
-      // Skip node_modules and other unnecessary directories
-      if (item === 'node_modules' || item === '.git' || item === '.husky') {
-        continue;
-      }
-      
-      // Create directory in sandbox
+  try {
+    const items = fs.readdirSync(localPath);
+    
+    for (const item of items) {
       try {
-        await sandbox.files.mkdir(sandboxItemPath);
-      } catch (e) {
-        // Directory might already exist, continue
+        const localItemPath = path.join(localPath, item);
+        const sandboxItemPath = relativePath ? path.join(relativePath, item) : item;
+        const stats = fs.statSync(localItemPath);
+        console.log('Copying:', localItemPath, 'to', sandboxItemPath);
+        
+        if (stats.isDirectory()) {
+          // Skip node_modules and other unnecessary directories
+          if (item === 'node_modules' || item === '.git' || item === '.husky') {
+            console.log('Skipping directory:', item);
+            continue;
+          }
+          
+          // Create directory in sandbox
+          try {
+            await sandbox.files.mkdir(sandboxItemPath);
+          } catch (e) {
+            // Directory might already exist, continue
+            console.log('Directory might already exist:', sandboxItemPath);
+          }
+          
+          // Recursively copy contents
+          await copyDirectoryRecursive(sandbox, localItemPath, sandboxItemPath);
+        } else {
+          // Copy file
+          const content = fs.readFileSync(localItemPath, 'utf-8');
+          await sandbox.files.write(sandboxItemPath, content);
+          console.log('Copied file:', sandboxItemPath);
+        }
+      } catch (itemError) {
+        console.error(`Error processing item ${item}:`, itemError);
+        // Continue with other items
       }
-      
-      // Recursively copy contents
-      await copyDirectoryRecursive(sandbox, localItemPath, sandboxItemPath);
-    } else {
-      // Copy file
-      const content = fs.readFileSync(localItemPath, 'utf-8');
-      await sandbox.files.write(sandboxItemPath, content);
     }
+  } catch (error) {
+    console.error('Error in copyDirectoryRecursive:', error);
+    throw new Error(`Failed to copy directory: ${error.message}`);
   }
 }
 
