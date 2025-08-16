@@ -120,12 +120,14 @@ export async function POST(request) {
        }
 
       // --- Step 3: Install dependencies ---
-      console.log('Installing dependencies...');
+      console.log('Installing dependencies... (this may take a few minutes)');
       try {
         if (!sandbox) {
           throw new Error('Sandbox is not available for dependency installation');
         }
-        const installResult = await sandbox.commands.run('npm install');
+        // Use longer timeout for npm install (5 minutes)
+        console.log('Starting npm install with 5-minute timeout...');
+        const installResult = await sandbox.commands.run('npm install', { timeoutMs: 300000 });
         if (installResult.exitCode !== 0) {
           throw new Error(`npm install failed: ${installResult.stderr}`);
         }
@@ -136,12 +138,14 @@ export async function POST(request) {
       }
 
       // --- Step 4: Build project ---
-      console.log('Building project...');
+      console.log('Building project... (this may take a few minutes)');
       try {
         if (!sandbox) {
           throw new Error('Sandbox is not available for build process');
         }
-        const buildResult = await sandbox.commands.run('npm run build');
+        // Use longer timeout for build process (3 minutes)
+        console.log('Starting npm run build with 3-minute timeout...');
+        const buildResult = await sandbox.commands.run('npm run build', { timeoutMs: 180000 });
         if (buildResult.exitCode !== 0) {
           throw new Error(`Build failed: ${buildResult.stderr}`);
         }
