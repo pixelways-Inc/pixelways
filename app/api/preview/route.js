@@ -72,23 +72,34 @@ export async function POST(request) {
       console.log('Creating E2B sandbox...');
       console.log('Using E2B API key:', E2B_CONFIG.API_KEY ? 'Configured' : 'Missing');
       
-      try {
-        // Use 'base' template since 'node' is not available in this account
-        sandbox = await Sandbox.create('base', {
-          apiKey: E2B_CONFIG.API_KEY
-        });
-        console.log('E2B sandbox created successfully using base template');
-        console.log('Sandbox object type:', typeof sandbox);
-        console.log('Sandbox has files property:', sandbox && typeof sandbox.files);
-        
-        // Verify sandbox is properly initialized
-        if (!sandbox || !sandbox.files) {
-          throw new Error('Sandbox was created but is not properly initialized');
-        }
-      } catch (sandboxError) {
-        console.error('E2B sandbox creation failed:', sandboxError);
-        throw new Error(`Failed to create E2B sandbox: ${sandboxError.message}. Please check E2B API key and quotas.`);
-      }
+             try {
+         // Try to use 'desktop' template first (more resources), fallback to 'base'
+         let templateToUse = 'desktop';
+         try {
+           sandbox = await Sandbox.create('desktop', {
+             apiKey: E2B_CONFIG.API_KEY
+           });
+           console.log('E2B sandbox created successfully using desktop template (8GB RAM)');
+         } catch (desktopError) {
+           console.log('Desktop template failed, trying base template...');
+           templateToUse = 'base';
+           sandbox = await Sandbox.create('base', {
+             apiKey: E2B_CONFIG.API_KEY
+           });
+           console.log('E2B sandbox created successfully using base template (512MB RAM)');
+         }
+         
+         console.log('Sandbox object type:', typeof sandbox);
+         console.log('Sandbox has files property:', sandbox && typeof sandbox.files);
+         
+         // Verify sandbox is properly initialized
+         if (!sandbox || !sandbox.files) {
+           throw new Error('Sandbox was created but is not properly initialized');
+         }
+       } catch (sandboxError) {
+         console.error('E2B sandbox creation failed:', sandboxError);
+         throw new Error(`Failed to create E2B sandbox: ${sandboxError.message}. Please check E2B API key and quotas.`);
+       }
 
              // --- Step 2: Prepare project files with template and modifications ---
        console.log('Preparing project files with React-Vite template...');
@@ -125,17 +136,56 @@ export async function POST(request) {
         if (!sandbox) {
           throw new Error('Sandbox is not available for dependency installation');
         }
-        // Use longer timeout for npm install (5 minutes)
-        console.log('Starting npm install with 5-minute timeout...');
-        const installResult = await sandbox.commands.run('npm install', { timeoutMs: 300000 });
+        
+        // Optimize npm install for limited resources
+        console.log('Starting optimized npm install with 5-minute timeout...');
+        
+        // First, try to clear npm cache and use production install
+        await sandbox.commands.run('npm cache clean --force');
+        
+        // Use production install to avoid dev dependencies and reduce memory usage
+        const installResult = await sandbox.commands.run('npm ci --only=production --no-audit --no-fund', { 
+          timeoutMs: 300000 
+        });
+        
         if (installResult.exitCode !== 0) {
-          throw new Error(`npm install failed: ${installResult.stderr}`);
+          console.log('Production install failed, trying regular install...');
+          // Fallback to regular install if production-only fails
+          const fallbackResult = await sandbox.commands.run('npm install --no-audit --no-fund', { 
+            timeoutMs: 300000 
+          });
+          
+          if (fallbackResult.exitCode !== 0) {
+            console.log('npm install failed, trying pnpm...');
+            // Try pnpm as it's more memory efficient
+            try {
+              const pnpmResult = await sandbox.commands.run('pnpm install --prod --no-audit', { 
+                timeoutMs: 300000 
+              });
+              if (pnpmResult.exitCode !== 0) {
+                throw new Error(`pnpm install failed: ${pnpmResult.stderr}`);
+              }
+            } catch (pnpmError) {
+              throw new Error(`All package managers failed. npm: ${fallbackResult.stderr}, pnpm: ${pnpmError.message}`);
+            }
+          }
         }
-        console.log('Dependencies installed successfully');
-      } catch (installError) {
-        console.error('npm install failed:', installError);
-        throw new Error(`Dependency installation failed: ${installError.message}`);
-      }
+        
+                 console.log('Dependencies installed successfully');
+         
+         // Check available disk space and memory
+         try {
+           const diskCheck = await sandbox.commands.run('df -h .');
+           const memoryCheck = await sandbox.commands.run('free -h');
+           console.log('Disk space after install:', diskCheck.stdout);
+           console.log('Memory usage after install:', memoryCheck.stdout);
+         } catch (resourceError) {
+           console.log('Resource check warning:', resourceError.message);
+         }
+       } catch (installError) {
+         console.error('npm install failed:', installError);
+         throw new Error(`Dependency installation failed: ${installError.message}`);
+       }
 
       // --- Step 4: Build project ---
       console.log('Building project... (this may take a few minutes)');
@@ -143,6 +193,17 @@ export async function POST(request) {
         if (!sandbox) {
           throw new Error('Sandbox is not available for build process');
         }
+        
+        // Clean up memory before build
+        console.log('Cleaning up memory before build...');
+        try {
+          await sandbox.commands.run('npm cache clean --force');
+          // Force garbage collection if possible
+          await sandbox.commands.run('node -e "if (global.gc) global.gc()"');
+        } catch (cleanupError) {
+          console.log('Memory cleanup warning:', cleanupError.message);
+        }
+        
         // Use longer timeout for build process (3 minutes)
         console.log('Starting npm run build with 3-minute timeout...');
         const buildResult = await sandbox.commands.run('npm run build', { timeoutMs: 180000 });
