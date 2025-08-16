@@ -10,6 +10,11 @@ import { ThemeProvider } from '../../context/ThemeContext';
 import dynamic from 'next/dynamic';
 
 // Dynamic imports to prevent SSR issues and resolve circular dependencies
+const ProgressiveGenerator = dynamic(() => import('../../components/ProgressiveGenerator'), { 
+  ssr: false,
+  loading: () => null // No loading indicator needed for this component
+});
+
 const WorkspaceChat = dynamic(() => import('../../components/WorkspaceChat'), { 
   ssr: false,
   loading: () => (
@@ -181,8 +186,7 @@ const WorkspacePage = () => {
       return;
     }
     
-    // Check if this is a React/Vite project that requires GitHub auth
-    const requiresGitHubAuth = generatedWebsite.projectType && generatedWebsite.projectType !== 'static';
+    // For static sites, we can deploy directly to our hosting platform
     
     if (requiresGitHubAuth) {
       // Check if user is authenticated with GitHub
@@ -768,6 +772,12 @@ const WorkspacePage = () => {
             )}
           </div>
         </div>
+        
+        {/* Progressive Generator - runs in background to generate remaining pages */}
+        <ProgressiveGenerator 
+          initialWebsite={generatedWebsite}
+          onWebsiteUpdate={setGeneratedWebsite}
+        />
       </WorkspaceLayout>
     </ThemeProvider>
   );

@@ -1,13 +1,12 @@
 "use client";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Send, Loader, Plus, Moon, Sun, Paperclip, Home, Briefcase, PenTool, Building2 } from 'lucide-react';
+import { ArrowUp, Plus, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const ChatInterfaceLanding = () => {
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
-  const [projectType, setProjectType] = useState('static');
   const router = useRouter();
   const { isDark, toggleTheme } = useTheme();
 
@@ -23,7 +22,7 @@ const ChatInterfaceLanding = () => {
         },
         body: JSON.stringify({
           prompt: prompt.trim(),
-          projectType: projectType
+          projectType: 'static'
         }),
       });
       const data = await response.json();
@@ -44,392 +43,450 @@ const ChatInterfaceLanding = () => {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleGenerate();
     }
   };
 
+  const promptSuggestions = [
+    { display: "Landing page", prompt: "Create a modern landing page for my startup" },
+    { display: "Portfolio site", prompt: "Build a portfolio website to showcase my work" }, 
+    { display: "Restaurant menu", prompt: "Design a restaurant website with menu" },
+    { display: "E-commerce store", prompt: "Make an e-commerce store for clothing" },
+    { display: "Blog with dark mode", prompt: "Create a blog website with dark mode" },
+    { display: "Business website", prompt: "Build a business website with contact forms" }
+  ];
+
   return (
-    <>
+    <div className="lovable-container">
       <style jsx>{`
-        .gradient-text {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-        
-        .glass-effect {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .glass-effect-dark {
-          background: rgba(17, 24, 39, 0.95);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(75, 85, 99, 0.3);
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-        }
-        
-        .gradient-border {
+        .lovable-container {
+          min-height: 100vh;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 2rem 1rem;
           position: relative;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          padding: 2px;
-          border-radius: 1rem;
+          overflow: hidden;
         }
-        
-        .gradient-border-inner {
-          background: white;
-          border-radius: 0.875rem;
+
+        .lovable-container::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+          pointer-events: none;
         }
-        
-        .gradient-border-inner-dark {
-          background: #1f2937;
-          border-radius: 0.875rem;
-        }
-        
-        .hover-scale {
-          transition: transform 0.2s ease-in-out;
-        }
-        
-        .hover-scale:hover {
-          transform: scale(1.05);
-        }
-        
-        .btn-gradient {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          border: none;
-          color: white;
-          transition: all 0.3s ease;
-        }
-        
-        .btn-gradient:hover {
-          background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-          transform: translateY(-2px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-          color: white;
-        }
-        
-        .template-card {
-          background: white;
-          border: 2px solid #e5e7eb;
-          border-radius: 1rem;
-          padding: 1.5rem;
+
+        .theme-toggle {
+          position: fixed;
+          top: 2rem;
+          right: 2rem;
+          z-index: 1000;
+          background: rgba(255, 255, 255, 0.2);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 12px;
+          padding: 12px;
           transition: all 0.3s ease;
           cursor: pointer;
-          height: 100%;
-        }
-        
-        .template-card:hover {
-          border-color: #667eea;
-          transform: translateY(-5px);
-          box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
-        }
-        
-        .template-card-dark {
-          background: #1f2937;
-          border-color: #374151;
           color: white;
         }
-        
-        .template-card-dark:hover {
-          border-color: #667eea;
+
+        .theme-toggle:hover {
+          background: rgba(255, 255, 255, 0.3);
+          transform: scale(1.05);
         }
-        
-        .icon-wrapper {
-          width: 60px;
-          height: 60px;
-          border-radius: 1rem;
+
+        .main-content {
+          width: 100%;
+          max-width: 768px;
+          text-align: center;
+          position: relative;
+          z-index: 10;
+        }
+
+        .title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 700;
+          color: white;
+          margin-bottom: 1rem;
+          line-height: 1.1;
+          text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .heart {
+          color: #ff6b6b;
+          text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+        }
+
+        .subtitle {
+          font-size: 1.25rem;
+          color: rgba(255, 255, 255, 0.8);
+          margin-bottom: 3rem;
+          font-weight: 400;
+        }
+
+        .chat-container {
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(20px);
+          border-radius: 24px;
+          padding: 1.5rem;
+          margin-bottom: 2rem;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          transition: all 0.3s ease;
+        }
+
+        .chat-container:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .input-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          position: relative;
+        }
+
+        .plus-button {
+          width: 44px;
+          height: 44px;
+          border-radius: 12px;
+          border: none;
+          background: #f8f9fa;
+          color: #6b7280;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin: 0 auto 1rem;
-          transition: all 0.3s ease;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          flex-shrink: 0;
         }
-        
-        .icon-wrapper-blue {
-          background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-          color: #2563eb;
+
+        .plus-button:hover {
+          background: #e9ecef;
+          color: #495057;
         }
-        
-        .icon-wrapper-purple {
-          background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
-          color: #7c3aed;
+
+        .input-area {
+          flex: 1;
+          position: relative;
         }
-        
-        .icon-wrapper-green {
-          background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-          color: #16a34a;
-        }
-        
-        .icon-wrapper-orange {
-          background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
-          color: #ea580c;
-        }
-        
-        .theme-toggle {
-          position: fixed;
-          top: 1.5rem;
-          right: 1.5rem;
-          z-index: 1050;
-          background: rgba(255, 255, 255, 0.9);
-          border: 1px solid rgba(0, 0, 0, 0.1);
-          border-radius: 0.75rem;
-          padding: 0.5rem;
-          transition: all 0.3s ease;
-        }
-        
-        .theme-toggle:hover {
-          transform: scale(1.1);
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .theme-toggle-dark {
-          background: rgba(17, 24, 39, 0.9);
-          border-color: rgba(75, 85, 99, 0.3);
-          color: white;
-        }
-        
-        .pulse-dot {
-          animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.5; }
-        }
-        
-        .project-type-btn {
-          border: 2px solid transparent;
-          background: #f3f4f6;
-          color: #6b7280;
-          font-weight: 600;
-          padding: 0.75rem 1.5rem;
-          border-radius: 0.75rem;
-          transition: all 0.3s ease;
-          margin: 0 0.25rem;
-        }
-        
-        .project-type-btn:hover {
-          background: white;
+
+        .chat-input {
+          width: 100%;
+          border: none;
+          outline: none;
+          font-size: 1.1rem;
           color: #1f2937;
-          transform: scale(1.05);
+          background: transparent;
+          resize: none;
+          line-height: 1.5;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+          min-height: 44px;
+          max-height: 120px;
+          padding: 0;
         }
-        
-        .project-type-btn.active {
-          background: white;
-          border-color: #667eea;
-          color: #667eea;
-          transform: scale(1.05);
-          box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
-        }
-        
-        .project-type-btn-dark {
-          background: #374151;
+
+        .chat-input::placeholder {
           color: #9ca3af;
         }
-        
-        .project-type-btn-dark:hover {
-          background: #4b5563;
+
+        .send-button {
+          width: 44px;
+          height: 44px;
+          border-radius: 12px;
+          border: none;
+          background: #1f2937;
           color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          flex-shrink: 0;
+        }
+
+        .send-button:hover:not(:disabled) {
+          background: #111827;
+          transform: scale(1.05);
+        }
+
+        .send-button:disabled {
+          background: #e5e7eb;
+          color: #9ca3af;
+          cursor: not-allowed;
+        }
+
+        .generating-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(255, 255, 255, 0.9);
+          border-radius: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          backdrop-filter: blur(4px);
+        }
+
+        .generating-content {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          color: #667eea;
+          font-weight: 600;
+        }
+
+        .spinner {
+          width: 20px;
+          height: 20px;
+          border: 2px solid #e5e7eb;
+          border-top: 2px solid #667eea;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .suggestions-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.75rem;
+          justify-content: center;
+          max-width: 100%;
+        }
+
+        .suggestion-pill {
+          background: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(15px);
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          border-radius: 999px;
+          padding: 0.5rem 1rem;
+          color: white;
+          font-size: 0.8rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+          max-width: 140px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: inline-block;
+        }
+
+        .suggestion-pill:hover {
+          background: rgba(255, 255, 255, 0.25);
+          border-color: rgba(255, 255, 255, 0.4);
+          transform: translateY(-3px) scale(1.05);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+          .lovable-container {
+            padding: 1rem 0.75rem;
+            justify-content: flex-start;
+            padding-top: 2rem;
+          }
+          
+          .main-content {
+            max-width: 100%;
+            width: 100%;
+          }
+          
+          .chat-container {
+            margin: 0 0 2rem 0;
+            padding: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+          }
+          
+          .input-wrapper {
+            gap: 0.75rem;
+          }
+          
+          .plus-button, .send-button {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+          }
+          
+          .chat-input {
+            font-size: 1rem;
+            min-height: 36px;
+          }
+          
+          .title {
+            margin-bottom: 0.75rem;
+            font-size: clamp(2rem, 8vw, 3rem);
+          }
+          
+          .subtitle {
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            padding: 0 1rem;
+          }
+          
+          .suggestions-container {
+            gap: 0.5rem;
+            padding: 0 0.5rem;
+          }
+          
+          .suggestion-pill {
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+            max-width: calc(50% - 0.25rem);
+            min-width: 80px;
+          }
+          
+          .theme-toggle {
+            top: 1rem;
+            right: 1rem;
+            padding: 8px;
+          }
         }
         
-        .project-type-btn-dark.active {
-          background: #4b5563;
-          border-color: #667eea;
-          color: #93c5fd;
+        @media (max-width: 480px) {
+          .lovable-container {
+            padding: 1rem 0.5rem;
+          }
+          
+          .chat-container {
+            padding: 0.75rem;
+          }
+          
+          .input-wrapper {
+            gap: 0.5rem;
+          }
+          
+          .plus-button, .send-button {
+            width: 32px;
+            height: 32px;
+          }
+          
+          .chat-input {
+            font-size: 0.95rem;
+            min-height: 32px;
+          }
+          
+          .title {
+            font-size: clamp(1.75rem, 10vw, 2.5rem);
+          }
+          
+          .subtitle {
+            font-size: 0.9rem;
+          }
+          
+          .suggestions-container {
+            gap: 0.4rem;
+          }
+          
+          .suggestion-pill {
+            font-size: 0.7rem;
+            padding: 0.35rem 0.7rem;
+            max-width: calc(50% - 0.2rem);
+            min-width: 70px;
+          }
         }
       `}</style>
 
-      <div className="container-fluid py-5">
-        {/* Theme Toggle */}
-        <button
-          onClick={toggleTheme}
-          className={`theme-toggle ${isDark ? 'theme-toggle-dark' : ''}`}
-          aria-label="Toggle theme"
-        >
-          {isDark ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
+      {/* Theme Toggle */}
+      <button
+        onClick={toggleTheme}
+        className="theme-toggle"
+        aria-label="Toggle theme"
+      >
+        {isDark ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
 
-      {/* Main Heading */}
-        <div className="text-center mb-5">
-          <h3 className={`display-4 fw-bold mb-4 ${isDark ? 'text-white' : 'gradient-text'}`}>
-          What can I help you build?
-          </h3>
-          <p className={`lead ${isDark ? 'text-light' : 'text-muted'} mb-4`}>
-          Describe your project and I'll generate a complete website for you using AI.
+      <div className="main-content">
+        {/* Main Heading */}
+        <h1 className="title">
+          Build something <span className="heart">❤️</span> stunning
+        </h1>
+        <p className="subtitle">
+          Create stunning websites by chatting with AI
         </p>
-          <div className="d-flex justify-content-center">
-            <div style={{
-              width: '80px',
-              height: '4px',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              borderRadius: '2px'
-            }}></div>
+
+        {/* Chat Input Section */}
+        <div className="chat-container">
+          {isGenerating && (
+            <div className="generating-overlay">
+              <div className="generating-content">
+                <div className="spinner"></div>
+                <span>Pixel AI is working...</span>
+              </div>
+            </div>
+          )}
+          
+          <div className="input-wrapper">
+            <button className="plus-button" disabled={isGenerating}>
+              <Plus size={20} />
+            </button>
+            
+            <div className="input-area">
+              <textarea
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                onKeyDown={handleKeyPress}
+                placeholder="Ask Pixel to create an internal tool"
+                className="chat-input"
+                disabled={isGenerating}
+                rows={1}
+                style={{
+                  height: 'auto',
+                  minHeight: '44px'
+                }}
+                onInput={(e) => {
+                  e.target.style.height = 'auto';
+                  e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
+                }}
+              />
+            </div>
+            
+            <button
+              onClick={handleGenerate}
+              disabled={!prompt.trim() || isGenerating}
+              className="send-button"
+            >
+              <ArrowUp size={20} />
+            </button>
           </div>
-      </div>
+        </div>
 
-      {/* Chat Input Section */}
-        <div className="row justify-content-center mb-5">
-          <div className="col-lg-8 col-xl-6">
-            <div className="card border-0 shadow-sm">
-              <div className="card-body p-0">
-                {/* Input Area */}
-                <div className="d-flex align-items-end p-3 gap-3">
-                  {/* Plus Icon */}
-                  <button 
-                    className="btn btn-light rounded-circle d-flex align-items-center justify-content-center"
-                    style={{ width: '40px', height: '40px', minWidth: '40px' }}
-                    disabled={isGenerating}
-                  >
-                    <Plus size={20} className="text-muted" />
-                  </button>
-
-                  {/* Textarea Container */}
-                  <div className="flex-fill position-relative">
-            <textarea
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              onKeyDown={handleKeyPress}
-                      placeholder="Ask Pixel AI to build"
-                      className="form-control border-0 resize-none"
-                      style={{
-                        minHeight: '40px',
-                        maxHeight: '200px',
-                        fontSize: '16px',
-                        lineHeight: '1.5',
-                        paddingRight: '50px'
-                      }}
+        {/* Suggestion Pills */}
+        <div className="suggestions-container">
+          {promptSuggestions.map((suggestion, index) => (
+            <button
+              key={index}
+              onClick={() => setPrompt(suggestion.prompt)}
+              className="suggestion-pill"
               disabled={isGenerating}
-                      rows={1}
-                    />
-                    
-                    {/* Generating State Overlay */}
-                    {isGenerating && (
-                      <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-light bg-opacity-90 rounded">
-                        <div className="d-flex align-items-center gap-2">
-                          <div className="spinner-border spinner-border-sm text-primary" role="status">
-                            <span className="visually-hidden">Generating...</span>
-                          </div>
-                          <span className="small fw-medium text-primary">Generating...</span>
-          </div>
-        </div>
-                    )}
-          </div>
-
-          {/* Send Button */}
-          <button
-            onClick={handleGenerate}
-            disabled={!prompt.trim() || isGenerating}
-                    className="btn btn-dark rounded-circle d-flex align-items-center justify-content-center"
-                    style={{ width: '40px', height: '40px', minWidth: '40px' }}
-          >
-            {isGenerating ? (
-                      <Loader size={16} className="spinner-border spinner-border-sm text-light" />
-            ) : (
-                      <Send size={16} className="text-light" />
-            )}
-          </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Project Type Selection */}
-        <div className="text-center mb-5">
-          <p className={`h6 mb-4 ${isDark ? 'text-light' : 'text-dark'}`}>Choose your project type</p>
-          <div className="d-flex justify-content-center">
-            <div className={`p-2 rounded-4 ${isDark ? 'bg-secondary' : 'bg-light'}`} style={{border: '2px solid #e5e7eb'}}>
-              <button
-                onClick={() => setProjectType('static')}
-                className={`project-type-btn ${isDark ? 'project-type-btn-dark' : ''} ${projectType === 'static' ? 'active' : ''}`}
-              >
-                Static Site
-              </button>
-              <button
-                onClick={() => setProjectType('react-vite')}
-                className={`project-type-btn ${isDark ? 'project-type-btn-dark' : ''} ${projectType === 'react-vite' ? 'active' : ''}`}
-              >
-                React + Vite
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Quick Action Buttons */}
-        <div className="text-center mb-4">
-          <h5 className={`mb-2 ${isDark ? 'text-light' : 'text-dark'}`}>Popular templates to get you started</h5>
-          <p className={`small ${isDark ? 'text-muted' : 'text-secondary'}`}>Click any template to auto-fill the prompt</p>
-        </div>
-
-        <div className="row g-4 justify-content-center">
-          <div className="col-6 col-md-3">
-            <div
-              onClick={() => setPrompt("Create a modern landing page for my startup")}
-              className={`template-card ${isDark ? 'template-card-dark' : ''}`}
+              title={suggestion.prompt}
             >
-              <div className="icon-wrapper icon-wrapper-blue">
-                <Home size={24} />
-              </div>
-              <h6 className="text-center mb-2">Landing Page</h6>
-              <p className={`small text-center mb-0 ${isDark ? 'text-muted' : 'text-secondary'}`}>
-                Modern & responsive
-              </p>
-            </div>
-          </div>
-
-          <div className="col-6 col-md-3">
-            <div
-              onClick={() => setPrompt("Build a portfolio website to showcase my work")}
-              className={`template-card ${isDark ? 'template-card-dark' : ''}`}
-            >
-              <div className="icon-wrapper icon-wrapper-purple">
-                <Briefcase size={24} />
-              </div>
-              <h6 className="text-center mb-2">Portfolio</h6>
-              <p className={`small text-center mb-0 ${isDark ? 'text-muted' : 'text-secondary'}`}>
-                Showcase your work
-              </p>
-            </div>
-          </div>
-
-          <div className="col-6 col-md-3">
-            <div
-              onClick={() => setPrompt("Create a blog website with multiple posts")}
-              className={`template-card ${isDark ? 'template-card-dark' : ''}`}
-            >
-              <div className="icon-wrapper icon-wrapper-green">
-                <PenTool size={24} />
-              </div>
-              <h6 className="text-center mb-2">Blog</h6>
-              <p className={`small text-center mb-0 ${isDark ? 'text-muted' : 'text-secondary'}`}>
-                Share your thoughts
-              </p>
+              {suggestion.display}
+            </button>
+          ))}
         </div>
-      </div>
-
-          <div className="col-6 col-md-3">
-            <div
-              onClick={() => setPrompt("Build a business website with contact forms")}
-              className={`template-card ${isDark ? 'template-card-dark' : ''}`}
-            >
-              <div className="icon-wrapper icon-wrapper-orange">
-                <Building2 size={24} />
-              </div>
-              <h6 className="text-center mb-2">Business</h6>
-              <p className={`small text-center mb-0 ${isDark ? 'text-muted' : 'text-secondary'}`}>
-                Professional presence
-              </p>
-            </div>
-          </div>
       </div>
     </div>
-    </>
   );
 };
 
 export default ChatInterfaceLanding;
+  

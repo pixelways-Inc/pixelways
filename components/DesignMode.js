@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { ChevronRight, ChevronDown, File, Folder, FileText, Code, Play, Download, Edit3, Plus, Trash2 } from 'lucide-react';
+import { ChevronRight, ChevronDown, File, Folder, FileText, Code, Play, Download, Edit3, Plus, Trash2, Loader } from 'lucide-react';
 import dynamic from 'next/dynamic';
 const MonacoCodeViewer = dynamic(() => import('./MonacoCodeViewer'), { ssr: false });
 const FileEditor = dynamic(() => import('./FileEditor'), { ssr: false });
@@ -401,14 +401,6 @@ console.log('Hello from ${fileName}');`;
           background: #dcfce7;
           color: #166534;
         }
-        .project-type-badge.react-vite {
-          background: #dbeafe;
-          color: #1e40af;
-        }
-        .project-type-badge.nextjs {
-          background: #f3e8ff;
-          color: #7c3aed;
-        }
         .header-actions {
           display: flex;
           align-items: center;
@@ -598,6 +590,46 @@ console.log('Hello from ${fileName}');`;
         .modal-btn.secondary:hover {
           background: #e5e7eb;
         }
+        .planned-pages-section {
+          margin-top: 0.75rem;
+          padding: 0.75rem;
+          background: #fef3c7;
+          border: 1px solid #f59e0b;
+          border-radius: 0.375rem;
+          margin-left: 0.75rem;
+          margin-right: 0.75rem;
+        }
+        .planned-pages-header {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+        .planned-pages-title {
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: #92400e;
+        }
+        .planned-pages-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+        .planned-page-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .planned-page-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #f59e0b;
+        }
+        .planned-page-name {
+          font-size: 0.75rem;
+          color: #92400e;
+        }
       `}</style>
       
       <div className="design-container">
@@ -610,9 +642,7 @@ console.log('Hello from ${fileName}');`;
                 <span className="header-title">Files</span>
                 {website?.projectType && (
                   <span className={`project-type-badge ${website.projectType}`}>
-                    {website.projectType === 'static' ? 'HTML/CSS/JS' : 
-                     website.projectType === 'react-vite' ? 'REACT-VITE' : 
-                     website.projectType === 'nextjs' ? 'NEXTJS' : website.projectType.toUpperCase()}
+                    HTML/CSS/JS
                   </span>
                 )}
               </div>
@@ -634,17 +664,29 @@ console.log('Hello from ${fileName}');`;
               </div>
             </div>
             
-            {website?.projectType !== 'static' && (
-              <div className="sync-info-banner">
-                📦 Changes sync to editor only - Deploy to see live preview
-              </div>
-            )}
-            
             <div className="file-tree">
               {fileTree.map((node, index) => (
                 <FileTreeNode key={index} {...node} />
               ))}
             </div>
+            
+            {/* Planned Pages Indicator */}
+            {website.plannedPages && website.plannedPages.length > 0 && !website.isComplete && (
+              <div className="planned-pages-section">
+                <div className="planned-pages-header">
+                  <Loader size={12} className="animate-spin text-blue-600" />
+                  <span className="planned-pages-title">Generating Pages...</span>
+                </div>
+                <div className="planned-pages-list">
+                  {website.plannedPages.map((page, index) => (
+                    <div key={page} className="planned-page-item">
+                      <div className="planned-page-dot" />
+                      <span className="planned-page-name">{page}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Code Editor */}
@@ -763,12 +805,6 @@ console.log('Hello from ${fileName}');`;
                   </button>
                 </div>
               </div>
-              
-              {website?.projectType !== 'static' && (
-                <div className="sync-info-banner">
-                  📦 Changes sync to editor only - Deploy to see live preview
-                </div>
-              )}
               
               <div className="file-tree">
                 {fileTree.map((node, index) => (
