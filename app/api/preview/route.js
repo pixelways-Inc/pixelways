@@ -63,29 +63,32 @@ export async function POST(request) {
     
     const siteName = site_name || `react-app-${Date.now()}`;
     
+    let sandbox = null;
+    let results;
+    let buildOutput = [];
+    
     try {
       // --- Step 1: Create E2B sandbox ---
       console.log('Creating E2B sandbox...');
       console.log('Using E2B API key:', E2B_CONFIG.API_KEY ? 'Configured' : 'Missing');
       
-      let sandbox = null;
-             try {
-         // Use 'base' template since 'node' is not available in this account
-         sandbox = await Sandbox.create('base', {
-           apiKey: E2B_CONFIG.API_KEY
-         });
-         console.log('E2B sandbox created successfully using base template');
-         console.log('Sandbox object type:', typeof sandbox);
-         console.log('Sandbox has files property:', sandbox && typeof sandbox.files);
-         
-         // Verify sandbox is properly initialized
-         if (!sandbox || !sandbox.files) {
-           throw new Error('Sandbox was created but is not properly initialized');
-         }
-       } catch (sandboxError) {
-         console.error('E2B sandbox creation failed:', sandboxError);
-         throw new Error(`Failed to create E2B sandbox: ${sandboxError.message}. Please check E2B API key and quotas.`);
-       }
+      try {
+        // Use 'base' template since 'node' is not available in this account
+        sandbox = await Sandbox.create('base', {
+          apiKey: E2B_CONFIG.API_KEY
+        });
+        console.log('E2B sandbox created successfully using base template');
+        console.log('Sandbox object type:', typeof sandbox);
+        console.log('Sandbox has files property:', sandbox && typeof sandbox.files);
+        
+        // Verify sandbox is properly initialized
+        if (!sandbox || !sandbox.files) {
+          throw new Error('Sandbox was created but is not properly initialized');
+        }
+      } catch (sandboxError) {
+        console.error('E2B sandbox creation failed:', sandboxError);
+        throw new Error(`Failed to create E2B sandbox: ${sandboxError.message}. Please check E2B API key and quotas.`);
+      }
 
              // --- Step 2: Prepare project files with template and modifications ---
        console.log('Preparing project files with React-Vite template...');
