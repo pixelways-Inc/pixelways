@@ -73,7 +73,7 @@ export async function POST(request) {
       console.log('Using E2B API key:', E2B_CONFIG.API_KEY ? 'Configured' : 'Missing');
       
              try {
-         // Try to use 'desktop' template first (more resources), fallback to 'base'
+         // Try multiple templates in order of preference
          let templateToUse = 'desktop';
          try {
            sandbox = await Sandbox.create('desktop', {
@@ -81,12 +81,21 @@ export async function POST(request) {
            });
            console.log('E2B sandbox created successfully using desktop template (8GB RAM)');
          } catch (desktopError) {
-           console.log('Desktop template failed, trying base template...');
-           templateToUse = 'base';
-           sandbox = await Sandbox.create('base', {
-             apiKey: E2B_CONFIG.API_KEY
-           });
-           console.log('E2B sandbox created successfully using base template (512MB RAM)');
+           console.log('Desktop template failed, trying code-interpreter-v1...');
+           try {
+             templateToUse = 'code-interpreter-v1';
+             sandbox = await Sandbox.create('code-interpreter-v1', {
+               apiKey: E2B_CONFIG.API_KEY
+             });
+             console.log('E2B sandbox created successfully using code-interpreter-v1 template (1GB RAM)');
+           } catch (codeInterpreterError) {
+             console.log('Code-interpreter-v1 failed, trying base template...');
+             templateToUse = 'base';
+             sandbox = await Sandbox.create('base', {
+               apiKey: E2B_CONFIG.API_KEY
+             });
+             console.log('E2B sandbox created successfully using base template (512MB RAM)');
+           }
          }
          
          console.log('Sandbox object type:', typeof sandbox);
@@ -95,6 +104,20 @@ export async function POST(request) {
          // Verify sandbox is properly initialized
          if (!sandbox || !sandbox.files) {
            throw new Error('Sandbox was created but is not properly initialized');
+         }
+         
+         // Check what's available in the sandbox
+         console.log('Checking sandbox environment...');
+         try {
+           const osCheck = await sandbox.commands.run('cat /etc/os-release');
+           const shellCheck = await sandbox.commands.run('which bash');
+           console.log('OS Info:', osCheck.stdout);
+           console.log('Shell available:', shellCheck.stdout);
+           
+           // Log which template we're using
+           console.log('Using template:', templateToUse);
+         } catch (envError) {
+           console.log('Environment check warning:', envError.message);
          }
        } catch (sandboxError) {
          console.error('E2B sandbox creation failed:', sandboxError);
@@ -130,11 +153,34 @@ export async function POST(request) {
          throw new Error(`Failed to prepare project files: ${templateError.message}`);
        }
 
-      // --- Step 3: Install dependencies ---
+            // --- Step 3: Install dependencies ---
       console.log('Installing dependencies... (this may take a few minutes)');
       try {
         if (!sandbox) {
           throw new Error('Sandbox is not available for dependency installation');
+        }
+        
+        // Check what's available in the sandbox
+        console.log('Checking available tools in sandbox...');
+        try {
+          const nodeCheck = await sandbox.commands.run('node --version');
+          console.log('Node.js version:', nodeCheck.stdout);
+        } catch (nodeError) {
+          console.log('Node.js not found, installing...');
+          // Install Node.js if not available
+          await sandbox.commands.run('curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -');
+          await sandbox.commands.run('sudo apt-get install -y nodejs');
+          console.log('Node.js installed');
+        }
+        
+        try {
+          const npmCheck = await sandbox.commands.run('npm --version');
+          console.log('npm version:', npmCheck.stdout);
+        } catch (npmError) {
+          console.log('npm not found, installing...');
+          // Install npm if not available
+          await sandbox.commands.run('sudo apt-get install -y npm');
+          console.log('npm installed');
         }
         
         // Optimize npm install for limited resources
@@ -171,21 +217,21 @@ export async function POST(request) {
           }
         }
         
-                 console.log('Dependencies installed successfully');
-         
-         // Check available disk space and memory
-         try {
-           const diskCheck = await sandbox.commands.run('df -h .');
-           const memoryCheck = await sandbox.commands.run('free -h');
-           console.log('Disk space after install:', diskCheck.stdout);
-           console.log('Memory usage after install:', memoryCheck.stdout);
-         } catch (resourceError) {
-           console.log('Resource check warning:', resourceError.message);
-         }
-       } catch (installError) {
-         console.error('npm install failed:', installError);
-         throw new Error(`Dependency installation failed: ${installError.message}`);
-       }
+        console.log('Dependencies installed successfully');
+        
+        // Check available disk space and memory
+        try {
+          const diskCheck = await sandbox.commands.run('df -h .');
+          const memoryCheck = await sandbox.commands.run('free -h');
+          console.log('Disk space after install:', diskCheck.stdout);
+          console.log('Memory usage after install:', memoryCheck.stdout);
+        } catch (resourceError) {
+          console.log('Resource check warning:', resourceError.message);
+        }
+      } catch (installError) {
+        console.error('npm install failed:', installError);
+        throw new Error(`Dependency installation failed: ${installError.message}`);
+      }
 
       // --- Step 4: Build project ---
       console.log('Building project... (this may take a few minutes)');
