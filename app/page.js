@@ -23,20 +23,7 @@ const page = () => {
         "--tekprof-gray-color": "#FAF8F6",
       }}
     >
-      {/*End Hidden Sidebar */}
-      {/* AI Hero Section Start */}
-      <section className="ai-hero-area pt-100 rpt-70 pb-130 rpb-100 rel z-1">
-        <div className="container-fluid">
-          <ThemeProvider>
-            <div className="min-h-screen bg-white dark:bg-gray-900 flex flex-col items-center justify-center p-4 transition-colors">
-              <div className="w-full max-w-4xl mx-auto py-12">
-                <ChatInterfaceLanding />
-              </div>
-            </div>
-          </ThemeProvider>
-        </div>
-      </section>
-      {/* AI Hero Section End */}
+      
       {/* Features Area start */}
       <section className="features-area rel z-1">
         <div className="container pt-130 rpt-100 pb-100 rpb-70">
