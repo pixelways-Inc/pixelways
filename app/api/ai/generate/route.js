@@ -2,8 +2,6 @@ import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
 import { generateObject } from 'ai';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import fs from 'fs';
-import path from 'path';
 
 // Configure Mistral AI (Codestral) using OpenAI-compatible provider
 const mistral = createOpenAICompatible({
@@ -18,203 +16,9 @@ const WebsiteSchema = z.object({
   files: z.array(z.object({
     path: z.string(),
     content: z.string(),
-    action: z.enum(['create', 'modify', 'delete']).optional(),
-    searchReplace: z.object({
-      filePath: z.string(),
-      oldString: z.string(),
-      newString: z.string(),
-      lineNumbers: z.object({
-        start: z.number(),
-        end: z.number()
-      }).optional()
-    }).optional()
   })),
   description: z.string(),
-  instructions: z.string().optional(),
 });
-
-// Function to get React-Vite template structure
-function getReactViteTemplateStructure() {
-  const templatePath = path.join(process.cwd(), 'data', 'react-vite');
-  const structure = {
-    configFiles: {},
-    components: {},
-    pages: {},
-    utils: {},
-    styles: {}
-  };
-
-  try {
-    // Read configuration files
-    const configFiles = [
-      'package.json',
-      'vite.config.ts',
-      'tailwind.config.js',
-      'tsconfig.json',
-      'postcss.config.js',
-      '.eslintrc.cjs'
-    ];
-
-    configFiles.forEach(file => {
-      const filePath = path.join(templatePath, file);
-      if (fs.existsSync(filePath)) {
-        structure.configFiles[file] = {
-          path: file,
-          content: fs.readFileSync(filePath, 'utf-8'),
-          lineCount: fs.readFileSync(filePath, 'utf-8').split('\n').length
-        };
-      }
-    });
-
-    // Read source files
-    const srcPath = path.join(templatePath, 'src');
-    if (fs.existsSync(srcPath)) {
-      // Read main files
-      const mainFiles = ['main.tsx', 'App.tsx', 'index.css', 'tailwind.css', 'vite-env.d.ts'];
-      mainFiles.forEach(file => {
-        const filePath = path.join(srcPath, file);
-        if (fs.existsSync(filePath)) {
-          structure.pages[file] = {
-            path: `src/${file}`,
-            content: fs.readFileSync(filePath, 'utf-8'),
-            lineCount: fs.readFileSync(filePath, 'utf-8').split('\n').length
-          };
-        }
-      });
-
-      // Read components
-      const componentsPath = path.join(srcPath, 'components');
-      if (fs.existsSync(componentsPath)) {
-        const componentDirs = ['ui', 'shared', 'HOC', 'hooks', 'config'];
-        componentDirs.forEach(dir => {
-          const dirPath = path.join(componentsPath, dir);
-          if (fs.existsSync(dirPath)) {
-            structure.components[dir] = {};
-            const files = fs.readdirSync(dirPath, { recursive: true });
-            files.forEach(file => {
-              if (typeof file === 'string' && (file.endsWith('.tsx') || file.endsWith('.ts'))) {
-                const filePath = path.join(dirPath, file);
-                const content = fs.readFileSync(filePath, 'utf-8');
-                structure.components[dir][file] = {
-                  path: `src/components/${dir}/${file}`,
-                  content: content,
-                  lineCount: content.split('\n').length
-                };
-              }
-            });
-          }
-        });
-      }
-
-      // Read utils
-      const utilsPath = path.join(srcPath, 'utils');
-      if (fs.existsSync(utilsPath)) {
-        const utils = fs.readdirSync(utilsPath);
-        utils.forEach(file => {
-          if (file.endsWith('.ts') || file.endsWith('.tsx')) {
-            const filePath = path.join(utilsPath, file);
-            const content = fs.readFileSync(filePath, 'utf-8');
-            structure.utils[file] = {
-              path: `src/utils/${file}`,
-              content: content,
-              lineCount: content.split('\n').length
-            };
-          }
-        });
-      }
-
-      // Read assets
-      const assetsPath = path.join(srcPath, 'assets');
-      if (fs.existsSync(assetsPath)) {
-        structure.styles = {};
-        const styleFiles = fs.readdirSync(assetsPath, { recursive: true });
-        styleFiles.forEach(file => {
-          if (typeof file === 'string' && file.endsWith('.css')) {
-            const filePath = path.join(assetsPath, file);
-            const content = fs.readFileSync(filePath, 'utf-8');
-            structure.styles[file] = {
-              path: `src/assets/${file}`,
-              content: content,
-              lineCount: content.split('\n').length
-            };
-          }
-        });
-      }
-    } else {
-      console.log('✗ Source directory not found');
-    }
-
-    // Read public files
-    const publicPath = path.join(templatePath, 'public');
-    if (fs.existsSync(publicPath)) {
-      structure.public = {};
-      const publicFiles = fs.readdirSync(publicPath);
-      publicFiles.forEach(file => {
-        if (file === 'index.html') {
-          const filePath = path.join(publicPath, file);
-          const content = fs.readFileSync(filePath, 'utf-8');
-          structure.public[file] = {
-            path: file,
-            content: content,
-            lineCount: content.split('\n').length
-          };
-        }
-      });
-    }
-
-  } catch (error) {
-    console.error('Error reading template structure:', error);
-  }
-
-  return structure;
-}
-
-// Function to get static site template structure
-function getStaticSiteTemplateStructure() {
-  const templatePath = path.join(process.cwd(), 'data', 'static-templates');
-  const structure = {
-    baseTemplate: {},
-    javascript: {},
-    config: {}
-  };
-
-  try {
-    // Read base HTML template
-    const baseTemplatePath = path.join(templatePath, 'index.html');
-    if (fs.existsSync(baseTemplatePath)) {
-      structure.baseTemplate = {
-        path: 'index.html',
-        content: fs.readFileSync(baseTemplatePath, 'utf-8'),
-        lineCount: fs.readFileSync(baseTemplatePath, 'utf-8').split('\n').length
-      };
-    }
-
-    // Read JavaScript template
-    const scriptPath = path.join(templatePath, 'script.js');
-    if (fs.existsSync(scriptPath)) {
-      structure.javascript = {
-        path: 'script.js',
-        content: fs.readFileSync(scriptPath, 'utf-8'),
-        lineCount: fs.readFileSync(scriptPath, 'utf-8').split('\n').length
-      };
-    }
-
-    // Read configuration
-    const configPath = path.join(templatePath, 'TEMPLATE_CONFIG.md');
-    if (fs.existsSync(configPath)) {
-      structure.config = {
-        path: 'TEMPLATE_CONFIG.md',
-        content: fs.readFileSync(configPath, 'utf-8'),
-        lineCount: fs.readFileSync(configPath, 'utf-8').split('\n').length
-      };
-    }
-
-  } catch (error) {
-    console.error('Error reading static template structure:', error);
-  }
-
-  return structure;
-}
 
 export async function POST(request) {
   try {
@@ -225,18 +29,6 @@ export async function POST(request) {
     }
 
     console.log('Generating website with Mistral AI:', { prompt, projectType, isFollowup, hasExistingWebsite: !!existingWebsite });
-
-    // Get React-Vite template structure if needed
-    let templateStructure = null;
-    let staticTemplateStructure = null;
-    
-    if (projectType === 'react-vite') {
-      templateStructure = getReactViteTemplateStructure();
-      console.log('React-Vite template structure loaded:', Object.keys(templateStructure));
-    } else if (projectType === 'static') {
-      staticTemplateStructure = getStaticSiteTemplateStructure();
-      console.log('Static site template structure loaded:', Object.keys(staticTemplateStructure));
-    }
 
     // Build context-aware system prompt
     let contextInfo = '';
@@ -273,28 +65,23 @@ IMPORTANT: You must return a JSON object with this EXACT structure:
 {
   "projectType": "${projectType}",
   "description": "Brief description of the website",
-  "instructions": "Step-by-step instructions for implementation",
   "files": [
     {
-      "path": "file/path/here",
-      "content": "full file content here",
-      "action": "create|modify|delete",
-      "searchReplace": {
-        "filePath": "path/to/file",
-        "oldString": "exact text to replace",
-        "newString": "new text to insert",
-        "lineNumbers": {
-          "start": 10,
-          "end": 15
-        }
-      }
+      "path": "index.html",
+      "content": "full HTML content here"
+    },
+    {
+      "path": "style.css", 
+      "content": "CSS content here (optional)"
     }
   ]
 }
 
 🚀 DESIGN PRINCIPLES FOR ALL PROJECTS:
 
-1. **USE TAILWIND CSS** - Always use Tailwind CSS for styling
+1. **USE TAILWIND CSS VIA CDN** - Always include Tailwind CSS CDN in HTML head:
+   <script src="https://cdn.tailwindcss.com"></script>
+
 2. **STUNNING VISUAL DESIGN:**
    - Modern gradients and sophisticated color schemes
    - Beautiful typography with perfect spacing
@@ -327,73 +114,67 @@ For ${projectType} projects:
 ${projectType === 'static' ? `
 🌟 STATIC WEBSITE REQUIREMENTS:
 
-🎯 IMPORTANT: You are working with an EXISTING Static Site template that already has:
-- Complete HTML structure with navigation, header, and footer
-- Pre-built JavaScript functionality (mobile menu, forms, animations)
-- Tailwind CSS styling with custom classes
-- Responsive design and mobile-first approach
-- SEO optimization and accessibility features
+- Generate EXACTLY 5 separate HTML files (NOT single page with sections)
+- MANDATORY FILES: index.html, about.html, services.html, contact.html, portfolio.html
+- Each file must be a complete standalone HTML page with full navigation
+- Use Tailwind CSS for ALL styling (no custom CSS files unless absolutely necessary)
+- ALL pages must include IDENTICAL navigation linking to other HTML files
+- Include interactive JavaScript for smooth user experience
 
-📁 EXISTING TEMPLATE STRUCTURE:
-${staticTemplateStructure ? `
-BASE TEMPLATE (REUSE THIS - do not recreate):
-- ${staticTemplateStructure.baseTemplate.path} (${staticTemplateStructure.baseTemplate.lineCount} lines) - Complete HTML structure with placeholders
+🔗 CRITICAL NAVIGATION REQUIREMENTS:
+- Navigation must use relative file links: href="about.html" NOT href="#about"
+- Each page must have IDENTICAL navigation structure in header AND footer
+- Navigation links must point to actual HTML files, not anchor sections
+- Footer must also contain links to all other pages
 
-JAVASCRIPT TEMPLATE (REUSE THIS - do not recreate):
-- ${staticTemplateStructure.javascript.path} (${staticTemplateStructure.javascript.lineCount} lines) - Complete functionality (mobile menu, forms, animations)
+📝 MANDATORY NAVIGATION STRUCTURE (include in ALL files):
+<nav class="navbar">
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+  </ul>
+</nav>
 
-CONFIGURATION (REFERENCE THIS):
-- ${staticTemplateStructure.config.path} (${staticTemplateStructure.config.lineCount} lines) - Template variables and usage guide
-` : 'Template structure not available'}
+🚫 STRICTLY FORBIDDEN:
+- Single-page applications with anchor links (#section)
+- Missing navigation between pages
+- Inconsistent navigation across files
+- Only generating one HTML file
 
-🎨 YOUR TASK: Create page content using the existing template structure
+📱 MOBILE-RESPONSIVE STRUCTURE:
+- Hero sections with gradient backgrounds
+- Grid layouts for services/portfolio
+- Responsive navigation (mobile hamburger menu)
+- Contact forms with validation
+- Footer with social links
 
-🔧 TEMPLATE USAGE PATTERNS:
-- Use the base HTML template as a foundation
-- Replace placeholder variables: {{SITE_TITLE}}, {{SITE_DESCRIPTION}}, {{MAIN_CONTENT}}
-- Create content for each page (index.html, about.html, services.html, contact.html, portfolio.html)
-- Each page should use the same navigation and footer structure
-- Leverage existing CSS classes: .gradient-bg, .text-gradient, .hover-lift, .animate-on-scroll
-
-📝 FILE CREATION RULES:
-1. Use the base template structure for all pages
-2. Replace {{MAIN_CONTENT}} with page-specific content
-3. Keep navigation and footer identical across all pages
-4. Use existing CSS classes and JavaScript functionality
-5. Create 5 separate HTML files as required
-
-🎯 TEMPLATE VARIABLES TO USE:
-- {{SITE_TITLE}} - Website title
-- {{SITE_DESCRIPTION}} - Website description  
-- {{SITE_KEYWORDS}} - SEO keywords
-- {{SITE_LOGO}} - Company/brand name
-- {{CURRENT_YEAR}} - Current year
-- {{MAIN_CONTENT}} - Page-specific content
-
-💡 CONTENT CREATION GUIDELINES:
-- Create compelling hero sections with gradient backgrounds
-- Use service cards with hover effects
-- Include portfolio items with filtering
-- Add testimonials and team sections
-- Create professional contact forms
-- Use existing JavaScript functionality
+🎨 VISUAL ELEMENTS TO INCLUDE:
+- Gradient hero backgrounds
+- Card-based layouts with hover effects
+- Professional color schemes (use Tailwind colors)
+- Icons from Heroicons or similar
+- Smooth scroll behavior
+- Loading animations
 
 📁 MANDATORY FILE STRUCTURE (must generate ALL files):
-* index.html - Homepage with hero, features, CTA + navigation to all pages
-* about.html - About page with team/story + navigation to all pages  
+* index.html - Stunning homepage with hero, features, CTA + navigation to all pages
+* about.html - Professional about page with team/story + navigation to all pages  
 * services.html - Service cards with hover effects + navigation to all pages
 * portfolio.html - Project showcase with filters + navigation to all pages
 * contact.html - Beautiful contact form + info + navigation to all pages
-* script.js - JavaScript functionality (reuse template)
+* script.js - Interactive features and animations (shared across all pages)
 
 ⚠️ VALIDATION: Your response must contain exactly 5 HTML files with proper cross-linking navigation
 
 🔧 TECHNICAL REQUIREMENTS:
-- Use existing template structure and CSS classes
-- Maintain consistent navigation across all pages
-- Include all required JavaScript functionality
-- Ensure responsive design and mobile compatibility
-- Follow SEO best practices with proper meta tags
+- SEO optimized with proper meta tags
+- Fast loading and performance optimized
+- Accessibility compliant (WCAG)
+- Cross-browser compatible
+- Clean, semantic HTML structure
 
 💡 EXAMPLE: If generating a business website, you MUST create:
 1. index.html (with <a href="about.html">About</a> links)
@@ -402,129 +183,47 @@ CONFIGURATION (REFERENCE THIS):
 4. contact.html (with <a href="portfolio.html">Portfolio</a> links)
 5. portfolio.html (with <a href="index.html">Home</a> links)
 
-Each file must use the template structure and include navigation to ALL other files.
+Each file must be complete with navigation to ALL other files.
 ` : projectType === 'react-vite' ? `
 ⚛️ REACT + VITE REQUIREMENTS:
 
-🎯 IMPORTANT: You are working with an EXISTING React-Vite template that already has:
-- Complete project configuration (package.json, vite.config.ts, tailwind.config.js, etc.)
-- Pre-built UI component library with 20+ components
-- TypeScript configuration and ESLint setup
-- Tailwind CSS with custom animations
-- Form handling with react-hook-form and zod validation
+- Create a modern React SPA with stunning UI components
+- Use Tailwind CSS for all styling
+- Include React Router for smooth navigation
+- Implement state management for interactive features
+- Add animations with Framer Motion
 
-📁 EXISTING TEMPLATE STRUCTURE:
-${templateStructure ? `
-CONFIG FILES (DO NOT MODIFY - these are already perfect):
-${Object.entries(templateStructure.configFiles).map(([file, info]) => 
-  `- ${info.path} (${info.lineCount} lines) - ${file === 'package.json' ? 'Dependencies and scripts' : 
-    file === 'vite.config.ts' ? 'Vite configuration' :
-    file === 'tailwind.config.js' ? 'Tailwind CSS configuration' :
-    file === 'tsconfig.json' ? 'TypeScript configuration' :
-    'Configuration file'}`).join('\n')}
-
-EXISTING COMPONENTS (REUSE THESE - do not recreate):
-${Object.entries(templateStructure.components).map(([category, components]) => 
-  `${category.toUpperCase()}:
-${Object.entries(components).map(([file, info]) => 
-  `  - ${info.path} (${info.lineCount} lines)`).join('\n')}`).join('\n\n')}
-
-EXISTING PAGES (MODIFY THESE):
-${Object.entries(templateStructure.pages).map(([file, info]) => 
-  `- ${info.path} (${info.lineCount} lines) - ${file === 'App.tsx' ? 'Main application component' : 
-    file === 'main.tsx' ? 'Application entry point' :
-    file === 'index.css' ? 'Global styles' :
-    'Page file'}`).join('\n')}
-
-EXISTING UTILITIES (REUSE THESE):
-${Object.entries(templateStructure.utils).map(([file, info]) => 
-  `- ${info.path} (${info.lineCount} lines)`).join('\n')}
-
-EXISTING STYLES (REUSE THESE):
-${Object.entries(templateStructure.styles).map(([file, info]) => 
-  `- ${info.path} (${info.lineCount} lines)`).join('\n')}
-` : 'Template structure not available'}
-
-🎨 YOUR TASK: Create new pages and components using the existing template structure
-
-🔧 COMPONENT USAGE PATTERNS:
-- Import components from "@Components/ui" (already configured)
-- Use existing Button, Container, Flex, Typography, etc.
-- Follow the existing design patterns in App.tsx
-- Use Tailwind CSS classes (already configured)
-- Maintain TypeScript types (already configured)
-
-📝 FILE CREATION RULES:
-1. ONLY create NEW files that don't exist
-2. DO NOT modify existing config files (package.json, vite.config.ts, etc.)
-3. DO NOT recreate existing components
-4. Use the existing component library and patterns
-5. Create new pages in src/pages/ directory
-6. Create new components in src/components/ if needed
-
-🎯 COMPONENT IMPORT PATTERN:
-import {
-  Container,
-  Button,
-  Flex,
-  Typography,
-  Model,
-  Accordion,
-  // ... other components as needed
-} from "@Components/ui";
-
-🎨 DESIGN INSPIRATION - Create websites that look like:
-- Apple.com (clean, minimal, premium)
-- Stripe.com (professional, trustworthy)
-- Linear.app (modern, sleek)
-- Vercel.com (developer-focused, elegant)
-- Figma.com (creative, innovative)
-
-💡 CONTENT GUIDELINES:
-- Write compelling, professional copy
-- Use action-oriented language
-- Include realistic business information
-- Create clear value propositions
-- Add testimonials and social proof
-
-🎯 QUALITY STANDARDS:
-- Every element should be pixel-perfect
-- Smooth animations and interactions
-- Professional typography hierarchy
-- Consistent spacing and alignment
-- Beautiful color combinations
-- Premium look and feel
-
-📋 RESPONSE FORMAT:
-For each new file you create, specify:
-- "action": "create"
-- "path": "src/pages/NewPage.tsx" (or appropriate path)
-- "content": "Complete file content"
-
-For modifications to existing files, specify:
-- "action": "modify"
-- "searchReplace": {
-  "filePath": "src/App.tsx",
-  "oldString": "exact text to replace (use exact whitespace and formatting)",
-  "newString": "new text to insert",
-  "lineNumbers": { "start": 10, "end": 15 }
+📦 DEPENDENCIES TO INCLUDE:
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
+    "framer-motion": "^10.16.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.3",
+    "vite": "^4.4.5",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31"
+  }
 }
 
-⚠️ CRITICAL MODIFICATION RULES:
-1. **EXACT MATCHING**: The oldString must match EXACTLY including spaces, tabs, and line breaks
-2. **LINE NUMBERS**: Use lineNumbers when possible for precise targeting
-3. **CONTEXT**: Include enough context in oldString to ensure unique matching
-4. **WHITESPACE**: Preserve exact whitespace formatting from the original file
-5. **FALLBACK**: If exact match fails, the system will try fuzzy matching automatically
+🎨 COMPONENT STRUCTURE:
+* App.jsx - Main app with routing
+* components/Navbar.jsx - Responsive navigation
+* components/Hero.jsx - Stunning hero section
+* components/Features.jsx - Feature cards
+* pages/Home.jsx, About.jsx, Contact.jsx
+* tailwind.config.js - Tailwind configuration
 
-💡 BEST PRACTICES:
-- Copy the exact text from the file you want to modify
-- Include 2-3 lines of context before and after your target
-- Use lineNumbers for precise line-based replacements
-- Test your oldString against the actual file content
-- Keep modifications focused and specific
-
-Return ONLY the JSON object with the files array format. Make this website absolutely STUNNING! 🚀
+🔧 MODERN FEATURES:
+- Component-based architecture
+- Smooth page transitions
+- Interactive UI elements
+- State-driven animations
+- Responsive design system
 ` : `
 🔗 NEXT.JS REQUIREMENTS:
 
@@ -579,10 +278,6 @@ ${file.content}
 USER REQUEST: ${prompt}
 
 Please modify the above website according to the user's request. Return the complete updated website with all files.`;
-    } else if (projectType === 'react-vite') {
-      fullPrompt = `Create a complete React-Vite website using the existing template: ${prompt}
-
-IMPORTANT: Use the existing React-Vite template structure and components. Only create new files that don't exist. Reuse existing components from @Components/ui.`;
     } else {
       fullPrompt = `Create a complete ${projectType} website: ${prompt}`;
     }
@@ -608,9 +303,7 @@ IMPORTANT: Use the existing React-Vite template structure and components. Only c
     return NextResponse.json({
       success: true,
       website: result.object,
-      message: 'Website generated successfully',
-      templateStructure: projectType === 'react-vite' ? templateStructure : 
-                        projectType === 'static' ? staticTemplateStructure : null
+      message: 'Website generated successfully'
     });
 
   } catch (error) {

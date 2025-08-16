@@ -34,13 +34,13 @@ const DesignMode = dynamic(() => import('../../components/DesignMode'), {
   )
 });
 
-const HybridPreviewSystem = dynamic(() => import('../../components/HybridPreviewSystem'), { 
+const PreviewFrame = dynamic(() => import('../../components/PreviewFrame'), { 
   ssr: false,
   loading: () => (
     <div className="h-100 d-flex align-items-center justify-content-center">
       <div className="text-center">
         <Loader size={24} className="spinner-border spinner-border-sm mb-2" />
-        <div className="small text-muted">Loading Sandpack Preview...</div>
+        <div className="small text-muted">Loading Preview...</div>
       </div>
     </div>
   )
@@ -250,49 +250,6 @@ const WorkspacePage = () => {
     } else if (event.data.type === 'GITHUB_AUTH_ERROR') {
       window.removeEventListener('message', handleAuthMessage, false);
       alert('GitHub authentication failed. Please try again.');
-    }
-  };
-
-  // New function for Sandpack + Supabase deployment
-  const handleDeployToSupabase = async (exportedFiles, siteName) => {
-    try {
-      console.log('Deploying to Supabase via hybrid system...');
-      
-      const response = await fetch('/api/preview', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          files: exportedFiles,
-          project_type: generatedWebsite.projectType,
-          site_name: siteName
-        }),
-      });
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'Deployment failed');
-      }
-      
-      if (data.preview_url) {
-        setPreviewUrl(data.preview_url);
-        setSiteName(data.site);
-        return {
-          success: true,
-          preview_url: data.preview_url,
-          site: data.site,
-          message: data.message
-        };
-      } else {
-        throw new Error('No preview URL received');
-      }
-      
-    } catch (error) {
-      console.error('Supabase deployment error:', error);
-      return {
-        success: false,
-        error: error.message
-      };
     }
   };
 
@@ -624,11 +581,11 @@ const WorkspacePage = () => {
                 </div>
               ) : (
                 <ErrorBoundary fallbackMessage="Preview failed to load">
-                  <HybridPreviewSystem 
-                    files={generatedWebsite.files}
-                    projectType={generatedWebsite.projectType}
-                    siteName={customSiteName || siteName}
-                    onDeploy={handleDeployToSupabase}
+                  <PreviewFrame 
+                    previewUrl={previewUrl} 
+                    isDeploying={isDeploying}
+                    generatedWebsite={generatedWebsite}
+                    onGitHubExport={handleGitHubExport}
                   />
                 </ErrorBoundary>
               )
@@ -799,11 +756,11 @@ const WorkspacePage = () => {
                   </div>
                 ) : (
                   <ErrorBoundary fallbackMessage="Preview failed to load">
-                    <HybridPreviewSystem 
-                      files={generatedWebsite.files}
-                      projectType={generatedWebsite.projectType}
-                      siteName={customSiteName || siteName}
-                      onDeploy={handleDeployToSupabase}
+                    <PreviewFrame 
+                      previewUrl={previewUrl} 
+                      isDeploying={isDeploying}
+                      generatedWebsite={generatedWebsite}
+                      onGitHubExport={handleGitHubExport}
                     />
                   </ErrorBoundary>
                 )}
