@@ -64,15 +64,16 @@ export async function POST(request) {
     const siteName = site_name || `react-app-${Date.now()}`;
     
     try {
-      // --- Step 1: Create E2B Node.js sandbox ---
-      console.log('Creating E2B Node.js sandbox...');
+      // --- Step 1: Create E2B sandbox ---
+      console.log('Creating E2B sandbox...');
       console.log('Using E2B API key:', E2B_CONFIG.API_KEY ? 'Configured' : 'Missing');
       
       try {
-        const sandbox = await Sandbox.create('node', {
+        // Use 'base' template since 'node' is not available in this account
+        const sandbox = await Sandbox.create('base', {
           apiKey: E2B_CONFIG.API_KEY
         });
-        console.log('E2B sandbox created successfully');
+        console.log('E2B sandbox created successfully using base template');
       } catch (sandboxError) {
         console.error('E2B sandbox creation failed:', sandboxError);
         throw new Error(`Failed to create E2B sandbox: ${sandboxError.message}. Please check E2B API key and quotas.`);

@@ -33,14 +33,14 @@
 ```
 AI Builder → E2B Sandbox → Build Process → Supabase Storage → Live Preview
     ↓              ↓            ↓              ↓              ↓
-Generate    Create Node.js   npm install    Upload dist/   pixelways.co
+Generate    Create Base      npm install    Upload dist/   pixelways.co
 Project     Environment      npm run build  files         /sites/[appName]/
 ```
 
 ## **🚀 How It Works Now**
 
 ### **For React + Vite Projects:**
-1. **E2B Sandbox Creation** - Isolated Node.js environment
+1. **E2B Sandbox Creation** - Isolated base environment
 2. **File Upload** - Project files uploaded to sandbox
 3. **Dependency Installation** - `npm install` in sandbox
 4. **Build Process** - `npm run build` generates dist/ folder
