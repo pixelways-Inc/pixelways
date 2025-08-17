@@ -6,6 +6,11 @@ import { useTheme } from '../context/ThemeContext';
 
 const ChatInterfaceLanding = () => {
   const [prompt, setPrompt] = useState('');
+
+  // Clear prompt when generation starts
+  useEffect(() => {
+    if (isGenerating) setPrompt('');
+  }, [isGenerating]);
   const [isGenerating, setIsGenerating] = useState(false);
   const router = useRouter();
   const { isDark, toggleTheme } = useTheme();

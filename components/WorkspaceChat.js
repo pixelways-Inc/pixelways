@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, Loader, Plus, Bot, User } from 'lucide-react';
+import { Send, Loader, Plus, Bot, User, Square } from 'lucide-react';
 
 const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
   const [messages, setMessages] = useState([]);
@@ -9,10 +9,27 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [dbLoaded, setDbLoaded] = useState(false);
   const messagesEndRef = useRef(null);
+  const abortControllerRef = useRef(null);
   const textareaRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleStopGeneration = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+    setIsGenerating(false);
+    // Remove thinking message if it exists
+    setMessages(prev => prev.filter(msg => !msg.isThinking));
+    addMessage({
+      id: Date.now(),
+      type: 'ai',
+      content: 'AI generation stopped.',
+      timestamp: new Date().toISOString()
+    });
   };
 
   useEffect(() => {
@@ -191,8 +208,15 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
   };
 
   const handleSendMessage = async () => {
-    if (!newMessage.trim() || isGenerating) return;
+    if (!newMessage.trim()) return; // Only return if no message, allow stopping if generating
 
+    // If currently generating, this click should stop it
+    if (isGenerating) {
+      handleStopGeneration();
+      return;
+    }
+
+    setIsGenerating(true); // Set generating state when starting
     const userMessage = {
       id: Date.now(),
       type: 'user',
@@ -211,6 +235,10 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
       };
       setMessages(prev => [...prev, { ...thinkingMessage, timestamp: new Date().toISOString() }]);
 
+      // Initialize AbortController
+      abortControllerRef.current = new AbortController();
+      const signal = abortControllerRef.current.signal;
+
       const response = await fetch('/api/ai/generate', {
         method: 'POST',
         headers: {
@@ -222,6 +250,7 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
           isFollowup: true,
           existingWebsite: generatedWebsite
         }),
+        signal: signal // Pass the signal to the fetch request
       });
 
       const data = await response.json();
@@ -269,25 +298,31 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
         await addMessage(errorMessage);
       }
     } catch (error) {
-      console.error('Error:', error);
-      setMessages(prev => prev.filter(msg => !msg.isThinking));
-      const errorContent = 'Sorry, I encountered an error. Please try again.';
-      const actions = parseActions(errorContent);
-      const cleanContent = removeActionBlocks(errorContent);
-      
-      if (actions && actions.length) {
-        try { console.log('AI Actions (exception path):', actions); } catch (_) {}
-      }
+      if (error.name === 'AbortError') {
+        console.log('Fetch aborted by user.');
+        // No need to add an error message, handleStopGeneration already added one
+      } else {
+        console.error('Error:', error);
+        setMessages(prev => prev.filter(msg => !msg.isThinking));
+        const errorContent = 'Sorry, I encountered an error. Please try again.';
+        const actions = parseActions(errorContent);
+        const cleanContent = removeActionBlocks(errorContent);
+        
+        if (actions && actions.length) {
+          try { console.log('AI Actions (exception path):', actions); } catch (_) {}
+        }
 
-      const errorMessage = {
-        id: Date.now() + 2,
-        type: 'ai',
-        content: cleanContent,
-        actions: actions
-      };
-      await addMessage(errorMessage);
+        const errorMessage = {
+          id: Date.now() + 2,
+          type: 'ai',
+          content: cleanContent,
+          actions: actions
+        };
+        await addMessage(errorMessage);
+      }
     } finally {
       setIsGenerating(false);
+      abortControllerRef.current = null; // Clear the controller
     }
   };
 
@@ -416,11 +451,11 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
                 disabled={isGenerating}
               />
               <button
-                onClick={handleSendMessage}
-                disabled={!newMessage.trim() || isGenerating}
+                onClick={isGenerating ? handleStopGeneration : handleSendMessage}
+                disabled={!newMessage.trim() && !isGenerating} // Disable only if no message and not generating
                 className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gray-900 text-white hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isGenerating ? <Loader size={16} className="animate-spin" /> : <Send size={16} />}
+                {isGenerating ? <Square size={16} className="text-red-500" /> : <Send size={16} />}
               </button>
             </div>
             {/* Removed step indicator; actions are shown as pills inside AI messages and logged to console for debugging */}
