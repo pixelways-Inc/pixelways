@@ -561,9 +561,9 @@ const ChatInterfaceLanding = () => {
         <h1 className="title">
           Build something <span className="heart">❤️</span> stunning
         </h1>
-        <p className="subtitle">
+        <h3 style=" color: #020000ff; ">
           Create stunning websites by chatting with AI
-        </p>
+        </h3>
 
         {/* Chat Input Section */}
         <div className="chat-container">
