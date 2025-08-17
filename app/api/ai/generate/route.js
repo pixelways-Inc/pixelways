@@ -29,15 +29,21 @@ const WebsiteSchema = z.object({
 });
 
 export async function POST(request) {
+  let prompt = null;
+  let projectType = 'static';
+
   try {
     const { 
-      prompt, 
-      projectType = 'static', 
+      prompt: requestPrompt, 
+      projectType: requestProjectType = 'static', 
       isFollowup = false, 
       existingWebsite = null,
       generateNextPage = false,
       pageToGenerate = null 
     } = await request.json();
+
+    prompt = requestPrompt;
+    projectType = requestProjectType;
     
     if (!prompt && !generateNextPage) {
       return NextResponse.json({ error: 'Prompt is required' }, { status: 400 });

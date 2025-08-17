@@ -129,7 +129,7 @@ const ChatInterfaceLanding = () => {
 
         .subtitle {
           font-size: 1.25rem;
-          color: #fff;
+          color: #000;
           margin-bottom: 3rem;
           font-weight: 400;
         }
@@ -231,14 +231,16 @@ const ChatInterfaceLanding = () => {
           position: absolute;
           top: 0;
           left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba(255, 255, 255, 0.9);
+          width: 100%;
+          height: 100%;
+          background: rgba(255, 255, 255, 0.96);
           border-radius: 24px;
           display: flex;
           align-items: center;
           justify-content: center;
-          backdrop-filter: blur(4px);
+          backdrop-filter: blur(6px);
+          z-index: 20;
+          box-shadow: 0 0 0 1px rgba(0,0,0,0.03);
         }
 
         .generating-content {
@@ -247,6 +249,9 @@ const ChatInterfaceLanding = () => {
           gap: 0.75rem;
           color: #667eea;
           font-weight: 600;
+          font-size: 1.1rem;
+          background: none;
+          z-index: 21;
         }
 
         .spinner {
