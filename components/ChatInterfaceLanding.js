@@ -473,7 +473,8 @@ const ChatInterfaceLanding = () => {
         }
 
         .lovable-container.dark-mode .subtitle {
-          color: #ccc; /* Slightly lighter than pure white for contrast */
+          color: #0a0a0aff; /* Slightly lighter than pure white for contrast */
+          background: white;
         }
 
         .lovable-container.dark-mode .chat-container {
