@@ -220,7 +220,7 @@ const ChatInterfaceLanding = () => {
           border: none;
           outline: none;
           font-size: 1.1rem;
-          color: #1f2937;
+          color: #000000; /* Black text color */
           background: transparent;
           resize: none;
           line-height: 1.5;
@@ -471,42 +471,46 @@ const ChatInterfaceLanding = () => {
         }
 
         .lovable-container.dark-mode .chat-container {
-          background: rgba(42, 42, 42, 0.95); /* secondary-bg-color with opacity */
-          border: 1px solid #444444; /* global-border-color */
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+          background: rgba(26, 26, 26, 0.95); /* Darker background for better contrast */
+          border: 1px solid #333333; /* Slightly lighter border */
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
         .lovable-container.dark-mode .chat-container:hover {
-          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+          border-color: #404040;
         }
 
         .lovable-container.dark-mode .plus-button {
-          background: #1a1a1a; /* main-bg-color */
-          color: white;
-          border: 1px solid #444444; /* global-border-color */
+          background: #2a2a2a; /* Slightly lighter background */
+          color: #ffffff;
+          border: 1px solid #404040; /* Lighter border for visibility */
         }
 
         .lovable-container.dark-mode .plus-button:hover {
-          background: #2a2a2a; /* secondary-bg-color */
+          background: #404040; /* Lighter hover background */
           color: white;
+          border-color: #505050;
         }
 
         .lovable-container.dark-mode .chat-input {
           color: white;
-          background: #1a1a1a; /* main-bg-color */
+          background: transparent; /* Keep transparent since parent container has background */
         }
 
         .lovable-container.dark-mode .chat-input::placeholder {
-          color: rgba(255, 255, 255, 0.6);
+          color: rgba(255, 255, 255, 0.5); /* Better contrast for placeholder */
         }
 
         .lovable-container.dark-mode .send-button {
-          background: #1a1a1a; /* main-bg-color */
+          background: #404040; /* Slightly lighter background for visibility */
           color: white;
+          border: 1px solid #505050;
         }
 
         .lovable-container.dark-mode .send-button:hover:not(:disabled) {
-          background: #2a2a2a; /* secondary-bg-color */
+          background: #505050; /* Lighter hover background */
+          border-color: #606060;
         }
 
         .lovable-container.dark-mode .send-button:disabled {
