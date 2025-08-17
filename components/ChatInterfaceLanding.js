@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowUp, Plus, Moon, Sun, Square } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';

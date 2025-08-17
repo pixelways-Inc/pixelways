@@ -1,1 +1,1 @@
-git commit -m "FEAT: Extend stop generation functionality to ChatInterfaceLanding"
+git commit -m "FEAT: Implement dark theme for ChatInterfaceLanding"
