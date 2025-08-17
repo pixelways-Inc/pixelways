@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import WorkspaceLayout from '../../components/WorkspaceLayout';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import WorkspaceLoader from '../../components/WorkspaceLoader';
-import { Loader, Code, Eye, Rocket, MessageSquare } from 'lucide-react';
+import { Loader, Code, Eye, Rocket } from 'lucide-react';
 import { ThemeProvider } from '../../context/ThemeContext';
 import dynamic from 'next/dynamic';
 
@@ -13,18 +12,6 @@ import dynamic from 'next/dynamic';
 const ProgressiveGenerator = dynamic(() => import('../../components/ProgressiveGenerator'), { 
   ssr: false,
   loading: () => null // No loading indicator needed for this component
-});
-
-const WorkspaceChat = dynamic(() => import('../../components/WorkspaceChat'), { 
-  ssr: false,
-  loading: () => (
-    <div className="h-100 d-flex align-items-center justify-content-center">
-      <div className="text-center">
-        <Loader size={24} className="spinner-border spinner-border-sm mb-2" />
-        <div className="small text-muted">Loading Chat...</div>
-      </div>
-    </div>
-  )
 });
 
 const DesignMode = dynamic(() => import('../../components/DesignMode'), { 
@@ -53,7 +40,7 @@ const PreviewFrame = dynamic(() => import('../../components/PreviewFrame'), {
 
 const WorkspacePage = () => {
   const [generatedWebsite, setGeneratedWebsite] = useState(null);
-  const [activeView, setActiveView] = useState('chat'); // 'chat' | 'code' | 'preview'
+  const [activeView, setActiveView] = useState('code'); // 'code' | 'preview'
   const [previewUrl, setPreviewUrl] = useState('');
   const [isDeploying, setIsDeploying] = useState(false);
   const [siteName, setSiteName] = useState('');
@@ -65,7 +52,6 @@ const WorkspacePage = () => {
   const [isWorkspaceLoading, setIsWorkspaceLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingStep, setLoadingStep] = useState('init');
-  const router = useRouter();
 
   // Client-side initialization with loading progress
   useEffect(() => {
@@ -95,7 +81,7 @@ const WorkspacePage = () => {
         
         await new Promise(resolve => setTimeout(resolve, 800));
         
-        // Step 3: Check for existing website
+    // Step 3: Check for existing website
         setLoadingStep('process');
         setLoadingProgress(70);
         
@@ -103,7 +89,7 @@ const WorkspacePage = () => {
           const website = sessionStorage.getItem('generatedWebsite');
           if (website) {
             setGeneratedWebsite(JSON.parse(website));
-            setActiveView('code');
+      setActiveView('code');
           }
           
           // Load GitHub auth from localStorage on initial load (persistent across sessions)
@@ -551,19 +537,7 @@ const WorkspacePage = () => {
 
           {/* Mobile Content */}
           <div className="mobile-content">
-            {activeView === 'chat' ? (
-              <ErrorBoundary fallbackMessage="Chat interface failed to load">
-                <WorkspaceChat 
-                  generatedWebsite={generatedWebsite}
-                  onWebsiteGenerated={handleWebsiteGenerated}
-                  onSwitchToCodeView={() => setActiveView('code')}
-                  onWebsiteUpdate={setGeneratedWebsite}
-                  onFileAction={(action, fileName, result) => {
-                    console.log('File action:', action, fileName, result);
-                  }}
-                />
-              </ErrorBoundary>
-            ) : activeView === 'code' ? (
+            {activeView === 'code' ? (
               generatedWebsite ? (
                 <ErrorBoundary fallbackMessage="Code editor failed to load">
                   <DesignMode 
@@ -604,13 +578,6 @@ const WorkspacePage = () => {
           {/* Mobile Bottom Navigation */}
           <div className="mobile-bottom-nav">
             <button
-              onClick={() => setActiveView('chat')}
-              className={`mobile-nav-item ${activeView === 'chat' ? 'active' : ''}`}
-            >
-              <MessageSquare size={20} />
-              <span className="mobile-nav-label">Chat</span>
-            </button>
-            <button
               onClick={() => setActiveView('code')}
               className={`mobile-nav-item ${activeView === 'code' ? 'active' : ''}`}
             >
@@ -646,17 +613,6 @@ const WorkspacePage = () => {
             
             {/* View Toggle Icons */}
             <div className="d-flex align-items-center gap-2">
-              <button
-                onClick={() => setActiveView('chat')}
-                className={`btn btn-sm px-3 d-flex align-items-center gap-2 ${
-                  activeView === 'chat' 
-                    ? 'btn-primary text-white' 
-                    : 'btn-outline-secondary'
-                }`}
-              >
-                <MessageSquare size={16} />
-                <span>Chat</span>
-              </button>
               <button
                 onClick={() => setActiveView('code')}
                 className={`btn btn-sm px-3 d-flex align-items-center gap-2 ${
@@ -716,22 +672,7 @@ const WorkspacePage = () => {
 
           {/* Main Content Area */}
           <div className="flex-fill">
-            {activeView === 'chat' ? (
-              // Chat View - AI Chat Interface
-              <div className="h-100">
-                <ErrorBoundary fallbackMessage="Chat interface failed to load">
-                  <WorkspaceChat 
-                    generatedWebsite={generatedWebsite}
-                    onWebsiteGenerated={handleWebsiteGenerated}
-                    onSwitchToCodeView={() => setActiveView('code')}
-                    onWebsiteUpdate={setGeneratedWebsite}
-                    onFileAction={(action, fileName, result) => {
-                      console.log('File action:', action, fileName, result);
-                    }}
-                  />
-                </ErrorBoundary>
-              </div>
-            ) : activeView === 'code' ? (
+            {activeView === 'code' ? (
               // Code View - File Explorer + Monaco Editor
               <div className="h-100">
                 {generatedWebsite ? (
