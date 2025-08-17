@@ -166,6 +166,12 @@ const ChatInterfaceLanding = () => {
           margin-bottom: 3rem;
           font-weight: 400;
         }
+          h3 {
+          font-size: 1.25rem;
+          color: #000;
+          margin-bottom: 3rem;
+          font-weight: 400;
+          }
 
         .chat-container {
           background: rgba(255, 255, 255, 0.95);
@@ -561,7 +567,7 @@ const ChatInterfaceLanding = () => {
         <h1 className="title">
           Build something <span className="heart">❤️</span> stunning
         </h1>
-        <h3 style=" color: #020000ff; ">
+        <h3 className="subtitle">
           Create stunning websites by chatting with AI
         </h3>
 
