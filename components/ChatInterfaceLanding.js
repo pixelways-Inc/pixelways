@@ -129,7 +129,7 @@ const ChatInterfaceLanding = () => {
 
         .subtitle {
           font-size: 1.25rem;
-          color: rgba(255, 255, 255, 0.8);
+          color: #fff;
           margin-bottom: 3rem;
           font-weight: 400;
         }

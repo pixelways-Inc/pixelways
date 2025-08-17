@@ -73,8 +73,14 @@ const DesignMode = ({ website, onSelectFile, onDeploy, isDeploying, onWebsiteUpd
 
   const handleCreateFile = () => {
     if (!newFileName.trim()) return;
-    
-    const fileName = newFileName.trim();
+    const fileName = newFileName.trim().replace(/^\/+|\/+$/g, '');
+    // Disallow directory traversal
+    if (fileName.includes('..')) { alert('Invalid file name.'); return; }
+    // Prevent duplicates
+    if ((website.files || []).some(f => (f.path || f.name) === fileName)) {
+      alert('A file with this name already exists.');
+      return;
+    }
     const fileExtension = fileName.split('.').pop();
     
     let defaultContent = '';
@@ -108,12 +114,13 @@ console.log('Hello from ${fileName}');`;
       content: defaultContent
     };
     
-    const updatedWebsite = {
+  const updatedWebsite = {
       ...website,
       files: [...website.files, newFile]
     };
     
     onWebsiteUpdate(updatedWebsite);
+  setSelectedFile({ name: fileName.split('/').pop(), path: fileName, content: defaultContent });
     setNewFileName('');
     setShowCreateFileModal(false);
     syncToSupabase(updatedWebsite);
@@ -121,8 +128,14 @@ console.log('Hello from ${fileName}');`;
 
   const handleCreateFolder = () => {
     if (!newFolderName.trim()) return;
-    
-    const folderName = newFolderName.trim();
+    const folderName = newFolderName.trim().replace(/^\/+|\/+$/g, '');
+    if (folderName.includes('..')) { alert('Invalid folder name.'); return; }
+    // Prevent creating a folder if any file already resides under same path
+    const prefix = folderName + '/';
+    if ((website.files || []).some(f => (f.path || '').startsWith(prefix))) {
+      alert('This folder already exists.');
+      return;
+    }
     const placeholderFile = {
       name: '.gitkeep',
       path: `${folderName}/.gitkeep`,
@@ -135,6 +148,8 @@ console.log('Hello from ${fileName}');`;
     };
     
     onWebsiteUpdate(updatedWebsite);
+  // Expand the new folder in the tree
+  setExpandedFolders(prev => ({ ...prev, [folderName]: true }));
     setNewFolderName('');
     setShowCreateFolderModal(false);
     syncToSupabase(updatedWebsite);
@@ -670,23 +685,41 @@ console.log('Hello from ${fileName}');`;
               ))}
             </div>
             
-            {/* Planned Pages Indicator */}
-            {website.plannedPages && website.plannedPages.length > 0 && !website.isComplete && (
-              <div className="planned-pages-section">
-                <div className="planned-pages-header">
-                  <Loader size={12} className="animate-spin text-blue-600" />
-                  <span className="planned-pages-title">Generating Pages...</span>
+            {/* Tasks Indicator (replaces legacy plannedPages) */}
+            {(() => {
+              const hasTasks = Array.isArray(website?.tasks) && website.tasks.length > 0;
+              const pendingTasks = hasTasks ? website.tasks.filter(t => (t.status || 'pending') !== 'done') : [];
+              const showLegacy = !hasTasks && website?.plannedPages && website.plannedPages.length > 0;
+              const shouldShow = (!website?.isComplete) && (hasTasks ? pendingTasks.length > 0 : showLegacy);
+              if (!shouldShow) return null;
+              return (
+                <div className="planned-pages-section">
+                  <div className="planned-pages-header">
+                    <Loader size={12} className="animate-spin text-blue-600" />
+                    <span className="planned-pages-title">Generating Pages...</span>
+                  </div>
+                  <div className="planned-pages-list">
+                    {hasTasks ? (
+                      website.tasks.map((task) => (
+                        <div key={task.path} className="planned-page-item">
+                          <div className="planned-page-dot" style={{ background: (task.status || 'pending') === 'done' ? '#10b981' : '#f59e0b' }} />
+                          <span className="planned-page-name" style={{ color: (task.status || 'pending') === 'done' ? '#065f46' : '#92400e' }}>
+                            {task.title || task.path}
+                          </span>
+                        </div>
+                      ))
+                    ) : (
+                      website.plannedPages.map((page) => (
+                        <div key={page} className="planned-page-item">
+                          <div className="planned-page-dot" />
+                          <span className="planned-page-name">{page}</span>
+                        </div>
+                      ))
+                    )}
+                  </div>
                 </div>
-                <div className="planned-pages-list">
-                  {website.plannedPages.map((page, index) => (
-                    <div key={page} className="planned-page-item">
-                      <div className="planned-page-dot" />
-                      <span className="planned-page-name">{page}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+              );
+            })()}
           </div>
 
           {/* Code Editor */}

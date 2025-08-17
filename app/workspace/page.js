@@ -186,9 +186,14 @@ const WorkspacePage = () => {
       return;
     }
     
-    // For static sites, we can deploy directly to our hosting platform
-    
-    if (requiresGitHubAuth) {
+  // Determine if GitHub auth is required based on project type
+  // Static sites do NOT require GitHub auth; dynamic builds (e.g., React/Vite/Next.js) do.
+  const projectTypeSafe = (generatedWebsite?.projectType || 'static').toLowerCase();
+  const requiresGitHubAuth = projectTypeSafe !== 'static';
+
+  // For static sites, we can deploy directly to our hosting platform
+
+  if (requiresGitHubAuth) {
       // Check if user is authenticated with GitHub
       const githubToken = typeof window !== 'undefined' ? sessionStorage.getItem('github_access_token') : null;
       const githubUserData = typeof window !== 'undefined' ? sessionStorage.getItem('github_user') : null;
@@ -196,7 +201,7 @@ const WorkspacePage = () => {
       if (!githubToken || !githubUserData) {
         // User not authenticated - trigger OAuth in new tab
         const confirmAuth = window.confirm(
-          `GitHub authentication required for ${generatedWebsite.projectType.toUpperCase()} projects.\n\n` +
+          `GitHub authentication required for ${projectTypeSafe.toUpperCase()} projects.\n\n` +
           `Benefits:\n` +
           `• Deploy to your own GitHub repositories\n` +
           `• Full control over your projects\n` +

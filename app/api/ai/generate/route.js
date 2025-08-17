@@ -18,7 +18,13 @@ const WebsiteSchema = z.object({
     content: z.string(),
   })),
   description: z.string(),
-  plannedPages: z.array(z.string()).optional(), // List of pages to generate next
+  plannedPages: z.array(z.string()).optional(), // Legacy list of pages to generate next
+  // New: explicit task list so AI plans all files up-front and we can track progress deterministically
+  tasks: z.array(z.object({
+    path: z.string(),
+    title: z.string().optional(),
+    status: z.enum(['pending', 'in-progress', 'done']).optional(),
+  })).optional(),
   isComplete: z.boolean().optional(), // Whether all pages are generated
 });
 
@@ -56,7 +62,7 @@ export async function POST(request) {
     });
 
     // Validate progressive generation requirements
-    if (generateNextPage) {
+  if (generateNextPage) {
       console.log(`Progressive Generation: Generating page "${pageToGenerate}"`);
       
       if (!pageToGenerate) {
@@ -105,10 +111,15 @@ IMPORTANT RULES FOR MODIFICATIONS:
     }
 
     // Build context-aware system prompt based on generation mode
-    let systemPrompt = '';
+  let systemPrompt = '';
     
     if (generateNextPage && pageToGenerate && existingWebsite) {
       // Progressive generation mode - generate specific page
+      // Provide progress context (what's done vs left) to avoid regeneration
+      const taskSummary = existingWebsite.tasks && Array.isArray(existingWebsite.tasks)
+        ? existingWebsite.tasks.map(t => `- ${t.path} [${t.status || 'pending'}]`).join('\n')
+        : (existingWebsite.plannedPages || []).map(p => `- ${p} [pending]`).join('\n');
+
       systemPrompt = `You are generating a specific page for an existing website.
 
 📁 EXISTING WEBSITE CONTEXT:
@@ -125,6 +136,7 @@ CRITICAL: Match the existing website's design, navigation, and style exactly.
   "files": [
     {"path": "${pageToGenerate}", "content": "full HTML content"}
   ],
+  "tasks": ${JSON.stringify((existingWebsite.tasks || []).map(t => ({ path: t.path, title: t.title || undefined, status: t.path === pageToGenerate ? 'done' : (t.status || 'pending') }))) || '[]'},
   "isComplete": false
 }
 
@@ -135,11 +147,16 @@ CRITICAL: Match the existing website's design, navigation, and style exactly.
 - Maintain consistent branding and design language
 - Generate compelling, relevant content for this specific page
 
+PROGRESS CONTEXT (what's done vs left):
+${taskSummary}
+
+Avoid regenerating files already done. Output ONLY the requested page in files and update tasks status accordingly.
+
 Analyze the existing files and create a ${pageToGenerate} page that feels like part of the same website!`;
 
     } else {
       // Initial generation mode - generate homepage + plan
-      systemPrompt = `You are a web developer creating the FIRST PAGE of a stunning HTML website.
+  systemPrompt = `You are a web developer creating the FIRST PAGE of a stunning HTML website.
 
 ${contextInfo}
 
@@ -154,7 +171,13 @@ CRITICAL: ONLY static HTML + Tailwind CSS + vanilla JavaScript. No frameworks.
   "files": [
     {"path": "index.html", "content": "complete homepage HTML"}
   ],
-  "plannedPages": ["about.html", "contact.html"], // list other pages to generate
+  "plannedPages": ["about.html", "contact.html"], // list other pages to generate (legacy support)
+  // New: explicit TODO list to prevent duplicate/repeat generation across recursive steps
+  "tasks": [
+    {"path": "index.html", "title": "Homepage", "status": "done"},
+    {"path": "about.html", "title": "About Page", "status": "pending"},
+    {"path": "contact.html", "title": "Contact Page", "status": "pending"}
+  ],
   "isComplete": false
 }
 
@@ -208,7 +231,7 @@ Please modify the above HTML website according to the user's request. Return the
       setTimeout(() => reject(new Error('AI generation timed out after 4 minutes')), 240000); // 4 minutes
     });
 
-    const aiGenerationPromise = generateObject({
+  const aiGenerationPromise = generateObject({
       model: mistral('codestral-latest'),
       schema: WebsiteSchema,
       system: systemPrompt,
@@ -224,21 +247,38 @@ Please modify the above HTML website according to the user's request. Return the
     // Handle progressive generation response
     if (generateNextPage && existingWebsite) {
       // Merge the new page with existing website
+      const normalize = (p) => (p || '').trim().toLowerCase();
+      const existingByPath = new Map((existingWebsite.files || []).map(f => [normalize(f.path), f]));
+      const newFilesRaw = (result.object.files || []);
+      // Filter to only the requested page to avoid unintended overwrites
+      const newFilesFiltered = newFilesRaw.filter(f => normalize(f.path) === normalize(pageToGenerate));
+      const newFiles = newFilesFiltered.length > 0 ? newFilesFiltered : newFilesRaw;
+
+      // Upsert by path (replace existing file content if same path)
+      for (const f of newFiles) {
+        existingByPath.set(normalize(f.path), { path: f.path, content: f.content });
+      }
+
+      // Update tasks: mark pageToGenerate as done
+      const tasks = Array.isArray(result.object.tasks) && result.object.tasks.length > 0
+        ? result.object.tasks
+        : (existingWebsite.tasks || (existingWebsite.plannedPages || []).map(p => ({ path: p, status: p === pageToGenerate ? 'done' : 'pending' })));
+      const updatedTasks = tasks.map(t => ({
+        path: t.path,
+        title: t.title,
+        status: normalize(t.path) === normalize(pageToGenerate) ? 'done' : (t.status || 'pending')
+      }));
+
+      const remainingTasks = updatedTasks.filter(t => (t.status || 'pending') !== 'done');
+
       const mergedWebsite = {
         ...existingWebsite,
-        files: [
-          ...existingWebsite.files,
-          ...result.object.files
-        ],
+        files: Array.from(existingByPath.values()),
         description: result.object.description || existingWebsite.description,
-        // Update planned pages by removing the one we just generated
-        plannedPages: existingWebsite.plannedPages 
-          ? existingWebsite.plannedPages.filter(page => page !== pageToGenerate)
-          : [],
-        // Mark as complete if no more pages to generate
-        isComplete: existingWebsite.plannedPages 
-          ? existingWebsite.plannedPages.filter(page => page !== pageToGenerate).length === 0
-          : true
+        tasks: updatedTasks,
+        // Keep legacy plannedPages in sync (optional)
+        plannedPages: remainingTasks.length > 0 ? remainingTasks.map(t => t.path) : [],
+        isComplete: remainingTasks.length === 0
       };
 
       console.log('Progressive generation complete:', {
@@ -250,19 +290,45 @@ Please modify the above HTML website according to the user's request. Return the
       return NextResponse.json({
         success: true,
         website: mergedWebsite,
-        message: `<action>Generating ${pageToGenerate}</action> <action>Adding to website structure</action> Successfully created the ${pageToGenerate} page and integrated it with your website!`,
+        message: mergedWebsite.isComplete
+          ? `<action>Finalizing generation</action> All tasks completed. Your website is ready!`
+          : `<action>Generating ${pageToGenerate}</action> <action>Updating progress</action> Successfully created the ${pageToGenerate} page and integrated it with your website!`,
         generatedPage: pageToGenerate,
         remainingPages: mergedWebsite.plannedPages,
-        isComplete: mergedWebsite.isComplete
+        isComplete: mergedWebsite.isComplete,
+        status: mergedWebsite.isComplete ? 'ok' : 'in-progress',
+        code: mergedWebsite.isComplete ? 200 : 202
       });
     }
 
+    // Ensure tasks exist for deterministic recursion control
+    const ensureTasks = (obj) => {
+      if (Array.isArray(obj.tasks) && obj.tasks.length > 0) return obj.tasks;
+      const planned = obj.plannedPages || [];
+      const existingFiles = obj.files || [];
+      const doneSet = new Set(existingFiles.map(f => (f.path || '').toLowerCase()));
+      return [
+        ...existingFiles.map(f => ({ path: f.path, title: f.path === 'index.html' ? 'Homepage' : f.path, status: 'done' })),
+        ...planned.filter(p => !doneSet.has((p || '').toLowerCase())).map(p => ({ path: p, status: 'pending' }))
+      ];
+    };
+
+    const websiteWithTasks = {
+      ...result.object,
+      tasks: ensureTasks(result.object),
+      isComplete: Array.isArray(result.object.tasks)
+        ? result.object.tasks.every(t => (t.status || 'pending') === 'done')
+        : false
+    };
+
     return NextResponse.json({
       success: true,
-      website: result.object,
+      website: websiteWithTasks,
       message: isFollowup ? 
-        `<action>Updating website content</action> <action>Applying user modifications</action> I've successfully updated your website based on your request: ${result.object.description}` :
-        'Website generated successfully'
+        `<action>Updating website content</action> <action>Applying user modifications</action> I've successfully updated your website based on your request: ${websiteWithTasks.description}` :
+        '<action>Planning files</action> Website generated successfully with a TODO list of files to create',
+      status: websiteWithTasks.isComplete ? 'ok' : 'in-progress',
+      code: websiteWithTasks.isComplete ? 200 : 201
     });
 
   } catch (error) {

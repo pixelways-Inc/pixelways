@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, Loader } from 'lucide-react';
+import { Send, Loader, Plus, Bot, User } from 'lucide-react';
 
 const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
   const [messages, setMessages] = useState([]);
@@ -9,6 +9,7 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [dbLoaded, setDbLoaded] = useState(false);
   const messagesEndRef = useRef(null);
+  const textareaRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -17,6 +18,14 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Auto-resize input
+  useEffect(() => {
+    const el = textareaRef.current;
+    if (!el) return;
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 160) + 'px';
+  }, [newMessage]);
 
   // IndexedDB operations
   const openDB = () => {
@@ -226,6 +235,11 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
         const actions = parseActions(aiResponseContent);
         const cleanContent = removeActionBlocks(aiResponseContent);
         
+        // Optional: log actions for debugging/chron tracing
+        if (actions && actions.length) {
+          try { console.log('AI Actions:', actions); } catch (_) {}
+        }
+
         const aiResponse = {
           id: Date.now() + 2,
           type: 'ai',
@@ -242,6 +256,10 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
         const actions = parseActions(errorContent);
         const cleanContent = removeActionBlocks(errorContent);
         
+        if (actions && actions.length) {
+          try { console.log('AI Actions (error path):', actions); } catch (_) {}
+        }
+
         const errorMessage = {
           id: Date.now() + 2,
           type: 'ai',
@@ -257,6 +275,10 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
       const actions = parseActions(errorContent);
       const cleanContent = removeActionBlocks(errorContent);
       
+      if (actions && actions.length) {
+        try { console.log('AI Actions (exception path):', actions); } catch (_) {}
+      }
+
       const errorMessage = {
         id: Date.now() + 2,
         type: 'ai',
@@ -270,7 +292,8 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+    // Enter to send; Shift+Enter makes a new line
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
     }
@@ -308,97 +331,107 @@ const WorkspaceChat = ({ generatedWebsite, onWebsiteGenerated }) => {
   }
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Header with clear button */}
-      <div className="flex items-center justify-between p-3 border-b border-gray-200">
-        <div className="flex items-center space-x-2">
-          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-          <span className="text-sm font-medium">AI Assistant</span>
+    <div className="flex flex-col h-full bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 overflow-hidden">
+      {/* Header */}
+      <div className="sticky top-0 z-10 flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white/80 backdrop-blur">
+        <div className="flex items-center gap-2">
+          <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+          <span className="text-sm font-semibold text-gray-800">AI Assistant</span>
+          <span className="text-xs text-gray-400">connected</span>
         </div>
         <button
           onClick={handleClearChat}
-          className="text-xs text-gray-500 hover:text-gray-700 transition-colors"
+          className="text-xs font-medium text-gray-500 hover:text-gray-700 hover:underline"
         >
           Clear Chat
         </button>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-auto p-4 space-y-4">
-        {messages.map((message) => (
-          <div key={message.id} className="flex flex-col space-y-1">
-            <div className={`${message.type === 'user' ? 'ml-8' : ''}`}>
-              <div className={`max-w-full ${
-                message.type === 'user' 
-                  ? 'bg-blue-500 text-white rounded-lg px-4 py-2 inline-block'
-                  : 'text-gray-700'
+      <div className="flex-1 overflow-auto p-4 space-y-4 bg-gradient-to-b from-white to-gray-50">
+        {messages.map((message) => {
+          const isUser = message.type === 'user';
+          return (
+            <div key={message.id} className={`flex items-end gap-2 ${isUser ? 'justify-end' : 'justify-start'}`}>
+              {!isUser && (
+                <div className="h-7 w-7 rounded-full bg-gray-900 text-white flex items-center justify-center shadow-sm">
+                  <Bot size={14} />
+                </div>
+              )}
+              <div className={`max-w-[80%] rounded-2xl px-4 py-2 shadow-sm ${
+                isUser
+                  ? 'bg-gray-900 text-white rounded-br-md'
+                  : 'bg-white border border-gray-200 text-gray-800 rounded-bl-md'
               }`}>
                 {message.isThinking ? (
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-2">
                     <Loader size={16} className="animate-spin" />
                     <span>Thinking...</span>
                   </div>
                 ) : (
-                  <div className={message.type === 'ai' ? 'w-full' : ''}>
-                    <div className={message.type === 'ai' && message.actions ? 'mb-1' : ''}>
+                  <>
+                    <div className={`${message.type === 'ai' && message.actions ? 'mb-1' : ''} whitespace-pre-wrap`}>
                       {message.content}
                     </div>
-                    {message.type === 'ai' && message.actions && (
-                      <ActionPills actions={message.actions} />
+                    {message.type === 'ai' && message.actions && <ActionPills actions={message.actions} />}
+                    {!message.isThinking && (
+                      <div className={`mt-1 text-[10px] ${isUser ? 'text-gray-300 text-right' : 'text-gray-400'}`}>
+                        {formatTimestamp(message.timestamp)}
+                      </div>
                     )}
-                  </div>
+                  </>
                 )}
               </div>
+              {isUser && (
+                <div className="h-7 w-7 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center shadow-sm">
+                  <User size={14} />
+                </div>
+              )}
             </div>
-            {!message.isThinking && (
-              <div className={`text-xs text-gray-400 ${message.type === 'user' ? 'ml-8 text-right' : ''}`}>
-                {formatTimestamp(message.timestamp)}
-              </div>
-            )}
-          </div>
-        ))}
+          );
+        })}
         <div ref={messagesEndRef} />
       </div>
 
       {/* Input */}
-      <div className="border-t border-gray-200 p-4">
-        <div className="flex items-end space-x-2">
+      <div className="sticky bottom-0 border-t border-gray-200 bg-white/90 backdrop-blur px-4 py-3">
+        <div className="flex items-end gap-2">
+          <button
+            className="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-500 hover:bg-gray-50"
+            disabled={isGenerating}
+            title="More actions"
+          >
+            <Plus size={18} />
+          </button>
           <div className="flex-1">
-            <textarea
-              value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
-              onKeyDown={handleKeyPress}
-              placeholder="Ask a follow-up..."
-              className="w-full resize-none border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-gray-300 min-h-[40px]"
-              rows={1}
-              disabled={isGenerating}
-            />
-          </div>
-          <div className="flex items-center space-x-2">
-            <div className="flex items-center space-x-1 text-xs text-gray-500">
-              <div className="w-4 h-4 flex items-center justify-center">
-                <span className="text-xs">⚡</span>
-              </div>
-              <span>Agent</span>
+            <div className="flex items-end gap-2 rounded-2xl border border-gray-200 bg-white px-3 py-2 shadow-sm focus-within:ring-2 focus-within:ring-gray-200">
+              <textarea
+                ref={textareaRef}
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                onKeyDown={handleKeyPress}
+                placeholder="Ask a follow-up..."
+                className="w-full resize-none bg-transparent text-sm outline-none placeholder:text-gray-400 max-h-40"
+                rows={1}
+                disabled={isGenerating}
+              />
+              <button
+                onClick={handleSendMessage}
+                disabled={!newMessage.trim() || isGenerating}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gray-900 text-white hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isGenerating ? <Loader size={16} className="animate-spin" /> : <Send size={16} />}
+              </button>
             </div>
-            <button
-              onClick={handleSendMessage}
-              disabled={!newMessage.trim() || isGenerating}
-              className="p-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              {isGenerating ? (
-                <Loader size={16} className="animate-spin" />
-              ) : (
-                <Send size={16} />
-              )}
-            </button>
-            <button
-              disabled={isGenerating}
-              className="px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 disabled:opacity-50 transition-colors"
-            >
-              Stop
-            </button>
+            {/* Removed step indicator; actions are shown as pills inside AI messages and logged to console for debugging */}
           </div>
+          {/* Optional Stop button kept but de-emphasized */}
+          <button
+            disabled={isGenerating}
+            className="hidden sm:inline-flex px-3 py-2 rounded-xl border border-gray-200 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+          >
+            Stop
+          </button>
         </div>
       </div>
     </div>

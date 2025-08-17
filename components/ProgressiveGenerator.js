@@ -12,18 +12,19 @@ const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
 
   useEffect(() => {
     // Start progressive generation if there are planned pages
-    if (initialWebsite && 
-        initialWebsite.plannedPages && 
-        initialWebsite.plannedPages.length > 0 && 
-        !initialWebsite.isComplete) {
+    const hasPlanned = initialWebsite && initialWebsite.plannedPages && initialWebsite.plannedPages.length > 0;
+    const hasTasks = initialWebsite && Array.isArray(initialWebsite.tasks) && initialWebsite.tasks.length > 0;
+    if (initialWebsite && (hasPlanned || hasTasks) && !initialWebsite.isComplete) {
       
-      console.log('Starting progressive generation for pages:', initialWebsite.plannedPages);
+      console.log('Starting progressive generation for pages:', initialWebsite.plannedPages, 'tasks:', initialWebsite.tasks);
       startProgressiveGeneration();
     }
   }, [initialWebsite]);
 
   const startProgressiveGeneration = async () => {
-    if (!currentWebsite || !currentWebsite.plannedPages || currentWebsite.plannedPages.length === 0) {
+  const hasPlanned = currentWebsite && currentWebsite.plannedPages && currentWebsite.plannedPages.length > 0;
+  const hasTasks = currentWebsite && Array.isArray(currentWebsite.tasks) && currentWebsite.tasks.length > 0;
+  if (!currentWebsite || (!hasPlanned && !hasTasks)) {
       return;
     }
 
@@ -40,8 +41,11 @@ const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
   };
 
   const generateNextPage = async () => {
-    const remainingPages = currentWebsite.plannedPages || [];
-    
+    const pendingTasks = (currentWebsite.tasks || []).filter(t => (t.status || 'pending') !== 'done');
+    const remainingPages = pendingTasks.length > 0
+      ? pendingTasks.map(t => t.path)
+      : (currentWebsite.plannedPages || []);
+
     if (remainingPages.length === 0) {
       setIsGenerating(false);
       console.log('All pages generated successfully!');
@@ -49,6 +53,55 @@ const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
     }
 
     const nextPage = remainingPages[0];
+    const files = currentWebsite.files || [];
+    const normalize = (p) => (p || '').trim().toLowerCase();
+    const fileExists = (p) => files.some(f => normalize(f.path) === normalize(p));
+
+    // Skip-call optimization: if file already exists, mark task done and advance
+    if (fileExists(nextPage)) {
+      console.log(`Skipping generation for ${nextPage} as file already exists`);
+      let updatedWebsite = { ...currentWebsite };
+      // If using tasks, mark this task as done
+      if (Array.isArray(updatedWebsite.tasks) && updatedWebsite.tasks.length > 0) {
+        updatedWebsite = {
+          ...updatedWebsite,
+          tasks: updatedWebsite.tasks.map(t => ({
+            ...t,
+            status: normalize(t.path) === normalize(nextPage) ? 'done' : (t.status || 'pending')
+          }))
+        };
+      }
+      // If using plannedPages, remove it from planned list
+      if (Array.isArray(updatedWebsite.plannedPages) && updatedWebsite.plannedPages.length > 0) {
+        updatedWebsite = {
+          ...updatedWebsite,
+          plannedPages: updatedWebsite.plannedPages.filter(p => normalize(p) !== normalize(nextPage))
+        };
+      }
+      // Update completion state based on tasks or plannedPages
+      const remaining = Array.isArray(updatedWebsite.tasks) && updatedWebsite.tasks.length > 0
+        ? updatedWebsite.tasks.filter(t => (t.status || 'pending') !== 'done').length
+        : (updatedWebsite.plannedPages || []).length;
+      updatedWebsite.isComplete = remaining === 0;
+
+      setCurrentWebsite(updatedWebsite);
+      setCompletedPages(prev => prev.includes(nextPage) ? prev : [...prev, nextPage]);
+      // Persist and notify parent
+      try { sessionStorage.setItem('generatedWebsite', JSON.stringify(updatedWebsite)); } catch (_) {}
+      if (onWebsiteUpdate) onWebsiteUpdate(updatedWebsite);
+
+      if (updatedWebsite.isComplete) {
+        setIsGenerating(false);
+        setCurrentPage(null);
+        console.log('Progressive generation completed (skip path)!');
+        return;
+      }
+      // Continue to next after a short delay
+      setTimeout(() => {
+        generateNextPage();
+      }, 300);
+      return;
+    }
     setCurrentPage(nextPage);
 
     console.log(`Generating page: ${nextPage}`);
@@ -85,7 +138,9 @@ const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
         sessionStorage.setItem('generatedWebsite', JSON.stringify(data.website));
 
         // Check if generation is complete
-        if (data.website.isComplete || !data.website.plannedPages || data.website.plannedPages.length === 0) {
+  const noPlanned = !data.website.plannedPages || data.website.plannedPages.length === 0;
+  const tasksDone = Array.isArray(data.website.tasks) ? data.website.tasks.every(t => (t.status || 'pending') === 'done') : false;
+  if (data.website.isComplete || (noPlanned && tasksDone)) {
           setIsGenerating(false);
           setCurrentPage(null);
           console.log('Progressive generation completed!');
@@ -119,8 +174,12 @@ const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
     return null;
   }
 
-  const totalPages = (initialWebsite.plannedPages || []).length;
-  const generatedPages = completedPages.length;
+  const totalPages = Array.isArray(initialWebsite.tasks) && initialWebsite.tasks.length > 0
+    ? initialWebsite.tasks.length
+    : (initialWebsite.plannedPages || []).length;
+  const generatedPages = Array.isArray(currentWebsite?.tasks)
+    ? (currentWebsite.tasks.filter(t => (t.status || 'pending') === 'done').length)
+    : completedPages.length;
   const progress = totalPages > 0 ? (generatedPages / totalPages) * 100 : 0;
 
   return (
@@ -156,18 +215,22 @@ const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
         />
       </div>
 
-      {/* Pages list */}
-      <div className="text-xs text-gray-600">
-        {(initialWebsite.plannedPages || []).map((page, index) => (
-          <div key={page} className="flex items-center gap-2 py-1">
-            {completedPages.includes(page) ? (
+  {/* Tasks list (read-only) */}
+  <div className="mt-2 mb-1 text-[11px] font-semibold text-gray-700">Tasks</div>
+  <div className="text-[11px] text-gray-600 max-h-44 overflow-auto pr-1">
+        {(currentWebsite?.tasks && currentWebsite.tasks.length > 0
+          ? currentWebsite.tasks
+          : (initialWebsite.plannedPages || []).map(p => ({ path: p, status: 'pending' }))
+        ).map((task) => (
+          <div key={task.path} className="flex items-center gap-2 py-1">
+            { (task.status || 'pending') === 'done' ? (
               <CheckCircle size={12} className="text-green-500" />
-            ) : currentPage === page ? (
+            ) : currentPage === task.path ? (
               <Loader size={12} className="animate-spin text-blue-600" />
             ) : (
               <div className="w-3 h-3 rounded-full bg-gray-300" />
             )}
-            <span className={completedPages.includes(page) ? 'text-green-600' : ''}>{page}</span>
+            <span className={(task.status || 'pending') === 'done' ? 'text-green-600' : ''}>{task.title || task.path}</span>
           </div>
         ))}
       </div>
