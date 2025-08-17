@@ -1,1 +1,1 @@
-git commit -m "FEAT: Implement stop generation functionality in WorkspaceChat"
+git commit -m "FEAT: Extend stop generation functionality to ChatInterfaceLanding"

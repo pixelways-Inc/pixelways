@@ -92,7 +92,7 @@ const ChatInterfaceLanding = () => {
   ];
 
   return (
-    <div className="lovable-container">
+    <div className={`lovable-container ${isDark ? 'dark-mode' : ''}`}>
       <style jsx>{`
         .lovable-container {
           min-height: 100vh;
@@ -440,6 +440,106 @@ const ChatInterfaceLanding = () => {
             max-width: calc(50% - 0.2rem);
             min-width: 70px;
           }
+        }
+
+        .lovable-container.dark-mode {
+          background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #3a3a3a 100%);
+        }
+
+        .lovable-container.dark-mode::before {
+          background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                      radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+        }
+
+        .lovable-container.dark-mode .theme-toggle {
+          background: rgba(0, 0, 0, 0.3);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          color: white;
+        }
+
+        .lovable-container.dark-mode .theme-toggle:hover {
+          background: rgba(0, 0, 0, 0.5);
+        }
+
+        .lovable-container.dark-mode .title {
+          color: white;
+          text-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .lovable-container.dark-mode .subtitle {
+          color: #ccc; /* Slightly lighter than pure white for contrast */
+        }
+
+        .lovable-container.dark-mode .chat-container {
+          background: rgba(42, 42, 42, 0.95); /* secondary-bg-color with opacity */
+          border: 1px solid #444444; /* global-border-color */
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .lovable-container.dark-mode .chat-container:hover {
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .lovable-container.dark-mode .plus-button {
+          background: #1a1a1a; /* main-bg-color */
+          color: white;
+          border: 1px solid #444444; /* global-border-color */
+        }
+
+        .lovable-container.dark-mode .plus-button:hover {
+          background: #2a2a2a; /* secondary-bg-color */
+          color: white;
+        }
+
+        .lovable-container.dark-mode .chat-input {
+          color: white;
+          background: #1a1a1a; /* main-bg-color */
+        }
+
+        .lovable-container.dark-mode .chat-input::placeholder {
+          color: rgba(255, 255, 255, 0.6);
+        }
+
+        .lovable-container.dark-mode .send-button {
+          background: #1a1a1a; /* main-bg-color */
+          color: white;
+        }
+
+        .lovable-container.dark-mode .send-button:hover:not(:disabled) {
+          background: #2a2a2a; /* secondary-bg-color */
+        }
+
+        .lovable-container.dark-mode .send-button:disabled {
+          background: #2a2a2a; /* secondary-bg-color */
+          color: rgba(255, 255, 255, 0.4);
+        }
+
+        .lovable-container.dark-mode .generating-overlay {
+          background: rgba(0, 0, 0, 0.9);
+          backdrop-filter: blur(10px);
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .lovable-container.dark-mode .generating-content {
+          color: white;
+        }
+
+        .lovable-container.dark-mode .spinner {
+          border: 2px solid #444444; /* global-border-color */
+          border-top: 2px solid white;
+        }
+
+        .lovable-container.dark-mode .suggestion-pill {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          color: white;
+          text-shadow: none;
+        }
+
+        .lovable-container.dark-mode .suggestion-pill:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.2);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
       `}</style>
 

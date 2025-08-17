@@ -1,13 +1,3 @@
--   **`components/ChatInterfaceLanding.js`:**
-    -   Imported `Square` icon from `lucide-react`.
-    -   Added `abortControllerRef` using `useRef` to manage `AbortController` instances for fetch requests.
-    -   Implemented `handleStopGeneration` function to abort ongoing fetch requests, set `isGenerating` to `false`, and display an alert message.
-    -   Modified `handleGenerate` to:
-        -   Check if `isGenerating` is true; if so, call `handleStopGeneration` and return.
-        -   Initialize a new `AbortController` and pass its signal to the `fetch` request.
-        -   Clear the `abortControllerRef` in the `finally` block.
-        -   Handle `AbortError` specifically in the `catch` block to avoid generic error messages when the user stops generation.
-    -   Updated the send button's rendering:
-        -   When `isGenerating` is true, display a red `Square` icon instead of `ArrowUp`.
-        -   Changed the `onClick` handler to call `handleStopGeneration` when `isGenerating` is true, and `handleGenerate` otherwise.
-        -   Adjusted the `disabled` prop to allow clicking the button to stop generation even if the prompt input is empty.
+-   **`components/ChatInterfaceLanding.js` (Dark Theme Implementation):**
+    -   Modified the `className` of the main `div` (`lovable-container`) to conditionally apply a `dark-mode` class based on the `isDark` state from `ThemeContext`.
+    -   Added new CSS rules within the component's `<style jsx>` block, targeting elements under the `.lovable-container.dark-mode` selector. These rules apply dark theme styling (backgrounds, text colors, borders, shadows) to the main container, theme toggle, titles, chat container, buttons, input fields, generating overlay, and suggestion pills.
