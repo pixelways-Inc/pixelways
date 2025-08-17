@@ -7,6 +7,7 @@ import WorkspaceLoader from '../../components/WorkspaceLoader';
 import { Loader, Code, Eye, Rocket } from 'lucide-react';
 import { ThemeProvider } from '../../context/ThemeContext';
 import dynamic from 'next/dynamic';
+import ToastCenter from '../../components/ToastCenter';
 
 // Dynamic imports to prevent SSR issues and resolve circular dependencies
 const ProgressiveGenerator = dynamic(() => import('../../components/ProgressiveGenerator'), { 
@@ -52,6 +53,7 @@ const WorkspacePage = () => {
   const [isWorkspaceLoading, setIsWorkspaceLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingStep, setLoadingStep] = useState('init');
+  const [toasts, setToasts] = useState([]); // live progress toasts
 
   // Client-side initialization with loading progress
   useEffect(() => {
@@ -155,6 +157,60 @@ const WorkspacePage = () => {
     sessionStorage.setItem('generatedWebsite', JSON.stringify(website));
     setActiveView('code');
   };
+
+  // Sync tasks to toasts (per-page + aggregate overall)
+  useEffect(() => {
+    const tasks = generatedWebsite?.tasks;
+    if (!Array.isArray(tasks) || tasks.length === 0) {
+      setToasts([]);
+      return;
+    }
+
+    const normalizeStatus = (s) => (s === 'done' ? 'success' : s === 'error' ? 'error' : 'in-progress');
+    const perPageToasts = tasks.map((task) => {
+      const status = task.status || 'pending';
+      const progress = typeof task.progress === 'number' ? task.progress : status === 'done' ? 100 : status === 'pending' ? 0 : 50;
+      return {
+        id: task.path || task.title || Math.random().toString(36),
+        title: task.title || `Generating ${task.path || 'page'}`,
+        description: status === 'done' ? 'Completed' : (task.note || 'Working…'),
+        progress,
+        status: normalizeStatus(status),
+      };
+    });
+
+    const total = tasks.length;
+    const doneCount = tasks.filter((t) => (t.status || 'pending') === 'done').length;
+    const anyError = tasks.some((t) => (t.status || 'pending') === 'error');
+    const overallStatus = doneCount === total ? 'success' : anyError ? 'error' : 'in-progress';
+    const overallProgress = Math.round((doneCount / total) * 100);
+
+    const overallToast = {
+      id: '_overall',
+      title: overallStatus === 'success' ? 'All pages generated' : 'Generating pages…',
+      description: `${doneCount}/${total} completed`,
+      progress: overallProgress,
+      status: overallStatus,
+    };
+
+    setToasts([overallToast, ...perPageToasts]);
+  }, [generatedWebsite?.tasks]);
+
+  // Auto-dismiss completed toasts
+  useEffect(() => {
+    const timers = [];
+    toasts.forEach((t) => {
+      if (t.status === 'success') {
+        const handle = setTimeout(() => {
+          setToasts((prev) => prev.filter((x) => x.id !== t.id));
+        }, 1500);
+        timers.push(handle);
+      }
+    });
+    return () => timers.forEach(clearTimeout);
+  }, [toasts]);
+
+  const dismissToast = (id) => setToasts((prev) => prev.filter((t) => t.id !== id));
 
   const triggerPreview = async () => {
     if (!generatedWebsite || !Array.isArray(generatedWebsite.files)) return;
@@ -355,6 +411,7 @@ const WorkspacePage = () => {
           currentStep={loadingStep}
           onComplete={() => setIsWorkspaceLoading(false)}
         />
+  <ToastCenter toasts={toasts} onDismiss={dismissToast} />
       </ThemeProvider>
     );
   }
@@ -363,6 +420,7 @@ const WorkspacePage = () => {
   if (isMobile) {
     return (
       <ThemeProvider>
+  <ToastCenter toasts={toasts} onDismiss={dismissToast} />
         <style jsx>{`
           .mobile-workspace {
             height: 100vh;
@@ -600,6 +658,7 @@ const WorkspacePage = () => {
   // Desktop Layout (existing)
   return (
     <ThemeProvider>
+  <ToastCenter toasts={toasts} onDismiss={dismissToast} />
       <WorkspaceLayout siteName={siteName}>
         <div className="h-100 d-flex flex-column">
           {/* Top Navigation Bar */}
@@ -723,6 +782,7 @@ const WorkspacePage = () => {
         <ProgressiveGenerator 
           initialWebsite={generatedWebsite}
           onWebsiteUpdate={setGeneratedWebsite}
+          silent={true}
         />
       </WorkspaceLayout>
     </ThemeProvider>

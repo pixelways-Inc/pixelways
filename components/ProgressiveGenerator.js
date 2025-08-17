@@ -3,19 +3,31 @@
 import React, { useEffect, useState } from 'react';
 import { Loader, CheckCircle, AlertCircle } from 'lucide-react';
 
-const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
+const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate, silent = true }) => {
   const [currentWebsite, setCurrentWebsite] = useState(initialWebsite);
   const [isGenerating, setIsGenerating] = useState(false);
   const [currentPage, setCurrentPage] = useState(null);
   const [completedPages, setCompletedPages] = useState([]);
   const [error, setError] = useState(null);
+  const progressTimersRef = React.useRef({});
 
   useEffect(() => {
-    // Start progressive generation if there are planned pages
+    // Ensure tasks array exists (migrate from plannedPages if needed)
+    if (initialWebsite && (!Array.isArray(initialWebsite.tasks) || initialWebsite.tasks.length === 0)) {
+      const planned = Array.isArray(initialWebsite.plannedPages) ? initialWebsite.plannedPages : [];
+      if (planned.length > 0) {
+        const seededTasks = planned.map((p) => ({ path: p, title: p, status: 'pending', progress: 0 }));
+        const seeded = { ...initialWebsite, tasks: seededTasks };
+        setCurrentWebsite(seeded);
+        try { sessionStorage.setItem('generatedWebsite', JSON.stringify(seeded)); } catch (_) {}
+        if (onWebsiteUpdate) onWebsiteUpdate(seeded);
+      }
+    }
+
+    // Start progressive generation if there are planned pages or tasks
     const hasPlanned = initialWebsite && initialWebsite.plannedPages && initialWebsite.plannedPages.length > 0;
     const hasTasks = initialWebsite && Array.isArray(initialWebsite.tasks) && initialWebsite.tasks.length > 0;
     if (initialWebsite && (hasPlanned || hasTasks) && !initialWebsite.isComplete) {
-      
       console.log('Starting progressive generation for pages:', initialWebsite.plannedPages, 'tasks:', initialWebsite.tasks);
       startProgressiveGeneration();
     }
@@ -52,7 +64,7 @@ const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
       return;
     }
 
-    const nextPage = remainingPages[0];
+  const nextPage = remainingPages[0];
     const files = currentWebsite.files || [];
     const normalize = (p) => (p || '').trim().toLowerCase();
     const fileExists = (p) => files.some(f => normalize(f.path) === normalize(p));
@@ -67,7 +79,8 @@ const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
           ...updatedWebsite,
           tasks: updatedWebsite.tasks.map(t => ({
             ...t,
-            status: normalize(t.path) === normalize(nextPage) ? 'done' : (t.status || 'pending')
+            status: normalize(t.path) === normalize(nextPage) ? 'done' : (t.status || 'pending'),
+            progress: normalize(t.path) === normalize(nextPage) ? 100 : (t.progress || 0),
           }))
         };
       }
@@ -104,6 +117,47 @@ const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
     }
     setCurrentPage(nextPage);
 
+    // Mark task in-progress and start progress timer
+    let updating = { ...currentWebsite };
+    if (Array.isArray(updating.tasks) && updating.tasks.length > 0) {
+      updating = {
+        ...updating,
+        tasks: updating.tasks.map(t => ({
+          ...t,
+          status: normalize(t.path) === normalize(nextPage) ? 'in-progress' : (t.status || 'pending'),
+          progress: normalize(t.path) === normalize(nextPage) ? Math.max(5, t.progress || 0) : (t.progress || 0),
+        }))
+      };
+      setCurrentWebsite(updating);
+      try { sessionStorage.setItem('generatedWebsite', JSON.stringify(updating)); } catch (_) {}
+      if (onWebsiteUpdate) onWebsiteUpdate(updating);
+    }
+
+    // progress animation up to 90%
+    if (!progressTimersRef.current[nextPage]) {
+      const timer = setInterval(() => {
+        setCurrentWebsite(prev => {
+          if (!prev) return prev;
+          const tasks = Array.isArray(prev.tasks) ? prev.tasks.slice() : [];
+          const idx = tasks.findIndex(t => normalize(t.path) === normalize(nextPage));
+          if (idx !== -1) {
+            const t = { ...tasks[idx] };
+            if ((t.status || 'pending') === 'in-progress') {
+              const nextProg = Math.min(90, (typeof t.progress === 'number' ? t.progress : 0) + Math.floor(Math.random() * 6 + 2));
+              t.progress = nextProg;
+              tasks[idx] = t;
+              const updated = { ...prev, tasks };
+              try { sessionStorage.setItem('generatedWebsite', JSON.stringify(updated)); } catch (_) {}
+              if (onWebsiteUpdate) onWebsiteUpdate(updated);
+              return updated;
+            }
+          }
+          return prev;
+        });
+      }, 500);
+      progressTimersRef.current[nextPage] = timer;
+    }
+
     console.log(`Generating page: ${nextPage}`);
 
     try {
@@ -126,16 +180,32 @@ const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
         console.log(`Successfully generated ${nextPage}`);
         
         // Update current website state
-        setCurrentWebsite(data.website);
+        // Merge task status as done and progress 100
+        let merged = { ...data.website };
+        if (Array.isArray(merged.tasks) && merged.tasks.length > 0) {
+          merged = {
+            ...merged,
+            tasks: merged.tasks.map(t => ({
+              ...t,
+              status: normalize(t.path) === normalize(nextPage) ? 'done' : (t.status || 'pending'),
+              progress: normalize(t.path) === normalize(nextPage) ? 100 : (t.progress || 0),
+            }))
+          };
+        }
+        setCurrentWebsite(merged);
         setCompletedPages(prev => [...prev, nextPage]);
         
         // Update parent component
         if (onWebsiteUpdate) {
-          onWebsiteUpdate(data.website);
+          onWebsiteUpdate(merged);
         }
 
         // Update sessionStorage with the new website
-        sessionStorage.setItem('generatedWebsite', JSON.stringify(data.website));
+        sessionStorage.setItem('generatedWebsite', JSON.stringify(merged));
+
+        // Clear progress timer for page
+        const timer = progressTimersRef.current[nextPage];
+        if (timer) { clearInterval(timer); delete progressTimersRef.current[nextPage]; }
 
         // Check if generation is complete
   const noPlanned = !data.website.plannedPages || data.website.plannedPages.length === 0;
@@ -158,6 +228,22 @@ const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
       setError(`Failed to generate ${nextPage}: ${error.message}`);
       setIsGenerating(false);
       setCurrentPage(null);
+
+      // Update task to error and stop timer
+      setCurrentWebsite(prev => {
+        if (!prev) return prev;
+        const normalize = (p) => (p || '').trim().toLowerCase();
+        const tasks = Array.isArray(prev.tasks) ? prev.tasks.map(t => ({
+          ...t,
+          status: normalize(t.path) === normalize(nextPage) ? 'error' : (t.status || 'pending'),
+        })) : prev.tasks;
+        const updated = { ...prev, tasks };
+        try { sessionStorage.setItem('generatedWebsite', JSON.stringify(updated)); } catch (_) {}
+        if (onWebsiteUpdate) onWebsiteUpdate(updated);
+        return updated;
+      });
+      const timer = progressTimersRef.current[nextPage];
+      if (timer) { clearInterval(timer); delete progressTimersRef.current[nextPage]; }
     }
   };
 
@@ -166,10 +252,10 @@ const ProgressiveGenerator = ({ initialWebsite, onWebsiteUpdate }) => {
     startProgressiveGeneration();
   };
 
-  // Don't render anything if no progressive generation is needed
-  if (!initialWebsite || 
-      !initialWebsite.plannedPages || 
-      initialWebsite.plannedPages.length === 0 || 
+  // Don't render anything if silent or no progressive generation is needed
+  if (silent || !initialWebsite ||
+      (!initialWebsite.plannedPages || initialWebsite.plannedPages.length === 0) &&
+      (!Array.isArray(initialWebsite.tasks) || initialWebsite.tasks.length === 0) ||
       initialWebsite.isComplete) {
     return null;
   }
