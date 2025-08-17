@@ -1,1 +1,1 @@
-git commit -m "FEAT: Implement Pixelway AI Website Builder UI and API placeholders"
+git commit -m "FEAT: Implement stop generation functionality in WorkspaceChat"

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowUp, Plus, Moon, Sun } from 'lucide-react';
+import { ArrowUp, Plus, Moon, Sun, Square } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const ChatInterfaceLanding = () => {
@@ -12,14 +12,26 @@ const ChatInterfaceLanding = () => {
     if (isGenerating) setPrompt('');
   }, [isGenerating]);
   const [isGenerating, setIsGenerating] = useState(false);
+  const abortControllerRef = useRef(null);
   const router = useRouter();
   const { isDark, toggleTheme } = useTheme();
 
   const handleGenerate = async () => {
-    if (!prompt.trim() || isGenerating) return;
-    setIsGenerating(true);
+    if (!prompt.trim()) return; // Only return if no message, allow stopping if generating
+
+    // If currently generating, this click should stop it
+    if (isGenerating) {
+      handleStopGeneration();
+      return;
+    }
+
+    setIsGenerating(true); // Set generating state when starting
 
     try {
+      // Initialize AbortController
+      abortControllerRef.current = new AbortController();
+      const signal = abortControllerRef.current.signal;
+
       const response = await fetch('/api/ai/generate', {
         method: 'POST',
         headers: {
@@ -29,6 +41,7 @@ const ChatInterfaceLanding = () => {
           prompt: prompt.trim(),
           projectType: 'static'
         }),
+        signal: signal // Pass the signal to the fetch request
       });
       const data = await response.json();
 
@@ -40,11 +53,26 @@ const ChatInterfaceLanding = () => {
         alert('Failed to generate website. Please try again.');
       }
     } catch (error) {
-      console.error('Error generating website:', error);
-      alert('Error generating website. Please try again.');
+      if (error.name === 'AbortError') {
+        console.log('Fetch aborted by user.');
+        // handleStopGeneration already showed an alert
+      } else {
+        console.error('Error generating website:', error);
+        alert('Error generating website. Please try again.');
+      }
     } finally {
       setIsGenerating(false);
+      abortControllerRef.current = null; // Clear the controller
     }
+  };
+
+  const handleStopGeneration = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+    setIsGenerating(false);
+    alert('AI generation stopped.'); // Or a more subtle UI indication
   };
 
   const handleKeyPress = (e) => {
@@ -470,11 +498,11 @@ const ChatInterfaceLanding = () => {
             </div>
             
             <button
-              onClick={handleGenerate}
-              disabled={!prompt.trim() || isGenerating}
+              onClick={isGenerating ? handleStopGeneration : handleGenerate}
+              disabled={!prompt.trim() && !isGenerating} // Disable only if no prompt and not generating
               className="send-button"
             >
-              <ArrowUp size={20} />
+              {isGenerating ? <Square size={20} className="text-red-500" /> : <ArrowUp size={20} />}
             </button>
           </div>
         </div>
