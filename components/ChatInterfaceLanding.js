@@ -565,9 +565,9 @@ const ChatInterfaceLanding = () => {
 
       <div className="main-content">
         {/* Main Heading */}
-        <h1 className="title">
+        <h2 className="title">
           Build something <span className="heart">❤️</span> stunning
-        </h1>
+        </h2>
         <h3 className="subtitle">
           Create stunning websites by chatting with AI
         </h3>
