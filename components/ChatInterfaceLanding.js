@@ -6,15 +6,24 @@ import { useTheme } from '../context/ThemeContext';
 
 const ChatInterfaceLanding = () => {
   const [prompt, setPrompt] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
+  const abortControllerRef = useRef(null);
+  const router = useRouter();
+  const { isDark, toggleTheme } = useTheme();
 
   // Clear prompt when generation starts
   useEffect(() => {
     if (isGenerating) setPrompt('');
   }, [isGenerating]);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const abortControllerRef = useRef(null);
-  const router = useRouter();
-  const { isDark, toggleTheme } = useTheme();
+
+  const handleStopGeneration = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+    setIsGenerating(false);
+    alert('AI generation stopped.'); // Or a more subtle UI indication
+  };
 
   const handleGenerate = async () => {
     if (!prompt.trim()) return; // Only return if no message, allow stopping if generating
@@ -64,15 +73,6 @@ const ChatInterfaceLanding = () => {
       setIsGenerating(false);
       abortControllerRef.current = null; // Clear the controller
     }
-  };
-
-  const handleStopGeneration = () => {
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
-      abortControllerRef.current = null;
-    }
-    setIsGenerating(false);
-    alert('AI generation stopped.'); // Or a more subtle UI indication
   };
 
   const handleKeyPress = (e) => {
