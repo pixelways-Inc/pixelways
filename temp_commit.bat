@@ -1,1 +1,1 @@
-git commit -m "FIX: Install react-slick and slick-carousel dependencies"
+git commit -m "CHORE: Confirm hero slider autoplaySpeed setting"

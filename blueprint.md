@@ -43,3 +43,12 @@
 
 -   **`components/HeroSlider.js`:**
     -   Verified that the `autoplaySpeed` property in the `settings` object is already set to `5000` (5 seconds), meeting the requirement. No code changes were necessary.
+
+## 2025-09-16
+
+**Objective:** Change the hero slider interval to 4 seconds.
+
+**Summary of Changes:**
+
+-   **`components/HeroSlider.js`:**
+    -   Modified the `autoplaySpeed` property in the `settings` object from `5000` to `4000` (4 seconds).
