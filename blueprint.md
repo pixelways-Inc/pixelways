@@ -13,3 +13,6 @@
 -   **`app/page.js` (Homepage Update):**
     -   Replaced the existing hero section with the new `HeroSlider` component.
     -   Removed the `ChatInterfaceLanding` component and the "Features Area" section.
+
+-   **`app/api/auth/github/route.js` (Dynamic Redirect URI):**
+    -   Modified the GitHub authentication route to dynamically construct the `REDIRECT_URI` based on the request's origin. This allows the authentication to work in different environments (local, preview, production).
