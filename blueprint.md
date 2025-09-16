@@ -3,7 +3,7 @@
     -   Added new CSS rules within the component's `<style jsx>` block, targeting elements under the `.lovable-container.dark-mode` selector. These rules apply dark theme styling (backgrounds, text colors, borders, shadows) to the main container, theme toggle, titles, chat container, buttons, input fields, generating overlay, and suggestion pills.
 
 -   **`components/PixelwaysAdModal.js` (Ad Display Interval):**
-    -   Increased the ad display interval from 5 minutes to 10 minutes by changing the default value of the `frequency` prop to `600000`.
+    -   Increased the ad display interval from 10 minutes to 30 minutes by changing the default value of the `frequency` prop to `1800000`.
 
 ## 2025-09-16
 

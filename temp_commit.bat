@@ -1,1 +1,1 @@
-git commit -m "FEAT: Add hero slider to homepage"
+git commit -m "FEAT: Add Pixel Pilot slide to HeroSlider"
