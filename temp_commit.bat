@@ -1,1 +1,1 @@
-git commit -m "FEAT: Update client reviews in Testimonials1.js"
+git commit -m "FIX: Display Font Awesome arrow icons for hero slider navigation"

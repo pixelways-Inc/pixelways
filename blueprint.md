@@ -80,6 +80,7 @@
 -   **`app/globals.css`:**
     -   Added CSS rules for `.slick-prev` and `.slick-next` to hide the default text and display Font Awesome icons (`\f060` for previous, `\f061` for next) using the `::before` pseudo-element.
     -   Adjusted styling for arrow size, color, and dark theme compatibility.
+    -   **Correction:** Changed `color: transparent;` to `text-indent: -9999px;` for `.slick-prev, .slick-next` to ensure the original text is hidden while allowing the Font Awesome icons to be visible.
 
 ## 2025-09-16
 
