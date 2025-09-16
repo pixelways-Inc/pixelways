@@ -1,1 +1,1 @@
-git commit -m "FEAT: Add navigation arrows to hero slider"
+git commit -m "FEAT: Update client reviews in Testimonials1.js"

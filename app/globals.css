@@ -1071,7 +1071,7 @@ body.dark-theme .pricing-item {
 body.dark-theme .pricing-item:hover {
   background-color: var(--secondary-bg-color) !important; /* Slightly lighter on hover */
   border-color: #666666 !important; /* Lighter border on hover */
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1) !important; /* Subtle white glow */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important; /* Subtle white glow */
 }
 
 body.dark-theme .pricing-item .title,
@@ -1994,6 +1994,69 @@ body.dark-theme .product-reviews .review-item {
   border-radius: 8px !important;
   padding: 20px !important;
   margin-bottom: 20px !important;
+}
+
+body.dark-theme .product-reviews .review-item .reviewer-name {
+  color: var(--main-text-color) !important;
+}
+
+/* Slick Slider Arrow Icons */
+.slick-prev, .slick-next {
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.slick-prev:before, .slick-next:before {
+  font-family: "Font Awesome 5 Pro"; /* Or "Font Awesome 5 Free" if Pro is not available */
+  font-size: 20px;
+  line-height: 1;
+  color: var(--tekprof-heading-color); /* Use heading color for arrows */
+  opacity: 0.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev {
+  left: 25px;
+  z-index: 1;
+}
+
+.slick-next {
+  right: 25px;
+  z-index: 1;
+}
+
+.slick-prev:before {
+  content: "\f060"; /* Unicode for Font Awesome left arrow */
+}
+
+.slick-next:before {
+  content: "\f061"; /* Unicode for Font Awesome right arrow */
+}
+
+/* Dark Theme Overrides for Slick Arrows */
+body.dark-theme .slick-prev:before,
+body.dark-theme .slick-next:before {
+  color: var(--main-text-color) !important; /* White arrows in dark theme */
+}
+
+body.dark-theme .slick-prev:hover:before,
+body.dark-theme .slick-next:hover:before {
+  color: var(--tekprof-primary-color) !important; /* Primary color on hover in dark theme */
 }
 
 body.dark-theme .product-reviews .review-item .reviewer-name {

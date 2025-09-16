@@ -1,6 +1,6 @@
 -   **`components/ChatInterfaceLanding.js` (Dark Theme Implementation):**
     -   Modified the `className` of the main `div` (`lovable-container`) to conditionally apply a `dark-mode` class based on the `isDark` state from `ThemeContext`.
-    -   Added new CSS rules within the component's `<style jsx>` block, targeting elements under the `.lovable-container.dark-mode` selector. These rules apply dark theme styling (backgrounds, text colors, borders, shadows) to the main container, theme toggle, titles, chat container, buttons, input fields, generating overlay, and suggestion pills.
+    -   Added new CSS rules within the component’s `<style jsx>` block, targeting elements under the `.lovable-container.dark-mode` selector. These rules apply dark theme styling (backgrounds, text colors, borders, shadows) to the main container, theme toggle, titles, chat container, buttons, input fields, generating overlay, and suggestion pills.
 
 -   **`components/PixelwaysAdModal.js` (Ad Display Interval):**
     -   Increased the ad display interval from 10 minutes to 30 minutes by changing the default value of the `frequency` prop to `1800000`.
@@ -70,6 +70,16 @@
 
 -   **`components/HeroSlider.js`:**
     -   Set the `arrows` property in the `settings` object to `true` to enable default navigation arrows.
+
+## 2025-09-16
+
+**Objective:** Display Font Awesome arrow icons instead of "prev" and "next" text for the hero slider navigation.
+
+**Summary of Changes:**
+
+-   **`app/globals.css`:**
+    -   Added CSS rules for `.slick-prev` and `.slick-next` to hide the default text and display Font Awesome icons (`\f060` for previous, `\f061` for next) using the `::before` pseudo-element.
+    -   Adjusted styling for arrow size, color, and dark theme compatibility.
 
 ## 2025-09-16
 
