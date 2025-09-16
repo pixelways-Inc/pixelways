@@ -4,6 +4,7 @@
 
 -   **`components/PixelwaysAdModal.js` (Ad Display Interval):**
     -   Increased the ad display interval from 10 minutes to 30 minutes by changing the default value of the `frequency` prop to `1800000`.
+    -   Increased the initial delay before showing the ad from 10 seconds to 15 minutes by changing the default value of the `delay` prop to `900000`.
 
 ## 2025-09-16
 

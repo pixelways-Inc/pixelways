@@ -1,1 +1,1 @@
-git commit -m "FEAT: Add Pixel Pilot slide to HeroSlider"
+git commit -m "CHORE: Increase ad modal display frequency"

@@ -6,7 +6,7 @@ import advertisements from "@/data/advertisements.json";
 const PixelwaysAdModal = ({ 
   currentPage = "all", 
   showOnMount = false, 
-  delay = 10000, // 10 seconds default delay
+  delay = 900000, // 15 minutes default delay
   frequency = 1800000 // Show every 30 minutes by default
 }) => {
   const [isVisible, setIsVisible] = useState(false);
