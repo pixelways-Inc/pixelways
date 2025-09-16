@@ -1,3 +1,12 @@
+## 2025-09-16
+
+**Objective:** Remove the "Pricing" link from the header navigation for both desktop and mobile views.
+
+**Summary of Changes:**
+
+-   **`layout/Header.js`:**
+    -   Removed the `<li>` element containing the "Pricing" link from the `Menu` component. This ensures the link is no longer displayed in the main navigation.
+
 -   **`components/ChatInterfaceLanding.js` (Dark Theme Implementation):**
     -   Modified the `className` of the main `div` (`lovable-container`) to conditionally apply a `dark-mode` class based on the `isDark` state from `ThemeContext`.
     -   Added new CSS rules within the component’s `<style jsx>` block, targeting elements under the `.lovable-container.dark-mode` selector. These rules apply dark theme styling (backgrounds, text colors, borders, shadows) to the main container, theme toggle, titles, chat container, buttons, input fields, generating overlay, and suggestion pills.
