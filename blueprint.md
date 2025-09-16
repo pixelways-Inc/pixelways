@@ -1,5 +1,14 @@
 ## 2025-09-16
 
+**Objective:** Change the author of all blog posts to "Hans Ade".
+
+**Summary of Changes:**
+
+-   **`app/blog/page.js`:**
+    -   Replaced all occurrences of various author names with "Hans Ade" within the blog post listings.
+
+## 2025-09-16
+
 **Objective:** Remove the "Pricing" link from the header navigation for both desktop and mobile views.
 
 **Summary of Changes:**

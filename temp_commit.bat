@@ -1,1 +1,1 @@
-git commit -m "FIX: Corrected hero slider navigation to display Font Awesome arrows"
+git commit -m "FEAT: Remove pricing link from header navigation"

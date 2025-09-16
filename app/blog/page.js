@@ -58,7 +58,7 @@ const page = () => {
                       <ul className="blog-meta-two">
                         <li>
                           <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Author" style={{width:'24px',borderRadius:'50%',marginRight:'6px'}} />
-                          <Link href="blog">Alex Johnson</Link>
+                          <Link href="blog">Hans Ade</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 12 August 2025</li>
                       </ul>
@@ -77,7 +77,7 @@ const page = () => {
                       <ul className="blog-meta-two">
                         <li>
                           <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Author" style={{width:'24px',borderRadius:'50%',marginRight:'6px'}} />
-                          <Link href="blog">Maria Chen</Link>
+                          <Link href="blog">Hans Ade</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 10 August 2025</li>
                       </ul>
@@ -96,7 +96,7 @@ const page = () => {
                       <ul className="blog-meta-two">
                         <li>
                           <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Author" style={{width:'24px',borderRadius:'50%',marginRight:'6px'}} />
-                          <Link href="blog">Robert S. Hummel</Link>
+                          <Link href="blog">Hans Ade</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 8 August 2025</li>
                       </ul>
@@ -115,7 +115,7 @@ const page = () => {
                       <ul className="blog-meta-two">
                         <li>
                           <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Author" style={{width:'24px',borderRadius:'50%',marginRight:'6px'}} />
-                          <Link href="blog">Leonard G. Trahan</Link>
+                          <Link href="blog">Hans Ade</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 5 August 2025</li>
                       </ul>
@@ -191,7 +191,7 @@ const page = () => {
                       <ul className="blog-meta-two">
                         <li>
                           <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Author" style={{width:'24px',borderRadius:'50%',marginRight:'6px'}} />
-                          <Link href="blog">Anye Happiness Ade</Link>
+                          <Link href="blog">Hans Ade</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 31 July 2025</li>
                       </ul>
@@ -210,7 +210,7 @@ const page = () => {
                       <ul className="blog-meta-two">
                         <li>
                           <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Author" style={{width:'24px',borderRadius:'50%',marginRight:'6px'}} />
-                          <Link href="blog">Anye Happiness Ade</Link>
+                          <Link href="blog">Hans Ade</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 29 July 2025</li>
                       </ul>
@@ -229,7 +229,7 @@ const page = () => {
                       <ul className="blog-meta-two">
                         <li>
                           <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Author" style={{width:'24px',borderRadius:'50%',marginRight:'6px'}} />
-                          <Link href="blog">Sarah Mitchell</Link>
+                          <Link href="blog">Hans Ade</Link>
                         </li>
                         <li><i className="far fa-calendar-alt" /> 1 August 2025</li>
                       </ul>
