@@ -1,1 +1,1 @@
-git commit -m "FEAT: Implement dark theme for ChatInterfaceLanding"
+git commit -m "FEAT: Add hero slider to homepage"

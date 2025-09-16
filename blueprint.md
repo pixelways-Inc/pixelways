@@ -14,3 +14,13 @@
 -   **`app/page.js`:**
     -   Imported the `HeroSlider` component.
     -   Added the `<HeroSlider />` component at the beginning of the `TekprofLayout` to display the hero slider on the homepage.
+
+## 2025-09-16
+
+**Objective:** Showcase and advertise Pixel Pilot, the AI-Driven IDE, on the homepage hero slider.
+
+**Summary of Changes:**
+
+-   **`components/HeroSlider.js`:**
+    -   Added a new slide to the `slides` array to promote "Pixel Pilot: Your AI-Driven IDE".
+    -   The new slide includes a descriptive title, description, an `imageUrl` from the image API, and a call-to-action button linking to `https://pipilot.dev`.

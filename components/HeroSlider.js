@@ -6,6 +6,13 @@ import "slick-carousel/slick/slick-theme.css";
 
 const slides = [
   {
+    title: "Introducing Pixel Pilot: Your AI-Driven IDE",
+    description: "Experience the future of coding with Pixel Pilot, our intelligent development environment. Boost your productivity and streamline your workflow.",
+    imageUrl: "https://api.a0.dev/assets/image?text=Pixel+Pilot+AI+Driven+IDE+Coding+Future&aspect=16:9&seed=4",
+    ctaText: "Discover Pixel Pilot",
+    ctaLink: "https://pipilot.dev",
+  },
+  {
     title: "Innovative IT Solutions for a Digital World",
     description: "Pixelways Solutions offers cutting-edge IT consultancy and digital solutions to transform your business.",
     imageUrl: "https://api.a0.dev/assets/image?text=Pixelways+Solution+IT+Consultancy+Digital+Solutions&aspect=16:9&seed=1",
