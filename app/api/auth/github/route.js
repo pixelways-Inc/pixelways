@@ -3,12 +3,12 @@ import { NextResponse } from 'next/server';
 // GitHub OAuth App configuration
 const GITHUB_CLIENT_ID = 'Ov23liVwQzorWABZkC5t';
 const GITHUB_CLIENT_SECRET = '8567050e0d7a7d568fdc152ea2bb516172609414';
+const REDIRECT_URI = 'https://pixelways.co/api/auth/github/callback';
 
 export async function GET(request) {
-  const { searchParams, origin } = new URL(request.url);
+  const { searchParams } = new URL(request.url);
   const action = searchParams.get('action');
-
-  const REDIRECT_URI = `${origin}/api/auth/github/callback`;
+  const origin = searchParams.get('origin'); // Get the origin URL for callback
 
   if (action === 'authorize') {
     // Redirect to GitHub OAuth authorization
