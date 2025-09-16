@@ -1,1 +1,1 @@
-git commit -m "CHORE: Increase ad modal initial delay"
+git commit -m "FIX: Install react-slick and slick-carousel dependencies"

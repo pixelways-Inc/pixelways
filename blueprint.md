@@ -34,3 +34,12 @@
 
 -   **Project Dependencies:**
     -   Installed `react-slick` and `slick-carousel` using `pnpm` to ensure proper resolution of CSS imports for the `HeroSlider` component.
+
+## 2025-09-16
+
+**Objective:** Confirm hero slider slide interval is set to 5 seconds.
+
+**Summary of Changes:**
+
+-   **`components/HeroSlider.js`:**
+    -   Verified that the `autoplaySpeed` property in the `settings` object is already set to `5000` (5 seconds), meeting the requirement. No code changes were necessary.
