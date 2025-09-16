@@ -44,7 +44,7 @@ const HeroSlider = () => {
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
-    arrows: false,
+    arrows: true,
   };
 
   return (

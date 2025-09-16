@@ -1,1 +1,1 @@
-git commit -m "CHORE: Update hero slider interval to 4 seconds"
+git commit -m "FEAT: Make hero slider mobile responsive"

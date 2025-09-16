@@ -61,3 +61,12 @@
 
 -   **`components/HeroSlider.js`:**
     -   Added media queries within the `<style jsx>` block to adjust font sizes, padding, and width of `.slider-content`, `h1`, `p`, and `.cta-button` for screen sizes up to 768px and 480px.
+
+## 2025-09-16
+
+**Objective:** Add previous and next controller buttons to the slider card.
+
+**Summary of Changes:**
+
+-   **`components/HeroSlider.js`:**
+    -   Set the `arrows` property in the `settings` object to `true` to enable default navigation arrows.
