@@ -41,7 +41,7 @@ const page = () => {
                   Our Core Expertise
                 </span>
                 <h2>
-                  Transforming Challenges into Opportunities with Pixelways Solutionss
+                  Transforming Challenges into Opportunities with Pixelways Solutions
                 </h2>
                 <div className="row justify-content-center">
                   <div className="col-lg-10">
