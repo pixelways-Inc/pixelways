@@ -6,6 +6,7 @@ import Team from "@/components/Team";
 import Testimonials from "@/components/testimonials/Testimonials1";
 import PixelwaysAdModal from "@/components/PixelwaysAdModal";
 import ChatInterfaceLanding from "@/components/ChatInterfaceLanding";
+import HeroSlider from "@/components/HeroSlider";
 
 import { WorkingProcess2 } from "@/components/WorkingProcess";
 import TekprofLayout from "@/layout/TekprofLayout";
@@ -23,6 +24,7 @@ const page = () => {
         "--tekprof-gray-color": "#FAF8F6",
       }}
     >
+      <HeroSlider />
       
       {/* Features Area start */}
       <section className="features-area rel z-1">

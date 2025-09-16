@@ -4,3 +4,13 @@
 
 -   **`components/PixelwaysAdModal.js` (Ad Display Interval):**
     -   Increased the ad display interval from 5 minutes to 10 minutes by changing the default value of the `frequency` prop to `600000`.
+
+## 2025-09-16
+
+**Objective:** Add a captivating intro banner slider to the hero section of the homepage to showcase services in a promo style.
+
+**Summary of Changes:**
+
+-   **`app/page.js`:**
+    -   Imported the `HeroSlider` component.
+    -   Added the `<HeroSlider />` component at the beginning of the `TekprofLayout` to display the hero slider on the homepage.
