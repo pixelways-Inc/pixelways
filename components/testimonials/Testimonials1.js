@@ -77,18 +77,18 @@ export default class Testimonials extends Component {
                     <i className="fas fa-star" />
                   </div>
                   <div className="testi-text">
-                    "Working with has completely transformed operations. Their
-                    expertise in cloud migration helped us cut down on overhead
-                    and improve system reliability!"
+                    "Pixelways Solutions completely transformed our IT infrastructure. Their
+                    expertise in cloud migration was exceptional, leading to significant cost
+                    savings and improved system reliability. A truly invaluable partner!"
                   </div>
                   <div className="testi-author">
                     <img
-                      src={`https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*50)+1}.jpg`}
+                      src="https://api.a0.dev/assets/image?text=Professional+headshot+of+a+woman,+smiling,+corporate+background,+realistic,+8K&aspect=1:1&seed=101"
                       alt="Author"
                       width={60}
                       height={60}
                     />
-                    Robert S. Hummel /CEO &amp; Founder
+                    Emily R. Chen / CTO, TechInnovate Inc.
                   </div>
                 </div>
                 <div className="testimonial-item">
@@ -100,18 +100,19 @@ export default class Testimonials extends Component {
                     <i className="fas fa-star" />
                   </div>
                   <div className="testi-text">
-                    "Working with has completely transformed operations. Their
-                    expertise in cloud migration helped us cut down on overhead
-                    and improve system reliability!"
+                    "We struggled with cybersecurity for years until we partnered with Pixelways
+                    Solutions. Their comprehensive security audit and implementation of robust
+                    protocols have given us peace of mind. Highly recommend their proactive
+                    approach!"
                   </div>
                   <div className="testi-author">
                     <img
-                      src={`https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*50)+1}.jpg`}
+                      src="https://api.a0.dev/assets/image?text=Professional+headshot+of+a+man,+serious+but+approachable,+modern+office+background,+realistic,+8K&aspect=1:1&seed=102"
                       alt="Author"
                       width={60}
                       height={60}
                     />
-                    Leonard G. Trahan  /Web designer
+                    David L. Miller / CEO, SecureNet Systems
                   </div>
                 </div>
                 <div className="testimonial-item">
@@ -123,16 +124,19 @@ export default class Testimonials extends Component {
                     <i className="fas fa-star" />
                   </div>
                   <div className="testi-text">
-                    "Working with has completely transformed operations. Their
-                    expertise in cloud migration helped us cut down on overhead
-                    and improve system reliability!"
+                    "The team at Pixelways Solutions delivered an outstanding e-commerce platform
+                    for us. Their attention to detail, innovative design, and seamless
+                    development process exceeded our expectations. Our online sales have
+                    skyrocketed!"
                   </div>
                   <div className="testi-author">
                     <img
-                      src="assets/images/testimonials/testi-author1.jpg"
+                      src="https://api.a0.dev/assets/image?text=Professional+headshot+of+a+woman,+creative+and+friendly,+studio+lighting,+realistic,+8K&aspect=1:1&seed=103"
                       alt="Author"
+                      width={60}
+                      height={60}
                     />
-                    Robert S. Hummel  /CEO &amp; Founder
+                    Sarah J. White / Marketing Director, Global Retail Co.
                   </div>
                 </div>
                 <div className="testimonial-item">
@@ -144,16 +148,19 @@ export default class Testimonials extends Component {
                     <i className="fas fa-star" />
                   </div>
                   <div className="testi-text">
-                    "Working with has completely transformed operations. Their
-                    expertise in cloud migration helped us cut down on overhead
-                    and improve system reliability!"
+                    "Pixelways Solutions provided exceptional IT consultancy, guiding us through
+                    a complex digital transformation. Their strategic insights and technical
+                    prowess were instrumental in achieving our business objectives. A true
+                    partner in success!"
                   </div>
                   <div className="testi-author">
                     <img
-                      src="assets/images/testimonials/testi-author2.jpg"
+                      src="https://api.a0.dev/assets/image?text=Professional+headshot+of+a+man,+confident+and+experienced,+blurred+cityscape+background,+realistic,+8K&aspect=1:1&seed=104"
                       alt="Author"
+                      width={60}
+                      height={60}
                     />
-                   Leonard G. Trahan  /Web designer
+                    Michael B. Davis / Founder, FutureTech Ventures
                   </div>
                 </div>
               </Slider>

@@ -70,3 +70,13 @@
 
 -   **`components/HeroSlider.js`:**
     -   Set the `arrows` property in the `settings` object to `true` to enable default navigation arrows.
+
+## 2025-09-16
+
+**Objective:** Update client reviews on the homepage to be more real, differentiated, and refer to "Pixelways Solutions".
+
+**Summary of Changes:**
+
+-   **`components/testimonials/Testimonials1.js`:**
+    -   Replaced generic testimonial text with specific, varied reviews that mention "Pixelways Solutions".
+    -   Updated author names, titles, and images (using the image API with different seeds) to be more diverse and realistic.

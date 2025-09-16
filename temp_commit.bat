@@ -1,1 +1,1 @@
-git commit -m "FEAT: Make hero slider mobile responsive"
+git commit -m "FEAT: Add navigation arrows to hero slider"
