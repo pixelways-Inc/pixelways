@@ -1,1 +1,1 @@
-git commit -m "CHORE: Increase ad modal display frequency"
+git commit -m "CHORE: Increase ad modal initial delay"

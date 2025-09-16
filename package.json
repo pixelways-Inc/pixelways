@@ -28,6 +28,7 @@
     "react-slick": "^0.30.3",
     "react-textarea-autosize": "^8.5.9",
     "react-visibility-sensor": "^5.1.1",
+    "slick-carousel": "^1.8.1",
     "uuid": "^11.1.0",
     "vercel": "44.7.3",
     "zod": "^4.0.17"
