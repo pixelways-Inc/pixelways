@@ -1,1 +1,1 @@
-git commit -m "CHORE: Confirm hero slider autoplaySpeed setting"
+git commit -m "CHORE: Update hero slider interval to 4 seconds"

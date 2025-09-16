@@ -52,3 +52,12 @@
 
 -   **`components/HeroSlider.js`:**
     -   Modified the `autoplaySpeed` property in the `settings` object from `5000` to `4000` (4 seconds).
+
+## 2025-09-16
+
+**Objective:** Make the hero slider mobile responsive.
+
+**Summary of Changes:**
+
+-   **`components/HeroSlider.js`:**
+    -   Added media queries within the `<style jsx>` block to adjust font sizes, padding, and width of `.slider-content`, `h1`, `p`, and `.cta-button` for screen sizes up to 768px and 480px.

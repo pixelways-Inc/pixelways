@@ -100,6 +100,41 @@ const HeroSlider = () => {
           border-radius: 0.25rem;
           font-weight: bold;
         }
+
+        @media (max-width: 768px) {
+          .slider-content {
+            padding: 1rem;
+            width: 90%; /* Adjust width for better mobile fit */
+          }
+
+          .slider-content h1 {
+            font-size: 1.8rem; /* Smaller font size for mobile headings */
+          }
+
+          .slider-content p {
+            font-size: 0.9rem; /* Smaller font size for mobile paragraphs */
+          }
+
+          .cta-button {
+            padding: 0.6rem 1.2rem; /* Smaller padding for mobile buttons */
+            font-size: 0.9rem; /* Smaller font size for mobile buttons */
+          }
+        }
+
+        @media (max-width: 480px) {
+          .slider-content h1 {
+            font-size: 1.5rem;
+          }
+
+          .slider-content p {
+            font-size: 0.8rem;
+          }
+
+          .cta-button {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+          }
+        }
       `}</style>
     </div>
   );
