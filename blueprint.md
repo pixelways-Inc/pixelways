@@ -4,3 +4,12 @@
 
 -   **`components/PixelwaysAdModal.js` (Ad Display Interval):**
     -   Increased the ad display interval from 5 minutes to 10 minutes by changing the default value of the `frequency` prop to `600000`.
+
+-   **`components/HeroSlider.js` (New Component):**
+    -   Created a new `HeroSlider` component to display a captivating intro banner slider on the homepage.
+    -   Used the `react-slick` library to create the slider.
+    -   The slider includes three slides with promotional content, each with a background image, title, description, and a call-to-action button.
+
+-   **`app/page.js` (Homepage Update):**
+    -   Replaced the existing hero section with the new `HeroSlider` component.
+    -   Removed the `ChatInterfaceLanding` component and the "Features Area" section.

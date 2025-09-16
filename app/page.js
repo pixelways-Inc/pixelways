@@ -1,11 +1,11 @@
-"use client";
+
+import HeroSlider from "@/components/HeroSlider";
 import ClientLogo from "@/components/ClientLogo";
 import Services from "@/components/services";
 import Counter from "@/components/Counter";
 import Team from "@/components/Team";
 import Testimonials from "@/components/testimonials/Testimonials1";
 import PixelwaysAdModal from "@/components/PixelwaysAdModal";
-import ChatInterfaceLanding from "@/components/ChatInterfaceLanding";
 
 import { WorkingProcess2 } from "@/components/WorkingProcess";
 import TekprofLayout from "@/layout/TekprofLayout";
@@ -23,42 +23,7 @@ const page = () => {
         "--tekprof-gray-color": "#FAF8F6",
       }}
     >
-      
-      {/* Features Area start */}
-      <section className="features-area rel z-1">
-        <div className="container pt-130 rpt-100 pb-100 rpb-70">
-          <div className="row justify-content-center">
-            <div className="col-xl-8 col-lg-10">
-              <div
-                className="why-choose-content rmb-55"
-                data-aos="fade-right"
-                data-aos-duration={1500}
-                data-aos-offset={50}
-              >
-                <span className="sub-title color-primary mb-10">
-                  Our Core Expertise
-                </span>
-                <h2>
-                  Transforming Challenges into Opportunities with Pixelways Solutionss
-                </h2>
-                <div className="row justify-content-center">
-                  <div className="col-lg-10">
-                    <p>
-                      At Pixelways Solutions, we integrate cutting-edge technologies with
-                      strategic planning to optimize your processes, drive innovation, and deliver
-                      measurable results. Partner with our IT experts to unlock your business's full potential.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <Services limit={10} mode="slide" />
-          
-        </div>
-      </section>
-      {/* Features Area end */}
+      <HeroSlider />
       {/* Why Choose Us Area start */}
       <section className="why-choose-us-area pb-100 rpb-70 rel z-1">
         <div className="container">
@@ -521,7 +486,7 @@ const page = () => {
                     src="https://api.a0.dev/assets/image?text=IT strategist presenting a roadmap on a digital screen, with team members discussing. Smart, strategic, 8K, 350x350px.&aspect=1:1&seed=135" alt="Assessment and Strategy Development" width={350} height={350} />
                 </div>
                 <div className="content">
-                  <div className="tags">
+                  <div className_name="tags">
                     <Link href="blog">IT Service</Link>
                     <Link href="blog">Cyber Security</Link>
                   </div>
@@ -795,4 +760,5 @@ const page = () => {
     </TekprofLayout>
   );
 };
-export default page;
+export default page; 
+
