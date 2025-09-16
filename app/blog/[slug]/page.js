@@ -9,257 +9,257 @@ const BlogPostPage = ({ params }) => {
   const [loading, setLoading] = useState(true);
 
   // Blog posts data (in a real app, this would come from an API or CMS)
-  const blogPosts = [
-    {
-      slug: "cybersecurity-essentials-protecting-business-from-emerging-threats",
-      title: "Cybersecurity Essentials Protecting Business from Emerging Threats",
-      category: "IT Solutions",
-      date: "25 December 2024",
-      author: "Pixelways Team",
-      avatar: "https://randomuser.me/api/portraits/men/11.jpg",
-      image: "https://api.a0.dev/assets/image?text=Cybersecurity expert presenting at a business conference, audience engaged, digital threat icons on screen, 8K, 300x300px.&aspect=1:1&seed=138",
-      excerpt: "Stay ahead of evolving cyber threats with our essential guide to protecting your business through robust security practices and proactive measures.",
-      content: `
-        <p>In today's digital landscape, cybersecurity has become more critical than ever. With the rise of remote work and increased digital transformation, businesses face a growing number of cyber threats that can compromise sensitive data and disrupt operations.</p>
-        
-        <h4>Understanding Modern Cyber Threats</h4>
-        <p>Modern cyber threats are becoming increasingly sophisticated. From ransomware attacks to phishing scams, businesses need to stay vigilant and implement robust security measures.</p>
-        
-        <h4>Essential Security Measures</h4>
-        <p>Implement comprehensive security frameworks that include regular security assessments, employee training programs, multi-factor authentication, and advanced threat detection systems.</p>
-        
-        <h5>Proactive Security Approach</h5>
-        <p>The best defense against cyber threats is a proactive approach that includes regular penetration testing, vulnerability assessments, and continuous monitoring of your digital assets.</p>
-        
-        <h4>Building a Security Culture</h4>
-        <p>Creating a security-conscious culture within your organization is essential. This includes regular training, clear security policies, and making cybersecurity everyone's responsibility.</p>
-        
-        <p>At Pixelways Solutions, we help businesses implement comprehensive cybersecurity strategies that protect against emerging threats while maintaining operational efficiency.</p>
-      `,
-      tags: ["Cybersecurity", "Business Security", "Threat Protection"],
-      readTime: "8 min read"
-    },
-    {
-      slug: "ultimate-guide-choosing-right-it-solutions-partner",
-      title: "The Ultimate Guide to Choosing the Right IT Solutions Partner",
-      category: "IT Solutions",
-      date: "25 December 2024",
-      author: "Pixelways Team",
-      avatar: "https://randomuser.me/api/portraits/women/21.jpg",
-      image: "https://api.a0.dev/assets/image?text=IT consultant in a modern office, comparing solution options on a large interactive display, city skyline visible, 8K, 300x300px.&aspect=1:1&seed=139",
-      excerpt: "Navigate the complexities of selecting an IT partner with our comprehensive guide, ensuring you make an informed decision for your business's future.",
-      content: `
-        <p>Choosing the right IT solutions partner is crucial for your business success. The right partner can help you streamline operations, improve efficiency, and drive growth while ensuring your technology infrastructure is secure and scalable.</p>
-        
-        <h4>Key Factors to Consider</h4>
-        <p>When evaluating potential IT partners, consider their expertise, experience, and ability to understand your unique business needs. Look for partners who can provide comprehensive solutions and ongoing support.</p>
-        
-        <h4>What to Look For</h4>
-        <p>A reliable IT partner should offer proven track record, industry experience, comprehensive service offerings, 24/7 support capabilities, and scalable solutions that grow with your business.</p>
-        
-        <h5>Technical Expertise and Experience</h5>
-        <p>Ensure your potential partner has deep technical knowledge across multiple domains and a proven track record of successful implementations in your industry.</p>
-        
-        <h4>Partnership vs. Vendor Relationship</h4>
-        <p>The best IT solutions providers act as true partners, understanding your business goals and working collaboratively to achieve them rather than simply fulfilling orders.</p>
-        
-        <p>Pixelways Solutions offers all these qualities and more, making us the ideal partner for your IT needs with transparent pricing, excellent communication, and a commitment to your success.</p>
-      `,
-      tags: ["IT Partnership", "Business Strategy", "Technology Selection"],
-      readTime: "10 min read"
-    },
-    {
-      slug: "importance-data-backup-disaster-recovery-plans",
-      title: "The Importance of Data Backup and Disaster Recovery Plans",
-      category: "IT Solutions",
-      date: "25 December 2024",
-      author: "Pixelways Team",
-      avatar: "https://randomuser.me/api/portraits/men/31.jpg",
-      image: "https://api.a0.dev/assets/image?text=IT manager overseeing a secure data backup operation, multiple screens showing recovery progress, office setting, 8K, 300x300px.&aspect=1:1&seed=140",
-      excerpt: "Understand why robust data backup and disaster recovery plans are crucial for business continuity and protecting your valuable information from unforeseen events.",
-      content: `
-        <p>Data loss can be catastrophic for any business. Whether due to hardware failure, cyber attacks, natural disasters, or human error, having a comprehensive backup and disaster recovery plan is essential for business continuity.</p>
-        
-        <h4>The Cost of Data Loss</h4>
-        <p>Studies show that businesses without proper backup and recovery plans often struggle to recover from data loss incidents, with many never fully recovering from significant data loss events.</p>
-        
-        <h4>Essential Components of a Good Plan</h4>
-        <p>A comprehensive backup and disaster recovery plan should include regular automated backups, multiple storage locations, regular testing procedures, and clear recovery protocols.</p>
-        
-        <h5>Backup Strategies</h5>
-        <p>Implement the 3-2-1 backup rule: keep 3 copies of important data, store 2 backup copies on different storage media, and keep 1 backup copy offsite or in the cloud.</p>
-        
-        <h4>Testing and Validation</h4>
-        <p>Regular testing of your backup and recovery procedures is crucial to ensure they work when needed. Many businesses discover their backups are incomplete or corrupted only when disaster strikes.</p>
-        
-        <p>Our team at Pixelways Solutions can help you develop and implement a robust backup and disaster recovery strategy tailored to your business needs, ensuring your data is always protected and recoverable.</p>
-      `,
-      tags: ["Data Backup", "Disaster Recovery", "Business Continuity"],
-      readTime: "9 min read"
-    },
-    {
-      slug: "ultimate-guide-it-solutions-partner",
-      title: "The Ultimate Guide to Choosing the Right IT Solutions Partner",
-      category: "Cyber Security",
-      date: "25 December 2024",
-      author: "John Carter",
-      avatar: "https://randomuser.me/api/portraits/men/11.jpg",
-      image: "https://api.a0.dev/assets/image?text=AI+transformation+business+operations+modern+workspace+digital+technology&aspect=1:1&seed=blog1",
-      excerpt: "Discover how to select the perfect IT solutions partner for your business with our comprehensive guide.",
-      content: `
-        <p>In today's fast-paced business world, optimizing efficiency and reducing costs are essential to staying competitive. IT consulting can provide the strategic insights and technical solutions that streamline operations, eliminate inefficiencies, and enhance productivity.</p>
-        
-        <h4>Why Choose the Right IT Partner?</h4>
-        <p>Selecting the right IT solutions partner is crucial for business success. The right partner can help you navigate complex technology landscapes, implement robust security measures, and scale your operations effectively.</p>
-        
-        <h4>Key Factors to Consider</h4>
-        <p>When evaluating potential IT partners, consider their expertise, industry experience, security protocols, and ability to scale with your business needs. Look for partners who understand your specific industry challenges and can provide tailored solutions.</p>
-        
-        <h5>Technical Expertise</h5>
-        <p>Ensure your IT partner has deep technical knowledge across multiple domains including cybersecurity, cloud services, data management, and emerging technologies like AI and machine learning.</p>
-        
-        <h4>Implementing Best Practices</h4>
-        <p>A reliable IT partner will help you implement industry best practices, maintain compliance with regulations, and establish robust security frameworks that protect your business assets.</p>
-      `,
-      tags: ["IT Consulting", "Business Strategy", "Technology"],
-      readTime: "8 min read"
-    },
-    {
-      slug: "cybersecurity-protecting-digital-world-2024",
-      title: "Cybersecurity Unlocked: Protecting Your Digital World in 2024",
-      category: "Cyber Security",
-      date: "25 December 2024",
-      author: "Emily Smith",
-      avatar: "https://randomuser.me/api/portraits/women/21.jpg",
-      image: "https://api.a0.dev/assets/image?text=cybersecurity+expert+protecting+digital+world+modern+office+security+shields&aspect=1:1&seed=blog2",
-      excerpt: "Learn the latest cybersecurity strategies to protect your business from evolving digital threats.",
-      content: `
-        <p>Cybersecurity has evolved dramatically in 2024, with new threats emerging daily and traditional security measures becoming insufficient. Businesses must adopt a proactive, multi-layered approach to protect their digital assets.</p>
-        
-        <h4>The Current Threat Landscape</h4>
-        <p>Modern cyber threats include ransomware, phishing attacks, supply chain vulnerabilities, and AI-powered attacks. Understanding these threats is the first step in building effective defenses.</p>
-        
-        <h4>Essential Security Measures</h4>
-        <p>Implement zero-trust architecture, multi-factor authentication, regular security audits, employee training programs, and advanced threat detection systems to create a robust security posture.</p>
-        
-        <h5>Zero-Trust Implementation</h5>
-        <p>Zero-trust security models verify every user and device before granting access to systems, reducing the risk of unauthorized access and data breaches.</p>
-        
-        <h4>Future-Proofing Your Security</h4>
-        <p>Stay ahead of threats by implementing AI-powered security tools, conducting regular penetration testing, and maintaining an incident response plan that can adapt to new attack vectors.</p>
-      `,
-      tags: ["Cybersecurity", "Data Protection", "Risk Management"],
-      readTime: "10 min read"
-    },
-    {
-      slug: "essential-cybersecurity-practices-business",
-      title: "Essential Cybersecurity Practices Every Business Must Follow",
-      category: "Cyber Security",
-      date: "25 December 2024",
-      author: "Michael Lee",
-      avatar: "https://randomuser.me/api/portraits/men/31.jpg",
-      image: "https://api.a0.dev/assets/image?text=cybersecurity+best+practices+business+security+consultant+reviewing+data&aspect=1:1&seed=blog3",
-      excerpt: "Discover the fundamental cybersecurity practices that every business should implement immediately.",
-      content: `
-        <p>Every business, regardless of size, faces cybersecurity threats. Implementing essential security practices can significantly reduce your risk of data breaches and cyber attacks.</p>
-        
-        <h4>Foundation Security Practices</h4>
-        <p>Start with basic security hygiene: regular software updates, strong password policies, secure network configurations, and employee security awareness training.</p>
-        
-        <h4>Access Control and Authentication</h4>
-        <p>Implement role-based access controls, multi-factor authentication, and regular access reviews to ensure only authorized personnel can access sensitive systems and data.</p>
-        
-        <h5>Password Management</h5>
-        <p>Deploy enterprise password managers and enforce strong password policies to prevent credential-based attacks, which account for over 80% of security breaches.</p>
-        
-        <h4>Data Protection Strategies</h4>
-        <p>Encrypt sensitive data both in transit and at rest, implement regular backup procedures, and establish clear data handling policies for all employees.</p>
-      `,
-      tags: ["Security Practices", "Data Protection", "Compliance"],
-      readTime: "7 min read"
-    },
-    {
-      slug: "modern-it-consulting-trends-growing-businesses",
-      title: "Modern IT Consulting Trends for Growing Businesses",
-      category: "IT Consulting",
-      date: "25 December 2024",
-      author: "Sophia Turner",
-      avatar: "https://randomuser.me/api/portraits/women/41.jpg",
-      image: "https://api.a0.dev/assets/image?text=modern+IT+consultant+presenting+business+growth+strategies+tech+office&aspect=1:1&seed=blog4",
-      excerpt: "Explore the latest trends in IT consulting and how they impact business growth in 2024.",
-      content: `
-        <p>The IT consulting landscape is rapidly evolving, with new technologies and methodologies reshaping how businesses approach digital transformation and growth strategies.</p>
-        
-        <h4>Emerging Consulting Trends</h4>
-        <p>AI-driven consulting, sustainable IT practices, hybrid cloud strategies, and outcome-based consulting models are transforming the industry.</p>
-        
-        <h4>Digital Transformation 2.0</h4>
-        <p>Modern digital transformation goes beyond basic digitization, focusing on creating intelligent, adaptive systems that can evolve with business needs.</p>
-        
-        <h5>AI and Machine Learning Integration</h5>
-        <p>Consultants are increasingly leveraging AI tools to provide more accurate insights, automate routine tasks, and deliver predictive analytics for strategic decision-making.</p>
-        
-        <h4>Sustainable IT Consulting</h4>
-        <p>Green IT practices, energy-efficient systems, and sustainable technology choices are becoming central to modern consulting approaches.</p>
-      `,
-      tags: ["IT Consulting", "Digital Transformation", "Business Growth"],
-      readTime: "9 min read"
-    },
-    {
-      slug: "cloud-migration-best-practices-smooth-transition",
-      title: "Cloud Migration: Best Practices for a Smooth Transition",
-      category: "Cloud Services",
-      date: "25 December 2024",
-      author: "David Kim",
-      avatar: "https://randomuser.me/api/portraits/men/51.jpg",
-      image: "https://api.a0.dev/assets/image?text=cloud+migration+expert+guiding+business+team+smooth+transition&aspect=1:1&seed=blog5",
-      excerpt: "Learn how to migrate your business to the cloud with minimal disruption and maximum security.",
-      content: `
-        <p>Cloud migration is a critical step for modern businesses seeking scalability, cost efficiency, and enhanced security. However, successful migration requires careful planning and execution.</p>
-        
-        <h4>Migration Planning Phase</h4>
-        <p>Conduct thorough assessments of current infrastructure, define migration goals, create detailed timelines, and establish security protocols before beginning the migration process.</p>
-        
-        <h4>Choosing the Right Cloud Strategy</h4>
-        <p>Evaluate public, private, and hybrid cloud options based on your security requirements, compliance needs, scalability demands, and budget constraints.</p>
-        
-        <h5>Security Considerations</h5>
-        <p>Implement robust security measures including data encryption, access controls, network security, and compliance monitoring throughout the migration process.</p>
-        
-        <h4>Post-Migration Optimization</h4>
-        <p>Continuously monitor performance, optimize costs, implement backup strategies, and train staff on new cloud-based workflows to maximize ROI.</p>
-      `,
-      tags: ["Cloud Migration", "Infrastructure", "Digital Transformation"],
-      readTime: "12 min read"
-    },
-    {
-      slug: "data-recovery-solutions-small-businesses",
-      title: "Data Recovery Solutions for Small Businesses",
-      category: "Data Recovery",
-      date: "25 December 2024",
-      author: "Olivia Brown",
-      avatar: "https://randomuser.me/api/portraits/women/61.jpg",
-      image: "https://api.a0.dev/assets/image?text=data+recovery+specialist+helping+small+business+restore+files&aspect=1:1&seed=blog6",
-      excerpt: "Discover effective data recovery strategies tailored for small businesses in the digital age.",
-      content: `
-        <p>Data loss can be devastating for small businesses, potentially resulting in significant financial losses and operational disruptions. Having robust data recovery solutions is essential for business continuity.</p>
-        
-        <h4>Understanding Data Loss Risks</h4>
-        <p>Common causes of data loss include hardware failures, human errors, cyber attacks, natural disasters, and software corruption. Small businesses are particularly vulnerable due to limited IT resources.</p>
-        
-        <h4>Backup Strategies</h4>
-        <p>Implement the 3-2-1 backup rule: maintain three copies of critical data, store them on two different media types, and keep one copy offsite for disaster recovery.</p>
-        
-        <h5>Automated Backup Solutions</h5>
-        <p>Deploy automated backup systems that regularly save critical business data to cloud storage or external devices, reducing the risk of human error in backup processes.</p>
-        
-        <h4>Recovery Planning</h4>
-        <p>Develop comprehensive disaster recovery plans that outline step-by-step procedures for data restoration, communication protocols, and business continuity measures.</p>
-      `,
-      tags: ["Data Recovery", "Backup Solutions", "Business Continuity"],
-      readTime: "8 min read"
-    }
-  ];
+ const blogPosts = [
+  {
+    slug: "cybersecurity-essentials-protecting-business-from-emerging-threats",
+    title: "Cybersecurity Essentials Protecting Business from Emerging Threats",
+    category: "IT Solutions",
+    date: "25 December 2024",
+    author: "Hans Ade", // ✅ Updated
+    avatar: "https://randomuser.me/api/portraits/men/11.jpg",
+    image: "https://api.a0.dev/assets/image?text=Cybersecurity expert presenting at a business conference, audience engaged, digital threat icons on screen, 8K, 300x300px.&aspect=1:1&seed=138",
+    excerpt: "Stay ahead of evolving cyber threats with our essential guide to protecting your business through robust security practices and proactive measures.",
+    content: `
+      <p>In today's digital landscape, cybersecurity has become more critical than ever. With the rise of remote work and increased digital transformation, businesses face a growing number of cyber threats that can compromise sensitive data and disrupt operations.</p>
+      
+      <h4>Understanding Modern Cyber Threats</h4>
+      <p>Modern cyber threats are becoming increasingly sophisticated. From ransomware attacks to phishing scams, businesses need to stay vigilant and implement robust security measures.</p>
+      
+      <h4>Essential Security Measures</h4>
+      <p>Implement comprehensive security frameworks that include regular security assessments, employee training programs, multi-factor authentication, and advanced threat detection systems.</p>
+      
+      <h5>Proactive Security Approach</h5>
+      <p>The best defense against cyber threats is a proactive approach that includes regular penetration testing, vulnerability assessments, and continuous monitoring of your digital assets.</p>
+      
+      <h4>Building a Security Culture</h4>
+      <p>Creating a security-conscious culture within your organization is essential. This includes regular training, clear security policies, and making cybersecurity everyone's responsibility.</p>
+      
+      <p>At Pixelways Solutions, we help businesses implement comprehensive cybersecurity strategies that protect against emerging threats while maintaining operational efficiency.</p>
+    `,
+    tags: ["Cybersecurity", "Business Security", "Threat Protection"],
+    readTime: "8 min read"
+  },
+  {
+    slug: "ultimate-guide-choosing-right-it-solutions-partner",
+    title: "The Ultimate Guide to Choosing the Right IT Solutions Partner",
+    category: "IT Solutions",
+    date: "25 December 2024",
+    author: "Hans Ade", // ✅ Updated
+    avatar: "https://randomuser.me/api/portraits/women/21.jpg",
+    image: "https://api.a0.dev/assets/image?text=IT consultant in a modern office, comparing solution options on a large interactive display, city skyline visible, 8K, 300x300px.&aspect=1:1&seed=139",
+    excerpt: "Navigate the complexities of selecting an IT partner with our comprehensive guide, ensuring you make an informed decision for your business's future.",
+    content: `
+      <p>Choosing the right IT solutions partner is crucial for your business success. The right partner can help you streamline operations, improve efficiency, and drive growth while ensuring your technology infrastructure is secure and scalable.</p>
+      
+      <h4>Key Factors to Consider</h4>
+      <p>When evaluating potential IT partners, consider their expertise, experience, and ability to understand your unique business needs. Look for partners who can provide comprehensive solutions and ongoing support.</p>
+      
+      <h4>What to Look For</h4>
+      <p>A reliable IT partner should offer proven track record, industry experience, comprehensive service offerings, 24/7 support capabilities, and scalable solutions that grow with your business.</p>
+      
+      <h5>Technical Expertise and Experience</h5>
+      <p>Ensure your potential partner has deep technical knowledge across multiple domains and a proven track record of successful implementations in your industry.</p>
+      
+      <h4>Partnership vs. Vendor Relationship</h4>
+      <p>The best IT solutions providers act as true partners, understanding your business goals and working collaboratively to achieve them rather than simply fulfilling orders.</p>
+      
+      <p>Pixelways Solutions offers all these qualities and more, making us the ideal partner for your IT needs with transparent pricing, excellent communication, and a commitment to your success.</p>
+    `,
+    tags: ["IT Partnership", "Business Strategy", "Technology Selection"],
+    readTime: "10 min read"
+  },
+  {
+    slug: "importance-data-backup-disaster-recovery-plans",
+    title: "The Importance of Data Backup and Disaster Recovery Plans",
+    category: "IT Solutions",
+    date: "25 December 2024",
+    author: "Hans Ade", // ✅ Updated
+    avatar: "https://randomuser.me/api/portraits/men/31.jpg",
+    image: "https://api.a0.dev/assets/image?text=IT manager overseeing a secure data backup operation, multiple screens showing recovery progress, office setting, 8K, 300x300px.&aspect=1:1&seed=140",
+    excerpt: "Understand why robust data backup and disaster recovery plans are crucial for business continuity and protecting your valuable information from unforeseen events.",
+    content: `
+      <p>Data loss can be catastrophic for any business. Whether due to hardware failure, cyber attacks, natural disasters, or human error, having a comprehensive backup and disaster recovery plan is essential for business continuity.</p>
+      
+      <h4>The Cost of Data Loss</h4>
+      <p>Studies show that businesses without proper backup and recovery plans often struggle to recover from data loss incidents, with many never fully recovering from significant data loss events.</p>
+      
+      <h4>Essential Components of a Good Plan</h4>
+      <p>A comprehensive backup and disaster recovery plan should include regular automated backups, multiple storage locations, regular testing procedures, and clear recovery protocols.</p>
+      
+      <h5>Backup Strategies</h5>
+      <p>Implement the 3-2-1 backup rule: keep 3 copies of important data, store 2 backup copies on different storage media, and keep 1 backup copy offsite or in the cloud.</p>
+      
+      <h4>Testing and Validation</h4>
+      <p>Regular testing of your backup and recovery procedures is crucial to ensure they work when needed. Many businesses discover their backups are incomplete or corrupted only when disaster strikes.</p>
+      
+      <p>Our team at Pixelways Solutions can help you develop and implement a robust backup and disaster recovery strategy tailored to your business needs, ensuring your data is always protected and recoverable.</p>
+    `,
+    tags: ["Data Backup", "Disaster Recovery", "Business Continuity"],
+    readTime: "9 min read"
+  },
+  {
+    slug: "ultimate-guide-it-solutions-partner",
+    title: "The Ultimate Guide to Choosing the Right IT Solutions Partner",
+    category: "Cyber Security",
+    date: "25 December 2024",
+    author: "Hans Ade", // ✅ Updated
+    avatar: "https://randomuser.me/api/portraits/men/11.jpg",
+    image: "https://api.a0.dev/assets/image?text=AI+transformation+business+operations+modern+workspace+digital+technology&aspect=1:1&seed=blog1",
+    excerpt: "Discover how to select the perfect IT solutions partner for your business with our comprehensive guide.",
+    content: `
+      <p>In today's fast-paced business world, optimizing efficiency and reducing costs are essential to staying competitive. IT consulting can provide the strategic insights and technical solutions that streamline operations, eliminate inefficiencies, and enhance productivity.</p>
+      
+      <h4>Why Choose the Right IT Partner?</h4>
+      <p>Selecting the right IT solutions partner is crucial for business success. The right partner can help you navigate complex technology landscapes, implement robust security measures, and scale your operations effectively.</p>
+      
+      <h4>Key Factors to Consider</h4>
+      <p>When evaluating potential IT partners, consider their expertise, industry experience, security protocols, and ability to scale with your business needs. Look for partners who understand your specific industry challenges and can provide tailored solutions.</p>
+      
+      <h5>Technical Expertise</h5>
+      <p>Ensure your IT partner has deep technical knowledge across multiple domains including cybersecurity, cloud services, data management, and emerging technologies like AI and machine learning.</p>
+      
+      <h4>Implementing Best Practices</h4>
+      <p>A reliable IT partner will help you implement industry best practices, maintain compliance with regulations, and establish robust security frameworks that protect your business assets.</p>
+    `,
+    tags: ["IT Consulting", "Business Strategy", "Technology"],
+    readTime: "8 min read"
+  },
+  {
+    slug: "cybersecurity-protecting-digital-world-2024",
+    title: "Cybersecurity Unlocked: Protecting Your Digital World in 2024",
+    category: "Cyber Security",
+    date: "25 December 2024",
+    author: "Hans Ade", // ✅ Updated
+    avatar: "https://randomuser.me/api/portraits/women/21.jpg",
+    image: "https://api.a0.dev/assets/image?text=cybersecurity+expert+protecting+digital+world+modern+office+security+shields&aspect=1:1&seed=blog2",
+    excerpt: "Learn the latest cybersecurity strategies to protect your business from evolving digital threats.",
+    content: `
+      <p>Cybersecurity has evolved dramatically in 2024, with new threats emerging daily and traditional security measures becoming insufficient. Businesses must adopt a proactive, multi-layered approach to protect their digital assets.</p>
+      
+      <h4>The Current Threat Landscape</h4>
+      <p>Modern cyber threats include ransomware, phishing attacks, supply chain vulnerabilities, and AI-powered attacks. Understanding these threats is the first step in building effective defenses.</p>
+      
+      <h4>Essential Security Measures</h4>
+      <p>Implement zero-trust architecture, multi-factor authentication, regular security audits, employee training programs, and advanced threat detection systems to create a robust security posture.</p>
+      
+      <h5>Zero-Trust Implementation</h5>
+      <p>Zero-trust security models verify every user and device before granting access to systems, reducing the risk of unauthorized access and data breaches.</p>
+      
+      <h4>Future-Proofing Your Security</h4>
+      <p>Stay ahead of threats by implementing AI-powered security tools, conducting regular penetration testing, and maintaining an incident response plan that can adapt to new attack vectors.</p>
+    `,
+    tags: ["Cybersecurity", "Data Protection", "Risk Management"],
+    readTime: "10 min read"
+  },
+  {
+    slug: "essential-cybersecurity-practices-business",
+    title: "Essential Cybersecurity Practices Every Business Must Follow",
+    category: "Cyber Security",
+    date: "25 December 2024",
+    author: "Hans Ade", // ✅ Updated
+    avatar: "https://randomuser.me/api/portraits/men/31.jpg",
+    image: "https://api.a0.dev/assets/image?text=cybersecurity+best+practices+business+security+consultant+reviewing+data&aspect=1:1&seed=blog3",
+    excerpt: "Discover the fundamental cybersecurity practices that every business should implement immediately.",
+    content: `
+      <p>Every business, regardless of size, faces cybersecurity threats. Implementing essential security practices can significantly reduce your risk of data breaches and cyber attacks.</p>
+      
+      <h4>Foundation Security Practices</h4>
+      <p>Start with basic security hygiene: regular software updates, strong password policies, secure network configurations, and employee security awareness training.</p>
+      
+      <h4>Access Control and Authentication</h4>
+      <p>Implement role-based access controls, multi-factor authentication, and regular access reviews to ensure only authorized personnel can access sensitive systems and data.</p>
+      
+      <h5>Password Management</h5>
+      <p>Deploy enterprise password managers and enforce strong password policies to prevent credential-based attacks, which account for over 80% of security breaches.</p>
+      
+      <h4>Data Protection Strategies</h4>
+      <p>Encrypt sensitive data both in transit and at rest, implement regular backup procedures, and establish clear data handling policies for all employees.</p>
+    `,
+    tags: ["Security Practices", "Data Protection", "Compliance"],
+    readTime: "7 min read"
+  },
+  {
+    slug: "modern-it-consulting-trends-growing-businesses",
+    title: "Modern IT Consulting Trends for Growing Businesses",
+    category: "IT Consulting",
+    date: "25 December 2024",
+    author: "Hans Ade", // ✅ Updated
+    avatar: "https://randomuser.me/api/portraits/women/41.jpg",
+    image: "https://api.a0.dev/assets/image?text=modern+IT+consultant+presenting+business+growth+strategies+tech+office&aspect=1:1&seed=blog4",
+    excerpt: "Explore the latest trends in IT consulting and how they impact business growth in 2024.",
+    content: `
+      <p>The IT consulting landscape is rapidly evolving, with new technologies and methodologies reshaping how businesses approach digital transformation and growth strategies.</p>
+      
+      <h4>Emerging Consulting Trends</h4>
+      <p>AI-driven consulting, sustainable IT practices, hybrid cloud strategies, and outcome-based consulting models are transforming the industry.</p>
+      
+      <h4>Digital Transformation 2.0</h4>
+      <p>Modern digital transformation goes beyond basic digitization, focusing on creating intelligent, adaptive systems that can evolve with business needs.</p>
+      
+      <h5>AI and Machine Learning Integration</h5>
+      <p>Consultants are increasingly leveraging AI tools to provide more accurate insights, automate routine tasks, and deliver predictive analytics for strategic decision-making.</p>
+      
+      <h4>Sustainable IT Consulting</h4>
+      <p>Green IT practices, energy-efficient systems, and sustainable technology choices are becoming central to modern consulting approaches.</p>
+    `,
+    tags: ["IT Consulting", "Digital Transformation", "Business Growth"],
+    readTime: "9 min read"
+  },
+  {
+    slug: "cloud-migration-best-practices-smooth-transition",
+    title: "Cloud Migration: Best Practices for a Smooth Transition",
+    category: "Cloud Services",
+    date: "25 December 2024",
+    author: "Hans Ade", // ✅ Updated
+    avatar: "https://randomuser.me/api/portraits/men/51.jpg",
+    image: "https://api.a0.dev/assets/image?text=cloud+migration+expert+guiding+business+team+smooth+transition&aspect=1:1&seed=blog5",
+    excerpt: "Learn how to migrate your business to the cloud with minimal disruption and maximum security.",
+    content: `
+      <p>Cloud migration is a critical step for modern businesses seeking scalability, cost efficiency, and enhanced security. However, successful migration requires careful planning and execution.</p>
+      
+      <h4>Migration Planning Phase</h4>
+      <p>Conduct thorough assessments of current infrastructure, define migration goals, create detailed timelines, and establish security protocols before beginning the migration process.</p>
+      
+      <h4>Choosing the Right Cloud Strategy</h4>
+      <p>Evaluate public, private, and hybrid cloud options based on your security requirements, compliance needs, scalability demands, and budget constraints.</p>
+      
+      <h5>Security Considerations</h5>
+      <p>Implement robust security measures including data encryption, access controls, network security, and compliance monitoring throughout the migration process.</p>
+      
+      <h4>Post-Migration Optimization</h4>
+      <p>Continuously monitor performance, optimize costs, implement backup strategies, and train staff on new cloud-based workflows to maximize ROI.</p>
+    `,
+    tags: ["Cloud Migration", "Infrastructure", "Digital Transformation"],
+    readTime: "12 min read"
+  },
+  {
+    slug: "data-recovery-solutions-small-businesses",
+    title: "Data Recovery Solutions for Small Businesses",
+    category: "Data Recovery",
+    date: "25 December 2024",
+    author: "Hans Ade", // ✅ Updated
+    avatar: "https://randomuser.me/api/portraits/women/61.jpg",
+    image: "https://api.a0.dev/assets/image?text=data+recovery+specialist+helping+small+business+restore+files&aspect=1:1&seed=blog6",
+    excerpt: "Discover effective data recovery strategies tailored for small businesses in the digital age.",
+    content: `
+      <p>Data loss can be devastating for small businesses, potentially resulting in significant financial losses and operational disruptions. Having robust data recovery solutions is essential for business continuity.</p>
+      
+      <h4>Understanding Data Loss Risks</h4>
+      <p>Common causes of data loss include hardware failures, human errors, cyber attacks, natural disasters, and software corruption. Small businesses are particularly vulnerable due to limited IT resources.</p>
+      
+      <h4>Backup Strategies</h4>
+      <p>Implement the 3-2-1 backup rule: maintain three copies of critical data, store them on two different media types, and keep one copy offsite for disaster recovery.</p>
+      
+      <h5>Automated Backup Solutions</h5>
+      <p>Deploy automated backup systems that regularly save critical business data to cloud storage or external devices, reducing the risk of human error in backup processes.</p>
+      
+      <h4>Recovery Planning</h4>
+      <p>Develop comprehensive disaster recovery plans that outline step-by-step procedures for data restoration, communication protocols, and business continuity measures.</p>
+    `,
+    tags: ["Data Recovery", "Backup Solutions", "Business Continuity"],
+    readTime: "8 min read"
+  }
+];
 
   useEffect(() => {
     // Find the current post by slug

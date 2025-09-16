@@ -1,1 +1,1 @@
-git commit -m "FEAT: Change blog post authors to Hans Ade"
+git commit -m "FEAT: Change blog post authors to Hans Ade in slug data"
