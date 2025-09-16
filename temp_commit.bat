@@ -1,1 +1,1 @@
-git commit -m "FEAT: Remove pricing link from header navigation"
+git commit -m "FEAT: Change blog post authors to Hans Ade"

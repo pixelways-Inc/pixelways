@@ -1,5 +1,14 @@
 ## 2025-09-16
 
+**Objective:** Change the author of all blog posts to "Hans Ade" in blog post slug data.
+
+**Summary of Changes:**
+
+-   **`app/blog-details/[slug]/page.js`:**
+    -   Updated the `author` field for all blog post objects within the `blogPosts` array to "Hans Ade".
+
+## 2025-09-16
+
 **Objective:** Change the author of all blog posts to "Hans Ade".
 
 **Summary of Changes:**

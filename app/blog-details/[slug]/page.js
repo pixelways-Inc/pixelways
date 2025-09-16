@@ -16,7 +16,7 @@ const blogPosts = [
     description: "Highlights clear problem-solution-result narrative, demonstrating agency's ability to provide.",
     image: "https://api.a0.dev/assets/image?text=IT+solutions+partner+business+meeting+technology+consulting&aspect=1:1&seed=701",
     avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-    author: "Alex Johnson",
+    author: "Hans Ade",
     content: `
       <p>In today's rapidly evolving digital landscape, choosing the right IT solutions partner is crucial for business success. This comprehensive guide will walk you through the essential factors to consider when selecting an IT partner that aligns with your business goals.</p>
       
@@ -47,7 +47,7 @@ const blogPosts = [
     description: "Highlights clear problem-solution-result narrative, demonstrating agency's ability to provide.",
     image: "https://api.a0.dev/assets/image?text=cybersecurity+expert+protecting+digital+world+security+office&aspect=1:1&seed=702",
     avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-    author: "Maria Chen",
+    author: "Hans Ade",
     content: `
       <p>As we navigate through 2024, cybersecurity threats continue to evolve at an unprecedented pace. Organizations must adopt a comprehensive approach to protect their digital assets and maintain customer trust.</p>
       
@@ -78,7 +78,7 @@ const blogPosts = [
     description: "Learn the essential cybersecurity strategies and compliance requirements every IT software company should implement to protect digital assets and client data.",
     image: "https://api.a0.dev/assets/image?text=cybersecurity+best+practices+business+security+data+protection&aspect=1:1&seed=703",
     avatar: "https://randomuser.me/api/portraits/men/65.jpg",
-    author: "Robert S. Hummel",
+    author: "Hans Ade",
     content: `
       <p>Cybersecurity is no longer optional for businesses of any size. With cyber threats becoming more sophisticated and frequent, implementing robust security practices is essential for protecting your business, customers, and reputation.</p>
       
@@ -112,7 +112,7 @@ const blogPosts = [
     description: "Explore the latest trends in IT consulting and how they impact business growth in 2024.",
     image: "https://api.a0.dev/assets/image?text=modern+IT+consulting+trends+business+growth+technology+office&aspect=1:1&seed=704",
     avatar: "https://randomuser.me/api/portraits/women/12.jpg",
-    author: "Leonard G. Trahan",
+    author: "Hans Ade",
     content: `
       <p>The IT consulting landscape is rapidly evolving, with new trends reshaping how businesses approach technology strategy and implementation. Understanding these trends is crucial for organizations looking to stay competitive.</p>
       
@@ -181,7 +181,7 @@ const blogPosts = [
     description: "Discover effective data recovery strategies tailored for small businesses in the digital age.",
     image: "https://api.a0.dev/assets/image?text=data+recovery+specialist+small+business+files+restoration+support&aspect=1:1&seed=706",
     avatar: "https://randomuser.me/api/portraits/women/28.jpg",
-    author: "Sarah Mitchell",
+    author: "Hans Ade",
     content: `
       <p>Data loss can be catastrophic for small businesses, potentially leading to significant financial losses and operational disruption. Implementing effective data recovery solutions is essential for business continuity.</p>
       
@@ -278,7 +278,7 @@ const blogPosts = [
     description: "Understand key digital transformation strategies that can help small businesses thrive in the evolving digital landscape.",
     image: "https://api.a0.dev/assets/image?text=Anye+Happiness+Ade+Digital+Transformation+Strategies&aspect=1:1&seed=anyeade1",
     avatar: "https://randomuser.me/api/portraits/women/50.jpg",
-    author: "Anye Happiness Ade",
+    author: "Hans Ade",
     content: `
       <p>Digital transformation is no longer just for large enterprises. Small businesses can also leverage digital technologies to improve efficiency, reach new customers, and gain a competitive edge. This article outlines key strategies for successful digital transformation in small businesses.</p>
 
@@ -309,7 +309,7 @@ const blogPosts = [
     description: "Discover how cloud computing can significantly enhance your business efficiency, reduce costs, and improve scalability.",
     image: "https://api.a0.dev/assets/image?text=Anye+Happiness+Ade+Cloud+Computing+Benefits&aspect=1:1&seed=anyeade2",
     avatar: "https://randomuser.me/api/portraits/women/50.jpg",
-    author: "Anye Happiness Ade",
+    author: "Hans Ade",
     content: `
       <p>Cloud computing has revolutionized how businesses operate, offering unparalleled opportunities for efficiency, scalability, and cost savings. This article explores how organizations can leverage cloud computing to maximize their operational efficiency.</p>
 
