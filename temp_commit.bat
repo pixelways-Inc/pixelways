@@ -1,1 +1,1 @@
-git commit -m "FIX: Display Font Awesome arrow icons for hero slider navigation"
+git commit -m "FIX: Corrected hero slider navigation to display Font Awesome arrows"

@@ -79,7 +79,7 @@ const page = () => {
                   </h2>
                 </div>
                 <p>
-                  Choose Pixelways Solutionss as your trusted partner for digital transformation. We provide not just technology, but comprehensive support and strategic guidance to help your business thrive in the digital age.
+                  Choose Pixelways Solutions as your trusted partner for digital transformation. We provide not just technology, but comprehensive support and strategic guidance to help your business thrive in the digital age.
                 </p>
                 <Link href="about" className="theme-btn mt-20 mb-50">
                   Discover Our Story
