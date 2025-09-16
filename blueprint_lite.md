@@ -187,3 +187,16 @@
     -   Added a new case study entry for "Pynalis: French-language educational web application for learning Python in data analysis" with a link to its dedicated slug page `/cases/pynalis`.
     -   Assigned categories "E-Learning", "Data Analysis", and "AI Education" to this new entry.
     -   Used the local image for the thumbnail: `"/pynalis.png"`.
+
+## Login Feature Development (September 16, 2025)
+
+**Objective:** Implement a login feature using GitHub OAuth.
+
+**Summary of Changes:**
+
+-   **`app/login/page.js` (New Page):**
+    -   Created a new login page with a GitHub authentication component.
+-   **`app/api/auth/github/route.js` (Dynamic Redirect URI):**
+    -   Modified the GitHub authentication route to dynamically construct the `REDIRECT_URI` based on the request's origin.
+-   **`layout/Header.js` (Conditional Login/Workspace Button):**
+    -   Modified the `Header2` component to conditionally render a "Login" or "Workspace" button based on the user's authentication status.

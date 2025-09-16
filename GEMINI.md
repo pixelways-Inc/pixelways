@@ -54,4 +54,3 @@ By following these guidelines, you will contribute effectively to the Pixelways 
 ## Current Development Focus
 
 *   **`blueprint_lite.md`:** A new, simplified blueprint file has been introduced for streamlined documentation of minor changes or specific feature developments.
-*   **Login Feature Development:** The current primary task involves developing the login functionality for the application.
