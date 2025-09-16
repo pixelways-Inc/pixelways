@@ -16,3 +16,7 @@
 
 -   **`app/api/auth/github/route.js` (Dynamic Redirect URI):**
     -   Modified the GitHub authentication route to dynamically construct the `REDIRECT_URI` based on the request's origin. This allows the authentication to work in different environments (local, preview, production).
+
+-   **`layout/Header.js` (Conditional Login/Workspace Button):**
+    -   Modified the `Header2` component to conditionally render a "Login" or "Workspace" button based on the user's authentication status.
+    -   Added a `useEffect` hook to check for the GitHub access token in `sessionStorage`.

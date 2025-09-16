@@ -1,5 +1,6 @@
+
 import Link from "next/link";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Accordion } from "react-bootstrap";
 
 const Header = ({ header, singleMenu }) => {
@@ -177,6 +178,13 @@ const Header1 = ({ singleMenu }) => {
 };
 
 const Header2 = ({ singleMenu }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("github_access_token");
+    setIsAuthenticated(!!token);
+  }, []);
+
   return (
     <header className="main-header">
       <div className="header-top-wrap rel for-border-none">
@@ -314,9 +322,15 @@ const Header2 = ({ singleMenu }) => {
             </div>
             {/* Menu Button */}
             <div className="menu-btns ms-lg-auto">
-              <Link href="contact" className="theme-btn btn-small ms-lg-4">
-                Get In Touch
-              </Link>
+              {isAuthenticated ? (
+                <Link href="/workspace" className="theme-btn btn-small ms-lg-4">
+                  Workspace
+                </Link>
+              ) : (
+                <Link href="/login" className="theme-btn btn-small ms-lg-4">
+                  Login
+                </Link>
+              )}
               {/* menu sidbar */}
               <div className="menu-sidebar ms-4">
                 <button className="bg-transparent" />
@@ -1022,3 +1036,4 @@ const SearchBtn = () => {
     </Fragment>
   );
 };
+
