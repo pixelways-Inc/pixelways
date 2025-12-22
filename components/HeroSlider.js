@@ -5,10 +5,10 @@ import Slider from "react-slick";
 
 const slides = [
   {
-    title: "Introducing Pixel Pilot: Your AI-Driven IDE",
-    description: "Experience the future of coding with Pixel Pilot, our intelligent development environment. Boost your productivity and streamline your workflow.",
-    imageUrl: "https://api.a0.dev/assets/image?text=Pixel+Pilot+AI+Driven+IDE+Coding+Future&aspect=16:9&seed=4",
-    ctaText: "Discover Pixel Pilot",
+    title: "Introducing PiPilot: Your AI-Driven IDE",
+    description: "Experience the future of coding with PiPilot, our intelligent development environment. Boost your productivity and streamline your workflow.",
+    imageUrl: "https://api.a0.dev/assets/image?text=PiPilot+AI+Driven+IDE+Coding+Future&aspect=16:9&seed=4",
+    ctaText: "Discover PiPilot",
     ctaLink: "https://pipilot.dev",
   },
   {
