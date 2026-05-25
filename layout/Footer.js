@@ -1532,7 +1532,7 @@ const Footer6 = () => {
             </div>
             <div className="col-lg-4">
               <div className="copyright-text text-lg-end wow fadeInLeft delay-0-2s">
-                <p>Made with ❤️ by <Link href="/team/hans-ade" className="text-decoration-none">Hans Ade</Link> FT Pixelways Team</p>
+                <p>Made with ❤️ by Pixelways Team</p>
               </div>
             </div>
           </div>
